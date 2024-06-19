@@ -1,0 +1,107 @@
+.show-all-employees-component {
+    box-shadow: .2px .2px 22px .2px rgb(232, 232, 232);
+    /* height: 100vh; */
+    margin-left: 10px;
+    margin-top: -10px;
+    min-height: 93vh;
+    padding: 2px 2px 32px 12px;
+}
+
+.employees-details-container {
+    display: flex;
+}
+
+.employees-details-container {
+    flex-direction: row;
+    align-items: center;
+}
+
+.employees-details-container {
+    flex-wrap: wrap;
+    margin-top: 20px;
+
+}
+
+.search-employees-input {
+    width: 50%;
+    margin-left: 10px;
+    border: none;
+    letter-spacing: 1px;
+    box-shadow: .2px .2px 2px .2px lightgray;
+    padding: 6px 2px 6px 8px;
+    font-family: "Montserrat";
+
+}
+
+.employees-details-div {
+    display: flex;
+    flex-direction: column;
+    /* flex-wrap: wrap;
+    text-overflow: ellipsis; */
+    word-wrap: break-word;
+    width: 15%;
+    padding: 12px 22px 14px 22px;
+    margin: 10px 2px 2px 10px;
+    border-radius: 8px;
+    border: 0px solid rgb(0, 0, 64);
+    box-shadow: .2px .2px 2px .2px lightgray;
+}
+
+.employees-details-button{
+    cursor: pointer;
+    font-family: "Montserrat";
+    color:white;
+    border: none;
+    white-space: nowrap;
+    font-size: .77rem;
+    width: 100%;
+    border-radius: 4px;
+    padding: 4px 12px 4px 11px;
+    box-shadow: .2px .2px 12px .2px whitesmoke;
+    background: linear-gradient(to left,rgb(0, 113, 212),rgb(0, 85, 170));
+}
+
+.employees-details-button:hover{
+    background: white;
+    transition: .2s;
+    box-shadow: .2px .2px 2px .2px lightgray;    
+    color:rgb(0, 113, 212);
+}
+/* 
+{
+    overflow: hidden;
+    white-space: nowrap;
+
+    align-content:; 
+    overflow: hidden;
+    inline-size: 150px;
+
+    width: max-content;
+     word-wrap: break-word;
+
+} */
+
+
+.no-employee-div{
+    display: flex;
+}
+
+.no-employee-div{
+    flex-direction: column;
+}
+
+.no-employee-div{
+    height: 80vh;
+    /* box-shadow: .2px .2px 12px .2px; */
+    justify-content: center;
+    align-items: center;
+}
+
+.add-new-employee-link{
+    color:black;
+    font-size: .9rem;
+    /* border: 2px solid black; */
+    text-decoration: none;
+    padding:4px 12px 4px 12px;
+    box-shadow: .2px .2px 2px .2px lightgray;
+}

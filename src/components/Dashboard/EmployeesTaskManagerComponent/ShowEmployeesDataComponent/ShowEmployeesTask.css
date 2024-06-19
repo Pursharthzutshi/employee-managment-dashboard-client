@@ -1,0 +1,51 @@
+.assigned-to-employee-div{
+    margin-top: 20px;
+}
+
+.employees-task-data-container{
+    display: flex;
+}
+
+
+.employees-task-data-container{
+    flex-direction: column;
+}
+strong{
+    color:rgb(0, 33, 61);
+}
+.employees-task-data-div{
+    padding: 2px 12px 17px 12px;
+    border-radius: 8px;
+    box-shadow: .2px .2px 6px .2px lightgray;
+    margin-top: 20px;
+}
+
+.employees-edit-delete-task-button-container{
+    margin-left: -20px;
+}
+
+
+/* .employees-task-edit-dialog-box-button,.employees-task-delete-button{
+    border: none;
+    color:white;
+    font-family: "Montserrat";
+    padding:4px 12px 4px 12px;
+    margin-left: 10px;
+    border-radius: 4px;
+}
+ */
+
+/*  
+.employees-task-edit-dialog-box-button{
+    background: linear-gradient(to left,rgb(0, 113, 212),rgb(0, 85, 170));
+
+} */
+.employees-task-delete-button{
+    cursor: pointer;
+    margin-left: -20px;
+    background: red;
+}
+
+.task-desc{
+    line-height: 32px;
+}

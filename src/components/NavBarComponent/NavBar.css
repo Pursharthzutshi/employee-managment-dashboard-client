@@ -1,0 +1,122 @@
+/* Navbar code */
+.nav-bar-search-bar-container {
+    display: flex;
+}
+
+.nav-bar-search-bar-container {
+    flex-direction: row;
+}
+
+.nav-bar-search-user-profile-div {
+    display: flex;
+}
+
+.nav-bar-component {
+    width: 100%;
+    /* background: yellow; */
+}
+
+.nav-bar-search-bar-container {
+    /* background: green; */
+    justify-content: space-between;
+}
+
+.nav-bar-search-user-profile-div {
+    /* background: red; */
+    width: 60%;
+
+}
+
+.nav-bar-search-bar-div {
+    width: 80%;
+    margin-top: 10px;
+}
+
+.nav-bar-search-bar {
+    border: 1px solid lightgray;
+    /* border-bottom-left-radius: 8px; */
+    /* border-top-left-radius: 8px; */
+    outline: none;
+    font-family: "Montserrat";
+    width: 100%;
+    margin-left: 60px;
+    padding: 9px 2px 12px 8px;
+    box-shadow: .2px .2px 2px .2px rgb(230, 230, 230);
+}
+
+.nav-bar-search-bar:hover {
+    box-shadow: .2px .2px 5px .2px rgb(230, 230, 230);
+    transition: .4s;
+}
+
+
+.user-profile-icon {
+    cursor: pointer;
+    box-shadow: .2px .2px 4px .2px lightgray;
+    border-radius: 200px;
+    padding: 5px 5px 5px 5px;
+    color: lightgray;
+    margin-top: 8px;
+    font-size: 1.5rem;
+    margin-left: 100px;
+}
+
+.box {
+    position: fixed;
+    left: 88%;
+    top: 6%;
+    width: 10%;
+    height: 10vh;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+}
+
+.links {
+    text-decoration: none;
+    color: black;
+    font-size: .8rem;
+    padding: 12px 2px 12px 12px;
+    list-style: none;
+    margin-top: 0px;
+    /* visibility: hidden; */
+    border: 2px solid white;
+    box-shadow: .2px .2px 1px .2px lightgray;
+}
+
+.links:hover {
+    cursor: pointer;
+    background: whitesmoke;
+}
+
+
+
+
+
+
+.navbar-div {
+    margin-top: -10px;
+    display: flex;
+    font-size: 1.2rem;
+
+
+}
+
+.navbar-icon {
+    margin-top: 24px;
+    color: rgb(0, 64, 107);
+
+}
+
+
+.dashboard-name {
+    font-size: 1.2rem;
+    color: rgb(0, 64, 107);
+    margin-top: 22px;
+    margin-left: 10px;
+}

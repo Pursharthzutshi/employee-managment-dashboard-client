@@ -1,0 +1,127 @@
+.task-dialog-box-form,.close-dialog-box-icon-div {
+    display: flex;
+}
+
+.task-dialog-box-form,
+.add-button-div,.task-dialog-box-form,.selected-employees-div  {
+    display: flex;
+}
+
+.selected-employees-div{
+    flex-direction: row;
+}
+
+.task-dialog-box-form {
+    flex-direction: column;
+}
+
+.task-dialog-box-form {
+    background: white;
+    justify-content: space-evenly;
+}
+
+.task-dialog-box-form input {    
+    margin:20px 2px 2px 10px;
+    border: none;
+    font-family: "Montserrat";
+    gap: 10px;
+    width: 90%;
+    padding: 5px 12px 5px 7px;
+    box-shadow: .2px .2px 4px .2px lightgray;
+}
+
+.add-new-task-heading{
+    margin-top: -15px;
+    color:rgb(0, 66, 104);
+}
+
+.task-dialog-box {
+    padding: 22px 2px 22px 12px;
+    position: fixed;
+    z-index: +1;
+    background: white;
+    left: 33%;
+    top: 25%;
+    width: 38%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: .2px .2px 4px .2px lightgray;
+    animation: showdialogBoxAnimation .4s ease-in;
+}
+
+@keyframes showdialogBoxAnimation{
+    0%{
+        opacity:.2;
+    }
+    100%{
+        opacity:1;
+    }
+}
+
+.close-dialog-box-icon-div{
+    color:red;
+    padding: 2px 18px 2px 12px;
+    justify-content: end;
+}
+
+.close-dialog-box-icon,.close-edit-dialog-box-button{
+    padding: 2px 3px 2px 3px;
+    background: linear-gradient(to left,rgb(217, 0, 0),rgb(255, 0, 0));
+    /* border: 2px solid rgb(52, 0, 0); */
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+}
+
+.close-dialog-box-icon{
+    font-size: 1.1rem;
+}
+
+.close-dialog-box-icon{
+    font-size: 1.1rem;
+}
+
+
+.close-dialog-box-icon:hover{
+    cursor: pointer;
+    background: white;
+    color:red;
+    transition: .4s;
+}
+
+.add-posts-dialog-box-button,.add-new-task-button,.employees-task-edit-dialog-box-button,.employees-task-delete-button,.edit-new-task-button,.close-edit-dialog-box-button{
+    border: none;
+    color:white;
+    font-family: "Montserrat";
+    padding:4px 12px 4px 12px;
+    margin-left: 10px;
+    border-radius: 4px;
+}
+
+.add-posts-dialog-box-button,.add-new-task-button,.employees-task-edit-dialog-box-button,.edit-new-task-button{
+    margin:10px 2px 2px 20px;
+    background: linear-gradient(to left,rgb(0, 113, 212),rgb(0, 85, 170));
+    cursor: pointer;
+}
+
+.add-posts-dialog-box-button:hover{
+    /* background: white; */
+    color:white;
+}
+
+.selected-employees-container{
+    margin: 12px 2px 2px 12px;
+}
+
+.selected-employees-div{
+    padding: 2px 12px 2px 22px;
+    justify-content: space-between;
+}
+
+.selected-employees-cancel-icon{
+    margin-top: 10px;
+}
+
+.edit-button-div{
+    margin-top: 20px;
+}
