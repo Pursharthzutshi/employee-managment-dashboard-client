@@ -17,13 +17,14 @@
 }
 
 .nav-bar-search-bar-container {
-    /* background: green; */
+    width: 100%;
+    /* background: red; */
     justify-content: space-between;
 }
 
 .nav-bar-search-user-profile-div {
-    /* background: red; */
-    width: 60%;
+    /* background: green; */
+    width: 12%;
 
 }
 
@@ -57,21 +58,35 @@
     padding: 5px 5px 5px 5px;
     color: lightgray;
     margin-top: 8px;
-    font-size: 1.5rem;
+    font-size:2.3rem;
     margin-left: 100px;
 }
 
 .box {
     position: fixed;
     left: 88%;
-    top: 6%;
+    top: 8%;
+    background: white;
+    box-shadow: .2px .2px 2px .2px lightgray;
     width: 10%;
-    height: 10vh;
-    border-bottom-right-radius: 8px;
-    border-bottom-left-radius: 8px;
+    padding: 4px 2px 2px 2px;
+    height: 5vh;
 
 }
 
+
+/* 
+.box {
+    position: relative;
+    left:1%;
+    background: white;
+    box-shadow: .2px .2px 2px .2px lightgray;
+    width: 80%;
+    padding: 4px 2px 2px 2px;
+    height: 5vh;
+
+} */
+ 
 ul {
     display: flex;
     flex-direction: column;

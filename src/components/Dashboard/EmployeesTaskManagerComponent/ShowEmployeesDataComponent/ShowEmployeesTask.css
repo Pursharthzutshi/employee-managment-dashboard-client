@@ -1,8 +1,5 @@
-.assigned-to-employee-div{
-    margin-top: 20px;
-}
 
-.employees-task-data-container{
+.employees-task-data-container,.employees-edit-delete-task-button-container{
     display: flex;
 }
 
@@ -25,24 +22,28 @@ strong{
 }
 
 
-/* .employees-task-edit-dialog-box-button,.employees-task-delete-button{
+ .employees-task-edit-dialog-box-button,.employees-task-delete-button{
     border: none;
     color:white;
     font-family: "Montserrat";
-    padding:4px 12px 4px 12px;
-    margin-left: 10px;
+    padding:2px 2px 4px 12px;
+    margin-left: 20px;
     border-radius: 4px;
 }
- */
+ 
 
-/*  
+ 
 .employees-task-edit-dialog-box-button{
+    padding:2px 2px 4px 2px;
     background: linear-gradient(to left,rgb(0, 113, 212),rgb(0, 85, 170));
 
-} */
+}
 .employees-task-delete-button{
     cursor: pointer;
-    margin-left: -20px;
+    margin-top: 10px;
+    /* margin-left: -10px; */
+    height: 3.8vh;
+    padding: 4px 2px 2px 2px;
     background: red;
 }
 

@@ -16,11 +16,11 @@ function GenderTypeChart() {
 
 
   const data = {
-    labels: ["Total Employees", "Male", "Female", "Others"],
+    labels: [ "Male", "Female", "Others"],
     datasets: [
       {
         label: 'NUMBER OF EMPLOYEES',
-        data: [maleCount + femaleCount + othersCount, maleCount, femaleCount, othersCount],
+        data: [ maleCount, femaleCount, othersCount],
         backgroundColor: ['rgb(0, 113, 212)', 'rgb(0, 85, 170)', "rgb(0 142 184)"],
         // borderWidth:"2px"
       },

@@ -1,12 +1,11 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
 import React, { useEffect, useState } from "react";
-import "../ShowEmployeesDataComponent/ShowEmployeesTask.css"
-import EditEmployeesTaskDetailsDialogBox from "../EditEmployeesDataComponents/EditEmployeesTaskManagerDialogBox";
-import { setShowEmployeesDialogBox, setShowEmployeesEditDialogBox } from "../../../../ReduxSlicers/ShowEmployeesDialogBoxSlicer";
+import {  setShowEmployeesEditDialogBox } from "../../../../ReduxSlicers/ShowEmployeesDialogBoxSlicer";
 import { useAppDispatch, useAppSelector } from "../../../../ReduxHooks";
-
 import EditEmployeesTaskManagerDialogBox from "../EditEmployeesDataComponents/EditEmployeesTaskManagerDialogBox";
 import { fetchEmployeesDetailsProps } from "../../../../Types/EmployeesTaskTypes";
+
+import "../ShowEmployeesDataComponent/ShowEmployeesTask.css"
 
 const fetch_employees_task_details_query = gql`
 query fetchEmployeesDetails{
@@ -84,7 +83,6 @@ function ShowEmployeesTask() {
 
               <strong>TASK ASSIGNED TO - : </strong>
               <div className="assigned-to-employee-div">
-                {/* <span>{val.emailId}</span> */}
               </div>
               {
                 val.emailId.map((val: String) => {

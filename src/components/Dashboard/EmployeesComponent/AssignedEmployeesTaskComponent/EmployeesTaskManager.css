@@ -6,12 +6,11 @@
     margin-top: -7px;
     /* margin-left: 0px; */
     height: 100%;
-    box-shadow: .2px .2px 4px .2px rgb(232, 232, 232);
+    box-shadow: .2px .2px 22px .2px rgb(232, 232, 232);
 
 }
 
 .tasks-component{
-    box-shadow: none;
     /* box-shadow: .2px .2px 22px .2px rgb(232, 232, 232); */
     /* height: 100vh; */
     min-height: 93vh;

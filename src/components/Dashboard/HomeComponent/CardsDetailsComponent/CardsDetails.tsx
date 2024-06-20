@@ -89,7 +89,7 @@ function CardsDetails() {
 
                     <div>
                         <p className="font-semibold text-lg">Total Employees</p>
-                        <h4>{totalEmployeesCount}</h4>
+                        <h4 className="font-bold text-xl">{totalEmployeesCount}</h4>
                     </div>
                 </div>
 
@@ -98,7 +98,7 @@ function CardsDetails() {
 
                     <div>
                         <p className="font-semibold text-lg">Total Tasks</p>
-                        <h4>{totalEmployeesTask}</h4>
+                        <h4 className="font-bold text-xl">{totalEmployeesTask}</h4>
                     </div>
                 </div>
 
@@ -107,7 +107,7 @@ function CardsDetails() {
 
                     <div>
                         <p className="font-semibold text-lg">Total Departments</p>
-                        <h4>20</h4>
+                        <h4 className="font-bold text-xl">20</h4>
                     </div>
                 </div>
 
@@ -116,7 +116,7 @@ function CardsDetails() {
 
                     <div>
                         <p className="font-semibold text-lg">Total Employees</p>
-                        <h4>20</h4>
+                        <h4 className="font-bold text-xl">20</h4>
                     </div>
                 </div>
             </div>

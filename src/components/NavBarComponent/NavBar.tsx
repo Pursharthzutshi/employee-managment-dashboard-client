@@ -21,9 +21,9 @@ function NavBar() {
 
                 <div className="nav-bar-search-user-profile-div">
 
-                    <div className="nav-bar-search-bar-div">
+                    {/* <div className="nav-bar-search-bar-div">
                         <input className="nav-bar-search-bar" type="text" placeholder="Search" />
-                    </div>
+                    </div> */}
 
                     <div className="nav-bar-profile-icon-div">
                         <FaUser className="user-profile-icon" onClick={() => change()}>Icon</FaUser>

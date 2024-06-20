@@ -30,7 +30,7 @@ function EmployeesTaskManager() {
         <div  id="main-page" className="employee-task-manager-component">
             <div className="tasks-component">
                 <NavBar />
-                <p className="font-bold text-xl">Employees Task</p>
+                <p className="font-bold text-lg">Employees Task</p>
 
                 <button className="add-posts-dialog-box-button" onClick={showDialogBox}>Add New Tasks</button>
                 {

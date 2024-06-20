@@ -67,7 +67,7 @@ function LoginAdmin() {
 
     return (
         <div className="login-component">
-            <ChangeLogInFormButtons />
+            {/* <ChangeLogInFormButtons /> */}
             <div className="login-left-sidebar-form-container">
 
                 <form onSubmit={loginForm} className="login-form">

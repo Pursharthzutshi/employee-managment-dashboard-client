@@ -8,20 +8,17 @@
 }
 
 .welcome-back-card-container{
-    padding: 2px 2px 12px 12px;
+    padding: 2px 2px 22px 12px;
     border-radius: 8px;
-    /* background: linear-gradient(to left,rgb(248, 254, 255),rgb(244, 253, 253)); */
     margin-left: 10px;
     margin-top: 10px;
     width: 92.2%;
-    /* height: 27vh; */
     box-shadow: .2px .2px 2px .2px lightgray;
 }
 
 .welcome-back-card-container p{
     line-height: 25px;
-    font-size: .9rem;
-    /* font-family: "Montserrat"; */
+    /* font-size: .9rem; */
     padding: 2px 12px 2px 1px;
 }
 
@@ -32,6 +29,7 @@
 }
 
 .welcome-back-button{
+    margin-top: 10px;
     font-size: .9rem;
     border: none;
     color:white;
@@ -40,4 +38,8 @@
     padding: 2px 12px 2px 12px;
     background: linear-gradient(to left,rgb(0, 132, 214),rgb(0, 113, 183));
     
+}
+
+.welcome-back-card-text-button-div p{
+    line-height: 32px;
 }

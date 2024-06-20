@@ -18,11 +18,11 @@ function WelcomeBack() {
         <div className="welcome-back-card-container">
             <div className="welcome-back-card-image-message-div">
                 <img src={image} />
-                <h3>Welcome Back {savedLoggedInUserName}</h3>
+                <p className="font-bold text-lg ml-3 mt-5">Welcome Back {savedLoggedInUserName}</p>
             </div>
             <div className="welcome-back-card-text-button-div">
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris lobortis accumsan elementum. Ut non fringilla tellus, vel iaculis orci. Vestibulum tristique finibus arcu id accumsan. Ut nec nisi vitae nulla posuere faucibus. Aliquam quis dui sit amet neque vestibulum lobortis. Curabitur lobortis nec augue ac euismod. Curabitur fermentum, tellus sed cursus ultrices, metus massa rutrum enim, at pretium mi lacus sed nulla. Sed sed ante risus.</p>
-                <Link className="welcome-back-button" to="/">View Task</Link>
+                {/* <Link className="welcome-back-button" to="/">View Task</Link> */}
             </div>
         </div>
 

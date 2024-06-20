@@ -8,8 +8,7 @@ import { useEffect } from 'react';
 import { useAppSelector } from './ReduxHooks';
 import LoginUsers from './components/RegisterComponent/LoginComponent/LoginUsers';
 import LoginAdmin from './components/RegisterComponent/LoginComponent/LoginAdmin';
-import AssignedEmployeesTask from './components/Dashboard/UserComponents/AssignedEmployeesTask';
-import EmployeesHome from './components/Dashboard/UserComponents/EmployeesHome';
+import AssignedEmployeesTask from '../src/components/Dashboard/EmployeesComponent/AssignedEmployeesTaskComponent/AssignedEmployeesTask';
 import CreateNewEmployeeAccount from './components/Dashboard/CreateNewEmployeeAccountComponent/CreateNewEmployeeAccount';
 
 import './App.css';
@@ -40,9 +39,7 @@ function App() {
         }
         <Routes >
           <Route path="/home" element=
-            {
-              adminStatus ? <Home /> : <EmployeesHome />
-            }
+            {<Home />} 
           />
           <Route path="/employeesTaskManagmentPage" element={
 
@@ -53,7 +50,7 @@ function App() {
           <Route path="/showAllEmployeesData" element={<ShowAllEmployees />} />
 
           <Route path="/" element={
-            changeLoginForm ? <LoginUsers /> : <LoginAdmin />}
+            changeLoginForm ? <LoginAdmin /> :<LoginUsers /> }
           />
 
           <Route path="/createEmployeeNewAccount" element={<CreateNewEmployeeAccount />} />

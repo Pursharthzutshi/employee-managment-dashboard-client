@@ -33,7 +33,7 @@ function DropDown({ test }: testProps) {
                             showLogOutButtonElements ?
                                 <button className="logout-button"  onClick={logout} >
                                     Logout
-                                    <img src={logoutImage} className="left-sidebar-icon-image" />
+                                    {/* <img src={logoutImage} className="left-sidebar-icon-image" /> */}
                                 </button>
                                 :
 
