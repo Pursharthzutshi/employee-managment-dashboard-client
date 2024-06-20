@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import EmployeesTaskManager from './components/Dashboard/EmployeesTaskManagerComponent/EmployeesTaskManager';
 import Home from './components/Dashboard/HomeComponent/Home';
 import ShowAllEmployees from './components/Dashboard/ShowAllEmployeesComponent/ShowAllEmployees';
-import SignupAdmin from './components/RegisterComponent/SignUpComponent/CreateNewEmployeeAccount';
+import SignupAdmin from './components/RegisterComponent/SignUpComponent/SignUpAdmin';
 import { useEffect } from 'react';
 import { useAppSelector } from './ReduxHooks';
 import LoginUsers from './components/RegisterComponent/LoginComponent/LoginUsers';

@@ -13,10 +13,12 @@ import "../TaskDialogBox.css"
 type addTaskDialogBoxProps = {
     setAddTaskDialogBox: React.Dispatch<React.SetStateAction<Boolean>>;
 }
+
 const addEmployeesTask = gql`
-mutation mt($employeesTaskParameters: createEmployeesTaskInput!){
+mutation AddedEmployeeTaskResponse($employeesTaskParameters: createEmployeesTaskInput!){
   createEmployeesTask(employeesTaskParameters: $employeesTaskParameters) {
-    name
+    success 
+    message
   }
 }
 `
@@ -32,23 +34,63 @@ function AddEmployeesTaskManagerDialogBox() {
 
     const Dispatch = useAppDispatch();
 
- 
-    const [addTasks] = useMutation(addEmployeesTask);
+    const [showErrorMessageStatus, setShowErrorMessageStatus] = useState(false);
+    const [showErrorMessage, setShowErrorMessage] = useState("");
 
-    useEffect(()=>{
+    const [addTasks] = useMutation(addEmployeesTask, {
+        onCompleted: (addTaskdata) => {
+            console.log(addTaskdata)
+            if (addTaskdata.createEmployeesTask.success === false) {
+                setShowErrorMessageStatus(true)
+                setShowErrorMessage(addTaskdata.createEmployeesTask.message)
+            } else {
+                // setShowErrorMessage("addTaskdata.createEmployeesTask.message")
+                setShowErrorMessageStatus(false)
+            }
+        }
+    });
+
+    useEffect(() => {
         console.log(employeeEmailId)
-    })
+    }
+)
 
+const addNewTask = () =>{
+    
+    addTasks({
+        variables: {
+            employeesTaskParameters: {
+                uid: uuidv4(),
+                name: employeeName,
+                emailId: employeeEmailId,
+                taskDesc: employeeTaskDesc,
+                deadLine: employeeDeadLine
+            }
+        }
+    })
+}
+
+    const preventForm = (e: any) => {
+        if (showErrorMessageStatus === false) {
+            addNewTask()
+        }else if(showErrorMessageStatus === true){
+            e.preventDefault()
+        }
+            
+    }
     return (
         <div className="task-dialog-box">
 
-            <form className="task-dialog-box-form">
+            <form onSubmit={preventForm} className="task-dialog-box-form">
 
                 <EmployeesTaskManagerDialogBoxForm />
-             
 
+                {
+                    showErrorMessageStatus && <p>{showErrorMessage}</p>
+                }
                 <div className="add-new-task-button-div">
-                    <button onClick={() => addTasks({
+
+                    {/* <button onClick={() => addTasks({
                         variables: {
                             employeesTaskParameters: {
                                 uid: uuidv4(),
@@ -59,7 +101,10 @@ function AddEmployeesTaskManagerDialogBox() {
                             }
                         }
                     })}
-                        className="add-new-task-button">Add Task</button>
+                        className="add-new-task-button">Add Task</button> */}
+
+                    <button type="submit" className="add-new-task-button">Add Task</button>
+
                 </div>
             </form>
         </div>

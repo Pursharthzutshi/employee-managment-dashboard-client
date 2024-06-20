@@ -87,7 +87,7 @@ function EmployeesTaskManagerDialogBoxForm() {
                 <FaTimes className="close-dialog-box-icon" >Close</FaTimes>
             </div>
 
-            <h3 className="add-new-task-heading">Task</h3>
+            <p className="font-semibold text-xl ml-2 ">Task</p>
 
             <input type="text" placeholder="Task Name" onChange={(e: React.ChangeEvent<HTMLInputElement>) => { Dispatch(setEmployeeName(e.target.value)) }} />
 

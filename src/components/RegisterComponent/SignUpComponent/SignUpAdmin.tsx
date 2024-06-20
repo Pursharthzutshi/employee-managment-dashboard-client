@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "./SignupUsers.css"
+import "./SignUpAdmin.css"
 import { gql, useLazyQuery, useMutation } from "@apollo/client";
 import { useAppDispatch, useAppSelector } from "../../../ReduxHooks";
 import { setUserName, setUserEmailId, setEmailPassword, setEmailPasswordRecheck, setAdminSignUpSecret } from "../../../ReduxSlicers/SignUpSlicer";
@@ -43,6 +43,7 @@ function SignupAdmin() {
     <div>
       {/* <ChangeSignUpFormButtons/> */}
       <div className="signup-container">
+        
 
         <div className="signup-box">
           <h3>Sign Up Admin</h3>

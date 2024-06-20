@@ -97,7 +97,6 @@ function CreateNewEmployeeAccount() {
 
   return (
     <div className="create-new-employee-account-container">
-
       <div className="create-new-employee-account-box">
 
         <form onSubmit={signUpForm} className="signup-form">
