@@ -8,6 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { setCreateEmployeeNewAccountStatus } from "../../../ReduxSlicers/createEmployeeNewAccountStatusSlicer";
 
 import "./CreateNewEmployeeAccount.css"
+import NavBar from "../../NavBarComponent/NavBar";
 const show_all_employees_data_query = gql`
 query fetchemployeesDataQuery{
    showAllEmployee {
@@ -47,11 +48,11 @@ function CreateNewEmployeeAccount() {
 
   const signUpResponseStatus = useAppSelector((state) => state.createEmployeeNewAccountStatusSlicer.createEmployeeNewAccountStatus);
 
-  const createEmployeeNewAccountStatus = useAppSelector((state)=>state.createEmployeeNewAccountStatusSlicer.createEmployeeNewAccountStatus)
+  const createEmployeeNewAccountStatus = useAppSelector((state) => state.createEmployeeNewAccountStatusSlicer.createEmployeeNewAccountStatus)
 
   const [newEmployeeAccountCreatedStatus, setNewEmployeeAccountCreatedStatus] = useState(false);
 
-  const [createNewEmployeeAccountErrorMessage,setCreateNewEmployeeAccountErrorMessage] = useState("");
+  const [createNewEmployeeAccountErrorMessage, setCreateNewEmployeeAccountErrorMessage] = useState("");
 
   // const [createNewEmployeeAccountErrorMessageStatus,setCreateNewEmployeeAccountErrorMessageStatus] = useState(false);
 
@@ -62,19 +63,19 @@ function CreateNewEmployeeAccount() {
       if (createNewEmployeeAccountData.createUserSignUp.success === true) {
         Dispatch(setCreateEmployeeNewAccountStatus(true))
         setNewEmployeeAccountCreatedStatus(true)
-      }else if(createNewEmployeeAccountData.createUserSignUp.success === false){
+      } else if (createNewEmployeeAccountData.createUserSignUp.success === false) {
         setCreateNewEmployeeAccountErrorMessage(createNewEmployeeAccountData.createUserSignUp.message);
         Dispatch(setCreateEmployeeNewAccountStatus(false))
       }
     },
-  
+
     // update:(cache,{data:{createUserSignUp}})=>{
     //   const existingEmployee:any = cache.readQuery({query:show_all_employees_data_query})
     //   console.log(existingEmployee)
     //   const newList = {
     //     showAllEmployee:[...existingEmployee.showAllEmployee,createUserSignUp]
     //   }
-      
+
     // cache.writeQuery({
     //   query:signUpquery,
     //   data:newList  
@@ -95,60 +96,58 @@ function CreateNewEmployeeAccount() {
   }, [])
 
   return (
-    <div>
-      {/* <ChangeSignUpFormButtons /> */}
-
-      <div className="create-new-employee-account-container">
-
+    <div className="create-new-employee-account-container">
+      <div className="d">
+        
         <div className="create-new-employee-account-box">
-          <h3 className="employee-account-heading">Create Employees Account</h3>
-
+         
+          <h3 className="employee-account-heading font-semibold text-lg">Create Employees Account</h3>
           <form onSubmit={signUpForm} className="signup-form">
-          {
-                  newEmployeeAccountCreatedStatus ?
-                    <div className="new-employee-added-div">
+            {
+              newEmployeeAccountCreatedStatus ?
+                <div className="new-employee-added-div">
 
-                      <h3>A New Account has been created</h3>
+                  <h3>A New Account has been created</h3>
 
-                    </div>
-                    : null
-                }
+                </div>
+                : null
+            }
             <div className="inputs-labels-container">
               {/* <div className="labels-div">
 
               </div> */}
 
               <div className="inputs-div">
-            
+
 
                 <strong>Name:</strong>
-                <input type="text" placeholder="Name" onChange={(e) => Dispatch(setUserName(e.target.value))} />
+                <input className="form-inputs" type="text" placeholder="Name" onChange={(e) => Dispatch(setUserName(e.target.value))} />
 
                 <strong>EmailId:</strong>
-                <input type="email" placeholder="EmailId" onChange={(e) => Dispatch(setUserEmailId(e.target.value))} />
+                <input className="form-inputs" type="email" placeholder="EmailId" onChange={(e) => Dispatch(setUserEmailId(e.target.value))} />
 
 
                 <strong>Password:</strong>
-                <input type="password" placeholder="Password" onChange={(e) => Dispatch(setEmailPassword(e.target.value))} />
+                <input className="form-inputs" type="password" placeholder="Password" onChange={(e) => Dispatch(setEmailPassword(e.target.value))} />
 
                 <strong>Re Check Password:</strong>
-                <input type="password" placeholder="Retype Password" onChange={(e) => Dispatch(setEmailPasswordRecheck(e.target.value))} />
+                <input className="form-inputs" type="password" placeholder="Retype Password" onChange={(e) => Dispatch(setEmailPasswordRecheck(e.target.value))} />
 
 
                 <strong>Gender:</strong>
                 <div className="gender-cateogry-div">
-                <label>Male</label>
-                <input onChange={(e) => Dispatch(setGenderType(e.target.value))} className="gender-type" name="gender" value="male" type="radio" />
-                <label>Female</label>
-                <input onChange={(e) => Dispatch(setGenderType(e.target.value))} className="gender-type" name="gender" value="female" type="radio" />
-                <label>Others</label>
-                <input onChange={(e) => Dispatch(setGenderType(e.target.value))} className="gender-type" name="gender" value="others" type="radio" />
+                  <label>Male</label>
+                  <input onChange={(e) => Dispatch(setGenderType(e.target.value))} className="gender-type" name="gender" value="male" type="radio" />
+                  <label>Female</label>
+                  <input onChange={(e) => Dispatch(setGenderType(e.target.value))} className="gender-type" name="gender" value="female" type="radio" />
+                  <label>Others</label>
+                  <input onChange={(e) => Dispatch(setGenderType(e.target.value))} className="gender-type" name="gender" value="others" type="radio" />
                 </div>
 
                 <strong>Department:</strong>
                 <select className="select-department" onChange={(e) => Dispatch(setDepartment(e.target.value))}>
-                <option  disabled selected>Select Department:</option>
-                <option>HR Department</option>
+                  <option disabled selected>Select Department:</option>
+                  <option>HR Department</option>
                   <option>Software Department</option>
                   <option>Testing Department</option>
                   <option>UI/UX Design Department</option>
@@ -169,7 +168,7 @@ function CreateNewEmployeeAccount() {
                     genderType: genderType,
                     status: false,
                     department: department,
-                    employeeOfTheMonth:false
+                    employeeOfTheMonth: false
                   },
                 },
               })
@@ -181,11 +180,10 @@ function CreateNewEmployeeAccount() {
             } */}
 
           </form>
-          
+
         </div>
 
         <div className="sign-up-right-side-image"></div>
-
       </div>
 
     </div>

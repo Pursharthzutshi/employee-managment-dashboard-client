@@ -1,4 +1,3 @@
-import './App.css';
 import LeftSidebar from './components/LeftSidebarComponent/LeftSidebar';
 import { Route, Routes } from 'react-router-dom';
 import EmployeesTaskManager from './components/Dashboard/EmployeesTaskManagerComponent/EmployeesTaskManager';
@@ -12,6 +11,10 @@ import LoginAdmin from './components/RegisterComponent/LoginComponent/LoginAdmin
 import AssignedEmployeesTask from './components/Dashboard/UserComponents/AssignedEmployeesTask';
 import EmployeesHome from './components/Dashboard/UserComponents/EmployeesHome';
 import CreateNewEmployeeAccount from './components/Dashboard/CreateNewEmployeeAccountComponent/CreateNewEmployeeAccount';
+
+import './App.css';
+import './AppResponsive.css';
+import NavBar from './components/NavBarComponent/NavBar';
 
 
 function App() {
@@ -31,35 +34,34 @@ function App() {
     <div className="App">
 
       {/* <button onClick={() => Dispatch(setChangeComponent(true))}>change</button> */}
-
-      {
-        logOutButton ? <LeftSidebar /> : null
-      }
-
-      <Routes>
-        <Route path="/home" element=
-          {
-            adminStatus ? <Home /> : <EmployeesHome />
-          }
-        />
-        <Route path="/employeesTaskManagmentPage" element={
-
-          adminStatus ? <EmployeesTaskManager /> : <AssignedEmployeesTask />
+      <div className='left-sidebar-dashboard-div'>
+        {
+          logOutButton ? <LeftSidebar /> : null
         }
-        />
+        <Routes >
+          <Route path="/home" element=
+            {
+              adminStatus ? <Home /> : <EmployeesHome />
+            }
+          />
+          <Route path="/employeesTaskManagmentPage" element={
 
-        <Route path="/showAllEmployeesData" element={<ShowAllEmployees />} />
+            adminStatus ? <EmployeesTaskManager /> : <AssignedEmployeesTask />
+          }
+          />
 
-        <Route path="/" element={
-          changeLoginForm ? <LoginUsers /> : <LoginAdmin />}
-        />
+          <Route path="/showAllEmployeesData" element={<ShowAllEmployees />} />
 
-        <Route path="/createEmployeeNewAccount" element={<CreateNewEmployeeAccount />} />
+          <Route path="/" element={
+            changeLoginForm ? <LoginUsers /> : <LoginAdmin />}
+          />
 
-        <Route path="/signUpAdmin" element={<SignupAdmin />} />
+          <Route path="/createEmployeeNewAccount" element={<CreateNewEmployeeAccount />} />
 
-      </Routes>
+          <Route path="/signUpAdmin" element={<SignupAdmin />} />
 
+        </Routes>
+      </div>
 
 
     </div>

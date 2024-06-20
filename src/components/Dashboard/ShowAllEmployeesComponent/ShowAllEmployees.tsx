@@ -60,14 +60,15 @@ function ShowAllEmployees() {
     if (loading) return <p>Loading...</p>
 
     return (
-        <div className="show-all-employees-component">
+        <div  id="main-page" className="show-all-employees-component">
 
             <NavBar />
             {/* <input  type="search" /> */}
 
   
     <div>
-    <h3>All Employees</h3>
+    <p className="font-bold text-xl">All Employees</p>
+    <br></br>
     <input onChange={(e) => Dispatch(setSearchFilter(e.target.value))} className="search-employees-input" placeholder="Search Employees" type="text" />
     <div className="employees-details-container">
         { 
@@ -95,7 +96,7 @@ function ShowAllEmployees() {
                                 },
                             })
 
-                        }} className="employees-details-button">Assign Employee of the month</button> : null}
+                        }} className="employees-details-button font-semibold text-sm">Assign Employee of the month</button> : null}
                     </div>
                 )
             })

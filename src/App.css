@@ -9,17 +9,28 @@ body {
     display: flex;
 }
 
+.left-sidebar-dashboard-div{
+    display: flex;
+    gap:150px;
+    /* justify-content: space-around; */
+    flex-direction: row;
+    /* background: yellow; */
+}
+
 .dashboard-container {
     background: linear-gradient(to left,rgb(52, 195, 252),rgb(78, 184, 255));
     box-shadow: .2px .2px 22px .2px rgb(232, 232, 232);
     height: 100%;
 }
-
+#main-page{
+    /* background: red; */
+    width: 92%;
+}
 .App {
     margin-top: 10px;
     /* height: 100%; */
-    background: white;
-    margin-left: 110px;
+    /* background: white; */
+    /* margin-left: 110px; */
 }
 
 body::-webkit-scrollbar {

@@ -2,8 +2,9 @@ import React from "react";
 import image from "../../../RegisterComponent/images/employee.png"
 import { useAppSelector } from "../../../../ReduxHooks";
 import { gql } from "@apollo/client";
-import "../WelcomeBackComponent/WelcomeBack.css"
 import { Link } from "react-router-dom";
+
+import "../WelcomeBackComponent/WelcomeBack.css"
 
 function WelcomeBack() {
 

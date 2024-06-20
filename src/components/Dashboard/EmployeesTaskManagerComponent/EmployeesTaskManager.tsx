@@ -27,10 +27,11 @@ function EmployeesTaskManager() {
     })
 
     return (
-        <div className="employee-task-manager-component">
+        <div  id="main-page" className="employee-task-manager-component">
             <div className="tasks-component">
                 <NavBar />
-                <h3>Employees Task</h3>
+                <p className="font-bold text-xl">Employees Task</p>
+
                 <button className="add-posts-dialog-box-button" onClick={showDialogBox}>Add New Tasks</button>
                 {
                     dialogBox && <AddEmployeesTaskManagerDialogBox />

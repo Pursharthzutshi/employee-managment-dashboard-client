@@ -10,10 +10,11 @@
 
 .employee-of-the-month-div {
     align-items: center;
-    padding: 1px 2px 2px 2px;
-    margin-top: 45px;
+    gap:30px;
+    padding:22px 2px 11px 2px;
+    margin-top: 43px;
+    border-radius: 8px;
     width: 50vh;
-    height: 41vh;
     box-shadow: .2px .2px 2px .2px lightgray;
 
 }
@@ -25,4 +26,17 @@
 .employee-of-the-month-div img {
     width: 8rem;
     height: autp;
+}
+
+.employee-of-the-month-details-div{
+    display: flex;
+}
+
+.employee-of-the-month-details-div{
+    flex-direction: column;
+}
+
+.employee-of-the-month-details-div{
+    align-items: center;
+    gap:15px;
 }

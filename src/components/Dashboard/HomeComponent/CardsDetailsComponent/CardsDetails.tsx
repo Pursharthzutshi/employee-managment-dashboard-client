@@ -88,7 +88,7 @@ function CardsDetails() {
                     <FaAccusoft className="cards-icons" />
 
                     <div>
-                        <p>Total Employees</p>
+                        <p className="font-semibold text-lg">Total Employees</p>
                         <h4>{totalEmployeesCount}</h4>
                     </div>
                 </div>
@@ -97,7 +97,7 @@ function CardsDetails() {
                     <FaBuilding className="cards-icons" />
 
                     <div>
-                        <p>Total Tasks</p>
+                        <p className="font-semibold text-lg">Total Tasks</p>
                         <h4>{totalEmployeesTask}</h4>
                     </div>
                 </div>
@@ -106,7 +106,7 @@ function CardsDetails() {
                     <FaAccusoft className="cards-icons" />
 
                     <div>
-                        <p>Total Departments</p>
+                        <p className="font-semibold text-lg">Total Departments</p>
                         <h4>20</h4>
                     </div>
                 </div>
@@ -115,7 +115,7 @@ function CardsDetails() {
                     <FaAccusoft className="cards-icons" />
 
                     <div>
-                        <p>Total Employees</p>
+                        <p className="font-semibold text-lg">Total Employees</p>
                         <h4>20</h4>
                     </div>
                 </div>

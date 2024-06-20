@@ -123,10 +123,10 @@
 }
 
 .sign-up-right-side-image {
-    margin-top: -10px;
+    /* margin-top: -10px; */
     background: linear-gradient(to left, rgba(137, 231, 255, 0.815), rgba(76, 213, 255, 0.692)), url("../images/add-user.png");
     height: 100%;
-    width: 30%;
+    width: 100%;
     background-repeat: none;
     background-size: cover;
 }

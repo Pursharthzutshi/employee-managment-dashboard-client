@@ -1,5 +1,6 @@
-.create-new-employee-account-container,
+
 .signup-form,
+.create-new-employee-account-container,
 .create-new-employee-account-box,
 .inputs-labels-container,
 .labels-div,
@@ -14,51 +15,49 @@
     margin-left: -1px;
 }
 
-
+.signup-container {
+    /* gap:820px; */
+}
 
 .create-new-employee-account-box,
 .inputs-labels-container,
-
+.labels-div,
 .inputs-div {
     flex-direction: column;
 }
 
-
+.labels-div,
 .inputs-div {
     justify-content: space-between;
 }
 
+.labels-div {
+    gap: 20px;
+}
 
 .inputs-div {
     width: 100%;
+    gap: 15px;
 }
 
 .signup-form {
     flex-direction: column;
 }
 
-strong {
-    margin-top: 20px;
-}
-
-.signup-form {
-    margin-top: 20px;
-}
-
 .create-new-employee-account-container {
-    width: 90%;
-    /* height: 10%; */
-    /* background-color: red; */
-    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    /* background: red; */
+    /* height: 95%; */
+    gap:20px;
+    /* justify-content: center; */
 }
 
 .create-new-employee-account-box {
-    margin-top: -10px;
     /* align-items: center; */
-    width: 80%;
-    /* height: 35%; */
-    padding: 2px 17px 27px 17px;
-    /* box-shadow: .2px .2px 6px .2px whitesmoke; */
+    width: 100%;
+    padding: 2px 12px 12px 12px;
+    box-shadow: .2px .2px 6px .2px whitesmoke;
 }
 
 .gender-cateogry-div {
@@ -67,33 +66,29 @@ strong {
 }
 
 
+.gender-type {
+    margin-top: -10px;
+}
+
 .inputs-labels-container {
 
     gap: 180px;
 }
 
 .create-new-employee-account-box input {
-    margin-top: 17px;
+    width: 100%;
+    margin-top: 40px;
 }
 
-.form-inputs,
+.create-new-employee-account-box input,
 .login-box input {
     /* width: 100%; */
     outline: none;
     padding: 4px 2px 4px 12px;
     border: none;
-    /* margin-top: -10px; */
-    /* font-family: "Montserrat";  */
-}
-
-
-.form-inputs {
     box-shadow: .2px .2px 2px .2px lightgray;
-
-}
-
-.gender-type {
-    margin-top: -20px;
+    margin-top: 10px;
+    /* font-family: "Montserrat";  */
 }
 
 
@@ -105,7 +100,7 @@ strong {
     width: 100%;
     color: rgb(255, 255, 255);
     border-radius: 4px;
-    padding: 3px 2px 2px 2px;
+    padding: 6px 2px 7px 2px;
     margin-top: 50px;
 }
 
@@ -120,7 +115,14 @@ strong {
     box-shadow: .2px .2px 12px .2px whitesmoke;
 }
 
-
+.sign-up-right-side-image {
+    margin-top: -10px;
+    background: linear-gradient(to left, rgba(137, 231, 255, 0.815), rgba(76, 213, 255, 0.692)), url("../../RegisterComponent/images/add-user.png");
+    height: 100%;
+    width: 100%;
+    background-repeat: none;
+    background-size: cover;
+}
 
 .new-employee-added-div {
     background: linear-gradient(to left, rgba(0, 94, 117, 0.815), rgba(0, 71, 93, 0.692)), url("../../RegisterComponent/images/add-user.png");
@@ -150,21 +152,4 @@ strong {
 
 .new-employee-added-div h3 {
     margin-top: 10px;
-}
-
-.sign-up-right-side-image {
-    margin-top: -10px;
-    background: linear-gradient(to left, rgba(137, 231, 255, 0.815), rgba(76, 213, 255, 0.692)), url("../../RegisterComponent/images/add-user.png");
-    /* height: 100%; */
-    /* width: 100%; */
-    background-repeat: none;
-    background-size: cover;
-}
-
-.d {
-    margin-left: 120px;
-    width: 100%;
-    justify-content: space-between;
-    display: flex;
-    gap: 100px;
 }

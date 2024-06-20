@@ -1,0 +1,11 @@
+@media  only screen and ( min-width:1700px) and (max-width: 3000px){
+    
+.left-sidebar-dashboard-div{
+    display: flex;
+    gap:180px;
+    width: 100%;
+    /* justify-content: space-around; */
+    flex-direction: row;
+    /* background: yellow; */
+}
+}

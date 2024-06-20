@@ -1,4 +1,4 @@
-import "../HomeComponent/Home.css"
+
 import { useEffect, useState } from "react";
 // import Dropdown from 'react-dropdown';
 import "../../../App.css"
@@ -30,6 +30,8 @@ import CardsDetails from "./CardsDetailsComponent/CardsDetails";
 import EmployeeOfTheMonth from "./EmployeeOfTheMonthComponent/EmployeeOfTheMonth";
 import WelcomeBack from "./WelcomeBackComponent/WelcomeBack";
 
+import "../HomeComponent/Home.css"
+import "../HomeComponent/HomeResponsive.css"
 // Register the components
 ChartJS.register(
     CategoryScale,
@@ -93,17 +95,18 @@ function Home() {
 
 
     return (
-        <div className="dashboard">
-
+        <div id="main-page" className="">
 
             <NavBar />
+            <br></br>
 
             <CheckInStatus />
-            <WelcomeBack/>
+            <WelcomeBack />
 
             <CardsDetails />
-    
+
             <div className="chart-div-container">
+
 
                 <GenderTypeChart />
                 <EmployeeOfTheMonth />

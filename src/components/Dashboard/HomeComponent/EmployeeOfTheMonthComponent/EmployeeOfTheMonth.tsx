@@ -1,7 +1,8 @@
-import "./EmployeeOfTheMonth.css"
 import image from "../../../RegisterComponent/images/add-user.png"
 import { gql, useQuery } from "@apollo/client";
 import { useEffect } from "react";
+
+import "./EmployeeOfTheMonth.css"
 
 function EmployeeOfTheMonth() {
 
@@ -32,12 +33,12 @@ function EmployeeOfTheMonth() {
                     if (fetchEmployeeOfTheMonthData.employeeOfTheMonth === true) {
 
                         return <div className="employee-of-the-month-div">
-                            <h3>Employee Of The Month</h3>
-
+                            <p className="font-bold text-xl">Employee Of The Month</p>
+                            <div className="employee-of-the-month-details-div">
                             <img className="image" src={image} />
-
-                            <h4>{fetchEmployeeOfTheMonthData.name}</h4>
+                            <p className="font-bold text-lg">{fetchEmployeeOfTheMonthData.name}</p>
                             <p>{fetchEmployeeOfTheMonthData.department}</p>
+                            </div>
                         </div>
                     }
                 })

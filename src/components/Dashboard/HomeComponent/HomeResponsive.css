@@ -1,0 +1,21 @@
+@media only screen and (min-width:1700px) and (max-width: 3000px) {
+    .welcome-back-card-container {
+        margin-top: 20px;
+        width: 96.2%;
+        /* margin-left: -90px; */
+        /* background-color: red; */
+    }
+
+    .card-details-container{
+        align-items: center;
+        /* margin-top: 90px; */
+        gap:80px;
+    }
+    
+.bar-chart-div,.pie-chart-div {
+    border-radius: 8px;
+    padding: 18px 18px 12px 18px;
+    box-shadow: .2px .2px 2px .2px lightgray;
+    width: 33%;
+}
+}
