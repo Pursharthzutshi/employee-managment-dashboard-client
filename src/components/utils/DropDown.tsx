@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../ReduxHooks";
 import { setShowLogOutButtonElements, setLogOutStatus, setAdminStatus } from "../../ReduxSlicers/LocalStorageSlicer";
 import logoutImage from "../RegisterComponent/images/arrow.png"
+import { setUserLoggedInEmailId, setUserLoggedInEmailPassword } from "../../ReduxSlicers/LoginSlicer";
 
 type testProps = {
     test: Boolean
@@ -20,7 +21,8 @@ function DropDown({ test }: testProps) {
         Dispatch(setLogOutStatus(false))
         Dispatch(setAdminStatus(false))
         navigate("/")
-
+        Dispatch(setUserLoggedInEmailId(""))
+        Dispatch(setUserLoggedInEmailPassword(""))
     }
     return (
         <div>

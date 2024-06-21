@@ -6,6 +6,7 @@ import EditEmployeesTaskManagerDialogBox from "../EditEmployeesDataComponents/Ed
 import { fetchEmployeesDetailsProps } from "../../../../Types/EmployeesTaskTypes";
 
 import "../ShowEmployeesDataComponent/ShowEmployeesTask.css"
+import { client } from "../../../..";
 
 const fetch_employees_task_details_query = gql`
 query fetchEmployeesDetails{
@@ -31,6 +32,8 @@ mutation dq($employeeUidParameter: deleteEmployeesTaskInput!){
 
 function ShowEmployeesTask() {
 
+  
+
   const [selectedUpdateTaskFieldUid, setSelectedUpdateTaskFieldUid] = useState<String>("");
 
   const { data: employeesTaskData, loading } = useQuery(fetch_employees_task_details_query)
@@ -40,7 +43,6 @@ function ShowEmployeesTask() {
   const [deleteEmployeeTaskData] = useMutation(delete_employees_task_data,
     {
       refetchQueries: [{ query: fetch_employees_task_details_query }]
-
     }
   );
 
@@ -58,6 +60,17 @@ function ShowEmployeesTask() {
   useEffect(() => {
     console.log(employeesTaskData)
   })
+
+  client.query({query:fetch_employees_task_details_query}).then(response=>{
+    console.log(response);
+    client.cache.writeQuery({
+      query: delete_employees_task_data,
+      data: {
+        data: response.data.data
+      }
+    });
+  })
+
   if (loading) return <p>Loading...</p>;
 
   return (

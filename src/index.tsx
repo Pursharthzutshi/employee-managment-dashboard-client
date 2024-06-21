@@ -7,13 +7,20 @@ import { BrowserRouter } from 'react-router-dom';
 // newFunction();
 import { Provider } from 'react-redux';
 import { store } from '../src/ReduxStore/store';
-import { ApolloClient, InMemoryCache } from '@apollo/client';
+import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import { ApolloProvider } from '@apollo/client';
 
 export const client = new ApolloClient({
   uri: 'http://localhost:4000/api/graphql',
   cache: new InMemoryCache(),
 })
+
+// client.query({query:})
+
+// const GETDATA = gql`
+// `
+
+// client.query({query:GET})
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

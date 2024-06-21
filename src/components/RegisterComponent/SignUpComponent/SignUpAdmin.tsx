@@ -40,7 +40,7 @@ function SignupAdmin() {
   if (loading) return <p>Loading</p>
 
   return (
-    <div>
+    <div className="signup-component">
       {/* <ChangeSignUpFormButtons/> */}
       <div className="signup-container">
         

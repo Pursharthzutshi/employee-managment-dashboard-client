@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../CardsDetailsComponent/CardsDetails.css"
-import { FaAccusoft, FaBuilding } from "react-icons/fa";
+import { FaAccusoft, FaBuilding, FaIdCard, FaTasks, FaUser } from "react-icons/fa";
 import { gql, useQuery } from "@apollo/client";
 import { useAppSelector } from "../../../../ReduxHooks";
 // import { useSelect } from "react-select-search";
@@ -23,14 +23,32 @@ query fetchEmployeesTaskDetails{
   }
 }`
 
+const fetchTotalAdmin = gql`
+query fetchAdminDetails{
+  showAllAdmin {
+    name
+  }
+}
+`
+
 function CardsDetails() {
 
     const [totalDepartmentCount, setTotalDepartmentCount] = useState(0);
 
     const [totalEmployeesCount, setTotalEmployeesCount] = useState(0);
     const [totalEmployeesTask, setTotalEmployeesTask] = useState(0);
+    
+    // const [totalDepartmentList, setTotalDepartmentList] = useState<any>([]);
 
-    const [totalDepartmentList, setTotalDepartmentList] = useState<any>([]);
+    const [totalAdminCount,setTotalAdminCount] = useState(0);
+
+    const {loading : adminAccountDetailsLoading} = useQuery(fetchTotalAdmin,({
+        onCompleted:(AdminAccountDetailsData)=>{
+            console.log(AdminAccountDetailsData)
+            setTotalAdminCount(AdminAccountDetailsData.showAllAdmin.length)
+        }
+    }));
+
 
     const { loading: EmployeesAccountDetailsLoading } = useQuery(fetchTotalEmployeesAndDepartmentsQuery, ({
         onCompleted: (EmployeesAccountDetailsData) => {
@@ -63,7 +81,6 @@ function CardsDetails() {
             console.log(EmployeesTotalTasksData.fetchEmployeesTaskDetails.length)
             setTotalEmployeesTask(EmployeesTotalTasksData.fetchEmployeesTaskDetails.length)
 
-
         },
         onError: (err) => {
             console.log(err);
@@ -71,21 +88,18 @@ function CardsDetails() {
     }))
 
 
-    useEffect(() => {
-        console.log(totalDepartmentList)
-
-    }, [])
+  
 
     if (EmployeesAccountDetailsLoading) return <p>Loading ...</p>
     if (EmployeesTotalTasksLoading) return <p>Loading ...</p>
-
+    if(adminAccountDetailsLoading) return <p>Loading ...</p>
     return (
         <div>
 
             <div className="card-details-container">
 
                 <div className="card-details-div">
-                    <FaAccusoft className="cards-icons" />
+                    <FaUser className="cards-icons" />
 
                     <div>
                         <p className="font-semibold text-lg">Total Employees</p>
@@ -94,7 +108,7 @@ function CardsDetails() {
                 </div>
 
                 <div className="card-details-div">
-                    <FaBuilding className="cards-icons" />
+                    <FaTasks className="cards-icons" />
 
                     <div>
                         <p className="font-semibold text-lg">Total Tasks</p>
@@ -103,11 +117,11 @@ function CardsDetails() {
                 </div>
 
                 <div className="card-details-div">
-                    <FaAccusoft className="cards-icons" />
+                    <FaIdCard className="cards-icons" />
 
                     <div>
-                        <p className="font-semibold text-lg">Total Departments</p>
-                        <h4 className="font-bold text-xl">20</h4>
+                        <p className="font-semibold text-lg">Total Admins</p>
+                        <h4 className="font-bold text-xl">{totalAdminCount}</h4>
                     </div>
                 </div>
 
@@ -115,7 +129,7 @@ function CardsDetails() {
                     <FaAccusoft className="cards-icons" />
 
                     <div>
-                        <p className="font-semibold text-lg">Total Employees</p>
+                        <p className="font-semibold text-lg">Loreum Ipsum</p>
                         <h4 className="font-bold text-xl">20</h4>
                     </div>
                 </div>

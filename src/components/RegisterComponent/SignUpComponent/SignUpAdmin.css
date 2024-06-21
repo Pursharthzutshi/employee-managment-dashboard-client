@@ -13,7 +13,9 @@
     text-align: center;
     margin-left: -1px;
 }
-
+.signup-component{
+    width: 100%;
+}
 .signup-container {
     width: 100%;
 

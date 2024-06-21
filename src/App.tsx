@@ -15,7 +15,6 @@ import './App.css';
 import './AppResponsive.css';
 import NavBar from './components/NavBarComponent/NavBar';
 
-
 function App() {
 
 
@@ -26,6 +25,7 @@ function App() {
   const logOutButton = useAppSelector((state) => state.LocalStorageSlicer.showLogOutButtonElements)
 
   useEffect(() => {
+    console.log(logOutButton)
     // console.log('adminStatus from localStorage:', localStorage.getItem('adminStatus'));
   }, [adminStatus])
 
@@ -35,7 +35,7 @@ function App() {
       {/* <button onClick={() => Dispatch(setChangeComponent(true))}>change</button> */}
       <div className='left-sidebar-dashboard-div'>
         {
-          logOutButton ? <LeftSidebar /> : null
+          logOutButton   ? <LeftSidebar /> : null
         }
         <Routes >
           <Route path="/home" element=
