@@ -10,11 +10,11 @@ import { store } from '../src/ReduxStore/store';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import { ApolloProvider } from '@apollo/client';
 
-
 export const client = new ApolloClient({
   uri: 'https://employee-managment-dashboard-server-n4z9p0nyq.vercel.app/api/graphql',
   cache: new InMemoryCache(),
 })
+
 
 // client.query({query:})
 
@@ -28,13 +28,13 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    
+
     <BrowserRouter>
-    <Provider store = {store}>
-    <ApolloProvider client={client}>
-    <App />
-    </ApolloProvider>
-    </Provider>
+      <Provider store={store}>
+        <ApolloProvider client={client}>
+          <App />
+        </ApolloProvider>
+      </Provider>
     </BrowserRouter>
   </React.StrictMode>
 );
