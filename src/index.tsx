@@ -13,6 +13,8 @@ import { ApolloProvider } from '@apollo/client';
 export const client = new ApolloClient({
   uri: 'https://employee-managment-dashboard-server-n4z9p0nyq.vercel.app/api/graphql',
   cache: new InMemoryCache(),
+  credentials: "omit",
+
 })
 
 
