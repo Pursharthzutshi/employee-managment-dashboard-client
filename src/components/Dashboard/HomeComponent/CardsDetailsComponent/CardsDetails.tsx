@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "../CardsDetailsComponent/CardsDetails.css"
 import { FaAccusoft, FaBuilding, FaIdCard, FaTasks, FaUser } from "react-icons/fa";
-import { gql, useQuery } from "@apollo/client";
+import { gql, useLazyQuery, useQuery } from "@apollo/client";
 import { useAppSelector } from "../../../../ReduxHooks";
+import { assertValidExecutionArguments } from "graphql/execution/execute";
 // import { useSelect } from "react-select-search";
+
 
 const fetchTotalEmployeesAndDepartmentsQuery = gql`
 query fetchEmployeesDetails{
@@ -21,7 +23,8 @@ query fetchEmployeesTaskDetails{
     name
     emailId
   }
-}`
+}
+  `
 
 const fetchTotalAdmin = gql`
 query fetchAdminDetails{
@@ -33,17 +36,26 @@ query fetchAdminDetails{
 
 function CardsDetails() {
 
+    const {data:das,loading} = useQuery(fetchTotalEmployeesAndDepartmentsQuery,({
+        onCompleted:(data)=>{
+            console.log(data)
+        }
+    }));
+
+    // const [data]  = useLazyQuery(fetchTotalEmployeesAndDepartmentsQuery)
+
+
     const [totalDepartmentCount, setTotalDepartmentCount] = useState(0);
 
     const [totalEmployeesCount, setTotalEmployeesCount] = useState(0);
     const [totalEmployeesTask, setTotalEmployeesTask] = useState(0);
-    
+
     // const [totalDepartmentList, setTotalDepartmentList] = useState<any>([]);
 
-    const [totalAdminCount,setTotalAdminCount] = useState(0);
+    const [totalAdminCount, setTotalAdminCount] = useState(0);
 
-    const {loading : adminAccountDetailsLoading} = useQuery(fetchTotalAdmin,({
-        onCompleted:(AdminAccountDetailsData)=>{
+    const { loading: adminAccountDetailsLoading } = useQuery(fetchTotalAdmin, ({
+        onCompleted: (AdminAccountDetailsData) => {
             console.log(AdminAccountDetailsData)
             setTotalAdminCount(AdminAccountDetailsData.showAllAdmin.length)
         }
@@ -88,11 +100,11 @@ function CardsDetails() {
     }))
 
 
-  
+
 
     if (EmployeesAccountDetailsLoading) return <p>Loading ...</p>
     if (EmployeesTotalTasksLoading) return <p>Loading ...</p>
-    if(adminAccountDetailsLoading) return <p>Loading ...</p>
+    if (adminAccountDetailsLoading) return <p>Loading ...</p>
     return (
         <div>
 

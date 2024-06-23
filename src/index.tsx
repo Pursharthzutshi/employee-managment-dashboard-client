@@ -10,8 +10,9 @@ import { store } from '../src/ReduxStore/store';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import { ApolloProvider } from '@apollo/client';
 
+
 export const client = new ApolloClient({
-  uri: 'http://localhost:4000/api/graphql',
+  uri: 'https://employee-managment-dashboard-server-n4z9p0nyq.vercel.app/api/graphql',
   cache: new InMemoryCache(),
 })
 
