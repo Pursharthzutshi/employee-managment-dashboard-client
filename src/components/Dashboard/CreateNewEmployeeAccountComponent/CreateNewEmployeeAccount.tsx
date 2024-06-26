@@ -68,6 +68,10 @@ function CreateNewEmployeeAccount() {
         Dispatch(setCreateEmployeeNewAccountStatus(false))
       }
     },
+    // update(cache,{data:{createUser}}){
+    //   const exisitingUsers = cache.readQuery({query:CreateEmployeeNewAccount})
+    //   console.log(exisitingUsers)
+    // }
 
     // update:(cache,{data:{createUserSignUp}})=>{
     //   const existingEmployee:any = cache.readQuery({query:show_all_employees_data_query})

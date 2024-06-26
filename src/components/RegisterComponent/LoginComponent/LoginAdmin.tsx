@@ -67,11 +67,10 @@ function LoginAdmin() {
 
     return (
         <div className="login-component">
-            {/* <ChangeLogInFormButtons /> */}
             <div className="login-left-sidebar-form-container">
 
                 <form onSubmit={loginForm} className="login-form">
-                    <h3>Admin Login In Form</h3>
+                    <p className="font-bold text-lg">Admin Login In Form</p>
                     <input type="text" placeholder="EmailId" onChange={(e) => Dispatch(setUserLoggedInEmailId(e.target.value))} />
                     <input type="password" placeholder="password" onChange={(e) => Dispatch(setUserLoggedInEmailPassword(e.target.value))} />
                     <button className="login-button" onClick={() => {

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./SignUpAdmin.css"
 import { gql, useLazyQuery, useMutation } from "@apollo/client";
 import { useAppDispatch, useAppSelector } from "../../../ReduxHooks";
@@ -12,6 +12,7 @@ const signUpquery = gql`
 mutation adminSignUp($adminSignUpParameters: adminSignUpTableInput!){
   createAdminSignUp(adminSignUpParameters: $adminSignUpParameters) {
     success
+    message
   }
 }
 
@@ -23,7 +24,11 @@ function SignupAdmin() {
   const adminEmailId = useAppSelector((state) => state.SignUpSlicer.userEmailId)
   const adminEmailPassword = useAppSelector((state) => state.SignUpSlicer.userEmailPassword)
   const adminEmailPasswordRecheck = useAppSelector((state) => state.SignUpSlicer.userEmailPasswordRecheck)
-  const adminSecretKey = useAppSelector((state) => state.SignUpSlicer.userEmailPasswordRecheck)
+  const adminSecretKey = useAppSelector((state) => state.SignUpSlicer.adminSignUpSecret)
+
+
+  const [showAdminSignUpErrorMessageStatus, setShowAdminSignUpErrorMessageStatus] = useState(false)
+  const [showAdminSignUpErrorMessage, setShowAdminSignUpErrorMessage] = useState("")
 
   const dispatch = useAppDispatch();
 
@@ -32,21 +37,34 @@ function SignupAdmin() {
 
   const signUpForm = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault()
-    navigate("/")
   }
 
-  const [adminSignUp, { loading }] = useMutation(signUpquery);
+  const [adminSignUp, { loading }] = useMutation(signUpquery, ({
+    onCompleted: (adminSignUpData) => {
+      console.log(adminSignUpData)
+      if (adminSignUpData.createAdminSignUp.success === true) {
+        navigate("/")
+        setShowAdminSignUpErrorMessageStatus(false)
+      } else {
+        setShowAdminSignUpErrorMessage(adminSignUpData.createAdminSignUp.message)
+        setShowAdminSignUpErrorMessageStatus(true)
+      }
+    }
+  }));
 
-  if (loading) return <p>Loading</p>
+  useEffect(()=>{
+    console.log(showAdminSignUpErrorMessage)
+  })
+  // if (loading) return <p>Loading</p>
 
   return (
     <div className="signup-component">
       {/* <ChangeSignUpFormButtons/> */}
       <div className="signup-container">
-        
+
 
         <div className="signup-box">
-          <h3>Sign Up Admin</h3>
+          <p className="font-bold text-lg">Sign Up Admin</p>
 
           <form onSubmit={signUpForm} className="signup-form">
 
@@ -56,24 +74,29 @@ function SignupAdmin() {
             <input type="password" placeholder="Retype Password" onChange={(e) => dispatch(setEmailPasswordRecheck(e.target.value))} />
             <input type="secret key" placeholder="admin secret provided by company" onChange={(e) => dispatch(setAdminSignUpSecret(e.target.value))} />
 
-            <button type="submit" onClick={() => {
-              adminSignUp({
-                variables: {
-                  adminSignUpParameters: {
-                    uid: uuidv4(),
-                    name: adminName,
-                    emailId: adminEmailId,
-                    password: adminEmailPassword,
-                    status: false,
-                    adminSecretKey: adminSecretKey
+            <div className="admin-sign-up-button-div">
 
+              <button className="admin-sign-up-button" type="submit" onClick={() => {
+                adminSignUp({
+                  variables: {
+                    adminSignUpParameters: {
+                      uid: uuidv4(),
+                      name: adminName,
+                      emailId: adminEmailId,
+                      password: adminEmailPassword,
+                      status: false,
+                      adminSecretKey: adminSecretKey
+
+                    },
                   },
-                },
-              })
-            }}>Admin Sign Up</button>
-  
-            <Link to="/">Login</Link>
-
+                })
+              }}>Admin Sign Up</button>
+              <p>OR</p>
+              <Link className="navigate-login-page-button-link" to="/">Go To Login Page</Link>
+            </div>
+            {
+              showAdminSignUpErrorMessageStatus && <p className="admin-sign-up-error-message">{showAdminSignUpErrorMessage}</p>
+            }
           </form>
         </div>
 

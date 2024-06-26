@@ -4,10 +4,11 @@
 .inputs-labels-container,
 .labels-div,
 .inputs-div,
-.gender-cateogry-div {
+.gender-cateogry-div,.admin-sign-up-button-div {
     display: flex;
 
 }
+
 
 .employee-account-heading {
     text-align: center;
@@ -26,7 +27,7 @@
 .signup-box,
 .inputs-labels-container,
 .labels-div,
-.inputs-div {
+.inputs-div,.admin-sign-up-button-div {
     flex-direction: column;
 }
 
@@ -45,11 +46,13 @@
 }
 
 .signup-form {
+    gap:15px;
     width: 100%;
     flex-direction: column;
 }
 
 .signup-container {
+
     width: 100%;
     height: 100vh;
     align-items: center;
@@ -106,7 +109,7 @@
 }
 
 
-.signup-box button {
+.admin-sign-up-button{
     background: linear-gradient(to left, rgb(52, 195, 252), rgb(78, 184, 255));
     font-family: "Montserrat";
     background-color: none;
@@ -116,6 +119,14 @@
     border-radius: 4px;
     padding: 6px 2px 7px 2px;
     margin-top: 50px;
+}
+
+.admin-sign-up-button:hover{
+    color: rgb(52, 195, 252);
+    background: white;
+    box-shadow: .2px .2px 12px .2px whitesmoke;
+    transition: .2s;
+
 }
 
 /* .signup-box input:hover{
@@ -166,4 +177,28 @@
 
 .new-employee-added-div h3 {
     margin-top: 10px;
+}
+
+.navigate-login-page-button-link{
+    background: linear-gradient(to left, rgba(0, 94, 117, 0.903), rgba(0, 71, 93, 0.832));
+    margin-top: 10px;
+    color:white;
+    font-size: .9rem;
+    padding: 4px 12px 4px 12px ;
+}
+
+.admin-sign-up-button-div{
+    align-items: center;
+}
+
+.navigate-login-page-button-link:hover{
+    transition: .2s;
+    background: white;
+    box-shadow: .2px .2px 12px .2px whitesmoke;
+    color:rgba(0, 94, 117, 0.903);
+}
+
+.admin-sign-up-error-message{
+    color:red;
+    text-align: center;
 }

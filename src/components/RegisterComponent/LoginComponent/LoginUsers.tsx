@@ -5,7 +5,7 @@ import { gql, useMutation } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
 import ChangeLogInFormButtons from "./ChangeLogInFormButtons";
 import { setAdminStatus, setLoggedInSavedUid, setSavedLoggedInName, setShowLogOutButtonElements } from "../../../ReduxSlicers/LocalStorageSlicer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const checkUserLoggedInAuthQuery = gql`
 mutation userLogin($userLoginParameters: createLoginInput!){
@@ -53,6 +53,9 @@ function LoginUsers() {
         }
     });
 
+    useEffect(()=>{
+        console.log(checkUserLoggedInAuth)
+    })
 
 
     const loginForm = (e: React.ChangeEvent<HTMLFormElement>) => {

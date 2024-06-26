@@ -69,7 +69,7 @@ function ShowAllEmployees() {
     <div>
     <p className="font-bold text-xl">All Employees</p>
     <br></br>
-    <input onChange={(e) => Dispatch(setSearchFilter(e.target.value))} className="search-employees-input" placeholder="Search Employees" type="text" />
+    <input data-testid="search-input" onChange={(e) => Dispatch(setSearchFilter(e.target.value))} className="search-employees-input" placeholder="Search Employees" type="text" />
     <div className="employees-details-container">
         { 
             ShowAllEmployeesData.showAllEmployee.filter((filteredEmployeesAccountData: EmployeesAccountDataProps) => {
@@ -84,7 +84,7 @@ function ShowAllEmployees() {
                 console.log(EmployeesAccountData)
                 return (
                     <div className="employees-details-div" >
-                        <strong>Name:</strong><p>{EmployeesAccountData.name}</p>
+                        <strong>Name:</strong><p className="employee-name">{EmployeesAccountData.name}</p>
                         <strong>Email ID:</strong><p className="email-id">{EmployeesAccountData.emailId}</p>
                         {adminStatus ? <button onClick={() => {
                             assignEmployeeOfTheMonth({

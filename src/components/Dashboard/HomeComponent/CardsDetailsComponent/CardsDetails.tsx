@@ -64,24 +64,9 @@ function CardsDetails() {
 
     const { loading: EmployeesAccountDetailsLoading } = useQuery(fetchTotalEmployeesAndDepartmentsQuery, ({
         onCompleted: (EmployeesAccountDetailsData) => {
+      setTotalEmployeesCount(EmployeesAccountDetailsData.showAllEmployee.length)
 
-            // EmployeesAccountDetailsData.showAllEmployee.map((data:any)=>{
-            //     return setTotalDepartmentList((prevVal:any)=>[...prevVal,data])
-            // });
-
-            // // console.log(EmployeesAccountDetailsData.showAllEmployee.department[0])
-            setTotalEmployeesCount(EmployeesAccountDetailsData.showAllEmployee.length)
-
-            // const map = new Map();
-            // for (let i = 0; i < EmployeesAccountDetailsData.showAllEmployee.length; i++) {
-            //     if (map.has(EmployeesAccountDetailsData.showAllEmployee[i])) {
-            //         setTotalDepartmentCount((totalDepartmentCount)=>totalDepartmentCount+1)
-            //         map.set(EmployeesAccountDetailsData.showAllEmployee[i],map.get(EmployeesAccountDetailsData.showAllEmployee[i]+1))
-            //     }else{
-            //         map.set(EmployeesAccountDetailsData.showAllEmployee[i],1)
-            //     }
-            // }
-            // console.log(map)
+         
         },
         onError: (err) => {
             console.log(err);
