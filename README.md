@@ -1,3 +1,9 @@
+# NOTE INSTRUCTIONS
+
+To login please type admin login and admin password -:
+
+admin email-id : admin@gmail.com
+admin password: admin123
 
 ![Untitled-2024-06-07-1111](https://github.com/Pursharthzutshi/employee-managment-dashboard-client/assets/24863656/99b531df-74df-44c8-8082-e3f642bdbaad)
 
