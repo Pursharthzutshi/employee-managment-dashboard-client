@@ -11,35 +11,27 @@ import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import { ApolloProvider } from '@apollo/client';
 
 
-export const client = new ApolloClient({
-  uri: 'http://localhost:4000/api/graphql',
-  cache: new InMemoryCache(),
-})
-
 // export const client = new ApolloClient({
-//   uri: 'https://employee-managment-dashboard-server-n4z9p0nyq.vercel.app/api/graphql',
+//   uri: 'http://localhost:4001/api/graphql',
 //   cache: new InMemoryCache(),
-//   headers: {
-//     "Access-Control-Allow-Origin": "*",
-//     "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
-//     "Access-Control-Allow-Headers":
-//       "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With",
-//   },
-//   credentials: "omit",
-
 // })
 
 
-// client.query({query:})
+export const client = new ApolloClient({
+  uri: 'https://employee-managment-dashboard-server.vercel.app/api/graphql',
+  cache: new InMemoryCache(),
+})
 
-// const GETDATA = gql`
-// `
 
-// client.query({query:GET})
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+// const root = ReactDOM.createRoot(
+//   document.getElementById('root') as HTMLElement
+// );
+const rootElement = document.getElementById('root') as HTMLElement;
+
+if(rootElement){
+  const root = ReactDOM.createRoot(rootElement);
+
 root.render(
   <React.StrictMode>
     
@@ -52,7 +44,10 @@ root.render(
     </BrowserRouter>
   </React.StrictMode>
 );
+}else{
+  console.error("Failed to find the root element.");
 
+}
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals

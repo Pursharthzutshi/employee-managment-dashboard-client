@@ -6,16 +6,17 @@
         /* background-color: red; */
     }
 
-    .card-details-container{
+    .card-details-container {
         align-items: center;
         /* margin-top: 90px; */
-        gap:80px;
+        gap: 80px;
     }
-    
-.bar-chart-div,.pie-chart-div {
-    border-radius: 8px;
-    padding: 18px 18px 12px 18px;
-    box-shadow: .2px .2px 2px .2px lightgray;
-    width: 33%;
-}
+
+    .bar-chart-div,
+    .pie-chart-div {
+        border-radius: 8px;
+        padding: 18px 18px 12px 18px;
+        box-shadow: .2px .2px 2px .2px lightgray;
+        width: 33%;
+    }
 }

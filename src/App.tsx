@@ -30,7 +30,7 @@ function App() {
   }, [adminStatus])
 
   return (
-    <div className="App">
+    <div data-testid="app-container" className="App">
 
       {/* <button onClick={() => Dispatch(setChangeComponent(true))}>change</button> */}
       <div className='left-sidebar-dashboard-div'>

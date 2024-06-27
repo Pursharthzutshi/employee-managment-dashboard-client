@@ -1,43 +1,98 @@
-import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
-import App from './App';
-import {act} from 'react';
+import { act } from 'react';
 import { Provider } from 'react-redux';
-import ShowAllEmployees from './components/Dashboard/ShowAllEmployeesComponent/ShowAllEmployees';
+import ShowAllEmployees, { show_all_employees_data_query } from './components/Dashboard/ShowAllEmployeesComponent/ShowAllEmployees';
 import { store } from '../src/ReduxStore/store';
-import Home from './components/Dashboard/HomeComponent/Home';
 import WelcomeBack from './components/Dashboard/HomeComponent/WelcomeBackComponent/WelcomeBack';
 import userEvent from '@testing-library/user-event';
+import { MockedProvider } from '@apollo/client/testing';
+import { BrowserRouter } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/client';
 import { client } from '.';
+import { useAppSelector } from './ReduxHooks';
 
 
-it("snapshot",async ()=>{
-    
-      const {container} = await act(async () => render(
+
+const mockShowAllEmployeesData = [
+  {
+    request: {
+      query: show_all_employees_data_query,
+    },
+    result: {
+      data: {
+        showAllEmployee: [
+          {
+            emailId: "josh@gmail.com",
+            name: "josh",
+            uid: "8e5d676e-8674-4711-a50a-0f32b514c4c1",
+          },
+        ],
+      },
+    },
+  },
+];
+describe("show", () => {
+  it("check", async () => {
+
+
+    render(
+      <MockedProvider mocks={mockShowAllEmployeesData} addTypename={false} >
+        <BrowserRouter>
           <Provider store={store}>
-            <WelcomeBack/>
+            <ShowAllEmployees />
           </Provider>
+        </BrowserRouter>
+      </MockedProvider>
+    )
+
+    await waitFor(() => {
+
+      expect(screen.getByText("josh@gmail.com")).toBeInTheDocument();
+      expect(screen.getByText("josh")).toBeInTheDocument();
+    });
+
+  })
+})
+
+
+it("snapshot", async () => {
+
+  const { container } = await act(async () => render(
+    <Provider store={store}>
+      <WelcomeBack />
+    </Provider>
   ))
-      expect(container.querySelector("p")).toMatchSnapshot();
-  
-  })
-  
+  expect(container.querySelector("p")).toMatchSnapshot();
 
-  it("check",async()=>{
-    
-    const {container} = render(
-      <ApolloProvider client={client}>
-      <Provider store ={store}>
-      <ShowAllEmployees/>
+})
+
+// test("List",()=>{
+//   render()
+// })
+
+// const searchFilter = useAppSelector((state:any)=>state.SearchFilterSilcer.SearchFilter)
+
+it("search", async () => {
+
+  const { container } =  render(
+
+    <BrowserRouter>
+      <Provider store={store}>
+        <ApolloProvider client={client}>
+          <ShowAllEmployees />
+        </ApolloProvider>
       </Provider>
-      </ApolloProvider>,
+    </BrowserRouter>
+
   )
+  console.log(container)
 
-    const input = screen.getByTestId("search-input")
-    userEvent.type(input,"")
+  const input = await screen.findByTestId("search-input")
+  userEvent.type(input, "Something I will never type")
+  console.log(userEvent)
 
-    await waitFor(()=>{
-      expect(container.querySelectorAll(".employee-name").length).toBe(0)
-    })
-  })
+  await waitFor(() => {
+    console.log((container.querySelectorAll(".employee-name").length))
+    expect(container.querySelectorAll(".employee-name").length).toBe(0)
+  });
+})

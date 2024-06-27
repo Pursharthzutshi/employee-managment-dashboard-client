@@ -10,7 +10,7 @@ import NavBar from "../../NavBarComponent/NavBar";
 import "../ShowAllEmployeesComponent/ShowAllEmployees.css"
 import { Link } from "react-router-dom";
 
-const show_all_employees_data_query = gql`
+export const show_all_employees_data_query = gql`
 query fetchemployeesDataQuery{
    showAllEmployee {
    uid
@@ -84,7 +84,7 @@ function ShowAllEmployees() {
                 console.log(EmployeesAccountData)
                 return (
                     <div className="employees-details-div" >
-                        <strong>Name:</strong><p className="employee-name">{EmployeesAccountData.name}</p>
+                        <strong>Name:</strong><p data-testid="employee-name" className="employee-name">{EmployeesAccountData.name}</p>
                         <strong>Email ID:</strong><p className="email-id">{EmployeesAccountData.emailId}</p>
                         {adminStatus ? <button onClick={() => {
                             assignEmployeeOfTheMonth({
