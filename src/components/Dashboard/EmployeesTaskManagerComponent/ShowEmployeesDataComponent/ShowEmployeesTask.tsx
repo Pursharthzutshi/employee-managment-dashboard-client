@@ -61,15 +61,15 @@ function ShowEmployeesTask() {
     console.log(employeesTaskData)
   })
 
-  client.query({query:fetch_employees_task_details_query}).then(response=>{
-    console.log(response);
-    client.cache.writeQuery({
-      query: delete_employees_task_data,
-      data: {
-        data: response.data.data
-      }
-    });
-  })
+  // client.query({query:fetch_employees_task_details_query}).then(response=>{
+  //   console.log(response);
+  //   client.cache.writeQuery({
+  //     query: delete_employees_task_data,
+  //     data: {
+  //       data: response.data.data
+  //     }
+  //   });
+  // })
 
   if (loading) return <p>Loading...</p>;
 

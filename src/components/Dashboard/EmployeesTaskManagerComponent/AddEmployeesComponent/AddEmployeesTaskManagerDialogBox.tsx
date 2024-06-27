@@ -37,7 +37,7 @@ function AddEmployeesTaskManagerDialogBox() {
     const [showErrorMessageStatus, setShowErrorMessageStatus] = useState(false);
     const [showErrorMessage, setShowErrorMessage] = useState("");
 
-    const [addTasks] = useMutation(addEmployeesTask, {
+    const [addTasks, loading] = useMutation(addEmployeesTask, {
         onCompleted: (addTaskdata) => {
             console.log(addTaskdata)
             if (addTaskdata.createEmployeesTask.success === false) {
@@ -51,32 +51,33 @@ function AddEmployeesTaskManagerDialogBox() {
     });
 
     useEffect(() => {
-        console.log(employeeEmailId)
+        console.log(showErrorMessageStatus)
     }
-)
+    )
+    // if(loading) return <div>Loading...</div>
+    const addNewTask = () => {
 
-const addNewTask = () =>{
-    
-    addTasks({
-        variables: {
-            employeesTaskParameters: {
-                uid: uuidv4(),
-                name: employeeName,
-                emailId: employeeEmailId,
-                taskDesc: employeeTaskDesc,
-                deadLine: employeeDeadLine
+        addTasks({
+            variables: {
+                employeesTaskParameters: {
+                    uid: uuidv4(),
+                    name: employeeName,
+                    emailId: employeeEmailId,
+                    taskDesc: employeeTaskDesc,
+                    deadLine: employeeDeadLine
+                }
             }
-        }
-    })
-}
+        })
+    }
 
     const preventForm = (e: any) => {
+        // e.preventDefault()
         if (showErrorMessageStatus === false) {
             addNewTask()
-        }else if(showErrorMessageStatus === true){
+        } else {
             e.preventDefault()
         }
-            
+
     }
     return (
         <div className="task-dialog-box">
@@ -103,7 +104,7 @@ const addNewTask = () =>{
                     })}
                         className="add-new-task-button">Add Task</button> */}
 
-                    <button type="submit" className="add-new-task-button">Add Task</button>
+                    <button type="submit"  className="add-new-task-button">Add Task</button>
 
                 </div>
             </form>
