@@ -26,7 +26,7 @@ query fetchEmployeesTaskDetails{
 }
   `
 
-const fetchTotalAdmin = gql`
+export const fetchTotalAdmin = gql`
 query fetchAdminDetails{
   showAllAdmin {
     name
@@ -58,8 +58,10 @@ function CardsDetails() {
         onCompleted: (AdminAccountDetailsData) => {
             console.log(AdminAccountDetailsData)
             setTotalAdminCount(AdminAccountDetailsData.showAllAdmin.length)
-        }
-    }));
+        },        
+    }
+)
+);
 
 
     const { loading: EmployeesAccountDetailsLoading } = useQuery(fetchTotalEmployeesAndDepartmentsQuery, ({

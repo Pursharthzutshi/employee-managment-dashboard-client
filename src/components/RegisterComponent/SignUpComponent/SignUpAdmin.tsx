@@ -7,6 +7,7 @@ import { Link, redirect, useNavigate } from "react-router-dom";
 import ChangeSignUpFormButtons from "./ChangeSignUpFormButtons";
 import { v4 as uuidv4 } from 'uuid';
 import NavBar from "../../NavBarComponent/NavBar";
+import { fetchTotalAdmin } from "../../Dashboard/HomeComponent/CardsDetailsComponent/CardsDetails";
 
 const signUpquery = gql`
 mutation adminSignUp($adminSignUpParameters: adminSignUpTableInput!){
@@ -49,8 +50,10 @@ function SignupAdmin() {
         setShowAdminSignUpErrorMessage(adminSignUpData.createAdminSignUp.message)
         setShowAdminSignUpErrorMessageStatus(true)
       }
-    }
-  }));
+    },
+      refetchQueries: [{ query: fetchTotalAdmin }]
+  }),
+);
 
   useEffect(()=>{
     console.log(showAdminSignUpErrorMessage)

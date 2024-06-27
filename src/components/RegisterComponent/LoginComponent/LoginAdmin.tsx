@@ -8,6 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { setAdminStatus, setLoggedInSavedUid, setLogOutStatus, setSavedLoggedInName, setShowLogOutButtonElements } from "../../../ReduxSlicers/LocalStorageSlicer";
 import ChangeLogInFormButtons from "./ChangeLogInFormButtons";
 import { FaSadCry } from "react-icons/fa";
+import { fetchTotalAdmin } from "../../Dashboard/HomeComponent/CardsDetailsComponent/CardsDetails";
 
 const checkUserLoggedInAuthQuery = gql`
 mutation adminLogin($adminLoginParameters: createAdminLoginInput!){
@@ -57,7 +58,11 @@ function LoginAdmin() {
             }
 
         },
-    });
+        refetchQueries: [{ query: fetchTotalAdmin }]
+
+    }
+    
+);
 
 
     const loginForm = (e: React.ChangeEvent<HTMLFormElement>) => {
