@@ -1,6 +1,6 @@
 # NOTE INSTRUCTIONS
 
-To login please type admin login and admin password -:
+To see dashboard  please type admin login and admin password in admin login form -:
 
 admin email-id : admin@gmail.com
 admin password: admin123
