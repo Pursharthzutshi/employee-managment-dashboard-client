@@ -11,16 +11,16 @@ import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import { ApolloProvider } from '@apollo/client';
 
 
-export const client = new ApolloClient({
-  uri: 'http://localhost:4001/api/graphql',
-  cache: new InMemoryCache(),
-})
-
-
 // export const client = new ApolloClient({
-//   uri: 'https://employee-managment-dashboard-server.vercel.app/api/graphql',
+//   uri: 'http://localhost:4001/api/graphql',
 //   cache: new InMemoryCache(),
 // })
+
+
+export const client = new ApolloClient({
+  uri: 'https://employee-managment-dashboard-server.vercel.app/api/graphql',
+  cache: new InMemoryCache(),
+})
 
 
 
@@ -29,22 +29,22 @@ export const client = new ApolloClient({
 // );
 const rootElement = document.getElementById('root') as HTMLElement;
 
-if(rootElement){
+if (rootElement) {
   const root = ReactDOM.createRoot(rootElement);
 
-root.render(
-  <React.StrictMode>
-    
-    <BrowserRouter>
-    <Provider store = {store}>
-    <ApolloProvider client={client}>
-    <App />
-    </ApolloProvider>
-    </Provider>
-    </BrowserRouter>
-  </React.StrictMode>
-);
-}else{
+  root.render(
+    <React.StrictMode>
+
+      <BrowserRouter>
+        <Provider store={store}>
+          <ApolloProvider client={client}>
+            <App />
+          </ApolloProvider>
+        </Provider>
+      </BrowserRouter>
+    </React.StrictMode>
+  );
+} else {
   console.error("Failed to find the root element.");
 
 }
