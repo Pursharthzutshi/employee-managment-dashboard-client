@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import "./LoginUsers.css"
-import "./LoginAdmin.css"
 import { useAppDispatch, useAppSelector } from "../../../ReduxHooks";
 import { setUserLoggedInEmailId, setUserLoggedInEmailPassword } from "../../../ReduxSlicers/LoginSlicer";
 import { gql, useMutation } from "@apollo/client";
 import { Link, useNavigate } from "react-router-dom";
 import { setAdminStatus, setLoggedInSavedUid, setLogOutStatus, setSavedLoggedInName, setShowLogOutButtonElements } from "../../../ReduxSlicers/LocalStorageSlicer";
 import ChangeLogInFormButtons from "./ChangeLogInFormButtons";
-import { FaSadCry } from "react-icons/fa";
 import { fetchTotalAdmin } from "../../Dashboard/HomeComponent/CardsDetailsComponent/CardsDetails";
+
+import "./LoginUsers.css"
+import "./LoginAdmin.css"
 
 const checkUserLoggedInAuthQuery = gql`
 mutation adminLogin($adminLoginParameters: createAdminLoginInput!){
@@ -34,8 +34,6 @@ function LoginAdmin() {
     const [loginErrorMessage, setLoginErrorMessage] = useState("")
 
     const Dispatch = useAppDispatch()
-    // const [] = useState("");
-    // const [] = useState()
     const navigate = useNavigate()
 
     const [checkAdminLoggedInAuth] = useMutation(checkUserLoggedInAuthQuery, {
@@ -61,8 +59,8 @@ function LoginAdmin() {
         refetchQueries: [{ query: fetchTotalAdmin }]
 
     }
-    
-);
+
+    );
 
 
     const loginForm = (e: React.ChangeEvent<HTMLFormElement>) => {
@@ -92,7 +90,7 @@ function LoginAdmin() {
                     }}>Login</button>
                     <p>
                         {
-                        loginErrorMessageStatus &&
+                            loginErrorMessageStatus &&
                             <p>{loginErrorMessage}</p>
                         }
                     </p>

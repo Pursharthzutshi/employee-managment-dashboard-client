@@ -9,6 +9,7 @@ import EmployeesTaskManagerDialogBoxForm from "../EmployeesTaskManagerDialogBoxF
 
 import "../AddEmployeesComponent/AddEmployeesTaskManagerDialogBox.css"
 import "../TaskDialogBox.css"
+import "../TaskDialogBoxResponsive.css"
 
 type addTaskDialogBoxProps = {
     setAddTaskDialogBox: React.Dispatch<React.SetStateAction<Boolean>>;

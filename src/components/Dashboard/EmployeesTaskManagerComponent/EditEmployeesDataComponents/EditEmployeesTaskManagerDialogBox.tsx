@@ -7,6 +7,8 @@ import ReactLoading from 'react-loading';
 
 import "../ShowEmployeesDataComponent/ShowEmployeesTask.css"
 import "../TaskDialogBox.css"
+import "../TaskDialogBoxResponsive.css"
+
 import { EditEmployeesTaskManagerDialogBoxProps } from "../../../../Types/EmployeesTaskTypes";
 
 const fetch_employees_task_details_query = gql`
