@@ -20,3 +20,55 @@
         width: 33%;
     }
 }
+
+@media only screen and (min-width:200px) and (max-width: 1000px) {
+    .welcome-back-card-container {
+        margin-top: 20px;
+        width: 90.2%;
+        padding: 12px 12px 12px 12px;
+        /* margin-left: -90px; */
+        /* background-color: red; */
+    }
+
+    .card-details-container{
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .card-details-div{
+        width: 80%;
+        margin-left: -20px;
+
+    }
+
+    .card-details-container {
+        align-items: center;
+        /* margin-top: 90px; */
+        gap: 2px;
+    }
+
+    .bar-chart-div,
+    .pie-chart-div {
+        border-radius: 8px;
+        padding: 18px 18px 18px 18px;
+        box-shadow: .2px .2px 2px .2px lightgray;
+        width:100%;
+        height: auto;
+    }
+
+    .chart-div-container{
+        display: flex;
+        flex-direction: column;
+        margin-left: 0px;
+    }
+
+    .chart-div-container{
+        align-items: center;
+    }
+
+    .employee-of-the-month-div{
+        /* width: 80%; */
+    }
+
+}

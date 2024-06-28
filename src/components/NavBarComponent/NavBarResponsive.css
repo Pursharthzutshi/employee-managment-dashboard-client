@@ -1,0 +1,19 @@
+@media only screen and (min-width:200px) and (max-width: 1000px) {
+    .box {
+        position: fixed;
+        left: 88%;
+        top: 8%;
+        background: white;
+        box-shadow: .2px .2px 2px .2px lightgray;
+        width: 10%;
+        padding: 4px 2px 2px 2px;
+        height: 5vh;
+    
+    }
+
+    .nav-bar-component{
+        width: 75%;
+        /* margin-top: ; */
+    }
+    
+}

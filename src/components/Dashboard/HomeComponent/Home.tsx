@@ -95,7 +95,7 @@ function Home() {
 
 
     return (
-        <div id="main-page" className="">
+        <div id="main-page" className="main-page">
 
             <NavBar />
             <br></br>

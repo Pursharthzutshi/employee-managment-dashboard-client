@@ -8,6 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { setCreateEmployeeNewAccountStatus } from "../../../ReduxSlicers/createEmployeeNewAccountStatusSlicer";
 
 import "./CreateNewEmployeeAccount.css"
+import "./CreateNewEmployeeAccountResponsive.css"
 import NavBar from "../../NavBarComponent/NavBar";
 const show_all_employees_data_query = gql`
 query fetchemployeesDataQuery{
@@ -68,24 +69,7 @@ function CreateNewEmployeeAccount() {
         Dispatch(setCreateEmployeeNewAccountStatus(false))
       }
     },
-    // update(cache,{data:{createUser}}){
-    //   const exisitingUsers = cache.readQuery({query:CreateEmployeeNewAccount})
-    //   console.log(exisitingUsers)
-    // }
-
-    // update:(cache,{data:{createUserSignUp}})=>{
-    //   const existingEmployee:any = cache.readQuery({query:show_all_employees_data_query})
-    //   console.log(existingEmployee)
-    //   const newList = {
-    //     showAllEmployee:[...existingEmployee.showAllEmployee,createUserSignUp]
-    //   }
-
-    // cache.writeQuery({
-    //   query:signUpquery,
-    //   data:newList  
-    // })
-
-    // }
+    
 
 
   });

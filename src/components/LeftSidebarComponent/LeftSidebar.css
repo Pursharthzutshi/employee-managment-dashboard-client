@@ -29,6 +29,9 @@ body {
 .left-sidebar-icons-div {
     flex-direction: row;
 } */
+.show-menu-bar-button{
+    visibility: hidden;
+}
 
 
 .left-sidebar {

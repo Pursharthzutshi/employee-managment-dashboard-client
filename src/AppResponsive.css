@@ -8,4 +8,23 @@
     flex-direction: row;
     /* background: yellow; */
 }
+
+}
+
+
+
+@media only screen and (min-width:200px) and (max-width: 1000px) {
+    .left-sidebar-dashboard-div {
+        margin-top: 20px;
+        width: 95.2%;
+    }
+
+    .left-sidebar{
+        width: 22%;
+    }
+
+    .show-menu-bar-button{
+        visibility: hidden;
+    }
+ 
 }

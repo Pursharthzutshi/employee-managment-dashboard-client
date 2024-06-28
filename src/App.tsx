@@ -4,7 +4,7 @@ import EmployeesTaskManager from './components/Dashboard/EmployeesTaskManagerCom
 import Home from './components/Dashboard/HomeComponent/Home';
 import ShowAllEmployees from './components/Dashboard/ShowAllEmployeesComponent/ShowAllEmployees';
 import SignupAdmin from './components/RegisterComponent/SignUpComponent/SignUpAdmin';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useAppSelector } from './ReduxHooks';
 import LoginUsers from './components/RegisterComponent/LoginComponent/LoginUsers';
 import LoginAdmin from './components/RegisterComponent/LoginComponent/LoginAdmin';
@@ -24,33 +24,42 @@ function App() {
 
   const logOutButton = useAppSelector((state) => state.LocalStorageSlicer.showLogOutButtonElements)
 
+  // const [showMenuBar,setShowMenuBar] = useState(false)
+
   useEffect(() => {
     console.log(logOutButton)
     // console.log('adminStatus from localStorage:', localStorage.getItem('adminStatus'));
   }, [adminStatus])
 
+  // const showLeftSidebar = () =>{
+  //   setShowMenuBar(true);
+  // }
+
   return (
     <div data-testid="app-container" className="App">
+      
+      <button  className="show-menu-bar-button">show Menu Bar</button>
 
       {/* <button onClick={() => Dispatch(setChangeComponent(true))}>change</button> */}
       <div className='left-sidebar-dashboard-div'>
+
         {
-          logOutButton   ? <LeftSidebar /> : null
+          logOutButton ? <LeftSidebar /> : null
         }
         <Routes >
           <Route path="/home" element=
-            {<Home />} 
+            {<Home />}
           />
           <Route path="/employeesTaskManagmentPage" element={
 
-            adminStatus ? <EmployeesTaskManager /> : <AssignedEmployeesTask />
+            adminStatus ? <EmployeesTaskManager /> : null
           }
           />
 
           <Route path="/showAllEmployeesData" element={<ShowAllEmployees />} />
 
           <Route path="/" element={
-            changeLoginForm ? <LoginAdmin /> :<LoginUsers /> }
+            changeLoginForm ? <LoginAdmin /> : <LoginUsers />}
           />
 
           <Route path="/createEmployeeNewAccount" element={<CreateNewEmployeeAccount />} />

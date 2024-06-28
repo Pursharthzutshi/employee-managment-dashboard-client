@@ -29,8 +29,8 @@ strong{
     padding:2px 2px 4px 12px;
     margin-left: 20px;
     border-radius: 4px;
+    height: auto;
 }
- 
 
  
 .employees-task-edit-dialog-box-button{
@@ -42,7 +42,7 @@ strong{
     cursor: pointer;
     margin-top: 10px;
     /* margin-left: -10px; */
-    height: 3.8vh;
+    height: auto;
     padding: 4px 2px 2px 2px;
     background: red;
 }

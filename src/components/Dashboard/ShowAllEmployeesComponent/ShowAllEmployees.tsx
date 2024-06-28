@@ -6,9 +6,8 @@ import { useAppSelector } from "../../../ReduxHooks";
 import { EmployeesAccountDataProps } from "../../../Types/ShowAllEmployeesComponentTypes";
 import NavBar from "../../NavBarComponent/NavBar";
 
-
 import "../ShowAllEmployeesComponent/ShowAllEmployees.css"
-import { Link } from "react-router-dom";
+import "../ShowAllEmployeesComponent/ShowAllEmployeesResponsive.css"
 
 export const show_all_employees_data_query = gql`
 query fetchemployeesDataQuery{

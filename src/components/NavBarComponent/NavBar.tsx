@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { FaBuilding, FaUser, FaUserAlt } from "react-icons/fa";
 import DropDown from "../utils/DropDown";
+
+
 import "../NavBarComponent/NavBar.css"
+import "../NavBarComponent/NavBarResponsive.css"
+
 function NavBar() {
 
     const [test, setTest] = useState<Boolean>(false);

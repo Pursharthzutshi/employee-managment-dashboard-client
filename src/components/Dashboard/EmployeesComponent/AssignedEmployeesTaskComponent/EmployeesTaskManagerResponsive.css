@@ -1,0 +1,16 @@
+@media only screen and (min-width:200px) and (max-width: 1000px) {
+    .tasks-component{
+        padding:2px 12px 2px 12px;
+    }
+    .employee-task-manager-component{
+        /* height: 0%; */
+        padding: 2px 12px 2px 2px;
+        box-shadow: .2px .2px 22px .2px rgb(232, 232, 232);
+    
+    }
+    
+    .tasks-component{
+        min-height: 93vh;
+        padding:2px 2px 32px 12px;
+    }
+}

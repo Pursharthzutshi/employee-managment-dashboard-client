@@ -13,8 +13,6 @@ function LeftSidebar() {
 
     const Dispatch = useAppDispatch();
 
-
-
     return (
         <div className="left-sidebar-component">
             <div className="left-sidebar">
