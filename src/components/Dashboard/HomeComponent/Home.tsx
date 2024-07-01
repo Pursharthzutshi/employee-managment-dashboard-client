@@ -98,6 +98,7 @@ function Home() {
         <div id="main-page" className="main-page">
 
             <NavBar />
+
             <br></br>
 
             <CheckInStatus />

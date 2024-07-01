@@ -1,0 +1,115 @@
+import React, { useEffect, useState } from "react";
+import "../SettingsProfile/SettingsProfileForm.css"
+import { gql, useLazyQuery, useMutation, useQuery } from "@apollo/client";
+import { useAppSelector } from "../../../../ReduxHooks";
+
+const fetchAdminProfileDetails = gql`
+query showAdminProfileDetails($fetchAdminProfileDetailsParameters: fetchAdminProfileDetailsInput!){
+  fetchAdminProfileDetails(fetchAdminProfileDetailsParameters: $fetchAdminProfileDetailsParameters) {
+  uid
+    name
+    emailId
+  }
+} 
+  `
+
+const updateProfileNameQuery = gql`
+  mutation updateProfileName($updateProfileNameParameters: updateProfileNameInput!){
+  updateName(updateProfileNameParameters: $updateProfileNameParameters) {
+    name
+  }
+}
+  `
+const updateProfilePasswordQuery = gql`
+  mutation updateProfilePassword($updateProfilePasswordParameters: updateProfilePasswordInput!){
+  updatePassword(updateProfilePasswordParameters: $updateProfilePasswordParameters) {
+    password
+  }
+}
+  `
+
+function SettingsProfileForm() {
+
+    const [updateName, setUpdateName] = useState("")
+    const [updatePassword, setUpdatePassword] = useState("")
+
+    const [adminProfileSavedUid, setAdminProfileSavedUid] = useState(localStorage.getItem("adminLoggedInSavedUid"));
+
+    const [updateProfileName] = useMutation(updateProfileNameQuery)
+    const [updateProfilePassword,{loading:updateProfilePasswordLoading}] = useMutation(updateProfilePasswordQuery)
+
+    const [fetchAdminDetails, { data: fetchAdminProfileDetailsData, loading }] = useLazyQuery(fetchAdminProfileDetails, {
+        variables: {
+            fetchAdminProfileDetailsParameters: {
+                uid: adminProfileSavedUid
+            },
+        },
+        onCompleted: (fetchAdminProfileDetailsData) => {
+            console.log(fetchAdminProfileDetailsData.fetchAdminProfileDetails)
+        },
+
+    });
+
+    useEffect(() => {
+        if (adminProfileSavedUid) {
+            fetchAdminDetails();
+        }
+    }, [adminProfileSavedUid, fetchAdminDetails]);
+    if (loading) return <p>Loading...</p>;
+    if (updateProfilePasswordLoading) return <p>Loading...</p>;
+
+    return (
+        <div className="settings-profile-form">
+
+            {fetchAdminProfileDetailsData &&
+                fetchAdminProfileDetailsData.fetchAdminProfileDetails.map((val: any) => {
+                    return (
+                        <div>
+                            <p className="font-bold text-xl">User Details</p>
+                            <br></br>
+                            <label className="font-bold text-sl">Name:</label><p>{val.name}</p>
+                            <br></br>
+                            <label className="font-bold text-sl">EmailId:</label><p>{val.emailId}</p>
+                        </div>
+                    )
+                })
+            }
+
+            <form className="settings-profile-form">
+                <p className="font-bold text-xl">Change Settings</p>
+                <div>
+                    <input onChange={(e) => setUpdateName(e.target.value)} placeholder="User Name" type="text" />
+                    <button className="update-profile-button" onClick={() =>
+                        updateProfileName({
+                            variables: {
+                                updateProfileNameParameters: {
+                                    uid: adminProfileSavedUid,
+                                    name: updateName
+                                },
+                            },
+                        })
+
+                    }>Update Name</button>
+                </div>
+                <div>
+                    <input onChange={(e) => setUpdatePassword(e.target.value)} placeholder="Password" type="text" />
+                    <button className="update-profile-button" onClick={() =>
+                        updateProfileName({
+                            variables: {
+                                updateProfilePasswordParameters: {
+                                    uid: adminProfileSavedUid,
+                                    password: updatePassword
+                                },
+                            },
+                        })
+
+                    }>Update Password</button>
+
+                </div>
+            </form>
+
+        </div>
+    )
+}
+
+export default SettingsProfileForm;

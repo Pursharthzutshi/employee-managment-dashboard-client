@@ -44,6 +44,12 @@ function LeftSidebar() {
                             <p >Add Employee</p>
 
                         </Link>
+
+                        <Link className="left-sidebar-links" to="/settings">
+                            <img className="left-sidebar-icon-image" src={settingsImage} />
+                            <p>Settings</p>
+                        </Link>
+                        
                         {/* <Link className="left-sidebar-links" to="/signup">
                         <img className="left-sidebar-icon-image" src={settingsImage} />
                         <p >Settings</p>

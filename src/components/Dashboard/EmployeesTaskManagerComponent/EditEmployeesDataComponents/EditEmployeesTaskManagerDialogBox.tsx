@@ -46,7 +46,7 @@ function EditEmployeesTaskManagerDialogBox({ selectedUpdateTaskFieldUid }: EditE
     const employeeDeadLine = useAppSelector((state) => state.AddEmployeesTaskSlicer.employeeDeadLine)
 
     const Dispatch = useAppDispatch()
-    
+
     const { data: employeesTaskData, loading } = useQuery(fetch_employees_task_details_query)
 
     const [editEmployeesTaskFields] = useMutation(edit_employees_task_details_query)
@@ -54,14 +54,23 @@ function EditEmployeesTaskManagerDialogBox({ selectedUpdateTaskFieldUid }: EditE
     useEffect(() => {
         console.log(selectedUpdateTaskFieldUid)
     })
-    // if (loading) return <ReactLoading type={type} color={color} height={667} width={375} />    ;
 
-    // const Dispatch = useAppDispatch();
+    const editDialogBox = () => {
 
-    // const closeEditDialogBox = () => {
-    //     Dispatch(setShowEmployeesDialogBox(false));
-    // }
-    
+            editEmployeesTaskFields({
+                variables: {
+                    editEmployeesTaskParameter: {
+                        uid: selectedUpdateTaskFieldUid,
+                        name: employeeName,
+                        emailId: employeeEmailId,
+                        taskDesc: employeeTaskDesc,
+                        deadLine: employeeDeadLine
+                    }
+                }
+            })
+
+    }
+
     const closeDialogBox = () => {
         Dispatch(setShowEmployeesDialogBox(false));
         Dispatch(setShowEmployeesEditDialogBox(false));
@@ -73,17 +82,7 @@ function EditEmployeesTaskManagerDialogBox({ selectedUpdateTaskFieldUid }: EditE
 
                 <EmployeesTaskManagerDialogBoxForm />
                 <div className="edit-button-div">
-                    <button onClick={() => editEmployeesTaskFields({
-                        variables: {
-                            editEmployeesTaskParameter: {
-                                uid: selectedUpdateTaskFieldUid,
-                                name: employeeName,
-                                emailId: employeeEmailId,
-                                taskDesc: employeeTaskDesc,
-                                deadLine: employeeDeadLine
-                            }
-                        }
-                    })}
+                    <button onClick={editDialogBox}
                         className="edit-new-task-button">Edit A New Task</button>
                     <button className="close-edit-dialog-box-button" onClick={closeDialogBox}>Cancel</button>
 

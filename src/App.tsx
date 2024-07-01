@@ -14,6 +14,7 @@ import CreateNewEmployeeAccount from './components/Dashboard/CreateNewEmployeeAc
 import './App.css';
 import './AppResponsive.css';
 import NavBar from './components/NavBarComponent/NavBar';
+import Settings from './components/Dashboard/SettingsComponent/Settings';
 
 function App() {
 
@@ -37,8 +38,8 @@ function App() {
 
   return (
     <div data-testid="app-container" className="App">
-      
-      <button  className="show-menu-bar-button">show Menu Bar</button>
+
+      <button className="show-menu-bar-button">show Menu Bar</button>
 
       {/* <button onClick={() => Dispatch(setChangeComponent(true))}>change</button> */}
       <div className='left-sidebar-dashboard-div'>
@@ -46,6 +47,7 @@ function App() {
         {
           logOutButton ? <LeftSidebar /> : null
         }
+        
         <Routes >
           <Route path="/home" element=
             {<Home />}
@@ -63,6 +65,8 @@ function App() {
           />
 
           <Route path="/createEmployeeNewAccount" element={<CreateNewEmployeeAccount />} />
+
+          <Route path="/settings" element={<Settings />} />
 
           <Route path="/signUpAdmin" element={<SignupAdmin />} />
 

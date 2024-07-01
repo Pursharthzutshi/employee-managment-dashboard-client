@@ -25,6 +25,11 @@ function EmployeesTaskManagerDialogBoxForm() {
 
     // const [date, setDate] = useState(new Date());
 
+    // const employeeName = useAppSelector((state) => state.AddEmployeesTaskSlicer.employeeName)
+    // const employeeEmailId = useAppSelector((state) => state.AddEmployeesTaskSlicer.employeeEmailId)
+    // const employeeTaskDesc = useAppSelector((state) => state.AddEmployeesTaskSlicer.employeeTaskDesc)
+    // const employeeDeadLine = useAppSelector((state) => state.AddEmployeesTaskSlicer.employeeDeadLine)
+
 
     const { data: FetchUserData, loading, error, refetch } = useQuery(showUsersEmailIdsQuery);
 
@@ -76,6 +81,7 @@ function EmployeesTaskManagerDialogBoxForm() {
         Dispatch(setShowEmployeesEditDialogBox(false));
     }
 
+ 
     // LOADING    
 
     if (loading) return <h3>Loading</h3>
@@ -128,7 +134,7 @@ function EmployeesTaskManagerDialogBoxForm() {
             }
 
             <input type="text" placeholder="Task Description" onChange={(e: React.ChangeEvent<HTMLInputElement>) => { Dispatch(setEmployeeTaskDesc(e.target.value)) }} />
-            <input className="calendar" placeholder="deadLine" type="date" onChange={(e: React.ChangeEvent<HTMLInputElement>) => { Dispatch(setEmployeeDeadLine(e.target.value)) }} />
+            <input type="date" placeholder="deadLine" className="calendar"  onChange={(e: React.ChangeEvent<HTMLInputElement>) => { Dispatch(setEmployeeDeadLine(e.target.value)) }} />
 
         </div>
     )

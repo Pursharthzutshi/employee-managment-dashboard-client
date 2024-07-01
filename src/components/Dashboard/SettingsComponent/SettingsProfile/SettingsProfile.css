@@ -1,0 +1,8 @@
+.profile-settings-box {
+    margin-top: 20px;
+    width: 98%;
+    height: 81%;
+    padding: 17px 22px 12px 22px;
+    box-shadow: .2px .2px 12px .2px whitesmoke;
+    border-radius: 30px;
+}

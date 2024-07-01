@@ -29,20 +29,20 @@ mutation updateEmployeeOfTheMonth($updateEmployeeOfTheMonthParameters: updateEmp
 
 function ShowAllEmployees() {
     const searchFilter = useAppSelector((state) => state.SearchFilterSilcer.SearchFilter)
-    const [totalEmployeeDetailsCount,setTotalEmployeeDetailsCount] = useState(0);
-   
-    const createEmployeeNewAccountStatus = useAppSelector((state)=>state.createEmployeeNewAccountStatusSlicer.createEmployeeNewAccountStatus)
+    const [totalEmployeeDetailsCount, setTotalEmployeeDetailsCount] = useState(0);
+
+    const createEmployeeNewAccountStatus = useAppSelector((state) => state.createEmployeeNewAccountStatusSlicer.createEmployeeNewAccountStatus)
 
     const Dispatch = useDispatch()
 
-    const [assignEmployeeOfTheMonth] = useMutation(update_Employee_Of_The_Month_query,({
-        onError:(err)=>{
+    const [assignEmployeeOfTheMonth] = useMutation(update_Employee_Of_The_Month_query, ({
+        onError: (err) => {
             console.log(err)
         }
     }));
 
 
-    const { data: ShowAllEmployeesData, loading,refetch} = useQuery(show_all_employees_data_query, {
+    const { data: ShowAllEmployeesData, loading, refetch } = useQuery(show_all_employees_data_query, {
         onCompleted: (data) => {
             console.log(data)
             refetch()
@@ -59,57 +59,57 @@ function ShowAllEmployees() {
     if (loading) return <p>Loading...</p>
 
     return (
-        <div  id="main-page" className="show-all-employees-component">
+        <div id="main-page" className="show-all-employees-component">
 
             <NavBar />
             {/* <input  type="search" /> */}
 
-  
-    <div>
-    <p className="font-bold text-xl">All Employees</p>
-    <br></br>
-    <input data-testid="search-input" onChange={(e) => Dispatch(setSearchFilter(e.target.value))} className="search-employees-input" placeholder="Search Employees" type="text" />
-    <div className="employees-details-container">
-        { 
-            ShowAllEmployeesData.showAllEmployee.filter((filteredEmployeesAccountData: EmployeesAccountDataProps) => {
 
-                if (filteredEmployeesAccountData.name.toLowerCase().includes(searchFilter.toLowerCase())) {
-                    console.log(filteredEmployeesAccountData)
-                    return filteredEmployeesAccountData;
-                } else if (searchFilter === "") {
-                    return filteredEmployeesAccountData;
-                }
-            }).map((EmployeesAccountData: EmployeesAccountDataProps) => {
-                console.log(EmployeesAccountData)
-                return (
-                    <div className="employees-details-div" >
-                        <strong>Name:</strong><p data-testid="employee-name" className="employee-name">{EmployeesAccountData.name}</p>
-                        <strong>Email ID:</strong><p className="email-id">{EmployeesAccountData.emailId}</p>
-                        {adminStatus ? <button onClick={() => {
-                            assignEmployeeOfTheMonth({
-                                variables: {
-                                    updateEmployeeOfTheMonthParameters: {
-                                        uid: EmployeesAccountData.uid,
-                                        employeeOfTheMonth: true
-                                    },
-                                },
-                            })
+            <div>
+                <p className="font-bold text-xl">All Employees</p>
+                <br></br>
+                <input data-testid="search-input" onChange={(e) => Dispatch(setSearchFilter(e.target.value))} className="search-employees-input" placeholder="Search Employees" type="text" />
+                <div className="employees-details-container">
+                    {
+                        ShowAllEmployeesData.showAllEmployee.filter((filteredEmployeesAccountData: EmployeesAccountDataProps) => {
 
-                        }} className="employees-details-button font-semibold text-sm">Assign Employee of the month</button> : null}
-                    </div>
-                )
-            })
-        }
-    </div>
-    </div>
-    {/* :
+                            if (filteredEmployeesAccountData.name.toLowerCase().includes(searchFilter.toLowerCase())) {
+                                console.log(filteredEmployeesAccountData)
+                                return filteredEmployeesAccountData;
+                            } else if (searchFilter === "") {
+                                return filteredEmployeesAccountData;
+                            }
+                        }).map((EmployeesAccountData: EmployeesAccountDataProps) => {
+                            console.log(EmployeesAccountData)
+                            return (
+                                <div className="employees-details-div" >
+                                    <strong>Name:</strong><p data-testid="employee-name" className="employee-name">{EmployeesAccountData.name}</p>
+                                    <strong>Email ID:</strong><p className="email-id">{EmployeesAccountData.emailId}</p>
+                                    {adminStatus ? <button onClick={() => {
+                                        assignEmployeeOfTheMonth({
+                                            variables: {
+                                                updateEmployeeOfTheMonthParameters: {
+                                                    uid: EmployeesAccountData.uid,
+                                                    employeeOfTheMonth: true
+                                                },
+                                            },
+                                        })
+
+                                    }} className="employees-details-button font-semibold text-sm">Assign Employee of the month</button> : null}
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+            </div>
+            {/* :
     <div className="no-employee-div">
         <h3>No Employees </h3>
         <p>Please Add New Employee </p>
         <Link className="add-new-employee-link" to="/createEmployeeNewAccount">Add New Employees</Link>
     </div> */}
 
-         
+
         </div>
     )
 }

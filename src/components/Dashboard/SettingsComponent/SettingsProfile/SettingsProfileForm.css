@@ -1,0 +1,30 @@
+.settings-profile-form {
+    display: flex;
+}
+
+.settings-profile-form {
+    flex-direction: column;
+}
+
+.settings-profile-form {
+    gap: 15px;
+
+}
+
+.settings-profile-form input {
+    padding: 4px 2px 4px 8px;
+    box-shadow: .2px .2px 2px .2px lightgray;
+}
+
+.settings-profile-form input::placeholder {
+    font-size: .9rem;
+}
+
+.update-profile-button{
+    margin-left: 20px;
+    padding: 2px 12px 2px 12px;
+    font-size: .8rem;
+    color: white;
+    border-radius: 4px;
+    background: linear-gradient(to left,rgb(0, 124, 177),rgb(0, 99, 152));
+}

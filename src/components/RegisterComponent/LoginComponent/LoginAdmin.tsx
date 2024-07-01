@@ -52,7 +52,7 @@ function LoginAdmin() {
             } else {
                 setLoginErrorMessageStatus(true);
                 setLoginErrorMessage(adminLoginData.createAdminLogin.message);
-                Dispatch(setShowLogOutButtonElements(false));
+                // Dispatch(setShowLogOutButtonElements(false));
             }
 
         },
