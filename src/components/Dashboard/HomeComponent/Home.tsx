@@ -32,6 +32,7 @@ import WelcomeBack from "./WelcomeBackComponent/WelcomeBack";
 
 import "../HomeComponent/Home.css"
 import "../HomeComponent/HomeResponsive.css"
+import { show_all_employees_charts_data_query } from "../../../GraphQLQueries/HomeQuery";
 // Register the components
 ChartJS.register(
     CategoryScale,
@@ -45,19 +46,13 @@ ChartJS.register(
     ArcElement
 );
 
-const show_all_employees_data_query = gql`
-query qd {
- showAllEmployee {
-   genderType
-   department
- }
-}`
 
 function Home() {
 
 
-    const { data: employeesData, refetch } = useQuery(show_all_employees_data_query);
+    const { data: employeesData, refetch } = useQuery(show_all_employees_charts_data_query);
 
+   
     const count = useAppSelector((state) => state.ChartsDetailsSlicer.count)
     const departmentCount = useAppSelector((state) => state.ChartsDetailsSlicer.departmentCount)
     const createEmployeeNewAccountStatus = useAppSelector((state) => state.createEmployeeNewAccountStatusSlicer.createEmployeeNewAccountStatus);

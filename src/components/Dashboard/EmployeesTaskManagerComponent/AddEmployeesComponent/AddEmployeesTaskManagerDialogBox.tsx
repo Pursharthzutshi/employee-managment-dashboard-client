@@ -10,19 +10,8 @@ import EmployeesTaskManagerDialogBoxForm from "../EmployeesTaskManagerDialogBoxF
 import "../AddEmployeesComponent/AddEmployeesTaskManagerDialogBox.css"
 import "../TaskDialogBox.css"
 import "../TaskDialogBoxResponsive.css"
+import { addEmployeesTask } from "../../../../GraphQLQueries/EmployeesTaskManagerQuery";
 
-type addTaskDialogBoxProps = {
-    setAddTaskDialogBox: React.Dispatch<React.SetStateAction<Boolean>>;
-}
-
-const addEmployeesTask = gql`
-mutation AddedEmployeeTaskResponse($employeesTaskParameters: createEmployeesTaskInput!){
-  createEmployeesTask(employeesTaskParameters: $employeesTaskParameters) {
-    success 
-    message
-  }
-}
-`
 
 function AddEmployeesTaskManagerDialogBox() {
 

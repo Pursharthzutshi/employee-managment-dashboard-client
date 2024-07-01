@@ -15,13 +15,13 @@ query employeeStatusQuery {
 
 function EmployeeStatus() {
 
-    const { data: showAllUsersDetailsAndStatus, loading, refetch } = useQuery(fetch_employees_details_query);
+  const { data: showAllUsersDetailsAndStatus, loading, refetch } = useQuery(fetch_employees_details_query);
 
-   
-    return (
-        <div className="employee-status-container">            
-        </div>
-    );
+
+  return (
+    <div className="employee-status-container">
+    </div>
+  );
 }
 
 export default EmployeeStatus;

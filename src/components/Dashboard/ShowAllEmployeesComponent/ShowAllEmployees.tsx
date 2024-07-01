@@ -8,24 +8,10 @@ import NavBar from "../../NavBarComponent/NavBar";
 
 import "../ShowAllEmployeesComponent/ShowAllEmployees.css"
 import "../ShowAllEmployeesComponent/ShowAllEmployeesResponsive.css"
+import { show_all_employees_data_query } from "../../../GraphQLQueries/ShowAllEmployeesQuery";
+import { update_Employee_Of_The_Month_query } from "../../../GraphQLQueries/ShowAllEmployeesQuery";
 
-export const show_all_employees_data_query = gql`
-query fetchemployeesDataQuery{
-   showAllEmployee {
-   uid
-   name
-   emailId
-}
-}`
 
-const update_Employee_Of_The_Month_query = gql`
-mutation updateEmployeeOfTheMonth($updateEmployeeOfTheMonthParameters: updateEmployeeOfTheMonthInput!){
-  updateEmployeeOfTheMonth(updateEmployeeOfTheMonthParameters: $updateEmployeeOfTheMonthParameters) {
-    uid,
-    employeeOfTheMonth
-  }
-}
-  `
 
 function ShowAllEmployees() {
     const searchFilter = useAppSelector((state) => state.SearchFilterSilcer.SearchFilter)

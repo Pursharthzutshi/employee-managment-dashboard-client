@@ -9,23 +9,9 @@ import { setCreateEmployeeNewAccountStatus } from "../../../ReduxSlicers/createE
 
 import "./CreateNewEmployeeAccount.css"
 import "./CreateNewEmployeeAccountResponsive.css"
-import NavBar from "../../NavBarComponent/NavBar";
-const show_all_employees_data_query = gql`
-query fetchemployeesDataQuery{
-   showAllEmployee {
-   uid
-   name
-   emailId
-}
-}`
-const signUpquery = gql`
-mutation create($userSignUpParameters: createUserSignUpInput!){
-createUserSignUp(userSignUpParameters: $userSignUpParameters) {
-success
-message
-}
-}
-`
+import { signUpquery } from "../../../GraphQLQueries/CreateNewEmployeeAccountQuery";
+
+
 
 function CreateNewEmployeeAccount() {
 
@@ -69,7 +55,7 @@ function CreateNewEmployeeAccount() {
         Dispatch(setCreateEmployeeNewAccountStatus(false))
       }
     },
-    
+
 
 
   });
@@ -88,8 +74,8 @@ function CreateNewEmployeeAccount() {
       <div className="create-new-employee-account-box">
 
         <form onSubmit={signUpForm} className="signup-form">
-        <h3 className="employee-account-heading font-semibold text-lg">Create Employees Account</h3>
-        {
+          <h3 className="employee-account-heading font-semibold text-lg">Create Employees Account</h3>
+          {
             newEmployeeAccountCreatedStatus ?
               <div className="new-employee-added-div">
 
@@ -99,7 +85,7 @@ function CreateNewEmployeeAccount() {
               : null
           }
 
-        
+
           <div className="inputs-labels-container">
             {/* <div className="labels-div">
 
@@ -171,7 +157,7 @@ function CreateNewEmployeeAccount() {
 
       </div>
       <div className="sign-up-right-side-image"></div>
-   
+
     </div>
   )
 }

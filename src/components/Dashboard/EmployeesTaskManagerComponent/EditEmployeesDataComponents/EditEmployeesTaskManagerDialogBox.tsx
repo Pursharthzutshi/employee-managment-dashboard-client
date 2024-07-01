@@ -10,29 +10,9 @@ import "../TaskDialogBox.css"
 import "../TaskDialogBoxResponsive.css"
 
 import { EditEmployeesTaskManagerDialogBoxProps } from "../../../../Types/EmployeesTaskTypes";
+import { edit_employees_task_details_query, fetch_employees_task_details_query } from "../../../../GraphQLQueries/EmployeesTaskManagerQuery";
 
-const fetch_employees_task_details_query = gql`
-query fetchEmployeesDetails{
- fetchEmployeesTaskDetails{
- uid,
-name,
-emailId,
-taskDesc,
-deadLine
- }
-}
-`
 
-const edit_employees_task_details_query = gql`
-mutation editEmployeesDetails($editEmployeesTaskParameter: editEmployeesTaskInput!){
-  editEmployeesTask(editEmployeesTaskParameter: $editEmployeesTaskParameter) {
-    name
-emailId
-taskDesc
-deadLine
-  }
-}
-`
 
 type EditEmployeesTaskDetailsDialogBoxProps = {
     selectedUpdateTaskFieldUid: String

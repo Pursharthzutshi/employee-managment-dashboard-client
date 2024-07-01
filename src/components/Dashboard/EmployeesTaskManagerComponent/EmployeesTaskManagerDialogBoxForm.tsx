@@ -11,25 +11,9 @@ import { employeesTaskManagerDialogBoxFormTypes } from "../../../Types/Employees
 
 import "./EmployeesTaskManagerDialogBoxForm.css"
 
-const showUsersEmailIdsQuery = gql`
-query fetchEmailUsersIds{
-  fetchEmailUsersIds {
-  name  
-  emailId
-  }
-}
-`
-
+import { showUsersEmailIdsQuery } from "../../../GraphQLQueries/EmployeesTaskManagerQuery";
 
 function EmployeesTaskManagerDialogBoxForm() {
-
-    // const [date, setDate] = useState(new Date());
-
-    // const employeeName = useAppSelector((state) => state.AddEmployeesTaskSlicer.employeeName)
-    // const employeeEmailId = useAppSelector((state) => state.AddEmployeesTaskSlicer.employeeEmailId)
-    // const employeeTaskDesc = useAppSelector((state) => state.AddEmployeesTaskSlicer.employeeTaskDesc)
-    // const employeeDeadLine = useAppSelector((state) => state.AddEmployeesTaskSlicer.employeeDeadLine)
-
 
     const { data: FetchUserData, loading, error, refetch } = useQuery(showUsersEmailIdsQuery);
 

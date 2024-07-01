@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { act } from 'react';
 import { Provider } from 'react-redux';
-import ShowAllEmployees, { show_all_employees_data_query } from './components/Dashboard/ShowAllEmployeesComponent/ShowAllEmployees';
+import ShowAllEmployees from './components/Dashboard/ShowAllEmployeesComponent/ShowAllEmployees';
 import { store } from '../src/ReduxStore/store';
 import WelcomeBack from './components/Dashboard/HomeComponent/WelcomeBackComponent/WelcomeBack';
 import userEvent from '@testing-library/user-event';
@@ -9,6 +9,7 @@ import { MockedProvider } from '@apollo/client/testing';
 import { BrowserRouter } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/client';
 import { client } from '.';
+import { show_all_employees_data_query } from './GraphQLQueries/ShowAllEmployeesQuery';
 
 
 

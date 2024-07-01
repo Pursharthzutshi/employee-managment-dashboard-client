@@ -24,7 +24,6 @@ function LeftSidebar() {
                         <Link className="left-sidebar-links" to="/home">
                             <img className="left-sidebar-icon-image" src={HomePageImage} />
                             <p >Home</p>
-
                         </Link>
 
                         <Link className="left-sidebar-links" to="/employeesTaskManagmentPage">
@@ -49,7 +48,7 @@ function LeftSidebar() {
                             <img className="left-sidebar-icon-image" src={settingsImage} />
                             <p>Settings</p>
                         </Link>
-                        
+
                         {/* <Link className="left-sidebar-links" to="/signup">
                         <img className="left-sidebar-icon-image" src={settingsImage} />
                         <p >Settings</p>

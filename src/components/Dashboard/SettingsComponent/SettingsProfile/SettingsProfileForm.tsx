@@ -2,31 +2,9 @@ import React, { useEffect, useState } from "react";
 import "../SettingsProfile/SettingsProfileForm.css"
 import { gql, useLazyQuery, useMutation, useQuery } from "@apollo/client";
 import { useAppSelector } from "../../../../ReduxHooks";
+import { fetchAdminProfileDetails, updateProfileNameQuery, updateProfilePasswordQuery } from "../../../../GraphQLQueries/SettingsQuery";
 
-const fetchAdminProfileDetails = gql`
-query showAdminProfileDetails($fetchAdminProfileDetailsParameters: fetchAdminProfileDetailsInput!){
-  fetchAdminProfileDetails(fetchAdminProfileDetailsParameters: $fetchAdminProfileDetailsParameters) {
-  uid
-    name
-    emailId
-  }
-} 
-  `
 
-const updateProfileNameQuery = gql`
-  mutation updateProfileName($updateProfileNameParameters: updateProfileNameInput!){
-  updateName(updateProfileNameParameters: $updateProfileNameParameters) {
-    name
-  }
-}
-  `
-const updateProfilePasswordQuery = gql`
-  mutation updateProfilePassword($updateProfilePasswordParameters: updateProfilePasswordInput!){
-  updatePassword(updateProfilePasswordParameters: $updateProfilePasswordParameters) {
-    password
-  }
-}
-  `
 
 function SettingsProfileForm() {
 
@@ -36,7 +14,7 @@ function SettingsProfileForm() {
     const [adminProfileSavedUid, setAdminProfileSavedUid] = useState(localStorage.getItem("adminLoggedInSavedUid"));
 
     const [updateProfileName] = useMutation(updateProfileNameQuery)
-    const [updateProfilePassword,{loading:updateProfilePasswordLoading}] = useMutation(updateProfilePasswordQuery)
+    const [updateProfilePassword, { loading: updateProfilePasswordLoading }] = useMutation(updateProfilePasswordQuery)
 
     const [fetchAdminDetails, { data: fetchAdminProfileDetailsData, loading }] = useLazyQuery(fetchAdminProfileDetails, {
         variables: {

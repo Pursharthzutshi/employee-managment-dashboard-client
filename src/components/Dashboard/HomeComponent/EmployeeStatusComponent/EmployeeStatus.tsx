@@ -3,16 +3,9 @@ import { FaPen } from "react-icons/fa";
 import { gql, useQuery } from "@apollo/client";
 import { useAppSelector } from "../../../../ReduxHooks";
 import "./EmployeeStatus.css";
+import { fetch_employees_details_query } from "../../../../GraphQLQueries/HomeQuery";
 
-const fetch_employees_details_query = gql`
-query employeeStatusQuery {
-  fetchEmailUsersIds {
-    uid
-    name
-    status
-  }
-}
-`;
+
 
 function EmployeeStatus() {
     const checkInStatus = useAppSelector((state) => state.CheckInStatusSlicer.checkInStatus);
