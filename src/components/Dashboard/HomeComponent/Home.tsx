@@ -52,7 +52,7 @@ function Home() {
 
     const { data: employeesData, refetch } = useQuery(show_all_employees_charts_data_query);
 
-   
+
     const count = useAppSelector((state) => state.ChartsDetailsSlicer.count)
     const departmentCount = useAppSelector((state) => state.ChartsDetailsSlicer.departmentCount)
     const createEmployeeNewAccountStatus = useAppSelector((state) => state.createEmployeeNewAccountStatusSlicer.createEmployeeNewAccountStatus);

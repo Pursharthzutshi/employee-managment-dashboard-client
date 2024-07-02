@@ -15,6 +15,10 @@ strong{
     border-radius: 8px;
     box-shadow: .2px .2px 6px .2px lightgray;
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    
+
 }
 
 .employees-edit-delete-task-button-container{

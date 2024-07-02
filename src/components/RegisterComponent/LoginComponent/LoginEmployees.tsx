@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../ReduxHooks";
 import { setUserLoggedInEmailId, setUserLoggedInEmailPassword } from "../../../ReduxSlicers/LoginSlicer";
 import { gql, useMutation } from "@apollo/client";
-import { Link, useNavigate } from "react-router-dom";
-import { setAdminStatus, setLoggedInSavedUid, setLogOutStatus, setSavedLoggedInName, setShowLogOutButtonElements } from "../../../ReduxSlicers/LocalStorageSlicer";
+import { useNavigate } from "react-router-dom";
 import ChangeLogInFormButtons from "./ChangeLogInFormButtons";
+import { setAdminStatus, setLoggedInSavedUid, setSavedLoggedInName, setShowLogOutButtonElements } from "../../../ReduxSlicers/LocalStorageSlicer";
+import { useEffect, useState } from "react";
 import { fetchTotalAdmin } from "../../Dashboard/HomeComponent/CardsDetailsComponent/CardsDetails";
-import { checkAdminLoggedInAuthQuery } from "../../../GraphQLQueries/LoginQuery";
 
 import "./Login.css"
+import { checkEmployeeLoggedInAuthQuery } from "../../../GraphQLQueries/LoginQuery";
 
 
-function LoginAdmin() {
 
+function LoginUsers() {
 
     const userLoggedinEmailId = useAppSelector((state) => state.LoginSlicer.userLoggedinEmailId)
     const userLoggedInEmailPassword = useAppSelector((state) => state.LoginSlicer.userLoggedinPassword)
@@ -23,53 +23,59 @@ function LoginAdmin() {
     const Dispatch = useAppDispatch()
     const navigate = useNavigate()
 
-    const [checkAdminLoggedInAuth] = useMutation(checkAdminLoggedInAuthQuery, {
-        onCompleted: (adminLoginData) => {
+    const [checkUserLoggedInAuth] = useMutation(checkEmployeeLoggedInAuthQuery, {
+        onCompleted: (userLoginData) => {
 
-            console.log(adminLoginData)
-            if (adminLoginData.createAdminLogin.admin === true) {
-                Dispatch(setSavedLoggedInName(adminLoginData.createAdminLogin.name))
-                Dispatch(setAdminStatus(true))
+            if (userLoginData.createUserLogin.success === true) {
+                console.log(userLoginData)
                 navigate("/home")
-                console.log(adminLoginData.createAdminLogin)
+                Dispatch(setSavedLoggedInName(userLoginData.createUserLogin.name))
+                Dispatch(setAdminStatus(false));
                 Dispatch(setShowLogOutButtonElements(true));
-                Dispatch(setLoggedInSavedUid(adminLoginData.createAdminLogin.uid));
+                Dispatch(setLoggedInSavedUid(userLoginData.createUserLogin.uid));
                 setLoginErrorMessageStatus(false);
-
             } else {
-                setLoginErrorMessageStatus(true);
-                setLoginErrorMessage(adminLoginData.createAdminLogin.message);
+                setLoginErrorMessageStatus(true)
+                console.log(userLoginData)
+                setLoginErrorMessage(userLoginData.createUserLogin.message)
                 // Dispatch(setShowLogOutButtonElements(false));
             }
-
+        },
+        onError: (ErrorMessage) => {
+            console.log(ErrorMessage);
         },
         refetchQueries: [{ query: fetchTotalAdmin }]
 
-    }
+    });
 
-    );
+    useEffect(() => {
+        console.log(checkUserLoggedInAuth)
+    })
 
 
     const loginForm = (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault()
-
     }
+
 
     return (
         <div className="login-component">
+            <p className="font-bold pt-10 text-center text-lg">LOG IN AS EMPLOYEE</p>
+
             <div className="login-left-sidebar-form-container">
-                <p className="font-bold text-center text-lg text-color-blue">LOG IN AS ADMIN</p>
+
                 <ChangeLogInFormButtons />
+
                 <form onSubmit={loginForm} className="login-form">
                     <p className="font-semibold text-lg">Please Fill Up login details</p>
 
                     <input className="font-semibold" type="text" placeholder="Email Id" onChange={(e) => Dispatch(setUserLoggedInEmailId(e.target.value))} />
-                    <input className="font-semibold" type="password" placeholder="Password" onChange={(e) => Dispatch(setUserLoggedInEmailPassword(e.target.value))} />
-                    <button className="login-button" onClick={() => {
+                    <input className="font-semibold" type="Password" placeholder="Password" onChange={(e) => Dispatch(setUserLoggedInEmailPassword(e.target.value))} />
+                    <button className="sign-up-admin-button" onClick={() => {
                         {
-                            checkAdminLoggedInAuth({
+                            checkUserLoggedInAuth({
                                 variables: {
-                                    adminLoginParameters: {
+                                    userLoginParameters: {
                                         emailId: userLoggedinEmailId,
                                         password: userLoggedInEmailPassword
                                     }
@@ -77,23 +83,16 @@ function LoginAdmin() {
                             })
                         }
                     }}>Login</button>
-                    <div>
-                        <p>
-                            {
-                                loginErrorMessageStatus && <p className="text-center text-semibold login-error-message">{loginErrorMessage}</p>
-                            }
-                        </p>
-                        <p className="font-semibold text-center text-lg text-color-blue mb-0">OR</p>
-                        <p className="font-semibold text-center text-lg text-color-blue mb-2">Create a admin account now</p>
-                    </div>
-                    <Link to="/signUpAdmin">
-                        <button className="sign-up-admin-button">Sign Up</button>
-                    </Link>
-
+                    <p>
+                        {loginErrorMessageStatus &&
+                            <p className="text-center text-semibold login-error-message">{loginErrorMessage}</p>
+                        }
+                    </p>
                 </form>
+
             </div>
         </div>
     )
 }
 
-export default LoginAdmin;
+export default LoginUsers;

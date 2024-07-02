@@ -4,6 +4,9 @@ exports[`snapshot 1`] = `
 <p
   class="font-bold text-lg ml-3 mt-5"
 >
-  Welcome Back 
+  Welcome Back
+  <span
+    class="ml-2 text-blue-500"
+  />
 </p>
 `;

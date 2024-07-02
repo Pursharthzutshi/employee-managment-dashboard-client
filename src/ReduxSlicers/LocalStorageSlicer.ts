@@ -14,7 +14,7 @@ const initialState: localStorageSlicerProps = {
     adminStatus: JSON.parse(localStorage.getItem("adminStatus") || "false"),
     loggedInSavedUid: localStorage.getItem("loggedInSavedUid"),
     logOutStatus: localStorage.getItem("logOutButton"),
-    showLogOutButtonElements: localStorage.getItem("logOutButton") ,
+    showLogOutButtonElements: localStorage.getItem("logOutButton"),
     showLoggedInComponents: localStorage.getItem("showLoggedInComponents"),
     savedLoggedInName: localStorage.getItem("savedLoggedInName")
 }

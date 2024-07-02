@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
 import "../SettingsProfile/SettingsProfileForm.css"
 import { gql, useLazyQuery, useMutation, useQuery } from "@apollo/client";
-import { useAppSelector } from "../../../../ReduxHooks";
+import { useAppDispatch, useAppSelector } from "../../../../ReduxHooks";
 import { fetchAdminProfileDetails, updateProfileNameQuery, updateProfilePasswordQuery } from "../../../../GraphQLQueries/SettingsQuery";
+import { setSavedLoggedInName } from "../../../../ReduxSlicers/LocalStorageSlicer";
 
 
 
 function SettingsProfileForm() {
+
+    const adminStatus = useAppSelector((state) => state.LocalStorageSlicer.adminStatus)
+ 
 
     const [updateName, setUpdateName] = useState("")
     const [updatePassword, setUpdatePassword] = useState("")
@@ -16,6 +20,8 @@ function SettingsProfileForm() {
     const [updateProfileName] = useMutation(updateProfileNameQuery)
     const [updateProfilePassword, { loading: updateProfilePasswordLoading }] = useMutation(updateProfilePasswordQuery)
 
+    const Disptach = useAppDispatch();
+
     const [fetchAdminDetails, { data: fetchAdminProfileDetailsData, loading }] = useLazyQuery(fetchAdminProfileDetails, {
         variables: {
             fetchAdminProfileDetailsParameters: {
@@ -24,15 +30,21 @@ function SettingsProfileForm() {
         },
         onCompleted: (fetchAdminProfileDetailsData) => {
             console.log(fetchAdminProfileDetailsData.fetchAdminProfileDetails)
-        },
+            Disptach(setSavedLoggedInName(fetchAdminProfileDetailsData.fetchAdminProfileDetails[0].name))
+        },    
 
     });
+
 
     useEffect(() => {
         if (adminProfileSavedUid) {
             fetchAdminDetails();
         }
+
     }, [adminProfileSavedUid, fetchAdminDetails]);
+
+
+
     if (loading) return <p>Loading...</p>;
     if (updateProfilePasswordLoading) return <p>Loading...</p>;
 

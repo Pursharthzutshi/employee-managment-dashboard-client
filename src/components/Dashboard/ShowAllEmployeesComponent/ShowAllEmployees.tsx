@@ -1,20 +1,27 @@
-import { useEffect, useState } from "react";
-import { gql, useMutation, useQuery } from "@apollo/client";
+import { useState } from "react";
+import { useMutation, useQuery } from "@apollo/client";
 import { useDispatch } from "react-redux";
 import { setSearchFilter } from "../../../ReduxSlicers/SearchFilterSilcer";
 import { useAppSelector } from "../../../ReduxHooks";
 import { EmployeesAccountDataProps } from "../../../Types/ShowAllEmployeesComponentTypes";
 import NavBar from "../../NavBarComponent/NavBar";
 
+import { show_all_employees_data_query, update_Employee_Of_The_Month_query } from "../../../GraphQLQueries/ShowAllEmployeesQuery";
+
 import "../ShowAllEmployeesComponent/ShowAllEmployees.css"
 import "../ShowAllEmployeesComponent/ShowAllEmployeesResponsive.css"
-import { show_all_employees_data_query } from "../../../GraphQLQueries/ShowAllEmployeesQuery";
-import { update_Employee_Of_The_Month_query } from "../../../GraphQLQueries/ShowAllEmployeesQuery";
+import DeleteEmployeeAccountDialogBox from "./DeleteEmployeeAccountDialogBox";
 
-
+import "../ShowAllEmployeesComponent/DeleteEmployeeAccountDialogBox.css"
 
 function ShowAllEmployees() {
+
+    const [selectedEmployeeAccountUid, setSelectedEmployeeAccountUid] = useState<String>("")
+
     const searchFilter = useAppSelector((state) => state.SearchFilterSilcer.SearchFilter)
+
+    const [showDeleteEmployeeAccountDialogBoxStatus, setShowDeleteEmployeeAccountDialogBoxStatus] = useState(false);
+
     const [totalEmployeeDetailsCount, setTotalEmployeeDetailsCount] = useState(0);
 
     const createEmployeeNewAccountStatus = useAppSelector((state) => state.createEmployeeNewAccountStatusSlicer.createEmployeeNewAccountStatus)
@@ -36,9 +43,12 @@ function ShowAllEmployees() {
     }
     );
 
-    // const assignEmployeeOfTheMonth = (val:any)=>{
-    //     console.log(val)
-    // }
+    const showDeleteEmployeeAccountDialogBox = (uid: String) => {
+        setShowDeleteEmployeeAccountDialogBoxStatus(true)
+        console.log(uid)
+        setSelectedEmployeeAccountUid(uid)
+    }
+
 
     const adminStatus = useAppSelector((state) => state.LocalStorageSlicer.adminStatus)
 
@@ -48,8 +58,6 @@ function ShowAllEmployees() {
         <div id="main-page" className="show-all-employees-component">
 
             <NavBar />
-            {/* <input  type="search" /> */}
-
 
             <div>
                 <p className="font-bold text-xl">All Employees</p>
@@ -71,21 +79,36 @@ function ShowAllEmployees() {
                                 <div className="employees-details-div" >
                                     <strong>Name:</strong><p data-testid="employee-name" className="employee-name">{EmployeesAccountData.name}</p>
                                     <strong>Email ID:</strong><p className="email-id">{EmployeesAccountData.emailId}</p>
-                                    {adminStatus ? <button onClick={() => {
-                                        assignEmployeeOfTheMonth({
-                                            variables: {
-                                                updateEmployeeOfTheMonthParameters: {
-                                                    uid: EmployeesAccountData.uid,
-                                                    employeeOfTheMonth: true
-                                                },
-                                            },
-                                        })
+                                    {adminStatus ?
+                                        <div>
+                                            <button onClick={() => {
+                                                assignEmployeeOfTheMonth({
+                                                    variables: {
+                                                        updateEmployeeOfTheMonthParameters: {
+                                                            uid: EmployeesAccountData.uid,
+                                                            employeeOfTheMonth: true
+                                                        },
+                                                    },
+                                                })
 
-                                    }} className="employees-details-button font-semibold text-sm">Assign Employee of the month</button> : null}
+                                            }} className="employees-details-button font-semibold text-sm">Assign Employee of the month</button>
+                                            <button className="delete-employee-Account-button font-semibold text-sm mt-4" onClick={() => showDeleteEmployeeAccountDialogBox(EmployeesAccountData.uid)} >Delete Employee Account</button>
+                                        </div>
+                                        : null}
                                 </div>
                             )
                         })
+
+
                     }
+
+                    {
+                        showDeleteEmployeeAccountDialogBoxStatus ?
+                            <DeleteEmployeeAccountDialogBox showDeleteEmployeeAccountDialogBoxStatus={showDeleteEmployeeAccountDialogBoxStatus} setShowDeleteEmployeeAccountDialogBoxStatus={setShowDeleteEmployeeAccountDialogBoxStatus} uid={selectedEmployeeAccountUid} />
+                            :
+                            null
+                    }
+
                 </div>
             </div>
             {/* :

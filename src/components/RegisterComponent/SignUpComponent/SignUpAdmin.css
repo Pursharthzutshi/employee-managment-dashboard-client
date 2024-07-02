@@ -4,30 +4,44 @@
 .inputs-labels-container,
 .labels-div,
 .inputs-div,
-.gender-cateogry-div,.admin-sign-up-button-div {
+.gender-cateogry-div,
+.admin-sign-up-button-div {
     display: flex;
 
 }
-
 
 .employee-account-heading {
     text-align: center;
     margin-left: -1px;
 }
-.signup-component{
+
+.signup-component {
     width: 100%;
+    animation: .2s ease-in loginFormInputAnimation;
 }
+
+
+@keyframes loginFormInputAnimation {
+    0% {
+        opacity: .2;
+        transform: scale(.95);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
 .signup-container {
     width: 100%;
-
-    /* height: 2vh; */
-    /* gap:820px; */
 }
 
 .signup-box,
 .inputs-labels-container,
 .labels-div,
-.inputs-div,.admin-sign-up-button-div {
+.inputs-div,
+.admin-sign-up-button-div {
     flex-direction: column;
 }
 
@@ -46,7 +60,7 @@
 }
 
 .signup-form {
-    gap:15px;
+    gap: 15px;
     width: 100%;
     flex-direction: column;
 }
@@ -63,75 +77,46 @@
     margin-top: -10px;
     align-items: center;
     width: 100%;
-    /* height: 35%; */
     padding: 2px 12px 12px 12px;
-    /* box-shadow: .2px .2px 6px .2px whitesmoke; */
 }
 
-.gender-cateogry-div {
-    margin-top: 20px;
-    gap: 5px;
-    /* align-items: center; */
-}
-
-.gender-cateogry-div input {
-    margin-top: -10px;
-    
-}
-
-.gender-type {
-    margin-left: 10px;
-    background-color: none;
-    box-shadow: none;
-}
-
-.inputs-labels-container {
-
-    gap: 180px;
-    /* justify-content: space-eve; */
-}
 
 .signup-box input {
     width: 100%;
-
     margin-top: 40px;
 }
 
 .signup-box input,
 .login-box input {
-    /* width: 100%; */
     outline: none;
     padding: 4px 2px 4px 12px;
     border: none;
     box-shadow: .2px .2px 2px .2px lightgray;
     margin-top: 10px;
-    /* font-family: "Montserrat";  */
 }
 
 
-.admin-sign-up-button{
-    background: linear-gradient(to left, rgb(52, 195, 252), rgb(78, 184, 255));
+.admin-sign-up-button {
+    background: linear-gradient(to left, rgb(0, 101, 178), rgb(0, 94, 157));
     font-family: "Montserrat";
+    box-shadow: .2px .2px 4px .2px rgb(0, 101, 178);
     background-color: none;
     border: none;
-    width: 100%;
+    width: 20%;
     color: rgb(255, 255, 255);
     border-radius: 4px;
     padding: 6px 2px 7px 2px;
     margin-top: 50px;
 }
 
-.admin-sign-up-button:hover{
-    color: rgb(52, 195, 252);
+.admin-sign-up-button:hover {
+    color: rgb(0, 101, 178);
     background: white;
     box-shadow: .2px .2px 12px .2px whitesmoke;
     transition: .2s;
 
 }
 
-/* .signup-box input:hover{
-  
-} */
 
 .select-department {
     border: none;
@@ -140,14 +125,7 @@
     box-shadow: .2px .2px 12px .2px whitesmoke;
 }
 
-.sign-up-right-side-image {
-    /* margin-top: -10px; */
-    background: linear-gradient(to left, rgba(137, 231, 255, 0.815), rgba(76, 213, 255, 0.692)), url("../images/add-user.png");
-    height: 100%;
-    width: 100%;
-    background-repeat: none;
-    background-size: cover;
-}
+
 
 .new-employee-added-div {
     background: linear-gradient(to left, rgba(0, 94, 117, 0.815), rgba(0, 71, 93, 0.692)), url("../images/add-user.png");
@@ -160,7 +138,6 @@
     width: 20%;
     padding: 6px 12px 2px 2px;
     height: 10%;
-    /* border: 2px solid black; */
     box-shadow: .2px .2px 2px .2px lightgray;
     animation: .2s ease newEmployeeAddedDivAnimation;
 }
@@ -179,26 +156,29 @@
     margin-top: 10px;
 }
 
-.navigate-login-page-button-link{
-    background: linear-gradient(to left, rgba(0, 94, 117, 0.903), rgba(0, 71, 93, 0.832));
+.navigate-login-page-button-link {
+    background: linear-gradient(to left, rgba(0, 71, 88, 0.903), rgba(0, 71, 93, 0.832));
     margin-top: 10px;
-    color:white;
+    color: white;
     font-size: .9rem;
-    padding: 4px 12px 4px 12px ;
+    padding: 4px 12px 4px 12px;
+
 }
 
-.admin-sign-up-button-div{
+.admin-sign-up-button-div {
     align-items: center;
+    justify-content: center;
+
 }
 
-.navigate-login-page-button-link:hover{
+.navigate-login-page-button-link:hover {
     transition: .2s;
     background: white;
     box-shadow: .2px .2px 12px .2px whitesmoke;
-    color:rgba(0, 94, 117, 0.903);
+    color: rgba(0, 94, 117, 0.903);
 }
 
-.admin-sign-up-error-message{
-    color:red;
+.admin-sign-up-error-message {
+    color: red;
     text-align: center;
 }

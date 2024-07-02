@@ -1,0 +1,93 @@
+.delete-employee-Account-dialog-box,
+.delete-employee-Account-dialog-box-form,
+.delete-employee-account-dialog-box-delete-icon-div,
+.delete-employee-Account-dialog-box-buttons-container {
+    display: flex;
+}
+
+.delete-employee-account-dialog-box-delete-icon-div,
+.delete-employee-Account-dialog-box-buttons-container {
+    flex-direction: row;
+}
+
+.delete-employee-Account-dialog-box,
+.delete-employee-Account-dialog-box-form {
+    flex-direction: column;
+}
+
+.delete-employee-account-dialog-box-delete-icon-div {
+    justify-content: flex-end;
+    padding: 2px 2px 2px 2px;
+}
+
+
+.delete-employee-account-dialog-box-delete-icon {
+    color: red;
+}
+
+.delete-employee-account-dialog-box-delete-icon {
+    flex-direction: row;
+}
+
+.delete-employee-Account-dialog-box-buttons-container {
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.delete-employee-Account-dialog-box-form {
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    background: white;
+    top: 30%;
+    left: 35%;
+    width: 34%;
+    height: 30%;
+    padding: 2px 2px 2px 2px;
+    box-shadow: .2px .2px 12px .2px lightgray;
+    animation: showDeleteDialogBox .2s ease-in;
+}
+
+@keyframes showDeleteDialogBox {
+    0% {
+        opacity: .3;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+.delete-employee-Account-button,
+.close-employee-delete-Account-button {
+    padding: 2px 3px 2px 3px;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    box-shadow: .2px .2px 12px .2px lightgray;
+    padding: 4px 8px 4px 8px;
+}
+
+.delete-employee-Account-button {
+    background: linear-gradient(to left, rgb(217, 0, 0), rgb(255, 0, 0));
+}
+
+.close-employee-delete-Account-button {
+    background: linear-gradient(to left, rgb(0, 55, 91), rgb(0, 51, 91));
+}
+
+.delete-employee-Account-button:hover,
+.close-employee-delete-Account-button:hover {
+    transition: .2s;
+    background: white;
+    cursor: pointer;
+}
+
+.delete-employee-Account-button:hover {
+    color: red;
+}
+
+.close-employee-delete-Account-button:hover {
+    color: rgb(0, 55, 91);
+}

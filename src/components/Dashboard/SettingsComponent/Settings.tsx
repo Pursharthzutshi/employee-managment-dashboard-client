@@ -11,7 +11,7 @@ function Settings() {
 
             <NavBar />
             <p className="font-bold text-xl">Settings</p>
-            <SettingsProfile/>
+            <SettingsProfile />
         </div>
     )
 }

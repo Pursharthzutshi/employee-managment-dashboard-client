@@ -6,15 +6,17 @@ import ShowAllEmployees from './components/Dashboard/ShowAllEmployeesComponent/S
 import SignupAdmin from './components/RegisterComponent/SignUpComponent/SignUpAdmin';
 import { useEffect, useState } from 'react';
 import { useAppSelector } from './ReduxHooks';
-import LoginUsers from './components/RegisterComponent/LoginComponent/LoginUsers';
+import LoginUsers from './components/RegisterComponent/LoginComponent/LoginEmployees';
 import LoginAdmin from './components/RegisterComponent/LoginComponent/LoginAdmin';
 import AssignedEmployeesTask from '../src/components/Dashboard/EmployeesComponent/AssignedEmployeesTaskComponent/AssignedEmployeesTask';
 import CreateNewEmployeeAccount from './components/Dashboard/CreateNewEmployeeAccountComponent/CreateNewEmployeeAccount';
 
-import './App.css';
-import './AppResponsive.css';
 import NavBar from './components/NavBarComponent/NavBar';
 import Settings from './components/Dashboard/SettingsComponent/Settings';
+
+
+import './App.css';
+import './AppResponsive.css';
 
 function App() {
 
@@ -45,16 +47,16 @@ function App() {
       <div className='left-sidebar-dashboard-div'>
 
         {
-          logOutButton ? <LeftSidebar /> : null
+          logOutButton && <LeftSidebar />
         }
-        
+
         <Routes >
           <Route path="/home" element=
             {<Home />}
           />
           <Route path="/employeesTaskManagmentPage" element={
 
-            adminStatus ? <EmployeesTaskManager /> : null
+            adminStatus ? <EmployeesTaskManager /> : <AssignedEmployeesTask />
           }
           />
 
@@ -64,9 +66,20 @@ function App() {
             changeLoginForm ? <LoginAdmin /> : <LoginUsers />}
           />
 
-          <Route path="/createEmployeeNewAccount" element={<CreateNewEmployeeAccount />} />
+          <Route path="/createEmployeeNewAccount" element=
+            {adminStatus ?
+              <CreateNewEmployeeAccount /> :
+              null
+            }
+          />
 
-          <Route path="/settings" element={<Settings />} />
+          <Route path="/settings" element=
+            {
+              adminStatus ?
+                <Settings /> :
+                null
+            }
+          />
 
           <Route path="/signUpAdmin" element={<SignupAdmin />} />
 

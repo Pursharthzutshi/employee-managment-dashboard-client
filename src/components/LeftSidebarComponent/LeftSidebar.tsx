@@ -12,6 +12,7 @@ import settingsImage from "../RegisterComponent/images/settings.png"
 function LeftSidebar() {
 
     const Dispatch = useAppDispatch();
+    const adminStatus = useAppSelector((state) => state.LocalStorageSlicer.adminStatus)
 
     return (
         <div className="left-sidebar-component">
@@ -38,26 +39,31 @@ function LeftSidebar() {
 
                         </Link>
 
-                        <Link className="left-sidebar-links" to="/createEmployeeNewAccount">
-                            <img className="left-sidebar-icon-image" src={addEmployee} />
-                            <p >Add Employee</p>
+                        {
+                            adminStatus ?
+                                <Link className="left-sidebar-links" to="/createEmployeeNewAccount">
+                                    <img className="left-sidebar-icon-image" src={addEmployee} />
 
-                        </Link>
+                                    {
+                                        adminStatus ? <p>Add Employee</p> : <p>Show Employee</p>
+                                    }
 
-                        <Link className="left-sidebar-links" to="/settings">
-                            <img className="left-sidebar-icon-image" src={settingsImage} />
-                            <p>Settings</p>
-                        </Link>
+                                </Link>
+                                :
+                                null
+                        }
+                        {
+                            adminStatus && <Link className="left-sidebar-links" to="/settings">
+                                <img className="left-sidebar-icon-image" src={settingsImage} />
+                                <p>Settings</p>
+                            </Link>
+                        }
 
-                        {/* <Link className="left-sidebar-links" to="/signup">
-                        <img className="left-sidebar-icon-image" src={settingsImage} />
-                        <p >Settings</p>
 
-                    </Link> */}
+
+
                     </div>
-                    <br></br>
-                    <br></br>
-                    <br></br>
+
 
 
 

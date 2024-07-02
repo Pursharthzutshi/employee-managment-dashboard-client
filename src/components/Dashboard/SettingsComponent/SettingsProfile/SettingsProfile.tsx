@@ -9,8 +9,8 @@ function SettingsProfile() {
 
     return (
         <div className="profile-settings-box">
-            
-            <SettingsProfileForm/>
+
+            <SettingsProfileForm />
 
         </div>
     )

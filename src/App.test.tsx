@@ -66,11 +66,8 @@ it("snapshot", async () => {
 
 })
 
-// test("List",()=>{
-//   render()
-// })
 
-// const searchFilter = useAppSelector((state:any)=>state.SearchFilterSilcer.SearchFilter)
+
 
 it("search", async () => {
 
