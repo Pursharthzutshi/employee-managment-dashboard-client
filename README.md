@@ -1,21 +1,33 @@
 # NOTE INSTRUCTIONS
 
+# Admin Login
+
 To see dashboard  please type admin login and admin password in admin login form -:
 
 admin email-id : admin@gmail.com
 admin password: admin123
 
-![Untitled-2024-06-07-1111](https://github.com/Pursharthzutshi/employee-managment-dashboard-client/assets/24863656/99b531df-74df-44c8-8082-e3f642bdbaad)
+# Employee Login
 
+To see dashboard  please type employee login and employee password in employee login form -:
+
+employee email-id : jim@gmail.com
+employee password: 123
+
+![Untitled-2024-06-07-1111](https://github.com/Pursharthzutshi/employee-managment-dashboard-client/assets/24863656/99b531df-74df-44c8-8082-e3f642bdbaad)
 
 https://github.com/Pursharthzutshi/employee-managment-dashboard-client/assets/24863656/10eb4039-a02b-40ce-b7ab-8eab31d05160
 
 
 # ADMIN EMPLOYEE MANAGMENT DASHBOARD 
 
+# TECH STACK USED -:
+
 In this project I have used react typescript, redux toolkit and apollo client & graphql queries like useQuery, useMutation etc. In this Project I have also used  graphql mutations like add, update, delete, fetch etc & apollo server.
 
 I have define the typeDefs and resolvers in graphql. I have also setup the mongodb database where all my dynamic data such as employee account details, employees task info details, admin Sign up info detials are stored 
+
+# FROM ADMIN POINT OF VIEW
 
 # Left Sidebar -:
 
@@ -28,6 +40,8 @@ In this component the admin can create a new employee account. It is a form wher
 # Show All Employees Component-:
 
 In this component details of all employees are shown in the boxes . In this I have also added search filter to filter out employees. Here a button is also added where the admin can set any employee as employee of the month .
+
+Here the admin can also delete employee account 
 
 # Home Component -:
 
@@ -42,4 +56,11 @@ in show All Employees Component.
 
 In this component the admin can create a new task, assign task to the employee and can also edit and delete tasks. Here while adding I have added a select dropdown where the admin can write name of the employee and can assign task to more than one employee. and new employee will be shown in the page.
 
+# Create Admin Account Component
 
+This component is visible at the start of the login page . Here the admin account can be created but the admin secret key (provided by company stored in database) is required to fill in order to create an account
+
+# FROM EMPLOYEE POINT OF VIEW
+
+The employees can see the assigned task in tasks component . Whenever a employees tries to login he / she can see 3 components 
+that are Home, Task , Show all employee component
