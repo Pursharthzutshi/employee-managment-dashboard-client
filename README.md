@@ -49,8 +49,7 @@ In this component data of organization is shown with the help of chart js. I hav
 
 The data shown is dynamic and updates automatically whenever there is any change, such as when a new employee is added. This component also includes information cards that display organization data like the total number of employees, total departments, etc.
 
-Here there is another box which show employee of the month which can be assigned by admin 
-in show All Employees Component.
+Here there is another box which show employee of the month which can be assigned by admin in show All Employees Component.
 
 # Task Component -:
 

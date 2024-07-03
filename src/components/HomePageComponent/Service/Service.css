@@ -1,0 +1,60 @@
+.service-box-container,
+.service-box{
+    display: flex;
+}
+
+.service-box-container{
+    flex-direction: row;
+}
+
+.service-box{
+    flex-direction: column;
+}
+
+.service-component{
+    width: 100%;
+    margin-top: -10px;
+    box-shadow: .2px .2px 12px .2px whitesmoke;
+}
+
+.service-box-container{
+    gap:20px;
+    padding: 2px 22px 32px 22px;
+}
+
+.service-box{
+    border-left: 7px double rgb(0, 0, 101);
+    padding: 18px 12px 17px 17px;
+    align-items: center;
+    width: 50%;
+    /* border: 2px solid whitesmoke; */
+    box-shadow: .2px .2px 12px .2px whitesmoke;
+}
+.service-box:nth-child(2){
+
+    transition: .2s;
+    border-left: 7px double white;
+    background:rgb(0, 27, 50) ;
+    color: white;
+}
+/* 
+.service-box:hover{
+    transition: .2s;
+    border-left: 7px double white;
+    background:rgb(0, 41, 78) ;
+    color: white;
+} */
+
+.service-box img{
+    width: 4rem;
+    box-shadow: none;
+}
+
+.service-component > p{
+    color:rgb(0, 0, 101);
+}
+
+.service-component div >p{
+    font-size: .9rem;
+    margin-top: 10px;
+}

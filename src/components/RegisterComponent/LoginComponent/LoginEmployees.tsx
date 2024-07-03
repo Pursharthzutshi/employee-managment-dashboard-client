@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from "../../../ReduxHooks";
 import { setUserLoggedInEmailId, setUserLoggedInEmailPassword } from "../../../ReduxSlicers/LoginSlicer";
 import { gql, useMutation } from "@apollo/client";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ChangeLogInFormButtons from "./ChangeLogInFormButtons";
 import { setAdminStatus, setLoggedInSavedUid, setSavedLoggedInName, setShowLogOutButtonElements } from "../../../ReduxSlicers/LocalStorageSlicer";
 import { useEffect, useState } from "react";
@@ -60,11 +60,12 @@ function LoginUsers() {
 
     return (
         <div className="login-component">
+            <Link className="sign-up-admin-button" to="/">Go Back To Home Page</Link>
             <p className="font-bold pt-10 text-center text-lg">LOG IN AS EMPLOYEE</p>
 
             <div className="login-left-sidebar-form-container">
 
-                <ChangeLogInFormButtons />
+                {/* <ChangeLogInFormButtons /> */}
 
                 <form onSubmit={loginForm} className="login-form">
                     <p className="font-semibold text-lg">Please Fill Up login details</p>
@@ -83,8 +84,11 @@ function LoginUsers() {
                             })
                         }
                     }}>Login</button>
+                    <Link className="font-semibold home-page-navbar-login-button-link" to="/loginAdmin">Login as Admin</Link>
+
                     <p>
-                        {loginErrorMessageStatus &&
+                        {
+                            loginErrorMessageStatus &&
                             <p className="text-center text-semibold login-error-message">{loginErrorMessage}</p>
                         }
                     </p>

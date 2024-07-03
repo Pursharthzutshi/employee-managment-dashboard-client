@@ -95,7 +95,7 @@ function SignupAdmin() {
                 })
               }}>Admin Sign Up</button>
               <p>OR</p>
-              <Link className="navigate-login-page-button-link" to="/">Go To Login Page</Link>
+              <Link className="navigate-login-page-button-link" to="/loginAdmin">Go To Login Page</Link>
             </div>
             {
               showAdminSignUpErrorMessageStatus && <p className="admin-sign-up-error-message">{showAdminSignUpErrorMessage}</p>

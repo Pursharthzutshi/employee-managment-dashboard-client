@@ -1,0 +1,43 @@
+.footer-component,
+.footer-icons-conatiner {
+    display: flex;
+}
+
+.footer-component,
+.footer-icons-conatiner {
+    flex-direction: row;
+}
+
+.footer-icons-conatiner {
+    gap: 20px;
+}
+
+.footer-icons,.footer-component{
+    color: white;
+
+}
+
+.footer-icons {
+ 
+}
+
+
+.footer-component {
+    background: linear-gradient(to left, rgb(0, 33, 54), rgb(0, 34, 70));
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 14vh;
+    margin-top: 2px;
+    box-shadow: .2px .2px 12px .2px whitesmoke;
+}
+
+.footer-icons{
+    border-radius: 20px;
+    padding: 4px 4px 4px 4px;
+    box-shadow: .2px .2px 2px .2px rgb(0, 67, 109);
+    gap: 10px;
+    font-size: 1.8rem;
+    background: white;
+    color:rgb(0, 33, 54);
+}

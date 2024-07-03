@@ -6,17 +6,18 @@ import ShowAllEmployees from './components/Dashboard/ShowAllEmployeesComponent/S
 import SignupAdmin from './components/RegisterComponent/SignUpComponent/SignUpAdmin';
 import { useEffect, useState } from 'react';
 import { useAppSelector } from './ReduxHooks';
-import LoginUsers from './components/RegisterComponent/LoginComponent/LoginEmployees';
-import LoginAdmin from './components/RegisterComponent/LoginComponent/LoginAdmin';
+
 import AssignedEmployeesTask from '../src/components/Dashboard/EmployeesComponent/AssignedEmployeesTaskComponent/AssignedEmployeesTask';
 import CreateNewEmployeeAccount from './components/Dashboard/CreateNewEmployeeAccountComponent/CreateNewEmployeeAccount';
 
-import NavBar from './components/NavBarComponent/NavBar';
 import Settings from './components/Dashboard/SettingsComponent/Settings';
 
 
 import './App.css';
 import './AppResponsive.css';
+import HomePage from './components/HomePageComponent/HomePage';
+import LoginAdmin from './components/RegisterComponent/LoginComponent/LoginAdmin';
+import LoginUsers from './components/RegisterComponent/LoginComponent/LoginEmployees';
 
 function App() {
 
@@ -62,9 +63,16 @@ function App() {
 
           <Route path="/showAllEmployeesData" element={<ShowAllEmployees />} />
 
-          <Route path="/" element={
-            changeLoginForm ? <LoginAdmin /> : <LoginUsers />}
-          />
+          <Route path="/" element=
+          {
+            !logOutButton && <HomePage />
+          }
+             />
+
+
+          <Route path="/loginAdmin" element={<LoginAdmin />} />
+
+          <Route path="/loginEmployee" element={<LoginUsers />} />
 
           <Route path="/createEmployeeNewAccount" element=
             {adminStatus ?

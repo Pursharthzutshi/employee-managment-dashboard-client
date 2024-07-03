@@ -57,9 +57,11 @@ function LoginAdmin() {
 
     return (
         <div className="login-component">
+            <Link className="sign-up-admin-button" to="/">Go Back To Home Page</Link>
+
             <div className="login-left-sidebar-form-container">
                 <p className="font-bold text-center text-lg text-color-blue">LOG IN AS ADMIN</p>
-                <ChangeLogInFormButtons />
+                {/* <ChangeLogInFormButtons /> */}
                 <form onSubmit={loginForm} className="login-form">
                     <p className="font-semibold text-lg">Please Fill Up login details</p>
 
@@ -89,6 +91,7 @@ function LoginAdmin() {
                     <Link to="/signUpAdmin">
                         <button className="sign-up-admin-button">Sign Up</button>
                     </Link>
+                    <Link className="font-semibold home-page-navbar-login-button-link" to="/loginEmployee">Login as Employee</Link>
 
                 </form>
             </div>

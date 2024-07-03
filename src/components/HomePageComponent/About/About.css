@@ -1,0 +1,39 @@
+.about-component,
+.about-section-div {
+    display: flex;
+}
+
+.about-component {
+    flex-direction: column;
+}
+
+.about-section-div {
+    flex-direction: row;
+}
+
+.about-component {
+    color: rgb(0, 65, 103);
+    width: 100%;
+    padding: 2px 2px 12px 2px;
+    border-left: 12px solid rgb(0, 72, 144);
+}
+
+
+.about-section-div {
+    gap: 40px;
+    padding: 16px 2px 16px 2px;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-section-div p {
+    width: 40%;
+    line-height: 32px;
+}
+
+.about-section-div img {
+    box-shadow: .2px .2px 4px .2px lightgray;
+    border-radius: 8px;
+    width: 53%;
+    height: auto;
+}

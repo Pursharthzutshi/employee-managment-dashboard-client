@@ -1,0 +1,52 @@
+.home-page-navbar-component,.home-page-navbar-buttons-links-container{
+    display: flex;
+}
+
+.home-page-navbar-component,.home-page-navbar-buttons-links-container{
+    flex-direction:row;
+}
+
+.home-page-navbar-buttons-links-container{
+    gap:20px;
+}
+
+
+.home-page-navbar-component{
+    background: white;
+    /* border-bottom: 2px solid darkblue; */
+    position: fixed;
+    padding: 16px 16px 16px 12px;
+    gap:20px;
+    justify-content: space-between;
+    width: 100%;
+    top:0%;
+    box-shadow: .2px .2px 12px .2px lightgray; 
+}
+
+.home-page-navbar-login-button-link{
+    box-shadow: .2px .2px 2px .2px rgb(43, 156, 255); 
+    color:white;
+    background: linear-gradient(to left,rgb(26, 148, 255),rgb(0, 107, 183));
+    padding:6px 15px 8px 15px;
+    border-radius: 4px;
+    font-size: .8rem;
+}
+
+.home-page-navbar-login-button-link:nth-child(1){
+    background: white;
+    color:rgb(43, 156, 255);
+    box-shadow: .2px .2px 2px .2px lightgray; 
+    border: 1px solid rgb(43, 156, 255);
+}
+
+
+.home-page-navbar-login-button-link:nth-child(1):hover{
+    color:white;
+    background: linear-gradient(to left,rgb(26, 148, 255),rgb(0, 107, 183));
+}
+.home-page-navbar-login-button-link:hover{
+    background: white;
+    transition: .2s;
+    box-shadow: .2px .2px 2px .2px lightgray;
+    color:rgb(26, 148, 255);
+}
