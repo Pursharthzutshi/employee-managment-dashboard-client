@@ -14,13 +14,40 @@ type DeleteEmployeeAccountDialogBoxProps = {
 
 function DeleteEmployeeAccountDialogBox({ uid, setShowDeleteEmployeeAccountDialogBoxStatus }: DeleteEmployeeAccountDialogBoxProps) {
 
-    const [deleteEmployeeAccount, { data: deleteEmployeeAccountDetails, loading: deleteEmployeeAccountDetailsLoading }] = useMutation(delete_employees_account_query,
-        {
-            refetchQueries: [{ query: show_all_employees_data_query }]
+    const [deleteEmployeeAccount, { data: deleteEmployeeAccountDetails, loading: deleteEmployeeAccountDetailsLoading }] = useMutation(delete_employees_account_query, {
+
+        onCompleted: (deleteEmployeeAccountDetailsData) => {
+            // if(deleteEmployeeAccountDetailsData.deleteEmployeeAccount.success === "true"){
+            // }
+            console.log(deleteEmployeeAccountDetailsData)
+        },
+
+        update: (cache, { data: { deleteEmployeeAccount } }) => {
+            console.log(deleteEmployeeAccount)
+            if (deleteEmployeeAccount.status) {
+                const showAllEmployeesCacheData:any = cache.readQuery({ query: show_all_employees_data_query })
+                const uid = showAllEmployeesCacheData.showAllEmployee.map((showAllEmployeesCacheDataUid:any)=>{
+                    console.log(showAllEmployeesCacheDataUid.uid)
+                })
+
+                console.log(showAllEmployeesCacheData)
+
+                cache.writeQuery({
+                    query:show_all_employees_data_query,
+                    data:{
+                        showAllEmployee: uid !== deleteEmployeeAccount.uid 
+                    }
+                })
+    
+            }
         }
+    }
+        // {
+        //     refetchQueries: [{ query: show_all_employees_data_query }]
+        // }
+
 
     );
-
     useEffect(() => {
         console.log(uid)
     })

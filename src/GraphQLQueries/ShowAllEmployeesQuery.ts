@@ -26,7 +26,8 @@ query fetchemployeesDataQuery{
 export const delete_employees_account_query = gql`
 mutation deleteEmployee($deleteEmployeeAccountParameters: deleteEmployeeAccountInput!){
   deleteEmployeeAccount(deleteEmployeeAccountParameters: $deleteEmployeeAccountParameters) {
-    name
+  uid
+  status
   }
 }
 `

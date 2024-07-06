@@ -4,40 +4,15 @@ import { FaAccusoft, FaBuilding, FaIdCard, FaTasks, FaUser } from "react-icons/f
 import { gql, useLazyQuery, useQuery } from "@apollo/client";
 import { useAppSelector } from "../../../../ReduxHooks";
 import { assertValidExecutionArguments } from "graphql/execution/execute";
+import { fetchTotalAdmin, fetchTotalEmployeesAndDepartmentsQuery, fetchTotalEmployeesTasks } from "../../../../GraphQLQueries/CardsDetailsQuery";
 // import { useSelect } from "react-select-search";
 
 
-const fetchTotalEmployeesAndDepartmentsQuery = gql`
-query fetchEmployeesDetails{
-showAllEmployee{
-   name,
-   emailId,
-   employeeOfTheMonth,
-   department
-}
-}`
-
-const fetchTotalEmployeesTasks = gql`
-query fetchEmployeesTaskDetails{
-  fetchEmployeesTaskDetails {
-    name
-    emailId
-  }
-}
-  `
-
-export const fetchTotalAdmin = gql`
-query fetchAdminDetails{
-  showAllAdmin {
-    name
-  }
-}
-`
 
 function CardsDetails() {
 
-    const {data:das,loading} = useQuery(fetchTotalEmployeesAndDepartmentsQuery,({
-        onCompleted:(data)=>{
+    const { data: das, loading } = useQuery(fetchTotalEmployeesAndDepartmentsQuery, ({
+        onCompleted: (data) => {
             console.log(data)
         }
     }));
@@ -58,17 +33,18 @@ function CardsDetails() {
         onCompleted: (AdminAccountDetailsData) => {
             console.log(AdminAccountDetailsData)
             setTotalAdminCount(AdminAccountDetailsData.showAllAdmin.length)
-        },        
+        },
+    
     }
-)
-);
+    )
+    );
 
 
     const { loading: EmployeesAccountDetailsLoading } = useQuery(fetchTotalEmployeesAndDepartmentsQuery, ({
         onCompleted: (EmployeesAccountDetailsData) => {
-      setTotalEmployeesCount(EmployeesAccountDetailsData.showAllEmployee.length)
+            setTotalEmployeesCount(EmployeesAccountDetailsData.showAllEmployee.length)
 
-         
+
         },
         onError: (err) => {
             console.log(err);

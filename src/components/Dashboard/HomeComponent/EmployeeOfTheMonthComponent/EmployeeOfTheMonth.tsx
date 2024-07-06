@@ -29,19 +29,25 @@ function EmployeeOfTheMonth() {
         <div className="employee-of-the-month-component">
 
             {
-                fetchEmployeeOfTheMonth.showAllEmployee.map((fetchEmployeeOfTheMonthData: any) => {
-                    if (fetchEmployeeOfTheMonthData.employeeOfTheMonth === true) {
+                fetchEmployeeOfTheMonth.showAllEmployee.length > 0 ?
+                    fetchEmployeeOfTheMonth.showAllEmployee.map((fetchEmployeeOfTheMonthData: any) => {
+                        if (fetchEmployeeOfTheMonthData.employeeOfTheMonth === true) {
 
-                        return <div className="employee-of-the-month-div">
-                            <p className="font-bold text-xl">Employee Of The Month</p>
-                            <div className="employee-of-the-month-details-div">
-                            <img className="image" src={image} />
-                            <p className="font-bold text-lg">{fetchEmployeeOfTheMonthData.name}</p>
-                            <p>{fetchEmployeeOfTheMonthData.department}</p>
+                            return <div className="employee-of-the-month-div">
+                                <p className="font-bold text-xl">Employee Of The Month</p>
+                                <div className="employee-of-the-month-details-div">
+                                    <img className="image" src={image} />
+                                    <p className="font-bold text-lg">{fetchEmployeeOfTheMonthData.name}</p>
+                                    <p>{fetchEmployeeOfTheMonthData.department}</p>
+                                </div>
                             </div>
-                        </div>
-                    }
-                })
+                        }
+                    }) : <div className="employee-of-the-month-div">
+                        <p className="font-bold text-center">No Employee Of The Month</p>
+                    </div>
+            }
+            {
+
             }
         </div>
     )

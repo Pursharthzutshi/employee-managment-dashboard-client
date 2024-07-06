@@ -10,6 +10,7 @@ import { setCreateEmployeeNewAccountStatus } from "../../../ReduxSlicers/createE
 import "./CreateNewEmployeeAccount.css"
 import "./CreateNewEmployeeAccountResponsive.css"
 import { signUpquery } from "../../../GraphQLQueries/CreateNewEmployeeAccountQuery";
+import { show_all_employees_data_query } from "../../../GraphQLQueries/ShowAllEmployeesQuery";
 
 
 
@@ -46,8 +47,9 @@ function CreateNewEmployeeAccount() {
   const [CreateEmployeeNewAccount, { data: signUpResponseData, loading }] = useMutation(signUpquery, {
 
     onCompleted: (createNewEmployeeAccountData) => {
-      console.log(createEmployeeNewAccountStatus)
+      console.log(createNewEmployeeAccountData)
       if (createNewEmployeeAccountData.createUserSignUp.success === true) {
+
         Dispatch(setCreateEmployeeNewAccountStatus(true))
         setNewEmployeeAccountCreatedStatus(true)
       } else if (createNewEmployeeAccountData.createUserSignUp.success === false) {
@@ -56,6 +58,26 @@ function CreateNewEmployeeAccount() {
       }
     },
 
+
+    update: (cache, { data: { createUserSignUp } }) => {
+      console.log(createUserSignUp)
+      if (createUserSignUp.success) {
+
+        const newEmployee = createUserSignUp.AddedSignUpData;
+        const existingEmployees: any = cache.readQuery({ query: show_all_employees_data_query });
+
+        console.log(newEmployee)
+        
+        cache.writeQuery({
+          query: show_all_employees_data_query,
+          data: {
+            // return console.log(showAllEmployee)
+            showAllEmployee: [...existingEmployees.showAllEmployee, newEmployee]
+          },
+
+        });
+      }
+    }
 
 
   });

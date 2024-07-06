@@ -5,10 +5,10 @@ import { Link, useNavigate } from "react-router-dom";
 import ChangeLogInFormButtons from "./ChangeLogInFormButtons";
 import { setAdminStatus, setLoggedInSavedUid, setSavedLoggedInName, setShowLogOutButtonElements } from "../../../ReduxSlicers/LocalStorageSlicer";
 import { useEffect, useState } from "react";
-import { fetchTotalAdmin } from "../../Dashboard/HomeComponent/CardsDetailsComponent/CardsDetails";
 
 import "./Login.css"
 import { checkEmployeeLoggedInAuthQuery } from "../../../GraphQLQueries/LoginQuery";
+import { fetchTotalAdmin } from "../../../GraphQLQueries/CardsDetailsQuery";
 
 
 
@@ -44,7 +44,7 @@ function LoginUsers() {
         onError: (ErrorMessage) => {
             console.log(ErrorMessage);
         },
-        refetchQueries: [{ query: fetchTotalAdmin }]
+        // refetchQueries: [{ query: fetchTotalAdmin }]
 
     });
 

@@ -4,7 +4,7 @@ import { SetEmployeeEmailId, setAlreadyAddedEmployeeStatus, setEmployeeDeadLine,
 import { gql, useQuery } from "@apollo/client";
 import { setShowEmployeesDialogBox, setShowEmployeesEditDialogBox } from "../../../ReduxSlicers/ShowEmployeesDialogBoxSlicer";
 import Calendar from 'react-calendar';
-import {  FaTimes } from "react-icons/fa";
+import { FaTimes } from "react-icons/fa";
 import 'react-calendar/dist/Calendar.css';
 import { setTaskAssign } from "../../../ReduxSlicers/ShowTaskAssignEmployeeInDialogBoxSlicer";
 import { employeesTaskManagerDialogBoxFormTypes } from "../../../Types/EmployeesTaskTypes";
@@ -65,7 +65,11 @@ function EmployeesTaskManagerDialogBoxForm() {
         Dispatch(setShowEmployeesEditDialogBox(false));
     }
 
- 
+    const year = new Date().getFullYear();
+    const month = String(new Date().getMonth() + 1).padStart(2, '0');
+    const day = String(new Date().getDate()).padStart(2, '0');
+    const date = `${year}-${month}-${day}`;
+
     // LOADING    
 
     if (loading) return <h3>Loading</h3>
@@ -117,8 +121,8 @@ function EmployeesTaskManagerDialogBoxForm() {
                 alreadyAddedEmployeeStatus ? <h4 className="">Added Already</h4> : null
             }
 
-            <input type="text" placeholder="Task Description" onChange={(e: React.ChangeEvent<HTMLInputElement>) => { Dispatch(setEmployeeTaskDesc(e.target.value)) }} />
-            <input type="date" placeholder="deadLine" className="calendar"  onChange={(e: React.ChangeEvent<HTMLInputElement>) => { Dispatch(setEmployeeDeadLine(e.target.value)) }} />
+            <textarea className="task-desc-textarea" placeholder="Task Description" onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => { Dispatch(setEmployeeTaskDesc(e.target.value)) }} ></textarea>
+            <input min={date}type="date" placeholder="deadLine" className="calendar" onChange={(e: React.ChangeEvent<HTMLInputElement>) => { Dispatch(setEmployeeDeadLine(e.target.value)) }} />
 
         </div>
     )

@@ -1,17 +1,31 @@
-
-.employee-dialog-box-div{
+.employee-dialog-box-div {
     display: flex;
 }
 
-.employee-dialog-box-div{
+.employee-dialog-box-div {
     flex-direction: column;
 }
 
-.react-calendar{
-    display:none;
+.react-calendar {
+    display: none;
     border: 2px solid black;
 }
 
-.add-new-task-heading{
+.add-new-task-heading {
     font-size: 1rem;
+}
+
+.task-desc-textarea {
+    outline: none;
+    padding:4px 2px 2px 7px;
+    box-shadow: .2px .2px 6px .2px lightgray;
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 90%;
+    /* background: red; */
+    resize: none;
+}
+
+.task-desc-textarea::placeholder{
+    padding-top: 4px 2px 2px 2px;
 }

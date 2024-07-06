@@ -4,12 +4,11 @@ import { setUserLoggedInEmailId, setUserLoggedInEmailPassword } from "../../../R
 import { gql, useMutation } from "@apollo/client";
 import { Link, useNavigate } from "react-router-dom";
 import { setAdminStatus, setLoggedInSavedUid, setLogOutStatus, setSavedLoggedInName, setShowLogOutButtonElements } from "../../../ReduxSlicers/LocalStorageSlicer";
-import ChangeLogInFormButtons from "./ChangeLogInFormButtons";
-import { fetchTotalAdmin } from "../../Dashboard/HomeComponent/CardsDetailsComponent/CardsDetails";
 import { checkAdminLoggedInAuthQuery } from "../../../GraphQLQueries/LoginQuery";
+import { fetchTotalAdmin } from "../../../GraphQLQueries/CardsDetailsQuery";
+
 
 import "./Login.css"
-
 
 function LoginAdmin() {
 
@@ -43,7 +42,8 @@ function LoginAdmin() {
             }
 
         },
-        refetchQueries: [{ query: fetchTotalAdmin }]
+
+  
 
     }
 

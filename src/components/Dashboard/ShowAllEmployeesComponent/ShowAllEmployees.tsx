@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useMutation, useQuery } from "@apollo/client";
+import { useApolloClient, useMutation, useQuery } from "@apollo/client";
 import { useDispatch } from "react-redux";
 import { setSearchFilter } from "../../../ReduxSlicers/SearchFilterSilcer";
 import { useAppSelector } from "../../../ReduxHooks";
@@ -13,6 +13,7 @@ import "../ShowAllEmployeesComponent/ShowAllEmployeesResponsive.css"
 import DeleteEmployeeAccountDialogBox from "./DeleteEmployeeAccountDialogBox";
 
 import "../ShowAllEmployeesComponent/DeleteEmployeeAccountDialogBox.css"
+// import { client } from "../../..";
 
 function ShowAllEmployees() {
 
@@ -34,11 +35,13 @@ function ShowAllEmployees() {
         }
     }));
 
+    const client = useApolloClient();
 
     const { data: ShowAllEmployeesData, loading, refetch } = useQuery(show_all_employees_data_query, {
+        // onCompleted: (data) => 
+
         onCompleted: (data) => {
-            console.log(data)
-            refetch()
+            console.log(data);
         }
     }
     );
@@ -62,45 +65,53 @@ function ShowAllEmployees() {
             <div>
                 <p className="font-bold text-xl">All Employees</p>
                 <br></br>
-                <input data-testid="search-input" onChange={(e) => Dispatch(setSearchFilter(e.target.value))} className="search-employees-input" placeholder="Search Employees" type="text" />
+                {
+                    ShowAllEmployeesData.showAllEmployee.length > 0
+                    && <input data-testid="search-input" onChange={(e) => Dispatch(setSearchFilter(e.target.value))} className="search-employees-input" placeholder="Search Employees" type="text" />
+                 
+                }
                 <div className="employees-details-container">
                     {
-                        ShowAllEmployeesData.showAllEmployee.filter((filteredEmployeesAccountData: EmployeesAccountDataProps) => {
+                        ShowAllEmployeesData.showAllEmployee.length > 0 ?
+                            ShowAllEmployeesData.showAllEmployee.filter((filteredEmployeesAccountData: EmployeesAccountDataProps) => {
 
-                            if (filteredEmployeesAccountData.name.toLowerCase().includes(searchFilter.toLowerCase())) {
-                                console.log(filteredEmployeesAccountData)
-                                return filteredEmployeesAccountData;
-                            } else if (searchFilter === "") {
-                                return filteredEmployeesAccountData;
-                            }
-                        }).map((EmployeesAccountData: EmployeesAccountDataProps) => {
-                            console.log(EmployeesAccountData)
-                            return (
-                                <div className="employees-details-div" >
-                                    <strong>Name:</strong><p data-testid="employee-name" className="employee-name">{EmployeesAccountData.name}</p>
-                                    <strong>Email ID:</strong><p className="email-id">{EmployeesAccountData.emailId}</p>
-                                    {adminStatus ?
-                                        <div>
-                                            <button onClick={() => {
-                                                assignEmployeeOfTheMonth({
-                                                    variables: {
-                                                        updateEmployeeOfTheMonthParameters: {
-                                                            uid: EmployeesAccountData.uid,
-                                                            employeeOfTheMonth: true
+                                if (filteredEmployeesAccountData.name.toLowerCase().includes(searchFilter.toLowerCase())) {
+                                    console.log(filteredEmployeesAccountData)
+                                    return filteredEmployeesAccountData;
+                                } else if (searchFilter === "") {
+                                    return filteredEmployeesAccountData;
+                                }
+                            }).map((EmployeesAccountData: EmployeesAccountDataProps) => {
+                                console.log(EmployeesAccountData)
+                                return (
+                                    <div className="employees-details-div" >
+                                        <strong>Name:</strong><p data-testid="employee-name" className="employee-name">{EmployeesAccountData.name}</p>
+                                        <strong>Email ID:</strong><p className="email-id">{EmployeesAccountData.emailId}</p>
+                                        {adminStatus ?
+                                            <div>
+                                                <button onClick={() => {
+                                                    assignEmployeeOfTheMonth({
+                                                        variables: {
+                                                            updateEmployeeOfTheMonthParameters: {
+                                                                uid: EmployeesAccountData.uid,
+                                                                employeeOfTheMonth: true
+                                                            },
                                                         },
-                                                    },
-                                                })
+                                                    })
 
-                                            }} className="employees-details-button font-semibold text-sm">Assign Employee of the month</button>
-                                            <button className="delete-employee-Account-button font-semibold text-sm mt-4" onClick={() => showDeleteEmployeeAccountDialogBox(EmployeesAccountData.uid)} >Delete Employee Account</button>
-                                        </div>
-                                        : null}
-                                </div>
-                            )
-                        })
-
-
+                                                }} className="employees-details-button font-semibold text-sm">Assign Employee of the month</button>
+                                                <button className="delete-employee-Account-button font-semibold text-sm mt-4" onClick={() => showDeleteEmployeeAccountDialogBox(EmployeesAccountData.uid)} >Delete Employee Account</button>
+                                            </div>
+                                            : null}
+                                    </div>
+                                )
+                            })
+                            :
+                            <div className="show-no-task-message">
+                                <p className="font-bold">No Employees Added</p>
+                            </div>
                     }
+
 
                     {
                         showDeleteEmployeeAccountDialogBoxStatus ?

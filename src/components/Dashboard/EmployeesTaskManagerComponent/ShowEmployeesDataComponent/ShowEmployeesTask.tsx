@@ -1,6 +1,6 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
 import React, { useEffect, useState } from "react";
-import {  setShowEmployeesEditDialogBox } from "../../../../ReduxSlicers/ShowEmployeesDialogBoxSlicer";
+import { setShowEmployeesEditDialogBox } from "../../../../ReduxSlicers/ShowEmployeesDialogBoxSlicer";
 import { useAppDispatch, useAppSelector } from "../../../../ReduxHooks";
 import EditEmployeesTaskManagerDialogBox from "../EditEmployeesDataComponents/EditEmployeesTaskManagerDialogBox";
 import { fetchEmployeesDetailsProps } from "../../../../Types/EmployeesTaskTypes";
@@ -32,7 +32,7 @@ mutation dq($employeeUidParameter: deleteEmployeesTaskInput!){
 
 function ShowEmployeesTask() {
 
-  
+
 
   const [selectedUpdateTaskFieldUid, setSelectedUpdateTaskFieldUid] = useState<String>("");
 
@@ -40,10 +40,31 @@ function ShowEmployeesTask() {
 
   const [editDialogBox, setEditDialogBox] = useState<Boolean>(false);
 
-  const [deleteEmployeeTaskData] = useMutation(delete_employees_task_data,
-    {
-      refetchQueries: [{ query: fetch_employees_task_details_query }]
+  const [deleteEmployeeTaskData, { data: deleteEmployeesTask }] = useMutation(delete_employees_task_data, {
+    onCompleted: (deleteEmployeesTaskData) => {
+      console.log(deleteEmployeesTaskData)
+    },
+
+
+    update: (cache, { data: { fetchEmployeesTaskDetails: any } }) => {
+      const fetchTaskDeleteData: any = cache.readQuery({ query: fetch_employees_task_details_query })
+
+      const uid = fetchTaskDeleteData.fetchEmployeesTaskDetails.map((fetchEmployeesTaskDetails: any) => {
+        console.log(fetchEmployeesTaskDetails.uid)
+      })
+
+      cache.writeQuery({
+        query: fetch_employees_task_details_query,
+        data: {
+          fetchEmployeesTaskDetails: uid !== fetchTaskDeleteData.uid
+        }
+      })
     }
+
+  }
+    // {
+    //   refetchQueries: [{ query: fetch_employees_task_details_query }]
+    // }
   );
 
 
@@ -76,53 +97,61 @@ function ShowEmployeesTask() {
   return (
     <div className="employees-task-data-container">
       {
-        employeesTaskData.fetchEmployeesTaskDetails.map((val: fetchEmployeesDetailsProps) => {
-          console.log(val.emailId)
-          return (
-            <div className="employees-task-data-div">
+        employeesTaskData.fetchEmployeesTaskDetails.length > 0 ?
 
-              <div>
-                <br></br>
-                <strong>TASK NAME - : </strong>
-                <p className="task-name">{val.name}</p>
-              </div>
-              <strong>TASK DESCRIPTION - : </strong>
+          employeesTaskData.fetchEmployeesTaskDetails.map((val: fetchEmployeesDetailsProps) => {
+            console.log(val.emailId)
+            return (
+              <div className="employees-task-data-div">
 
-              <p className="task-desc">{val.taskDesc}</p>
+                <div>
+                  <br></br>
+                  <strong>TASK NAME - : </strong>
+                  <p className="task-name">{val.name}</p>
+                </div>
+                <strong>TASK DESCRIPTION - : </strong>
 
-              <strong>TASK DEADLINE - : </strong>
+                <p className="task-desc">{val.taskDesc}</p>
 
-              <p>{val.deadLine}</p>
+                <strong>TASK DEADLINE - : </strong>
 
-              <strong>TASK ASSIGNED TO - : </strong>
-              <div className="assigned-to-employee-div">
-              </div>
-              {
-                val.emailId.map((val: String) => {
-                  console.log(val)
-                  return <div>
+                <p>{val.deadLine}</p>
 
-                    <p>{val}</p>
-                  </div>
-                })
-              }
-              {/* <p className="emailid"></p> */}
+                <strong>TASK ASSIGNED TO - : </strong>
+                <div className="assigned-to-employee-div">
+                </div>
+                {
+                  val.emailId.map((val: String) => {
+                    console.log(val)
+                    return <div>
 
-              <div className="employees-edit-delete-task-button-container">
-                <button className="employees-task-edit-dialog-box-button" onClick={() => showEditDialogBox(val.uid)}>Edit</button>
-                <button className="employees-task-delete-button" onClick={() => {
-                  deleteEmployeeTaskData({
-                    variables: {
-                      employeeUidParameter: {
-                        uid: val.uid
-                      }
-                    }
+                      <p>{val}</p>
+                    </div>
                   })
-                }}>Delete Task</button>
+                }
+                {/* <p className="emailid"></p> */}
+
+                <div className="employees-edit-delete-task-button-container">
+                  <button className="employees-task-edit-dialog-box-button" onClick={() => showEditDialogBox(val.uid)}>Edit</button>
+                  <button className="employees-task-delete-button" onClick={() => {
+                    deleteEmployeeTaskData({
+                      variables: {
+                        employeeUidParameter: {
+                          uid: val.uid
+                        }
+                      }
+                    })
+                  }}>Delete Task</button>
+                </div>
               </div>
-            </div>
-          )
-        })
+            )
+          })
+          :
+          <div className="show-no-task-message">
+            <p className="font-bold">No Tasks Added</p>
+          </div>
+      }
+      {
       }
 
       {

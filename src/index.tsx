@@ -11,22 +11,19 @@ import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import { ApolloProvider } from '@apollo/client';
 
 
-// export const client = new ApolloClient({
-//   uri: 'http://localhost:4002/api/graphql',
-//   cache: new InMemoryCache(),
-// })
-
-
 export const client = new ApolloClient({
-  uri: 'https://employee-managment-dashboard-server.vercel.app/api/graphql',
+  uri: 'http://localhost:4002/api/graphql',
   cache: new InMemoryCache(),
 })
 
 
+// export const client = new ApolloClient({
+//   uri: 'https://employee-managment-dashboard-server.vercel.app/api/graphql',
+//   cache: new InMemoryCache(),
+// })
 
-// const root = ReactDOM.createRoot(
-//   document.getElementById('root') as HTMLElement
-// );
+
+
 const rootElement = document.getElementById('root') as HTMLElement;
 
 if (rootElement) {

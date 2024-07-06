@@ -54,3 +54,28 @@ strong{
 .task-desc{
     line-height: 32px;
 }
+
+.show-no-task-message{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 50vh;
+}
+
+
+
+.show-no-task-message p{
+    font-size: 1.5rem;
+    padding: 2px 12px 2px 12px;
+    animation: .4s ease-in showNoTaskEffect;
+}
+
+@keyframes showNoTaskEffect {
+    0%{
+        opacity: .2;
+    }
+    100%{
+        opacity: 1;
+    }
+}
