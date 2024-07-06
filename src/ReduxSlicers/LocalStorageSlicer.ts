@@ -1,13 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 type localStorageSlicerProps = {
-    // loggedInSavedUid: any
     adminStatus: string | null
-    loggedInSavedUid: String | null
-    logOutStatus: String | null
-    showLogOutButtonElements: String | null
-    showLoggedInComponents: String | null
-    savedLoggedInName: String | null
+    loggedInSavedUid: string | null
+    logOutStatus: string | null
+    showLogOutButtonElements: string | null
+    showLoggedInComponents: string | null
+    savedLoggedInName: string | null
 }
 
 const initialState: localStorageSlicerProps = {

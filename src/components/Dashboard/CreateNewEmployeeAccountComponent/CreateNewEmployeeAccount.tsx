@@ -11,6 +11,7 @@ import "./CreateNewEmployeeAccount.css"
 import "./CreateNewEmployeeAccountResponsive.css"
 import { signUpquery } from "../../../GraphQLQueries/CreateNewEmployeeAccountQuery";
 import { show_all_employees_data_query } from "../../../GraphQLQueries/ShowAllEmployeesQuery";
+import { createNewEmployeeAccountCacheType } from "../../../Types/InMemoryCacheTypes";
 
 
 
@@ -64,19 +65,19 @@ function CreateNewEmployeeAccount() {
       if (createUserSignUp.success) {
 
         const newEmployee = createUserSignUp.AddedSignUpData;
-        const existingEmployees: any = cache.readQuery({ query: show_all_employees_data_query });
+        const existingEmployees: createNewEmployeeAccountCacheType | null = cache.readQuery({ query: show_all_employees_data_query });
 
-        console.log(newEmployee)
-        
+        console.log(existingEmployees)
+        if(existingEmployees?.showAllEmployee){
         cache.writeQuery({
           query: show_all_employees_data_query,
           data: {
-            // return console.log(showAllEmployee)
             showAllEmployee: [...existingEmployees.showAllEmployee, newEmployee]
           },
-
         });
+
       }
+    }
     }
 
 

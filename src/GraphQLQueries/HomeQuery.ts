@@ -21,4 +21,4 @@ query employeeStatusQuery {
     status
   }
 }
-`;
+`

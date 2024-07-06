@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 type createEmployeeNewAccountStatusSlicerProps = {
-    createEmployeeNewAccountStatus: Boolean
+    createEmployeeNewAccountStatus: boolean
 }
 
 const initialState:createEmployeeNewAccountStatusSlicerProps = {

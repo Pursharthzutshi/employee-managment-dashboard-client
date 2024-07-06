@@ -104,8 +104,8 @@ function CardsDetails() {
                     <FaAccusoft className="cards-icons" />
 
                     <div>
-                        <p className="font-semibold text-lg">Loreum Ipsum</p>
-                        <h4 className="font-bold text-xl">20</h4>
+                        <p className="font-semibold text-lg">Total Departments</p>
+                        <h4 className="font-bold text-xl">5</h4>
                     </div>
                 </div>
             </div>

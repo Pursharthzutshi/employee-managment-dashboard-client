@@ -1,13 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 type SignUpSlicerProps = {
-    userName: String
-    userEmailId: String
-    userEmailPassword: String
-    userEmailPasswordRecheck: String
-    genderType: String
-    adminSignUpSecret: String
-    department: String
+    userName: string
+    userEmailId: string
+    userEmailPassword: string
+    userEmailPasswordRecheck: string
+    genderType: string
+    adminSignUpSecret: string
+    department: string
 }
 
 const initialState: SignUpSlicerProps = {

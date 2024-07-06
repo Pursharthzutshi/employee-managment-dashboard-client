@@ -7,7 +7,7 @@ import { useAppSelector } from "../ReduxHooks"
 export const fetchAdminProfileDetails = gql`
 query showAdminProfileDetails($fetchAdminProfileDetailsParameters: fetchAdminProfileDetailsInput!){
   fetchAdminProfileDetails(fetchAdminProfileDetailsParameters: $fetchAdminProfileDetailsParameters) {
-  uid
+    uid
     name
     emailId
   }
@@ -17,12 +17,14 @@ query showAdminProfileDetails($fetchAdminProfileDetailsParameters: fetchAdminPro
 export const updateProfileNameQuery = gql`
   mutation updateProfileName($updateProfileNameParameters: updateProfileNameInput!){
   updateName(updateProfileNameParameters: $updateProfileNameParameters) {
-    name
+status
+message
+
   }
 }
   `
 export const updateProfilePasswordQuery = gql`
-  mutation updateProfilePassword($updateProfilePasswordParameters: updateProfilePasswordInput!){
+ mutation updateProfilePassword($updateProfilePasswordParameters: updateProfilePasswordInput!){
   updatePassword(updateProfilePasswordParameters: $updateProfilePasswordParameters) {
     password
   }

@@ -5,6 +5,13 @@ mutation AddedEmployeeTaskResponse($employeesTaskParameters: createEmployeesTask
   createEmployeesTask(employeesTaskParameters: $employeesTaskParameters) {
     success 
     message
+    addNewTaskData{
+    uid
+    name
+    emailId
+    taskDesc
+    deadLine
+    }
   }
 }
 `

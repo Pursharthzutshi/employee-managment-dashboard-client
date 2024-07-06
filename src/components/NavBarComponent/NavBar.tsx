@@ -8,7 +8,7 @@ import "../NavBarComponent/NavBarResponsive.css"
 
 function NavBar() {
 
-    const [test, setTest] = useState<Boolean>(false);
+    const [test, setTest] = useState<boolean>(false);
 
     const change = () => {
         setTest(!test)

@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 type loginSlicerProps = {
-    userLoggedinEmailId:String
-    userLoggedinPassword:String
+    userLoggedinEmailId:string
+    userLoggedinPassword:string
 }
 
 const initialState:loginSlicerProps = {

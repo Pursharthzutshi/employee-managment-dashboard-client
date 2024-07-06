@@ -1,7 +1,7 @@
 export type fetchLoggedInEmployeeAssignedTaskDetailsDataProps = {
-    deadLine: String
-    emailId: String[]
-    name: String
-    taskDesc: String
-    uid: String
+    deadLine: string
+    emailId: string[]
+    name: string
+    taskDesc: string
+    uid: string
 }

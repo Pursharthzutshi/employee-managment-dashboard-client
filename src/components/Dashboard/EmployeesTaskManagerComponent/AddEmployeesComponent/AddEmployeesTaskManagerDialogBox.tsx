@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import { gql, useLazyQuery, useMutation, useQuery } from "@apollo/client";
 import DisplayData from "../../HomeComponent/DisplayData";
 import { useAppDispatch, useAppSelector } from "../../../../ReduxHooks/index";
@@ -10,7 +10,9 @@ import EmployeesTaskManagerDialogBoxForm from "../EmployeesTaskManagerDialogBoxF
 import "../AddEmployeesComponent/AddEmployeesTaskManagerDialogBox.css"
 import "../TaskDialogBox.css"
 import "../TaskDialogBoxResponsive.css"
-import { addEmployeesTask } from "../../../../GraphQLQueries/EmployeesTaskManagerQuery";
+import { addEmployeesTask, fetch_employees_task_details_query } from "../../../../GraphQLQueries/EmployeesTaskManagerQuery";
+import { setShowEmployeesDialogBox } from "../../../../ReduxSlicers/ShowEmployeesDialogBoxSlicer";
+import { addTasksCacheType } from "../../../../Types/InMemoryCacheTypes";
 
 
 function AddEmployeesTaskManagerDialogBox() {
@@ -27,15 +29,37 @@ function AddEmployeesTaskManagerDialogBox() {
     const [showErrorMessageStatus, setShowErrorMessageStatus] = useState(false);
     const [showErrorMessage, setShowErrorMessage] = useState("");
 
-    const [addTasks, loading] = useMutation(addEmployeesTask, {
+    const [addTasks] = useMutation(addEmployeesTask, {
         onCompleted: (addTaskdata) => {
             console.log(addTaskdata)
             if (addTaskdata.createEmployeesTask.success === false) {
                 setShowErrorMessageStatus(true)
                 setShowErrorMessage(addTaskdata.createEmployeesTask.message)
+                Dispatch(setShowEmployeesDialogBox(true));
+
             } else {
+                Dispatch(setShowEmployeesDialogBox(false));
+                Dispatch(setEmployeeName(""))
+                Dispatch(setEmployeeTaskDesc(""))
+                Dispatch(setEmployeeDeadLine(""))
+                Dispatch(setEmployeeTaskDesc(""))
                 // setShowErrorMessage("addTaskdata.createEmployeesTask.message")
                 setShowErrorMessageStatus(false)
+            }
+        },
+        update: (cache, { data: { createEmployeesTask } }) => {
+            const newtaskData = createEmployeesTask.addNewTaskData
+            if (newtaskData) {
+                const fetchTask: addTasksCacheType | null = cache.readQuery({ query: fetch_employees_task_details_query })
+                console.log(fetchTask)
+                if (fetchTask?.fetchEmployeesTaskDetails) {
+                    cache.writeQuery({
+                        query: fetch_employees_task_details_query,
+                        data: {
+                            fetchEmployeesTaskDetails: [...fetchTask.fetchEmployeesTaskDetails, newtaskData]
+                        }
+                    })
+                }
             }
         }
     });
@@ -60,15 +84,11 @@ function AddEmployeesTaskManagerDialogBox() {
         })
     }
 
-    const preventForm = (e: any) => {
-        // e.preventDefault()
-        if (showErrorMessageStatus === false) {
-            addNewTask()
-        } else {
-            e.preventDefault()
-        }
-
+    const preventForm = (e: FormEvent) => {
+        addNewTask()
+        e.preventDefault()
     }
+
     return (
         <div className="task-dialog-box">
 
@@ -94,7 +114,7 @@ function AddEmployeesTaskManagerDialogBox() {
                     })}
                         className="add-new-task-button">Add Task</button> */}
 
-                    <button type="submit"  className="add-new-task-button">Add Task</button>
+                    <button type="submit" className="add-new-task-button">Add Task</button>
 
                 </div>
             </form>

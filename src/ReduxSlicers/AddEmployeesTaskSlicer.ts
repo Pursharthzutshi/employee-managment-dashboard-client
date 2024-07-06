@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 type initialStateProps = {
-    employeeName: String,
-    employeeEmailId: [String],
-    employeeTaskDesc: String,
-    employeeDeadLine: String,
+    employeeName: string,
+    employeeEmailId: [string],
+    employeeTaskDesc: string,
+    employeeDeadLine: string,
     alreadyAddedEmployeeStatus: boolean
 
 }

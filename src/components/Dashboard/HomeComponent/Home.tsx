@@ -71,10 +71,11 @@ function Home() {
         if (employeesData && employeesData.showAllEmployee) {
 
             if (count !== employeesData.showAllEmployee.length) {
-                employeesData.showAllEmployee.map((employeesDataList: any) => {
+                employeesData.showAllEmployee.map((employeesDataList: string) => {
+                    console.log(employeesDataList)
                     return Dispatch(setGenderTypeCount(employeesDataList))
                 })
-                employeesData.showAllEmployee.map((employeesDataList: any) => {
+                employeesData.showAllEmployee.map((employeesDataList: string) => {
                     return Dispatch(setDepartmentCount(employeesDataList))
                 })
             }

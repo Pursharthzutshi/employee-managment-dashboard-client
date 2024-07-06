@@ -8,6 +8,7 @@ import ChangeSignUpFormButtons from "./ChangeSignUpFormButtons";
 import { v4 as uuidv4 } from 'uuid';
 import NavBar from "../../NavBarComponent/NavBar";
 import { fetchTotalAdmin } from "../../../GraphQLQueries/CardsDetailsQuery";
+import { showAllAdminType } from "../../../Types/InMemoryCacheTypes";
 
 const signUpquery = gql`
 mutation adminSignUp($adminSignUpParameters: adminSignUpTableInput!){
@@ -53,16 +54,20 @@ function SignupAdmin() {
     },
     update: (cache, data) => {
 
-      const adminArray: any = cache.readQuery({ query: fetchTotalAdmin })
-      const totalArrayLength = adminArray.showAllAdmin.length + 1
-      cache.writeQuery({
-        query: fetchTotalAdmin,
-        data: {
-          showAllAdmin: {
-            length: totalArrayLength
+      const adminArray: showAllAdminType | null = cache.readQuery({ query: fetchTotalAdmin })
+      console.log(adminArray)
+      if (adminArray) {
+        const totalArrayLength = adminArray.showAllAdmin.length + 1
+        cache.writeQuery({
+          query: fetchTotalAdmin,
+          data: {
+            showAllAdmin: {
+              length: totalArrayLength
+            }
           }
-        }
-      })
+        })
+
+      }
     }
 
   }),

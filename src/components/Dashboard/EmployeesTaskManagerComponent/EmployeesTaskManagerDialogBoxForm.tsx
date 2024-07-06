@@ -7,7 +7,7 @@ import Calendar from 'react-calendar';
 import { FaTimes } from "react-icons/fa";
 import 'react-calendar/dist/Calendar.css';
 import { setTaskAssign } from "../../../ReduxSlicers/ShowTaskAssignEmployeeInDialogBoxSlicer";
-import { employeesTaskManagerDialogBoxFormTypes } from "../../../Types/EmployeesTaskTypes";
+import { employeesTaskManagerDialogBoxFormTypes, fetchEmailUsersIdsProps } from "../../../Types/EmployeesTaskTypes";
 
 import "./EmployeesTaskManagerDialogBoxForm.css"
 
@@ -90,7 +90,8 @@ function EmployeesTaskManagerDialogBoxForm() {
             <datalist id="cityname">
                 <select>
                     {
-                        FetchUserData.fetchEmailUsersIds.map((val: any) => {
+                        FetchUserData.fetchEmailUsersIds.map((val: fetchEmailUsersIdsProps) => {
+                            console.log(val)
                             return <option value={val.emailId}>
                                 {val.name}
                             </option>
@@ -122,7 +123,7 @@ function EmployeesTaskManagerDialogBoxForm() {
             }
 
             <textarea className="task-desc-textarea" placeholder="Task Description" onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => { Dispatch(setEmployeeTaskDesc(e.target.value)) }} ></textarea>
-            <input min={date}type="date" placeholder="deadLine" className="calendar" onChange={(e: React.ChangeEvent<HTMLInputElement>) => { Dispatch(setEmployeeDeadLine(e.target.value)) }} />
+            <input min={date} data-date-format="DD MMMM YYYY" type="date" placeholder="deadLine" className="calendar" onChange={(e: React.ChangeEvent<HTMLInputElement>) => { Dispatch(setEmployeeDeadLine(e.target.value)) }} />
 
         </div>
     )

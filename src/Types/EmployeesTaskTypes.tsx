@@ -1,18 +1,42 @@
 export type fetchEmployeesDetailsProps = {
-    deadLine: String
-    emailId: String[]
-    name: String
-    taskDesc: String
-    uid: String
+    deadLine: string
+    emailId: string[]
+    name: string
+    taskDesc: string
+    uid: string
+}
+
+export type FetchEmployeesTaskDetailsQueryResult = {
+    fetchEmployeesTaskDetails: fetchEmployeesDetailsProps[];
 }
 
 export type EditEmployeesTaskManagerDialogBoxProps ={
-    selectedUpdateTaskFieldUid:String
+    selectedUpdateTaskFieldUid:string
 }
 
 export type employeesTaskManagerDialogBoxFormTypes = {
-    name:String
-    emailId:String
+    name:string
+    emailId:string
+}
+
+export type fetchEmailUsersIdsProps ={
+    name:string
+    emailId:string
+}
+
+export type fetchTaskDeleteDataType = {
+    uid:string
+    deadLine:string
+    emailId:string[]
+    name:string
+    taskDesc:string
+    fetchEmployeesTaskDetails:fetchEmployeesTaskDetailsType
+}
+
+
+export type fetchEmployeesTaskDetailsType = {
+    uid: void[] | undefined
+    fetchEmployeesTaskDetails:fetchTaskDeleteDataType[]
 }
 
 export type ReactChangeEvent  = React.ChangeEvent<HTMLInputElement>

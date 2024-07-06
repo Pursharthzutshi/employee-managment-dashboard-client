@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { setShowEmployeesEditDialogBox } from "../../../../ReduxSlicers/ShowEmployeesDialogBoxSlicer";
 import { useAppDispatch, useAppSelector } from "../../../../ReduxHooks";
 import EditEmployeesTaskManagerDialogBox from "../EditEmployeesDataComponents/EditEmployeesTaskManagerDialogBox";
-import { fetchEmployeesDetailsProps } from "../../../../Types/EmployeesTaskTypes";
+import { fetchEmployeesDetailsProps, FetchEmployeesTaskDetailsQueryResult, fetchEmployeesTaskDetailsType, fetchTaskDeleteDataType } from "../../../../Types/EmployeesTaskTypes";
 
 import "../ShowEmployeesDataComponent/ShowEmployeesTask.css"
 import { client } from "../../../..";
@@ -27,14 +27,11 @@ mutation dq($employeeUidParameter: deleteEmployeesTaskInput!){
 }
 
 `
-
-
-
 function ShowEmployeesTask() {
 
 
 
-  const [selectedUpdateTaskFieldUid, setSelectedUpdateTaskFieldUid] = useState<String>("");
+  const [selectedUpdateTaskFieldUid, setSelectedUpdateTaskFieldUid] = useState<string>("");
 
   const { data: employeesTaskData, loading } = useQuery(fetch_employees_task_details_query)
 
@@ -46,21 +43,26 @@ function ShowEmployeesTask() {
     },
 
 
-    update: (cache, { data: { fetchEmployeesTaskDetails: any } }) => {
-      const fetchTaskDeleteData: any = cache.readQuery({ query: fetch_employees_task_details_query })
+    update: (cache) => {
 
-      const uid = fetchTaskDeleteData.fetchEmployeesTaskDetails.map((fetchEmployeesTaskDetails: any) => {
-        console.log(fetchEmployeesTaskDetails.uid)
+      const fetchTaskDeleteData: fetchEmployeesTaskDetailsType | null  = cache.readQuery({ query: fetch_employees_task_details_query })
+
+      console.log(fetchTaskDeleteData)
+
+      const uid = fetchTaskDeleteData?.fetchEmployeesTaskDetails.map((fetchEmployeesTaskDetails: fetchTaskDeleteDataType) => {
+        console.log(fetchEmployeesTaskDetails)
+        return fetchEmployeesTaskDetails.uid
       })
 
-      cache.writeQuery({
-        query: fetch_employees_task_details_query,
-        data: {
-          fetchEmployeesTaskDetails: uid !== fetchTaskDeleteData.uid
-        }
-      })
+      if (fetchTaskDeleteData?.fetchEmployeesTaskDetails) {
+        cache.writeQuery({
+          query: fetch_employees_task_details_query,
+          data: {
+            fetchEmployeesTaskDetails: uid !== fetchTaskDeleteData.uid
+          }
+        })
+      }
     }
-
   }
     // {
     //   refetchQueries: [{ query: fetch_employees_task_details_query }]
@@ -72,7 +74,7 @@ function ShowEmployeesTask() {
 
   const Dispatch = useAppDispatch();
 
-  const showEditDialogBox = (val: String) => {
+  const showEditDialogBox = (val: string) => {
     Dispatch(setShowEmployeesEditDialogBox(true));
     console.log(val)
     setSelectedUpdateTaskFieldUid(val)
@@ -121,7 +123,7 @@ function ShowEmployeesTask() {
                 <div className="assigned-to-employee-div">
                 </div>
                 {
-                  val.emailId.map((val: String) => {
+                  val.emailId.map((val: string) => {
                     console.log(val)
                     return <div>
 

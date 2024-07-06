@@ -4,6 +4,7 @@ import { gql, useLazyQuery, useMutation, useQuery } from "@apollo/client";
 import { useAppDispatch, useAppSelector } from "../../../../ReduxHooks";
 import { fetchAdminProfileDetails, updateProfileNameQuery, updateProfilePasswordQuery } from "../../../../GraphQLQueries/SettingsQuery";
 import { setSavedLoggedInName } from "../../../../ReduxSlicers/LocalStorageSlicer";
+import { fetchAdminProfileDetailsProps } from "../../../../Types/SettingsProfileFormTypes";
 
 
 
@@ -17,7 +18,11 @@ function SettingsProfileForm() {
 
     const [adminProfileSavedUid, setAdminProfileSavedUid] = useState(localStorage.getItem("adminLoggedInSavedUid"));
 
-    const [updateProfileName] = useMutation(updateProfileNameQuery)
+    const [updateProfileName] = useMutation(updateProfileNameQuery,{
+        onCompleted:(data)=>{
+            console.log(data)
+        }
+    })
     const [updateProfilePassword, { loading: updateProfilePasswordLoading }] = useMutation(updateProfilePasswordQuery)
 
     const Disptach = useAppDispatch();
@@ -34,7 +39,9 @@ function SettingsProfileForm() {
         },    
 
     });
-
+useEffect(()=>{
+    console.log(updatePassword)
+})
 
     useEffect(() => {
         if (adminProfileSavedUid) {
@@ -45,14 +52,14 @@ function SettingsProfileForm() {
 
 
 
-    if (loading) return <p>Loading...</p>;
-    if (updateProfilePasswordLoading) return <p>Loading...</p>;
+    // if (loading) return <p>Loading...</p>;
+    // if (updateProfilePasswordLoading) return <p>Loading...</p>;
 
     return (
         <div className="settings-profile-form">
 
             {fetchAdminProfileDetailsData &&
-                fetchAdminProfileDetailsData.fetchAdminProfileDetails.map((val: any) => {
+                fetchAdminProfileDetailsData.fetchAdminProfileDetails.map((val: fetchAdminProfileDetailsProps) => {
                     return (
                         <div>
                             <p className="font-bold text-xl">User Details</p>
@@ -84,7 +91,7 @@ function SettingsProfileForm() {
                 <div>
                     <input onChange={(e) => setUpdatePassword(e.target.value)} placeholder="Password" type="text" />
                     <button className="update-profile-button" onClick={() =>
-                        updateProfileName({
+                        updateProfilePassword({
                             variables: {
                                 updateProfilePasswordParameters: {
                                     uid: adminProfileSavedUid,

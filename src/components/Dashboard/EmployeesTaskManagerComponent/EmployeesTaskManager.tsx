@@ -5,10 +5,11 @@ import { setShowEmployeesDialogBox } from "../../../ReduxSlicers/ShowEmployeesDi
 import AddEmployeesTaskManagerDialogBox from "./AddEmployeesComponent/AddEmployeesTaskManagerDialogBox";
 import NavBar from "../../NavBarComponent/NavBar";
 
-import "../../../App.css"
 import "../EmployeesTaskManagerComponent/EmployeesTaskManager.css"
 import "../EmployeesTaskManagerComponent/TaskDialogBox.css"
 
+
+import "../../../App.css"
 
 function EmployeesTaskManager() {
 
@@ -27,7 +28,7 @@ function EmployeesTaskManager() {
     })
 
     return (
-        <div  id="main-page" className="employee-task-manager-component">
+        <div id="main-page" className="employee-task-manager-component">
             <div className="tasks-component">
                 <NavBar />
                 <p className="font-bold text-lg">Employees Task</p>

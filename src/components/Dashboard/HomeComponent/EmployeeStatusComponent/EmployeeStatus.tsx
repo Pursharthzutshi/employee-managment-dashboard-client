@@ -4,6 +4,7 @@ import { gql, useQuery } from "@apollo/client";
 import { useAppSelector } from "../../../../ReduxHooks";
 import "./EmployeeStatus.css";
 import { fetch_employees_details_query } from "../../../../GraphQLQueries/HomeQuery";
+import { employeeStatusProps } from "../../../../Types/HomeComponentTypes";
 
 
 
@@ -35,19 +36,27 @@ function EmployeeStatus() {
                     </tr>
                 </thead>
                 <tbody>
-                    {/* {showAllUsersDetailsAndStatus?.fetchEmailUsersIds.map((val: any) => (
-            <tr key={val.uid} className="employee-table-content-div">
-              <td>{val.name}</td>
-              <td>{val.status ? "true" : "false"}</td>
-              <td>
-                <FaPen />
-              </td>
-            </tr>
-          ))} */}
-
-                    {showAllUsersDetailsAndStatus?.fetchEmailUsersIds.filter((val: any) => {
-                        return val
-                    }).map((val: any) => (
+                    {
+                        showAllUsersDetailsAndStatus?.fetchEmailUsersIds.length > 0 ?
+                    showAllUsersDetailsAndStatus?.fetchEmailUsersIds.map((val: employeeStatusProps) =>
+                    (
+                    <tr key={val.uid} className="employee-table-content-div">
+                        <td>{val.name}</td>
+                        <td>{val.status ? "true" : "false"}</td>
+                        <td>
+                            <FaPen />
+                        </td>
+                    </tr>
+                    ))
+                    :
+                    <div className="show-no-task-message">
+                    <p className="font-bold">No Employee of the Month</p>
+                  </div>
+                    }
+                    {/* 
+                    {showAllUsersDetailsAndStatus?.fetchEmailUsersIds.filter((val: string[]) => {
+        
+                    }).map((val: employeeStatusProps) => (
                         <tr key={val.uid} className="employee-table-content-div">
                             <td>{val.name}</td>
                             <td>{val.status ? "true" : "false"}</td>
@@ -55,7 +64,7 @@ function EmployeeStatus() {
                                 <FaPen />
                             </td>
                         </tr>
-                    ))}
+                    ))} */}
                 </tbody>
             </table>
         </div>

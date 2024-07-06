@@ -11,7 +11,7 @@ type testProps = {
 }
 
 function DropDown({ test }: testProps) {
-    const showLogOutButtonElements = useAppSelector((state: any) => state.LocalStorageSlicer.showLogOutButtonElements)
+    const showLogOutButtonElements = useAppSelector((state) => state.LocalStorageSlicer.showLogOutButtonElements)
     const navigate = useNavigate()
 
     const Dispatch = useAppDispatch()

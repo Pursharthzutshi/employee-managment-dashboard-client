@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 type ChangeSignUpFormSliceProps  = {
-    changeSignUpForm:Boolean
-    changeLoginForm:Boolean
+    changeSignUpForm:boolean
+    changeLoginForm:boolean
 }
 
 const initialState:ChangeSignUpFormSliceProps = {
