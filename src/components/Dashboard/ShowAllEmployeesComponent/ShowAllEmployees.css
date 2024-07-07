@@ -7,7 +7,8 @@
     padding: 2px 2px 32px 12px;
 }
 
-.employees-details-container {
+.employees-details-container,
+.assign-employee-of-the-month-message-box {
     display: flex;
 }
 
@@ -47,10 +48,10 @@
     box-shadow: .2px .2px 2px .2px lightgray;
 }
 
-.employees-details-button{
+.employees-details-button {
     cursor: pointer;
     font-family: "Montserrat";
-    color:white;
+    color: white;
     border: none;
     margin-top: 10px;
     font-size: .77rem;
@@ -58,15 +59,16 @@
     border-radius: 4px;
     padding: 4px 12px 4px 11px;
     box-shadow: .2px .2px 12px .2px whitesmoke;
-    background: linear-gradient(to left,rgb(0, 113, 212),rgb(0, 85, 170));
+    background: linear-gradient(to left, rgb(0, 113, 212), rgb(0, 85, 170));
 }
 
-.employees-details-button:hover{
+.employees-details-button:hover {
     background: white;
     transition: .2s;
-    box-shadow: .2px .2px 2px .2px lightgray;    
-    color:rgb(0, 113, 212);
+    box-shadow: .2px .2px 2px .2px lightgray;
+    color: rgb(0, 113, 212);
 }
+
 /* 
 {
     overflow: hidden;
@@ -82,26 +84,61 @@
 } */
 
 
-.no-employee-div{
+.no-employee-div {
     display: flex;
 }
 
-.no-employee-div{
+.no-employee-div {
     flex-direction: column;
 }
 
-.no-employee-div{
+.no-employee-div {
     height: 80vh;
     /* box-shadow: .2px .2px 12px .2px; */
     justify-content: center;
     align-items: center;
 }
 
-.add-new-employee-link{
-    color:black;
+.add-new-employee-link {
+    color: black;
     font-size: .9rem;
     /* border: 2px solid black; */
     text-decoration: none;
-    padding:4px 12px 4px 12px;
+    padding: 4px 12px 4px 12px;
     box-shadow: .2px .2px 2px .2px lightgray;
+}
+
+.assign-employee-of-the-month-message-box-icon,
+.assign-employee-of-the-month-message-box p {
+    color: green;
+}
+
+.assign-employee-of-the-month-message-box {
+    position: fixed;
+    left: 45%;
+    top: 0%;
+    border-radius: 4px;
+    box-shadow: .2px .2px 12px .2px lightgray;
+    border-left: 4px solid green;
+    padding: 2px 15px 12px 12px;
+    gap: 10px;
+    animation: 4s ease assignEmployeeOfTheMonthMessageBoxAnimation;
+}
+
+@keyframes assignEmployeeOfTheMonthMessageBoxAnimation {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.assign-employee-of-the-month-message-box-icon {
+    margin-top: 14px;
 }

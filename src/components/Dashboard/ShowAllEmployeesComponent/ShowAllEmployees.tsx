@@ -13,6 +13,7 @@ import "../ShowAllEmployeesComponent/ShowAllEmployeesResponsive.css"
 import DeleteEmployeeAccountDialogBox from "./DeleteEmployeeAccountDialogBox";
 
 import "../ShowAllEmployeesComponent/DeleteEmployeeAccountDialogBox.css"
+import { FaCheck, FaCheckCircle, FaTicketAlt } from "react-icons/fa";
 // import { client } from "../../..";
 
 function ShowAllEmployees() {
@@ -26,6 +27,8 @@ function ShowAllEmployees() {
     const [totalEmployeeDetailsCount, setTotalEmployeeDetailsCount] = useState(0);
 
     const createEmployeeNewAccountStatus = useAppSelector((state) => state.createEmployeeNewAccountStatusSlicer.createEmployeeNewAccountStatus)
+
+    const [showAssignEmployeeOfTheMonthStatus, setShowAssignEmployeeOfTheMonthStatus] = useState(false);
 
     const Dispatch = useDispatch()
 
@@ -52,6 +55,23 @@ function ShowAllEmployees() {
         setSelectedEmployeeAccountUid(uid)
     }
 
+    const showAssignEmployeeOfTheMonth = (selectedUid: string) => {
+
+        assignEmployeeOfTheMonth({
+            variables: {
+                updateEmployeeOfTheMonthParameters: {
+                    uid: selectedUid,
+                    employeeOfTheMonth: true
+                },
+            },
+        })
+        setShowAssignEmployeeOfTheMonthStatus(true);
+    }
+
+    setTimeout(() => {
+        setShowAssignEmployeeOfTheMonthStatus(false);
+    },3000)
+
 
     const adminStatus = useAppSelector((state) => state.LocalStorageSlicer.adminStatus)
 
@@ -59,16 +79,23 @@ function ShowAllEmployees() {
 
     return (
         <div id="main-page" className="show-all-employees-component">
+         {
+                showAssignEmployeeOfTheMonthStatus &&
 
+                <div className="assign-employee-of-the-month-message-box">
+                    <FaCheck className="assign-employee-of-the-month-message-box-icon"/>
+                    <p>New Employee of the Month Assigned</p>
+                </div>
+            }
             <NavBar />
-
+   
             <div>
                 <p className="font-bold text-xl">All Employees</p>
                 <br></br>
                 {
                     ShowAllEmployeesData.showAllEmployee.length > 0
                     && <input data-testid="search-input" onChange={(e) => Dispatch(setSearchFilter(e.target.value))} className="search-employees-input" placeholder="Search Employees" type="text" />
-                 
+
                 }
                 <div className="employees-details-container">
                     {
@@ -90,15 +117,7 @@ function ShowAllEmployees() {
                                         {adminStatus ?
                                             <div>
                                                 <button onClick={() => {
-                                                    assignEmployeeOfTheMonth({
-                                                        variables: {
-                                                            updateEmployeeOfTheMonthParameters: {
-                                                                uid: EmployeesAccountData.uid,
-                                                                employeeOfTheMonth: true
-                                                            },
-                                                        },
-                                                    })
-
+                                                    showAssignEmployeeOfTheMonth(EmployeesAccountData.uid)
                                                 }} className="employees-details-button font-semibold text-sm">Assign Employee of the month</button>
                                                 <button className="delete-employee-Account-button font-semibold text-sm mt-4" onClick={() => showDeleteEmployeeAccountDialogBox(EmployeesAccountData.uid)} >Delete Employee Account</button>
                                             </div>
