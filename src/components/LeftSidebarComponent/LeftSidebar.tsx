@@ -58,7 +58,12 @@ function LeftSidebar() {
                                 <p>Settings</p>
                             </Link>
                         }
-
+                        {
+                            !adminStatus && <Link className="left-sidebar-links" to="/employeesTakenLeaves">
+                                <img className="left-sidebar-icon-image" src={settingsImage} />
+                                <p>Employees Taken Leave</p>
+                            </Link>
+                        }
 
 
 

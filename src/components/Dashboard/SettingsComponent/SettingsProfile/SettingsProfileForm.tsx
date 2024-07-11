@@ -11,15 +11,15 @@ import { fetchAdminProfileDetailsProps } from "../../../../Types/SettingsProfile
 function SettingsProfileForm() {
 
     const adminStatus = useAppSelector((state) => state.LocalStorageSlicer.adminStatus)
- 
+
 
     const [updateName, setUpdateName] = useState("")
     const [updatePassword, setUpdatePassword] = useState("")
 
     const [adminProfileSavedUid, setAdminProfileSavedUid] = useState(localStorage.getItem("adminLoggedInSavedUid"));
 
-    const [updateProfileName] = useMutation(updateProfileNameQuery,{
-        onCompleted:(data)=>{
+    const [updateProfileName] = useMutation(updateProfileNameQuery, {
+        onCompleted: (data) => {
             console.log(data)
         }
     })
@@ -36,12 +36,13 @@ function SettingsProfileForm() {
         onCompleted: (fetchAdminProfileDetailsData) => {
             console.log(fetchAdminProfileDetailsData.fetchAdminProfileDetails)
             Disptach(setSavedLoggedInName(fetchAdminProfileDetailsData.fetchAdminProfileDetails[0].name))
-        },    
+        },
 
     });
-useEffect(()=>{
-    console.log(updatePassword)
-})
+    
+    useEffect(() => {
+        console.log(updatePassword)
+    })
 
     useEffect(() => {
         if (adminProfileSavedUid) {

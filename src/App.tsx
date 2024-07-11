@@ -18,6 +18,7 @@ import './AppResponsive.css';
 import HomePage from './components/HomePageComponent/HomePage';
 import LoginAdmin from './components/RegisterComponent/LoginComponent/LoginAdmin';
 import LoginUsers from './components/RegisterComponent/LoginComponent/LoginEmployees';
+import EmployeesTakenLeaves from './components/Dashboard/EmployeesTakenLeavesComponent/EmployeesTakenLeave';
 
 function App() {
 
@@ -64,10 +65,10 @@ function App() {
           <Route path="/showAllEmployeesData" element={<ShowAllEmployees />} />
 
           <Route path="/" element=
-          {
-            !logOutButton && <HomePage />
-          }
-             />
+            {
+              !logOutButton && <HomePage />
+            }
+          />
 
 
           <Route path="/loginAdmin" element={<LoginAdmin />} />
@@ -78,6 +79,13 @@ function App() {
             {adminStatus ?
               <CreateNewEmployeeAccount /> :
               null
+            }
+          />
+
+          <Route path="/employeesTakenLeaves" element=
+            {adminStatus ?
+              null :
+              <EmployeesTakenLeaves />
             }
           />
 

@@ -33,6 +33,7 @@ import WelcomeBack from "./WelcomeBackComponent/WelcomeBack";
 import "../HomeComponent/Home.css"
 import "../HomeComponent/HomeResponsive.css"
 import { show_all_employees_charts_data_query } from "../../../GraphQLQueries/HomeQuery";
+import EmployeeLeaves from "./EmployeeLeavesComponent/EmployeeLeaves";
 // Register the components
 ChartJS.register(
     CategoryScale,
@@ -52,10 +53,13 @@ function Home() {
 
     const { data: employeesData, refetch } = useQuery(show_all_employees_charts_data_query);
 
+    const adminStatus = useAppSelector((state) => state.LocalStorageSlicer.adminStatus)
+
 
     const count = useAppSelector((state) => state.ChartsDetailsSlicer.count)
     const departmentCount = useAppSelector((state) => state.ChartsDetailsSlicer.departmentCount)
     const createEmployeeNewAccountStatus = useAppSelector((state) => state.createEmployeeNewAccountStatusSlicer.createEmployeeNewAccountStatus);
+
 
     const Dispatch = useAppDispatch()
 
@@ -112,12 +116,12 @@ function Home() {
             </div>
             <br></br>
             <div className="chart-div-container">
-
-
-                {/* <EmployeeStatus /> */}
-                {/* <DepartmentChart /> */}
+                {
+                    adminStatus && <EmployeeLeaves />
+                }
 
             </div>
+            <br></br>
 
         </div>
     )

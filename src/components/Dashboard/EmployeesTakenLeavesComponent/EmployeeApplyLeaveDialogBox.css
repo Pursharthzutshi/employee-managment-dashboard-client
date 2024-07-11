@@ -1,0 +1,85 @@
+.employee-apply-leave-dialog-box-form,.close-button-icon-div {
+    display: flex;
+}
+
+.close-button-icon-div{
+    flex-direction: row;
+}
+
+.employee-apply-leave-dialog-box-form {
+    flex-direction: column;
+}
+
+.show-employee-apply-leave-dialog-box {
+    position: fixed;
+    width: 30%;
+    /* height: 37%; */
+    left: 37%;
+    top: 33%;
+    padding: 12px 15px 18px 12px;
+    background: white;
+    box-shadow: .2px .2px 12px .2px lightgray;
+    transition: .2s;
+}
+
+.close-button-icon{
+    color: red;
+    cursor: pointer;
+}
+
+.employee-apply-leave-dialog-box-form {
+    gap: 20px;
+}
+/* .close-button-icon-div{
+    margin-top: 10px;
+} */
+
+.employee-apply-leave-dialog-box-form input,
+.employee-apply-leave-dialog-box-form textarea {
+    box-shadow: .2px .2px 4px .2px lightgray;
+}
+
+.leave-apply-heading{
+    margin-top: -4px;
+    font-size: 1.1rem;
+}
+
+.employee-apply-leave-dialog-box-form input{
+    padding: 2px 2px 2px 12px;
+}
+
+.employee-apply-leave-dialog-box-form textarea::placeholder{
+    padding: 2px 2px 2px 12px;
+}
+
+.close-button-icon-div{
+    justify-content: flex-end;
+}
+
+.employee-apply-leave-dialog-box-form textarea {
+    padding: 2px 2px 2px 2px;
+    height: 15vh;
+    resize: none;
+    outline: none;
+}
+
+
+.employee-apply-leave-dialog-box-form button{
+    background: linear-gradient(to left,rgb(0, 149, 218),rgb(0, 166, 255));
+    color: white;
+    padding: 4px 2px 4px 2px ;
+    border-radius: 4px;
+    box-shadow: .2px .2px 12px .2px lightgray;
+}
+
+
+.employee-apply-leave-dialog-box-form button:hover{
+    box-shadow: .2px .2px 5px .2px lightgray;
+    background: white;
+    color:rgb(0, 149, 218);
+    transition: .2s;
+}
+
+.error-message{
+    color: red;
+}

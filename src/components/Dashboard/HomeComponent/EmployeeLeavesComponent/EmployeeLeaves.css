@@ -1,0 +1,104 @@
+.employees-leaves-component::-webkit-scrollbar {
+    background: linear-gradient(to left,rgb(255, 255, 255),rgb(255, 255, 255));
+}
+
+.employees-leaves-component::-webkit-scrollbar-track {
+    /* box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); */
+}
+
+.employees-leaves-component::-webkit-scrollbar-thumb {
+    background: linear-gradient(to left,rgb(245, 245, 245),rgb(235, 235, 235));
+    border-radius: 2px;
+
+}
+
+/* body::-webkit-scrollbar-button {
+    display: hidden;
+} */
+
+.employee-leave-box-buttons-container,
+.employee-leave-details-data-div,
+.employees-leaves-container,
+.employee-leave-details-key-data-row {
+    display: flex;
+}
+
+.employee-leave-box-buttons-container {
+    flex-direction: row;
+}
+
+.employee-leave-details-data-div {
+    flex-direction: row;
+}
+
+
+.employees-leaves-container {
+    flex-direction: column;
+}
+
+.employee-leave-details-data-div {
+    margin-top: 2px;
+    gap: 10px;
+}
+
+.employees-leaves-component-heading {
+    font-size: 1.2rem;
+}
+
+.employees-leaves-component {
+    width: 94%;
+    height: 40vh;
+    overflow-y: scroll;
+    padding: 12px 2px 12px 15px;
+    /* border: 3px solid darkblue; */
+    /* margin-top: -10px; */
+    box-shadow: .2px .2px 2px .2px lightgray;
+}
+
+.employees-leaves-container {
+    gap: 10px;
+}
+
+.employee-leave-box-buttons-container {
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.employee-leave-box-buttons-container button {
+    padding: 2px 12px 2px 12px;
+    color: white;
+    font-size: .9rem;
+}
+
+.employee-leave-box-buttons-container button:nth-child(1) {
+    background: linear-gradient(to left, rgb(0, 103, 158), rgb(0, 138, 202));
+}
+
+.employee-leave-box-buttons-container button:nth-child(2) {
+    background: linear-gradient(to left, rgb(198, 43, 0), rgb(173, 44, 1));
+}
+
+.employee-leave-search-bar{
+    outline: none;
+    margin-top: 10px;
+    width: 70%;
+    padding: 2px 2px 2px 12px;
+    box-shadow: .2px .2px 2px .2px lightgray;
+}
+
+/* 
+.employee-leave-search-bar:hover{
+    box-shadow: ;
+} */
+
+.employee-leave-search-bar::placeholder{
+    font-size: .9rem;
+    font-family: "Montserrat";
+}
+
+.employee-leave-box-buttons-container button:hover {
+    background: white;
+    transition: .2s;
+    box-shadow: .2px .2px 2px .2px lightgray;
+    color:black;
+}

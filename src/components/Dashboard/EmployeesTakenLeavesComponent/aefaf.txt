@@ -1,0 +1,18 @@
+.leave-pending-status{
+    font-size: .9rem;
+    color:rgb(144, 130, 0);
+    border-radius: 200px;
+    border: 2px solid darkgoldenrod;
+    width: 8.1%;
+    background: rgba(252, 191, 37, 0.356);
+    height: 4.1vh;
+    padding: 2px 2px 2px 12px;
+}
+
+.show-logged-in-employees-leave-details{
+    color:rgb(0, 0, 97);
+    box-shadow: .2px .2px 12px .2px whitesmoke;
+    padding: 2px 2px 22px 12px;
+    border-bottom: 1px solid darkblue;
+    /* margin-top: 10px; */
+}

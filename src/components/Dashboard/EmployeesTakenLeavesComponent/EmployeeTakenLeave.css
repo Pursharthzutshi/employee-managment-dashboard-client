@@ -1,0 +1,77 @@
+.leave-application-sent-msg-div{
+    display: flex;
+    gap:5.3px;
+}
+
+.leave-pending-status,
+.leave-approved-status,
+.leave-rejected-status {
+    font-size: .86rem;
+    border-radius: 20px;
+    width: 7.1%;
+    /* text-align: center; */
+    height: 3.7vh;
+    padding: 2px 2px 6px 12px;
+}
+
+.leave-pending-status {
+    color: rgb(144, 130, 0);
+    border: 2px solid rgb(188, 141, 22);
+    background: rgba(252, 191, 37, 0.356);
+}
+
+
+.leave-approved-status {
+    color: rgb(0, 147, 10);
+    border: 2px solid rgb(0, 165, 11);
+    background: linear-gradient(to left,rgba(1, 124, 46, 0.359),rgba(0, 145, 53, 0.31));
+}
+
+
+.leave-rejected-status {
+    color: rgb(144, 5, 0);
+    border: 2px solid rgb(198, 1, 1);
+    background: rgba(252, 37, 37, 0.356);
+}
+
+.show-logged-in-employees-leave-details {
+    width: 98%;
+    /* border-radius: 8px; */
+    margin-top: 10px;
+    color: rgb(0, 0, 74);
+    box-shadow: .2px .2px 12px .2px whitesmoke;
+    padding: 2px 2px 22px 12px;
+    /* border: 8px double darkblue; */
+    /* margin-top: 10px; */
+}
+.apply-for-the-leave-button{
+    color: black;
+    background: white;
+    /* background: linear-gradient(to left,rgb(0, 79, 135),rgb(0, 94, 131)); */
+    /* border: 1px solid black; */
+    box-shadow: .2px .2px 2px .2px lightgray;
+    font-size: .9rem;
+    padding: 2px 12px 2px 12px;
+    margin-top: 10px;
+    border-radius: 4px;
+    
+}
+
+.leave-application-sent-msg-icon{
+    margin-top: 16px;
+    font-size: .8rem;
+}
+.leave-application-sent-msg-div{
+    position: fixed;
+    top:0%;
+    left: 45%;
+    padding: 2px 2px 6px 12px;
+    box-shadow: .2px .2px 2px .2px lightgray;
+    width: 15%;
+    color:rgb(0, 182, 0);
+
+}
+
+.leave-application-sent-msg-div{
+    text-align: center;
+}
