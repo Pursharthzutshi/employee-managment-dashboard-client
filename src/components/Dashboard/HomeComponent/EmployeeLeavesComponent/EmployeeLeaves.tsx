@@ -4,8 +4,10 @@ import { employees_leave_details_query, update_employee_leave_status } from "../
 import { useAppSelector } from "../../../../ReduxHooks";
 
 import "../EmployeeLeavesComponent/EmployeeLeaves.css"
+import { show_all_employees_data_query } from "../../../../GraphQLQueries/ShowAllEmployeesQuery";
 
 function EmployeeLeaves() {
+
 
     const { data: EmployeeLeavesDetailsData } = useQuery(employees_leave_details_query);
 
@@ -19,7 +21,25 @@ function EmployeeLeaves() {
 
     // const savedEmployeeLoggedInUid = useAppSelector((state) => state.LocalStorageSlicer.loggedInSavedUid)
 
-    const [updateLeaveStatus, { data: updateLeaveStatusData }] = useMutation(update_employee_leave_status)
+    const [updateLeaveStatus, { data: updateLeaveStatusData }] = useMutation(update_employee_leave_status, {
+        refetchQueries: [{ query: employees_leave_details_query }],
+
+        // update: (cache,{data:{updateEmployeeLeaveStatus}}) => {
+        //     const showLeaveData = cache.readQuery({ query: show_all_employees_data_query })
+
+        //     if(updateEmployeeLeaveStatus.success === true){
+        //         cache.writeQuery({
+        //             query:show_all_employees_data_query,
+        //             data:{
+        //                 showshowLoggedInEmployeesLeaveDetailsData:[...fetchLeaveDetailsData.showLoggedInEmployeesLeaveDetailsData]
+        //             }
+        //         })
+        //     }
+        //     console.log(updateEmployeeLeaveStatus);
+        // }
+
+
+    })
 
     useEffect(() => {
         console.log(updateLeaveStatusData)
@@ -41,12 +61,14 @@ function EmployeeLeaves() {
                 updateEmployeeLeaveStatusParameters: {
                     uid: val.uid,
                     employeeLeaveApplicationUid: val.employeeLeaveApplicationUid,
-                    leaveStatus: true
+                    leaveStatus: true,
+                    leaveApprovedButtonsStatus: false
                 }
             }
         }).then((val) => {
             console.log(val);
         })
+
     }
 
     const rejectEmployeeLeave = (val: any) => {
@@ -64,16 +86,18 @@ function EmployeeLeaves() {
                 updateEmployeeLeaveStatusParameters: {
                     uid: val.uid,
                     employeeLeaveApplicationUid: val.employeeLeaveApplicationUid,
-                    leaveStatus: false
+                    leaveStatus: false,
+                    leaveApprovedButtonsStatus: false
                 }
             }
         })
+
     }
 
 
     return (
         <div className="employees-leaves-component">
-            
+
 
             <p className="font-bold employees-leaves-component-heading">Leaves</p>
 
@@ -87,12 +111,13 @@ function EmployeeLeaves() {
                         return EmployeeLeavesDetailsData;
                     }
                 }).map((val: any, key: string) => {
+                    console.log(val)
                     return (
                         <div className="employees-leaves-container">
                             <div className="employee-leave-details-key-data-row">
                                 <div className="employee-leave-details-data-div">
                                     <div>
-                                        <p>{key }.</p>
+                                        <p>{key + 1}.</p>
                                     </div>
                                     <div>
                                         <div className="employee-leave-details-data-div">
@@ -111,8 +136,8 @@ function EmployeeLeaves() {
                                         </div>
                                         <div>
                                             {
-                                                key ?
-                                                    <div className="employee-leave-box-buttons-container">
+                                                val.leaveApprovedButtonsStatus ?
+                                                    <div key={val.id} className="employee-leave-box-buttons-container">
                                                         {/* <button>View Reason</button> */}
                                                         <button onClick={() => approveEmployeeLeave(val)}>Approve Leave</button>
                                                         <button onClick={() => rejectEmployeeLeave(val)}>Reject Leave</button>

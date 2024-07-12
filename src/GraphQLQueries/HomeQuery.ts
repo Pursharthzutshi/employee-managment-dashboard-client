@@ -47,6 +47,7 @@ fetchEmployeesLeaveDetails {
   leaveReason
   employeeLeaveApplicationUid
   date
+  leaveApprovedButtonsStatus
 }
 }
 `
@@ -54,8 +55,17 @@ fetchEmployeesLeaveDetails {
 export const update_employee_leave_status = gql`
 mutation updateEmployeeLeaveStatus($updateEmployeeLeaveStatusParameters: updateEmployeeLeaveStatusInput!){
   updateEmployeeLeaveStatus(updateEmployeeLeaveStatusParameters: $updateEmployeeLeaveStatusParameters) {
-    date
     
+  updatedEmployeeLeaveStatusData{
+      uid
+  leaveStatus
+  employeeName
+  leaveReason
+  employeeLeaveApplicationUid
+  date
+    }
+  success
+  message
   }
 }`
 

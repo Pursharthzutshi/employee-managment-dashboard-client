@@ -10,32 +10,56 @@ import "../EmployeesTakenLeavesComponent/EmployeeApplyLeaveDialogBox.css"
 type showEmployeeApplyLeaveDialogBoxProps = {
     showEmployeeApplyLeaveDialogBoxStatus: boolean
     setShowEmployeeApplyLeaveDialogBoxStatus: React.Dispatch<React.SetStateAction<boolean>>
-    setShowLeaveApplicationSentStatus:React.Dispatch<React.SetStateAction<boolean>>
+    setShowLeaveApplicationSentStatus: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-function EmployeeApplyLeaveDialogBox({ showEmployeeApplyLeaveDialogBoxStatus, setShowEmployeeApplyLeaveDialogBoxStatus,setShowLeaveApplicationSentStatus }: showEmployeeApplyLeaveDialogBoxProps) {
+function EmployeeApplyLeaveDialogBox({ showEmployeeApplyLeaveDialogBoxStatus, setShowEmployeeApplyLeaveDialogBoxStatus, setShowLeaveApplicationSentStatus }: showEmployeeApplyLeaveDialogBoxProps) {
 
 
-    const [showErrorMessage,setShowErrorMessage] = useState("");
+    const [showErrorMessage, setShowErrorMessage] = useState("");
 
-    const [showErrorMessageStatus,setShowErrorMessageStatus] = useState(false);
-
+    const [showErrorMessageStatus, setShowErrorMessageStatus] = useState(false);
     const [applyForLeave] = useMutation(insert_employees_leave_data_query, {
-        onCompleted: (applyForLeaveData) => {
-            if (applyForLeaveData.insertEmployeesLeaveDetails.success === true) {
-                setShowEmployeeApplyLeaveDialogBoxStatus(false)
-                setShowErrorMessageStatus(false)
+        onCompleted: (data) => {
+            const { insertEmployeesLeaveDetails } = data;
+            if (insertEmployeesLeaveDetails.success) {
+                setShowEmployeeApplyLeaveDialogBoxStatus(false);
+                setShowErrorMessageStatus(false);
                 setShowLeaveApplicationSentStatus(true);
             } else {
-                setShowEmployeeApplyLeaveDialogBoxStatus(true)
-                setShowLeaveApplicationSentStatus(false)
-                setShowErrorMessageStatus(true)
-                setShowErrorMessage(applyForLeaveData.insertEmployeesLeaveDetails.message)
+                setShowEmployeeApplyLeaveDialogBoxStatus(true);
+                setShowLeaveApplicationSentStatus(false);
+                setShowErrorMessageStatus(true);
+                setShowErrorMessage(insertEmployeesLeaveDetails.message);
             }
         },
-        update: (cache) => {
-            const fetchLeaveDetailsData = cache.readQuery({ query: show_logged_in_employees_leave_details_data_query })
-            console.log(fetchLeaveDetailsData)
+        update: (cache, { data }) => {
+            const { insertEmployeesLeaveDetails } = data;
+            const newData = insertEmployeesLeaveDetails.employeeLeaveData;
+
+            const fetchLeaveDetailsData: any = cache.readQuery({
+                query: show_logged_in_employees_leave_details_data_query,
+                variables: {
+                    showLoggedInEmployeesLeaveDetailsDataParameters: {
+                        uid: savedEmployeeLoggedInUid
+                    }
+                }
+            });
+
+            // Ensure fetchLeaveDetailsData and showLoggedInEmployeesLeaveDetailsData are defined
+            const existingData: any = fetchLeaveDetailsData.showLoggedInEmployeesLeaveDetailsData;
+
+            cache.writeQuery({
+                query: show_logged_in_employees_leave_details_data_query,
+                variables: {
+                    showLoggedInEmployeesLeaveDetailsDataParameters: {
+                        uid: savedEmployeeLoggedInUid
+                    }
+                },
+                data: {
+                    showLoggedInEmployeesLeaveDetailsData: [...existingData, newData]
+                }
+            });
         }
     });
 
@@ -57,7 +81,8 @@ function EmployeeApplyLeaveDialogBox({ showEmployeeApplyLeaveDialogBoxStatus, se
                     date: applyDate,
                     employeeLeaveApplicationUid: uuidv4(),
                     leaveReason: leaveReason,
-                    leaveStatus: null
+                    leaveStatus: null,
+                    leaveApprovedButtonsStatus:true
                 }
             }
         })
@@ -67,7 +92,7 @@ function EmployeeApplyLeaveDialogBox({ showEmployeeApplyLeaveDialogBoxStatus, se
 
     return (
         <div className="show-employee-apply-leave-dialog-box">
-            
+
             <div className="close-button-icon-div">
                 <FaTimes className="close-button-icon" onClick={closeEmployeeLeaveDialogBox}></FaTimes>
             </div>
@@ -76,7 +101,7 @@ function EmployeeApplyLeaveDialogBox({ showEmployeeApplyLeaveDialogBoxStatus, se
             <div className="employee-apply-leave-dialog-box-form">
                 <input onChange={(e) => { setApplyDate(e.target.value) }} type="date" />
                 <textarea onChange={(e) => { setLeaveReason(e.target.value) }} placeholder="Reason"></textarea>
-            
+
                 <button onClick={sendApplyForLeaveData} className="font-semibold">APPLY FOR THE LEAVE</button>
                 {showErrorMessageStatus && <p className="error-message"> {showErrorMessage} </p>}
             </div>

@@ -9,10 +9,15 @@ import { useEffect, useState } from "react";
 import "./Login.css"
 import { checkEmployeeLoggedInAuthQuery } from "../../../GraphQLQueries/LoginQuery";
 import { fetchTotalAdmin } from "../../../GraphQLQueries/CardsDetailsQuery";
+import { show_all_employees_data_query } from "../../../GraphQLQueries/ShowAllEmployeesQuery";
+import { employees_leave_details_query } from "../../../GraphQLQueries/HomeQuery";
 
 
 
 function LoginUsers() {
+
+    const [setSavedLoggedInEmployeeUid] = useState(localStorage.getItem("loggedInSavedUid"));
+
 
     const userLoggedinEmailId = useAppSelector((state) => state.LoginSlicer.userLoggedinEmailId)
     const userLoggedInEmailPassword = useAppSelector((state) => state.LoginSlicer.userLoggedinPassword)
@@ -28,6 +33,8 @@ function LoginUsers() {
 
             if (userLoginData.createUserLogin.success === true) {
                 console.log(userLoginData)
+                localStorage.setItem('token', userLoginData.createUserLogin.token);
+
                 navigate("/home")
                 Dispatch(setSavedLoggedInName(userLoginData.createUserLogin.name))
                 Dispatch(setAdminStatus(false));
@@ -44,6 +51,16 @@ function LoginUsers() {
         onError: (ErrorMessage) => {
             console.log(ErrorMessage);
         },
+        refetchQueries: [
+            {
+                query: employees_leave_details_query,
+                variables: {
+                    fetchLoggedInEmployeeAssignedTaskDetailsParameters: { uid: setSavedLoggedInEmployeeUid }
+                },
+        
+            }
+        ]
+
         // refetchQueries: [{ query: fetchTotalAdmin }]
 
     });

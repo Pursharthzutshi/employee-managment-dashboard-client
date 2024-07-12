@@ -24,6 +24,7 @@ function LoginAdmin() {
 
     const [checkAdminLoggedInAuth] = useMutation(checkAdminLoggedInAuthQuery, {
         onCompleted: (adminLoginData) => {
+            localStorage.setItem('token', adminLoginData.createAdminLogin.token);
 
             console.log(adminLoginData)
             if (adminLoginData.createAdminLogin.admin === true) {

@@ -20,23 +20,31 @@ function EmployeesTakenLeaves() {
 
     const [showEmployeeApplyLeaveDialogBoxStatus, setShowEmployeeApplyLeaveDialogBoxStatus] = useState(false);
 
-    const [showLoggedInEmployeesLeaveDetails, { data: showLoggedInEmployeesLeaveDetailsData, loading }] = useLazyQuery(
+    const [showLoggedInEmployeesLeaveDetails, { data: showLoggedInEmployeesLeaveDetailsData, loading,refetch }] = useLazyQuery(
         show_logged_in_employees_leave_details_data_query,
+
         {
             variables: {
                 showLoggedInEmployeesLeaveDetailsDataParameters: {
                     uid: savedEmployeeLoggedInUid
                 },
+
             },
             onCompleted: (data) => {
                 console.log(data);
+
             },
-        }
+            // update: (cache) => {
+            //     console.log(cache);
+            // }
+        },
+
     );
 
     useEffect(() => {
         if (savedEmployeeLoggedInUid) {
             showLoggedInEmployeesLeaveDetails();
+            refetch()
         }
     }, [savedEmployeeLoggedInUid, showLoggedInEmployeesLeaveDetails]);
 
@@ -69,7 +77,7 @@ function EmployeesTakenLeaves() {
             }
             <p className="font-bold">MY APPLIED LEAVES</p>
             {
-               showLoggedInEmployeesLeaveDetailsData &&  showLoggedInEmployeesLeaveDetailsData.showLoggedInEmployeesLeaveDetailsData.length > 0 ?
+                showLoggedInEmployeesLeaveDetailsData && showLoggedInEmployeesLeaveDetailsData.showLoggedInEmployeesLeaveDetailsData.length > 0 ?
                     showLoggedInEmployeesLeaveDetailsData.showLoggedInEmployeesLeaveDetailsData && showLoggedInEmployeesLeaveDetailsData.showLoggedInEmployeesLeaveDetailsData.map((val: any) => (
                         <div className="show-logged-in-employees-leave-details" key={val.id}>
                             <br></br>
@@ -83,7 +91,7 @@ function EmployeesTakenLeaves() {
                                             {
                                                 val.leaveStatus === true ?
                                                     <p className="font-semibold leave-approved-status">Approved</p>
-                                                    :
+                                                    :  
                                                     <p className="font-semibold leave-rejected-status">Rejected</p>
                                             }
                                         </div>
