@@ -101,19 +101,6 @@ function AddEmployeesTaskManagerDialogBox() {
                 }
                 <div className="add-new-task-button-div">
 
-                    {/* <button onClick={() => addTasks({
-                        variables: {
-                            employeesTaskParameters: {
-                                uid: uuidv4(),
-                                name: employeeName,
-                                emailId: employeeEmailId,
-                                taskDesc: employeeTaskDesc,
-                                deadLine: employeeDeadLine
-                            }
-                        }
-                    })}
-                        className="add-new-task-button">Add Task</button> */}
-
                     <button type="submit" className="add-new-task-button">Add Task</button>
 
                 </div>

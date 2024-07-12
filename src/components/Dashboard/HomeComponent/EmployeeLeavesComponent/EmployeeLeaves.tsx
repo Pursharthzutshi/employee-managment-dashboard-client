@@ -1,25 +1,22 @@
 import react, { useEffect, useState } from "react"
 import { useMutation, useQuery } from "@apollo/client";
 import { employees_leave_details_query, update_employee_leave_status } from "../../../../GraphQLQueries/HomeQuery";
-import { useAppSelector } from "../../../../ReduxHooks";
+import { employeeLeavesProps } from "../../../../Types/HomeComponentTypes";
+
 
 import "../EmployeeLeavesComponent/EmployeeLeaves.css"
-import { show_all_employees_data_query } from "../../../../GraphQLQueries/ShowAllEmployeesQuery";
 
 function EmployeeLeaves() {
 
 
-    const { data: EmployeeLeavesDetailsData } = useQuery(employees_leave_details_query);
-
-    useEffect(() => {
-        // console.log(EmployeeLeavesDetailsData.fetchEmployeesLeaveDetails)
-    })
+    const { data: EmployeeLeavesDetailsData, loading, refetch } = useQuery(employees_leave_details_query, {
+    },
+    );
 
     const [employeeStatus, setEmployeeLeaveStatus] = useState(true);
 
     const [searchLeaveEmployeeName, setSearchLeaveEmployeeName] = useState("");
 
-    // const savedEmployeeLoggedInUid = useAppSelector((state) => state.LocalStorageSlicer.loggedInSavedUid)
 
     const [updateLeaveStatus, { data: updateLeaveStatusData }] = useMutation(update_employee_leave_status, {
         refetchQueries: [{ query: employees_leave_details_query }],
@@ -41,19 +38,15 @@ function EmployeeLeaves() {
 
     })
 
+    const [showApprovedRejectedMessage, setShowApprovedRejectedMessage] = useState("");
+
     useEffect(() => {
+        refetch()
         console.log(updateLeaveStatusData)
     })
 
-    const approveEmployeeLeave = (val: any) => {
+    const approveEmployeeLeave = (val: employeeLeavesProps) => {
 
-        // val.map((item:any)=>{
-        //     if(){
-        //         setEmployeeLeaveStatus(false)
-        //     }else{
-        //         setEmployeeLeaveStatus(true)
-        //     }
-        // })
 
         console.log(val.employeeLeaveApplicationUid);
         updateLeaveStatus({
@@ -68,17 +61,11 @@ function EmployeeLeaves() {
         }).then((val) => {
             console.log(val);
         })
+        setShowApprovedRejectedMessage("Leave Approved")
 
     }
 
-    const rejectEmployeeLeave = (val: any) => {
-        // val.map((item:any)=>{
-        //     if(){
-        //         setEmployeeLeaveStatus(false)
-        //     }else{
-        //         setEmployeeLeaveStatus(true)                
-        //     }
-        // })
+    const rejectEmployeeLeave = (val: employeeLeavesProps) => {
 
 
         updateLeaveStatus({
@@ -91,8 +78,24 @@ function EmployeeLeaves() {
                 }
             }
         })
+        setShowApprovedRejectedMessage("Leave Rejected")
 
     }
+    let pendingLeaves = [];
+    let approvedLeaves = [];
+    let rejectedLeaves = [];
+
+    if (EmployeeLeavesDetailsData) {
+        pendingLeaves = EmployeeLeavesDetailsData.fetchEmployeesLeaveDetails.filter((item: employeeLeavesProps) => item.leaveStatus === null || item.leaveStatus === undefined);
+        approvedLeaves = EmployeeLeavesDetailsData.fetchEmployeesLeaveDetails.filter((item: employeeLeavesProps) => item.leaveStatus === true);
+        rejectedLeaves = EmployeeLeavesDetailsData.fetchEmployeesLeaveDetails.filter((item: employeeLeavesProps) => item.leaveStatus === false);
+    }
+
+    const sortedLeaves = [...pendingLeaves, ...approvedLeaves, ...rejectedLeaves];
+
+    // approvedLeaves.reverse();
+    // rejectedLeaves.reverse();
+    if (loading) return <div>Loading...</div>
 
 
     return (
@@ -104,14 +107,13 @@ function EmployeeLeaves() {
             <input placeholder="Search Employee Name" onChange={(e) => setSearchLeaveEmployeeName(e.target.value)} className="employee-leave-search-bar" type="text" />
 
             {
-                EmployeeLeavesDetailsData && EmployeeLeavesDetailsData.fetchEmployeesLeaveDetails.filter((EmployeeLeavesDetailsData: any) => {
+                sortedLeaves.filter((EmployeeLeavesDetailsData: employeeLeavesProps, key: number) => {
                     if (EmployeeLeavesDetailsData.employeeName.toLowerCase().includes(searchLeaveEmployeeName.toLowerCase())) {
                         return EmployeeLeavesDetailsData;
                     } else if (searchLeaveEmployeeName === "") {
                         return EmployeeLeavesDetailsData;
                     }
-                }).map((val: any, key: string) => {
-                    console.log(val)
+                }).map((val: employeeLeavesProps, key: number) => {
                     return (
                         <div className="employees-leaves-container">
                             <div className="employee-leave-details-key-data-row">
@@ -144,7 +146,9 @@ function EmployeeLeaves() {
                                                     </div>
                                                     :
                                                     <div className="employee-leave-box-buttons-container">
-                                                        <p>Done</p>
+                                                        {
+                                                            val.leaveStatus ? <p className="leave-approved-status">Leave Approved</p> : <p className="leave-rejected-status">Leave Rejected</p>
+                                                        }
                                                     </div>
                                             }
                                         </div>

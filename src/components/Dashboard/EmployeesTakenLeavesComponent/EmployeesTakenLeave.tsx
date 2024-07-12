@@ -8,6 +8,7 @@ import NavBar from "../../NavBarComponent/NavBar";
 import "../EmployeesTakenLeavesComponent/EmployeeTakenLeave.css"
 import EmployeeApplyLeaveDialogBox from "./EmployeeApplyLeaveDialogBox";
 import { FaCheck } from "react-icons/fa";
+import { employeeLeavesProps } from "../../../Types/HomeComponentTypes";
 // import EmployeeApplyLeaveDialogBox from "../HomeComponent/EmployeeLeavesComponent/EmployeeApplyLeaveDialogBox";
 
 function EmployeesTakenLeaves() {
@@ -20,7 +21,7 @@ function EmployeesTakenLeaves() {
 
     const [showEmployeeApplyLeaveDialogBoxStatus, setShowEmployeeApplyLeaveDialogBoxStatus] = useState(false);
 
-    const [showLoggedInEmployeesLeaveDetails, { data: showLoggedInEmployeesLeaveDetailsData, loading,refetch }] = useLazyQuery(
+    const [showLoggedInEmployeesLeaveDetails, { data: showLoggedInEmployeesLeaveDetailsData, loading, refetch }] = useLazyQuery(
         show_logged_in_employees_leave_details_data_query,
 
         {
@@ -32,11 +33,8 @@ function EmployeesTakenLeaves() {
             },
             onCompleted: (data) => {
                 console.log(data);
-
             },
-            // update: (cache) => {
-            //     console.log(cache);
-            // }
+
         },
 
     );
@@ -78,7 +76,7 @@ function EmployeesTakenLeaves() {
             <p className="font-bold">MY APPLIED LEAVES</p>
             {
                 showLoggedInEmployeesLeaveDetailsData && showLoggedInEmployeesLeaveDetailsData.showLoggedInEmployeesLeaveDetailsData.length > 0 ?
-                    showLoggedInEmployeesLeaveDetailsData.showLoggedInEmployeesLeaveDetailsData && showLoggedInEmployeesLeaveDetailsData.showLoggedInEmployeesLeaveDetailsData.map((val: any) => (
+                    showLoggedInEmployeesLeaveDetailsData.showLoggedInEmployeesLeaveDetailsData && showLoggedInEmployeesLeaveDetailsData.showLoggedInEmployeesLeaveDetailsData.map((val: employeeLeavesProps) => (
                         <div className="show-logged-in-employees-leave-details" key={val.id}>
                             <br></br>
                             {/* <p className="font-semibold">Name: {val.employeeName}</p> */}
@@ -90,14 +88,22 @@ function EmployeesTakenLeaves() {
                                         <div>
                                             {
                                                 val.leaveStatus === true ?
-                                                    <p className="font-semibold leave-approved-status">Approved</p>
-                                                    :  
-                                                    <p className="font-semibold leave-rejected-status">Rejected</p>
+                                                    <div>
+                                                        <br></br>
+                                                        <label className="font-semibold leave-approved-status">Approved</label>
+                                                    </div>
+                                                    :
+                                                    <div>
+                                                        <br></br>
+                                                        <label className="font-semibold leave-rejected-status">Rejected</label>
+                                                    </div>
                                             }
                                         </div>
                                         :
-                                        <p className="font-semibold leave-pending-status">Pending</p>
-
+                                        <div>
+                                            <br></br>
+                                            <label className="font-semibold leave-pending-status">Pending</label>
+                                        </div>
                                 }
                             </div>
 
@@ -106,6 +112,7 @@ function EmployeesTakenLeaves() {
                     ))
                     :
                     <div className="show-no-task-message">
+                        <br></br>
                         <p className="font-bold">No Leave Taken</p>
                     </div>
             }

@@ -12,6 +12,7 @@ import { employeesTaskManagerDialogBoxFormTypes, fetchEmailUsersIdsProps } from 
 import "./EmployeesTaskManagerDialogBoxForm.css"
 
 import { showUsersEmailIdsQuery } from "../../../GraphQLQueries/EmployeesTaskManagerQuery";
+import DateLimit from "../../utils/DateLimit";
 
 function EmployeesTaskManagerDialogBoxForm() {
 
@@ -65,10 +66,6 @@ function EmployeesTaskManagerDialogBoxForm() {
         Dispatch(setShowEmployeesEditDialogBox(false));
     }
 
-    const year = new Date().getFullYear();
-    const month = String(new Date().getMonth() + 1).padStart(2, '0');
-    const day = String(new Date().getDate()).padStart(2, '0');
-    const date = `${year}-${month}-${day}`;
 
     // LOADING    
 
@@ -123,7 +120,7 @@ function EmployeesTaskManagerDialogBoxForm() {
             }
 
             <textarea className="task-desc-textarea" placeholder="Task Description" onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => { Dispatch(setEmployeeTaskDesc(e.target.value)) }} ></textarea>
-            <input min={date} data-date-format="DD MMMM YYYY" type="date" placeholder="deadLine" className="calendar" onChange={(e: React.ChangeEvent<HTMLInputElement>) => { Dispatch(setEmployeeDeadLine(e.target.value)) }} />
+            <input min={DateLimit()} data-date-format="DD MMMM YYYY" type="date" placeholder="deadLine" className="calendar" onChange={(e: React.ChangeEvent<HTMLInputElement>) => { Dispatch(setEmployeeDeadLine(e.target.value)) }} />
 
         </div>
     )

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaBuilding, FaUser, FaUserAlt } from "react-icons/fa";
+import { FaUser, FaUserAlt } from "react-icons/fa";
 import DropDown from "../utils/DropDown";
 
 

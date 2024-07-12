@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { gql, useLazyQuery, useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { useAppDispatch, useAppSelector } from "../../../ReduxHooks";
 import { setUserName, setUserEmailId, setEmailPassword, setEmailPasswordRecheck, setGenderType, setDepartment } from "../../../ReduxSlicers/SignUpSlicer";
-import { redirect, useNavigate } from "react-router-dom";
-// import ChangeSignUpFormButtons from "./ChangeSignUpFormButtons";
+import {  useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
 import { setCreateEmployeeNewAccountStatus } from "../../../ReduxSlicers/createEmployeeNewAccountStatusSlicer";
-
-import "./CreateNewEmployeeAccount.css"
-import "./CreateNewEmployeeAccountResponsive.css"
 import { signUpquery } from "../../../GraphQLQueries/CreateNewEmployeeAccountQuery";
 import { show_all_employees_data_query } from "../../../GraphQLQueries/ShowAllEmployeesQuery";
 import { createNewEmployeeAccountCacheType } from "../../../Types/InMemoryCacheTypes";
 
-
+import "./CreateNewEmployeeAccount.css"
+import "./CreateNewEmployeeAccountResponsive.css"
 
 function CreateNewEmployeeAccount() {
 
@@ -68,16 +65,16 @@ function CreateNewEmployeeAccount() {
         const existingEmployees: createNewEmployeeAccountCacheType | null = cache.readQuery({ query: show_all_employees_data_query });
 
         console.log(existingEmployees)
-        if(existingEmployees?.showAllEmployee){
-        cache.writeQuery({
-          query: show_all_employees_data_query,
-          data: {
-            showAllEmployee: [...existingEmployees.showAllEmployee, newEmployee]
-          },
-        });
+        if (existingEmployees?.showAllEmployee) {
+          cache.writeQuery({
+            query: show_all_employees_data_query,
+            data: {
+              showAllEmployee: [...existingEmployees.showAllEmployee, newEmployee]
+            },
+          });
 
+        }
       }
-    }
     }
 
 

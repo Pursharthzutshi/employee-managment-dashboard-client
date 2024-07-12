@@ -1,17 +1,14 @@
 import { useAppDispatch, useAppSelector } from "../../../ReduxHooks";
 import { setUserLoggedInEmailId, setUserLoggedInEmailPassword } from "../../../ReduxSlicers/LoginSlicer";
-import { gql, useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { Link, useNavigate } from "react-router-dom";
-import ChangeLogInFormButtons from "./ChangeLogInFormButtons";
 import { setAdminStatus, setLoggedInSavedUid, setSavedLoggedInName, setShowLogOutButtonElements } from "../../../ReduxSlicers/LocalStorageSlicer";
 import { useEffect, useState } from "react";
 
-import "./Login.css"
 import { checkEmployeeLoggedInAuthQuery } from "../../../GraphQLQueries/LoginQuery";
-import { fetchTotalAdmin } from "../../../GraphQLQueries/CardsDetailsQuery";
-import { show_all_employees_data_query } from "../../../GraphQLQueries/ShowAllEmployeesQuery";
 import { employees_leave_details_query } from "../../../GraphQLQueries/HomeQuery";
 
+import "./Login.css"
 
 
 function LoginUsers() {
@@ -57,7 +54,7 @@ function LoginUsers() {
                 variables: {
                     fetchLoggedInEmployeeAssignedTaskDetailsParameters: { uid: setSavedLoggedInEmployeeUid }
                 },
-        
+
             }
         ]
 

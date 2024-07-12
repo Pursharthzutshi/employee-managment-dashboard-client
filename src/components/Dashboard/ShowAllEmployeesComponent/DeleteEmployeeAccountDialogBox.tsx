@@ -5,6 +5,7 @@ import { useMutation } from "@apollo/client";
 import { delete_employees_account_query, show_all_employees_data_query } from "../../../GraphQLQueries/ShowAllEmployeesQuery";
 import { useAppDispatch } from "../../../ReduxHooks";
 import { setCreateEmployeeNewAccountStatus } from "../../../ReduxSlicers/createEmployeeNewAccountStatusSlicer";
+import { employeeLeavesProps, showAllEmployeesCacheDataProps, showAllEmployeesCacheDataUidType } from "../../../Types/HomeComponentTypes";
 
 type DeleteEmployeeAccountDialogBoxProps = {
     uid: String
@@ -25,8 +26,9 @@ function DeleteEmployeeAccountDialogBox({ uid, setShowDeleteEmployeeAccountDialo
         update: (cache, { data: { deleteEmployeeAccount } }) => {
             console.log(deleteEmployeeAccount)
             if (deleteEmployeeAccount.status) {
-                const showAllEmployeesCacheData:any = cache.readQuery({ query: show_all_employees_data_query })
-                const uid = showAllEmployeesCacheData.showAllEmployee.map((showAllEmployeesCacheDataUid:any)=>{
+                const showAllEmployeesCacheData:showAllEmployeesCacheDataProps | null = cache.readQuery({ query: show_all_employees_data_query })
+                console.log(showAllEmployeesCacheData)
+                const uid = showAllEmployeesCacheData?.showAllEmployee.map((showAllEmployeesCacheDataUid:showAllEmployeesCacheDataUidType)=>{
                     console.log(showAllEmployeesCacheDataUid.uid)
                 })
 

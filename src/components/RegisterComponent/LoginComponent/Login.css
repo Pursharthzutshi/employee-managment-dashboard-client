@@ -42,7 +42,7 @@ p {
     background: white;
     align-items: center;
     gap: 20px;
-    
+
 }
 
 .login-form input {
@@ -51,7 +51,7 @@ p {
     border: none;
     box-shadow: .2px .2px 1px .2px lightgray;
     margin-top: 10px;
-    color:rgb(0, 0, 37);
+    color: rgb(0, 0, 37);
 
 }
 
@@ -88,7 +88,7 @@ p {
 
 
 .login-button:hover,
-.sign-up-admin-button:hover{
+.sign-up-admin-button:hover {
     transition: .2s;
     box-shadow: .2px .2px 12px .2px lightgray;
     cursor: pointer;
@@ -98,6 +98,6 @@ p {
 
 }
 
-.login-error-message{
-    color:red
+.login-error-message {
+    color: red
 }

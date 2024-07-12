@@ -11,10 +11,10 @@ function HomePage() {
     return (
         <div className="home-page-component">
             <Header />
-            <Service/>
-            <About/>
-            <Privacy/>
-            <Footer/>
+            <Service />
+            <About />
+            <Privacy />
+            <Footer />
         </div>
     )
 }

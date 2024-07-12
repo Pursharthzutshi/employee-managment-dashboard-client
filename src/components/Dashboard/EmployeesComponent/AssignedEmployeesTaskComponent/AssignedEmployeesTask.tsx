@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-
-import "../../../../App.css"
 import { useAppDispatch, useAppSelector } from "../../../../ReduxHooks";
-import ShowEmployeesTask from "../AssignedEmployeesTaskComponent/AssignedEmployeesTask";
 import { gql, useMutation } from "@apollo/client";
 
 // import "../AssignedTaskManagerComponent/EmployeesTaskManager.css"
@@ -12,7 +9,9 @@ import { gql, useMutation } from "@apollo/client";
 import "../../EmployeesTaskManagerComponent/ShowEmployeesDataComponent/ShowEmployeesTask.css"
 import NavBar from "../../../NavBarComponent/NavBar";
 import { fetchEmployeesDetailsProps } from "../../../../Types/EmployeesTaskTypes";
-import { fetchLoggedInEmployeeAssignedTaskDetailsDataProps } from "../../../../Types/AssignedEmployeesTaskTypes";
+
+import "../../../../App.css"
+
 
 const findAssignedEmployeesTaskQuery = gql`
 mutation fetchLoggedInEmployeeAssignedTaskDetailsMutation($fetchLoggedInEmployeeAssignedTaskDetailsParameters: fetchLoggedInEmployeeAssignedTaskDetailsInput!){

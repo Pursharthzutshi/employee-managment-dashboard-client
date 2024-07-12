@@ -11,14 +11,46 @@ export type datasetsProps = {
 }
 
 export type employeeStatusProps = {
-  uid:string
-  name:string
-  status:boolean
+  uid: string
+  name: string
+  status: boolean
 }
 
 export type employeeOfTheMonthProps = {
-  department:string
-  emailId:string
-  name:string
-  employeeOfTheMonth:boolean
+  department: string
+  emailId: string
+  name: string
+  employeeOfTheMonth: boolean
+}
+
+
+export type employeeLeavesProps = {
+  id: string
+  uid: string
+  date: string
+  employeeLeaveApplicationUid: string
+  employeeName: string
+  leaveApprovedButtonsStatus: boolean
+  leaveReason: boolean
+  leaveStatus: boolean
+
+}
+
+
+export type showLoggedInEmployeesLeaveDetailsDataType = {
+  showLoggedInEmployeesLeaveDetailsData: employeeLeavesProps[]
+
+}
+export type Employee = {
+  emailId: string;
+  name: string;
+  uid: string;
+};
+
+export type showAllEmployeesCacheDataProps = {
+  showAllEmployee: Employee[];
+};
+
+export type showAllEmployeesCacheDataUidType = {
+  uid: string
 }

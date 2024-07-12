@@ -1,13 +1,14 @@
-import React, { useEffect } from "react";
-import "./LeftSidebar.css"
-import { FaAddressBook, FaBeer, FaChevronCircleUp, FaCogs, FaHome, FaPersonBooth, FaProductHunt, FaSignInAlt, FaSignOutAlt, FaUserPlus } from "react-icons/fa";
-import { Route, Link, useNavigate } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../ReduxHooks";
 import HomePageImage from "../RegisterComponent/images/homepage.png"
 import detailsImage from "../RegisterComponent/images/file.png"
 import employeeInfo from "../RegisterComponent/images/employee.png"
 import addEmployee from "../RegisterComponent/images/add.png"
 import settingsImage from "../RegisterComponent/images/settings.png"
+import leaveImage from "../RegisterComponent/images/leave.png"
+
+import "./LeftSidebar.css"
 
 function LeftSidebar() {
 
@@ -60,7 +61,7 @@ function LeftSidebar() {
                         }
                         {
                             !adminStatus && <Link className="left-sidebar-links" to="/employeesTakenLeaves">
-                                <img className="left-sidebar-icon-image" src={settingsImage} />
+                                <img className="left-sidebar-icon-image" src={leaveImage} />
                                 <p>Employees Taken Leave</p>
                             </Link>
                         }

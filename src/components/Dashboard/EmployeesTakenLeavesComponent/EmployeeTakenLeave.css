@@ -1,6 +1,15 @@
-.leave-application-sent-msg-div{
+.leave-application-sent-msg-div {
     display: flex;
-    gap:5.3px;
+    gap: 5.3px;
+}
+
+.leave-status-div {
+    display: flex;
+}
+
+.leave-status-div {
+    flex-direction: column;
+    gap: 20px;
 }
 
 .leave-pending-status,
@@ -8,10 +17,7 @@
 .leave-rejected-status {
     font-size: .86rem;
     border-radius: 20px;
-    width: 7.1%;
-    /* text-align: center; */
-    height: 3.7vh;
-    padding: 2px 2px 6px 12px;
+    padding: 4px 12px 4px 12px;
 }
 
 .leave-pending-status {
@@ -24,7 +30,7 @@
 .leave-approved-status {
     color: rgb(0, 147, 10);
     border: 2px solid rgb(0, 165, 11);
-    background: linear-gradient(to left,rgba(1, 124, 46, 0.359),rgba(0, 145, 53, 0.31));
+    background: linear-gradient(to left, rgba(1, 124, 46, 0.359), rgba(0, 145, 53, 0.31));
 }
 
 
@@ -36,42 +42,46 @@
 
 .show-logged-in-employees-leave-details {
     width: 98%;
-    /* border-radius: 8px; */
     margin-top: 10px;
     color: rgb(0, 0, 74);
     box-shadow: .2px .2px 12px .2px whitesmoke;
     padding: 2px 2px 22px 12px;
-    /* border: 8px double darkblue; */
-    /* margin-top: 10px; */
 }
-.apply-for-the-leave-button{
-    color: black;
-    background: white;
-    /* background: linear-gradient(to left,rgb(0, 79, 135),rgb(0, 94, 131)); */
-    /* border: 1px solid black; */
+
+.apply-for-the-leave-button {
+    color: white;
+    background: linear-gradient(to left, rgb(0, 65, 134), rgb(0, 71, 130));
     box-shadow: .2px .2px 2px .2px lightgray;
     font-size: .9rem;
     padding: 2px 12px 2px 12px;
     margin-top: 10px;
     border-radius: 4px;
-    
+
 }
 
-.leave-application-sent-msg-icon{
+
+.apply-for-the-leave-button:hover {
+    background: white;
+    color: rgb(0, 65, 134);
+    transition: .2s;
+}
+
+.leave-application-sent-msg-icon {
     margin-top: 16px;
     font-size: .8rem;
 }
-.leave-application-sent-msg-div{
+
+.leave-application-sent-msg-div {
     position: fixed;
-    top:0%;
+    top: 0%;
     left: 45%;
     padding: 2px 2px 6px 12px;
     box-shadow: .2px .2px 2px .2px lightgray;
     width: 15%;
-    color:rgb(0, 182, 0);
+    color: rgb(0, 182, 0);
 
 }
 
-.leave-application-sent-msg-div{
+.leave-application-sent-msg-div {
     text-align: center;
 }

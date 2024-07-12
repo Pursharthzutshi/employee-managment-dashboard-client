@@ -70,18 +70,6 @@
 }
 
 
-/* 
-.box {
-    position: relative;
-    left:1%;
-    background: white;
-    box-shadow: .2px .2px 2px .2px lightgray;
-    width: 80%;
-    padding: 4px 2px 2px 2px;
-    height: 5vh;
-
-} */
-
 ul {
     display: flex;
     flex-direction: column;
@@ -103,10 +91,6 @@ ul {
     cursor: pointer;
     background: whitesmoke;
 }
-
-
-
-
 
 
 .navbar-div {
