@@ -1,61 +1,58 @@
-
-.employees-task-data-container,.employees-edit-delete-task-button-container{
+.employees-task-data-container,
+.employees-edit-delete-task-button-container {
     display: flex;
 }
 
 
-.employees-task-data-container{
+.employees-task-data-container {
     flex-direction: column;
 }
-strong{
-    color:rgb(0, 33, 61);
+
+strong {
+    color: rgb(0, 33, 61);
 }
-.employees-task-data-div{
+
+.employees-task-data-div {
     padding: 2px 12px 17px 12px;
     border-radius: 8px;
-    box-shadow: .2px .2px 6px .2px lightgray;
     margin-top: 20px;
     display: flex;
     flex-direction: column;
-    
-
 }
 
-.employees-edit-delete-task-button-container{
+.employees-edit-delete-task-button-container {
     margin-left: -20px;
 }
 
 
- .employees-task-edit-dialog-box-button,.employees-task-delete-button{
+.employees-task-edit-dialog-box-button,
+.employees-task-delete-button {
     border: none;
-    color:white;
+    color: white;
     font-family: "Montserrat";
-    padding:2px 2px 4px 12px;
+    padding: 2px 2px 4px 12px;
     margin-left: 20px;
     border-radius: 4px;
     height: auto;
 }
 
- 
-.employees-task-edit-dialog-box-button{
-    padding:2px 2px 4px 2px;
-    background: linear-gradient(to left,rgb(0, 113, 212),rgb(0, 85, 170));
 
+.employees-task-edit-dialog-box-button {
+    padding: 2px 2px 4px 2px;
 }
-.employees-task-delete-button{
+
+.employees-task-delete-button {
     cursor: pointer;
     margin-top: 10px;
-    /* margin-left: -10px; */
     height: auto;
     padding: 4px 2px 2px 2px;
-    background: red;
 }
 
-.task-desc{
+.task-desc {
     line-height: 32px;
 }
 
-.show-no-task-message{
+.show-no-task-message {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -63,19 +60,22 @@ strong{
     height: 50vh;
 }
 
-
-
-.show-no-task-message p{
+.show-no-task-message p {
     font-size: 1.5rem;
     padding: 2px 12px 2px 12px;
-    animation: .4s ease-in showNoTaskEffect;
+    animation: .4s showNoTaskEffect ease-in-out;
 }
 
 @keyframes showNoTaskEffect {
-    0%{
+    0% {
         opacity: .2;
     }
-    100%{
+
+    50% {
+        opacity: .6;
+    }
+
+    100% {
         opacity: 1;
     }
 }

@@ -5,14 +5,10 @@
 
 /* Dashboard code */
 .dashboard {
-    /* background-color: red; */
     padding: 2px 12px 2px 12px;
     margin-top: -7px;
     margin-left: 10px;
-    /* width: 98.6%; */
-    /* height: 100vh; */
     box-shadow: .2px .2px 22px .2px rgb(232, 232, 232);
-    /* box-shadow: .2px .2px 22px .2px rgb(232, 232, 232); */
 }
 
 h3 {
@@ -25,7 +21,6 @@ h3 {
 .bar-chart-div,.pie-chart-div {
     border-radius: 8px;
     padding: 18px 18px 12px 18px;
-    box-shadow: .2px .2px 2px .2px lightgray;
     margin-top: 40px;
     height: 18rem;
 }
@@ -49,10 +44,6 @@ h3 {
 }
 
 .doughnut-chart {
-
-    /* background: transparent; */
-    /* width: 10%; */
-    /* background: rgba(167, 167, 255, 0.038); */
     height: 200px;
 }
 
@@ -62,10 +53,3 @@ h3 {
     gap: 28px;
     margin-left: 12px;
 }
-/* 
-.todo-list {
-    box-shadow: .2px .2px 2px .2px lightgray;
-    height: 40vh;
-    width: 43%;
-    overflow-y: scroll;
-} */

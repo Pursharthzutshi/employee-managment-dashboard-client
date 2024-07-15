@@ -69,11 +69,12 @@ strong {
 .sign-up-right-side-image {
     position: relative;
     left: 0%;
-    margin-top: -10px;
+    margin-top: -33px;
     /* margin: -10px 2px 2px 0px ; */
     width: 30%;
-    height: 101%;
-    background: linear-gradient(to left, rgba(137, 231, 255, 0.815), rgba(76, 213, 255, 0.692)), url("../../RegisterComponent/images/add-user.png");
+    height: 103%;
+    background-attachment: fixed;
+    background: linear-gradient(to left, rgba(52, 52, 52, 0.833), rgba(44, 44, 44, 0.827)), url("../../images/pexels-linkedin-2182970.jpg");
     background-repeat: none;
     background-size: cover;
 }
@@ -124,12 +125,10 @@ strong {
 
 
 .create-new-employee-account-box button {
-    background: linear-gradient(to left, rgb(52, 195, 252), rgb(78, 184, 255));
     font-family: "Montserrat";
     background-color: none;
     border: none;
     width: 100%;
-    color: rgb(255, 255, 255);
     border-radius: 4px;
     padding: 3px 2px 2px 2px;
     margin-top: 50px;

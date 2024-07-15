@@ -94,7 +94,7 @@ function CreateNewEmployeeAccount() {
       <div className="create-new-employee-account-box">
 
         <form onSubmit={signUpForm} className="signup-form">
-          <h3 className="employee-account-heading font-semibold text-lg">Create Employees Account</h3>
+          <h3 className="employee-account-heading font-semibold text-lg">Create Employee Account</h3>
           {
             newEmployeeAccountCreatedStatus ?
               <div className="new-employee-added-div">
@@ -117,15 +117,15 @@ function CreateNewEmployeeAccount() {
               <strong>Name:</strong>
               <input className="form-inputs" type="text" placeholder="Name" onChange={(e) => Dispatch(setUserName(e.target.value))} />
 
-              <strong>EmailId:</strong>
-              <input className="form-inputs" type="email" placeholder="EmailId" onChange={(e) => Dispatch(setUserEmailId(e.target.value))} />
+              <strong>Email Id:</strong>
+              <input className="form-inputs" type="email" placeholder="Email Id" onChange={(e) => Dispatch(setUserEmailId(e.target.value))} />
 
 
               <strong>Password:</strong>
               <input className="form-inputs" type="password" placeholder="Password" onChange={(e) => Dispatch(setEmailPassword(e.target.value))} />
 
-              <strong>Re Check Password:</strong>
-              <input className="form-inputs" type="password" placeholder="Retype Password" onChange={(e) => Dispatch(setEmailPasswordRecheck(e.target.value))} />
+              {/* <strong>Re Type Password:</strong>
+              <input className="form-inputs" type="password" placeholder="Retype Password" onChange={(e) => Dispatch(setEmailPasswordRecheck(e.target.value))} /> */}
 
 
               <strong>Gender:</strong>

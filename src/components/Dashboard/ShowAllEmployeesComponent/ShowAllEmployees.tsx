@@ -118,7 +118,7 @@ function ShowAllEmployees() {
                                             <div>
                                                 <button onClick={() => {
                                                     showAssignEmployeeOfTheMonth(EmployeesAccountData.uid)
-                                                }} className="employees-details-button font-semibold text-sm">Assign Employee of the month</button>
+                                                }} className="employees-details-button font-semibold ">Assign Employee of the month</button>
                                                 <button className="delete-employee-Account-button font-semibold text-sm mt-4" onClick={() => showDeleteEmployeeAccountDialogBox(EmployeesAccountData.uid)} >Delete Employee Account</button>
                                             </div>
                                             : null}

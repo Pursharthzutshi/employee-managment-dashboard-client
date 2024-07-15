@@ -134,7 +134,7 @@ function ShowEmployeesTask() {
                 {/* <p className="emailid"></p> */}
 
                 <div className="employees-edit-delete-task-button-container">
-                  <button className="employees-task-edit-dialog-box-button" onClick={() => showEditDialogBox(val.uid)}>Edit</button>
+                  <button className="employees-task-edit-dialog-box-button" onClick={() => showEditDialogBox(val.uid)}>Edit Task</button>
                   <button className="employees-task-delete-button" onClick={() => {
                     deleteEmployeeTaskData({
                       variables: {

@@ -1,20 +1,13 @@
 .employees-leaves-component::-webkit-scrollbar {
-    background: linear-gradient(to left,rgb(255, 255, 255),rgb(255, 255, 255));
+    background: linear-gradient(to left, rgb(255, 255, 255), rgb(255, 255, 255));
 }
 
-.employees-leaves-component::-webkit-scrollbar-track {
-    /* box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); */
-}
 
 .employees-leaves-component::-webkit-scrollbar-thumb {
-    background: linear-gradient(to left,rgb(245, 245, 245),rgb(235, 235, 235));
+    background: linear-gradient(to left, rgb(245, 245, 245), rgb(235, 235, 235));
     border-radius: 2px;
 
 }
-
-/* body::-webkit-scrollbar-button {
-    display: hidden;
-} */
 
 .employee-leave-box-buttons-container,
 .employee-leave-details-data-div,
@@ -50,9 +43,6 @@
     height: 40vh;
     overflow-y: scroll;
     padding: 12px 2px 12px 15px;
-    /* border: 3px solid darkblue; */
-    /* margin-top: -10px; */
-    box-shadow: .2px .2px 2px .2px lightgray;
 }
 
 .employees-leaves-container {
@@ -71,14 +61,17 @@
 }
 
 .employee-leave-box-buttons-container button:nth-child(1) {
-    background: linear-gradient(to left, rgb(0, 103, 158), rgb(0, 138, 202));
+    background: rgb(0, 85, 170);
+    box-shadow: .2px .2px 22px .2px rgb(240, 240, 240);
+
 }
 
 .employee-leave-box-buttons-container button:nth-child(2) {
-    background: linear-gradient(to left, rgb(198, 43, 0), rgb(173, 44, 1));
+    background: rgb(203, 0, 0);
+    box-shadow: .2px .2px 22px .2px rgb(240, 240, 240);
 }
 
-.employee-leave-search-bar{
+.employee-leave-search-bar {
     outline: none;
     margin-top: 10px;
     width: 70%;
@@ -86,12 +79,8 @@
     box-shadow: .2px .2px 2px .2px lightgray;
 }
 
-/* 
-.employee-leave-search-bar:hover{
-    box-shadow: ;
-} */
 
-.employee-leave-search-bar::placeholder{
+.employee-leave-search-bar::placeholder {
     font-size: .9rem;
     font-family: "Montserrat";
 }
@@ -100,5 +89,5 @@
     background: white;
     transition: .2s;
     box-shadow: .2px .2px 2px .2px lightgray;
-    color:black;
+    color: black;
 }

@@ -1,47 +1,119 @@
 html,
 body {
     height: 100%;
-    /* background: red; */
 }
+
+#main-page,
+.create-new-employee-account-container,
+.settings-profile-form {
+    animation: .5s ease-out showDashboardEffectAnimation;
+}
+
+
+@keyframes showDashboardEffectAnimation {
+    0% {
+        opacity: .2;
+        transform: scale(.94);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
 
 
 .dashboard-container {
     display: flex;
 }
 
-.left-sidebar-dashboard-div{
+.left-sidebar-dashboard-div {
     display: flex;
-    gap:150px;
-    /* justify-content: space-around; */
+    gap: 150px;
     flex-direction: row;
-    /* background: yellow; */
 }
 
 .dashboard-container {
-    background: linear-gradient(to left,rgb(52, 195, 252),rgb(78, 184, 255));
+    background: linear-gradient(to left, rgb(52, 195, 252), rgb(78, 184, 255));
     box-shadow: .2px .2px 22px .2px rgb(232, 232, 232);
     height: 100%;
 }
-#main-page{
-    /* background: red; */
+
+#main-page {
     width: 92%;
 }
+
 .App {
     margin-top: 10px;
-    /* height: 100%; */
-    /* background: white; */
-    /* margin-left: 110px; */
 }
 
 body::-webkit-scrollbar {
-    background: linear-gradient(to left,rgb(255, 255, 255),rgb(255, 255, 255));
+    background: linear-gradient(to left, rgb(255, 255, 255), rgb(255, 255, 255));
 }
 
 body::-webkit-scrollbar-thumb {
-    background: linear-gradient(to left,rgb(245, 245, 245),rgb(235, 235, 235));
+    background: linear-gradient(to left, rgb(245, 245, 245), rgb(235, 235, 235));
     border-radius: 2px;
 }
 
 body::-webkit-scrollbar-button {
     display: hidden;
+}
+
+
+
+
+
+.card-details-div,
+.bar-chart-div,
+.pie-chart-div,
+.employee-of-the-month-div,
+.show-employee-apply-leave-dialog-box,
+.welcome-back-card-container,
+.employees-leaves-component,
+.employees-task-data-div {
+    /* box-shadow: 12px 2px 25px 12px rgb(247, 247, 247); */
+    box-shadow: .2px .2px 40px .2px rgb(242, 248, 255);
+}
+
+.login-button,
+.sign-up-admin-button,
+.add-posts-dialog-box-button,
+.add-new-task-button,
+.employees-task-edit-dialog-box-button,
+.edit-new-task-button,
+.employees-details-button,
+.create-new-employee-account-box button {
+    font-family: "Montserrat";
+    background: rgb(0, 67, 135);
+    color: white;
+    box-shadow: .2px .2px 22px .2px rgb(240, 240, 240);
+}
+
+.login-button:hover,
+.sign-up-admin-button:hover,
+.add-posts-dialog-box-button:hover,
+.add-new-task-button:hover,
+.employees-task-edit-dialog-box-button:hover,
+.edit-new-task-button:hover,
+.employees-details-button:hover,
+.create-new-employee-account-box button:hover {
+    transition: .2s;
+    background: white;
+    color: rgb(0, 85, 170);
+}
+
+.left-sidebar {
+    box-shadow: .2px .2px 18px .2px rgba(240, 240, 240, 0.692);
+}
+
+.employees-details-div {
+    border-radius: 10px;
+    box-shadow: .2px .2px 22px .2px whitesmoke;
+}
+
+
+.employees-task-delete-button {
+    background: rgb(203, 0, 0);
 }

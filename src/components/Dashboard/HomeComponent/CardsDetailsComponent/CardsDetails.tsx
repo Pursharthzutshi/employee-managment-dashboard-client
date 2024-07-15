@@ -65,9 +65,9 @@ function CardsDetails() {
 
 
 
-    if (EmployeesAccountDetailsLoading) return <p>Loading ...</p>
-    if (EmployeesTotalTasksLoading) return <p>Loading ...</p>
-    if (adminAccountDetailsLoading) return <p>Loading ...</p>
+    if (EmployeesAccountDetailsLoading) return <div >Loadng ...</div>
+    // if (EmployeesTotalTasksLoading) return <p>Loading ...</p>
+    // if (adminAccountDetailsLoading) return <p>Loading ...</p>
     return (
         <div>
 

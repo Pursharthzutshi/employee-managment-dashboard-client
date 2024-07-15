@@ -101,7 +101,6 @@
 
 .add-posts-dialog-box-button,.add-new-task-button,.employees-task-edit-dialog-box-button,.edit-new-task-button{
     margin:10px 2px 2px 20px;
-    background: linear-gradient(to left,rgb(0, 113, 212),rgb(0, 85, 170));
     cursor: pointer;
 }
 
