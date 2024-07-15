@@ -9,7 +9,6 @@ body {
     animation: .5s ease-out showDashboardEffectAnimation;
 }
 
-
 @keyframes showDashboardEffectAnimation {
     0% {
         opacity: .2;
@@ -60,8 +59,6 @@ body::-webkit-scrollbar-thumb {
 body::-webkit-scrollbar-button {
     display: hidden;
 }
-
-
 
 
 

@@ -77,7 +77,7 @@ function DeleteEmployeeAccountDialogBox({ uid, setShowDeleteEmployeeAccountDialo
 
 
     return (
-        <div id="main-page" className="delete-employee-Account-dialog-box">
+        <div  className="delete-employee-Account-dialog-box">
 
             <form className="delete-employee-Account-dialog-box-form">
                 <p className="font-bold text-sl ml-3 mt-5 text-blue">Are You Sure You want to delete this employee Account ?</p>

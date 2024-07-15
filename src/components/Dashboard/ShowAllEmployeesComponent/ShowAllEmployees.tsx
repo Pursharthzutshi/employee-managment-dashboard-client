@@ -70,7 +70,7 @@ function ShowAllEmployees() {
 
     setTimeout(() => {
         setShowAssignEmployeeOfTheMonthStatus(false);
-    },3000)
+    }, 3000)
 
 
     const adminStatus = useAppSelector((state) => state.LocalStorageSlicer.adminStatus)
@@ -79,16 +79,16 @@ function ShowAllEmployees() {
 
     return (
         <div id="main-page" className="show-all-employees-component">
-         {
+            {
                 showAssignEmployeeOfTheMonthStatus &&
 
                 <div className="assign-employee-of-the-month-message-box">
-                    <FaCheck className="assign-employee-of-the-month-message-box-icon"/>
+                    <FaCheck className="assign-employee-of-the-month-message-box-icon" />
                     <p>New Employee of the Month Assigned</p>
                 </div>
             }
             <NavBar />
-   
+
             <div>
                 <p className="font-bold text-xl">All Employees</p>
                 <br></br>
