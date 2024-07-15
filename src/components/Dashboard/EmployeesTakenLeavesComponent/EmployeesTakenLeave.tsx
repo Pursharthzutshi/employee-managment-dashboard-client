@@ -56,6 +56,8 @@ function EmployeesTakenLeaves() {
         }, 3000)
     })
 
+
+
     return (
         <div id="main-page" className="show-all-employees-component">
             <NavBar />
@@ -84,7 +86,7 @@ function EmployeesTakenLeaves() {
                             <p className="font-semibold">Leave Date Given: {val.date}</p>
                             <div>
                                 {
-                                    val.leaveStatus !== null ?
+                                    val.leaveStatus ?
                                         <div>
                                             {
                                                 val.leaveStatus === true ?

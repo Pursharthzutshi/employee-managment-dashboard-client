@@ -43,31 +43,34 @@ function EmployeeApplyLeaveDialogBox({ showEmployeeApplyLeaveDialogBoxStatus, se
             const { insertEmployeesLeaveDetails } = data;
             const newData = insertEmployeesLeaveDetails.employeeLeaveData;
 
-            const fetchLeaveDetailsData: showLoggedInEmployeesLeaveDetailsDataType | null = cache.readQuery({
-                query: show_logged_in_employees_leave_details_data_query,
-                variables: {
-                    showLoggedInEmployeesLeaveDetailsDataParameters: {
-                        uid: savedEmployeeLoggedInUid
+            if (newData) {
+                const fetchLeaveDetailsData: showLoggedInEmployeesLeaveDetailsDataType | null = cache.readQuery({
+                    query: show_logged_in_employees_leave_details_data_query,
+                    variables: {
+                        showLoggedInEmployeesLeaveDetailsDataParameters: {
+                            uid: savedEmployeeLoggedInUid
+                        }
                     }
-                }
-            });
+                });
 
-            const existingData: any = fetchLeaveDetailsData?.showLoggedInEmployeesLeaveDetailsData;
-
-            cache.writeQuery({
-                query: show_logged_in_employees_leave_details_data_query,
-                variables: {
-                    showLoggedInEmployeesLeaveDetailsDataParameters: {
-                        uid: savedEmployeeLoggedInUid
+                console.log(newData)
+                const existingData: any = fetchLeaveDetailsData?.showLoggedInEmployeesLeaveDetailsData;
+                console.log(existingData)
+                cache.writeQuery({
+                    query: show_logged_in_employees_leave_details_data_query,
+                    variables: {
+                        showLoggedInEmployeesLeaveDetailsDataParameters: {
+                            uid: savedEmployeeLoggedInUid
+                        }
+                    },
+                    data: {
+                        showLoggedInEmployeesLeaveDetailsData: [...existingData, newData]
                     }
-                },
-                data: {
-                    showLoggedInEmployeesLeaveDetailsData: [...existingData, newData]
-                }
-            });
-        },
+                });
+            }
+        }
 
-        refetchQueries: [{ query: employees_leave_details_query }]
+        // refetchQueries: [{ query: employees_leave_details_query }]
     });
     const year = new Date().getFullYear();
     const month = String(new Date().getMonth() + 1).padStart(2, '0');
