@@ -13,14 +13,24 @@ import { Provider } from 'react-redux';
 import { store } from './ReduxStore/store';
 import { BrowserRouter } from 'react-router-dom';
 
+// const webLink = new GraphQLWsLink(
+//   createClient({
+//     url: "ws://localhost:4004/graphql",
+//   }),
+// );
+
+// const httpLink = new HttpLink({
+//   uri: 'http://localhost:4004/graphql',
+// });
+
 const webLink = new GraphQLWsLink(
   createClient({
-    url: "ws://localhost:4004/graphql",
+    url: "ws://https://employee-managment-dashboard-client.vercel.app/graphql",
   }),
 );
 
 const httpLink = new HttpLink({
-  uri: 'http://localhost:4004/graphql',
+  uri: 'https://employee-managment-dashboard-client.vercel.app/graphql',
 });
 
 const link: any = split(
