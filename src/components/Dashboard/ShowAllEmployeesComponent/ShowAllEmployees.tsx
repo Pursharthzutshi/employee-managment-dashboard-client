@@ -44,14 +44,12 @@ function ShowAllEmployees() {
         // onCompleted: (data) => 
 
         onCompleted: (data) => {
-            console.log(data);
         }
     }
     );
 
     const showDeleteEmployeeAccountDialogBox = (uid: String) => {
         setShowDeleteEmployeeAccountDialogBoxStatus(true)
-        console.log(uid)
         setSelectedEmployeeAccountUid(uid)
     }
 
@@ -103,13 +101,11 @@ function ShowAllEmployees() {
                             ShowAllEmployeesData.showAllEmployee.filter((filteredEmployeesAccountData: EmployeesAccountDataProps) => {
 
                                 if (filteredEmployeesAccountData.name.toLowerCase().includes(searchFilter.toLowerCase())) {
-                                    console.log(filteredEmployeesAccountData)
                                     return filteredEmployeesAccountData;
                                 } else if (searchFilter === "") {
                                     return filteredEmployeesAccountData;
                                 }
                             }).map((EmployeesAccountData: EmployeesAccountDataProps) => {
-                                console.log(EmployeesAccountData)
                                 return (
                                     <div className="employees-details-div" >
                                         <strong>Name:</strong><p data-testid="employee-name" className="employee-name">{EmployeesAccountData.name}</p>

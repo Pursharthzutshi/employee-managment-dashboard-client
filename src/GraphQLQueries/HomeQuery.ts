@@ -81,3 +81,59 @@ query showLoggedInEmployeesLeaveDetailsDataQuery($showLoggedInEmployeesLeaveDeta
   }
 }
 `
+
+
+//Chat Queries-:
+
+export const show_chat_query = gql`
+query fetchChats($showAllChatsParamters: showAllChatsInput!){
+showAllChats(showAllChatsParamters: $showAllChatsParamters) {
+uid
+  emailId
+  name
+}
+}
+`
+
+export const show_chat_room_query = gql`
+query showChatsRoom($showSenderReceiverChatParameters: showSenderReceiverChatInput!){
+  showSenderReceiverChat(showSenderReceiverChatParameters: $showSenderReceiverChatParameters) {
+  uid  
+  senderId
+    receiverId
+    message
+  }
+}
+`
+
+export const send_message_query = gql`
+mutation sendMessage($sendMessageParameters: sendMessageInput!){
+  sendMessage(sendMessageParameters: $sendMessageParameters) {
+    uid
+    senderId
+    receiverId
+    message
+  }
+}
+`
+
+// export const show_sender_receiver_chat_query = gql`
+// query fetchChats($showAllChatsParamters: showAllChatsInput!){
+// showAllChats(showAllChatsParamters: $showAllChatsParamters) {
+// uid
+//   emailId
+//   name
+// }
+// }
+// `
+
+export const message_sent_subscribe = gql`
+  subscription MessageSentSubscription {
+        messageSent {
+          message
+          senderId
+          receiverId
+          uid
+        }
+      }
+`

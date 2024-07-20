@@ -13,7 +13,6 @@ function CardsDetails() {
 
     const { data: das, loading } = useQuery(fetchTotalEmployeesAndDepartmentsQuery, ({
         onCompleted: (data) => {
-            console.log(data)
         }
     }));
 
@@ -31,10 +30,9 @@ function CardsDetails() {
 
     const { loading: adminAccountDetailsLoading } = useQuery(fetchTotalAdmin, ({
         onCompleted: (AdminAccountDetailsData) => {
-            console.log(AdminAccountDetailsData)
             setTotalAdminCount(AdminAccountDetailsData.showAllAdmin.length)
         },
-    
+
     }
     )
     );
@@ -53,9 +51,7 @@ function CardsDetails() {
 
     const { loading: EmployeesTotalTasksLoading } = useQuery(fetchTotalEmployeesTasks, ({
         onCompleted: (EmployeesTotalTasksData) => {
-            console.log(EmployeesTotalTasksData.fetchEmployeesTaskDetails.length)
             setTotalEmployeesTask(EmployeesTotalTasksData.fetchEmployeesTaskDetails.length)
-
         },
         onError: (err) => {
             console.log(err);

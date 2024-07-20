@@ -34,6 +34,8 @@ import "../HomeComponent/Home.css"
 import "../HomeComponent/HomeResponsive.css"
 import { show_all_employees_charts_data_query } from "../../../GraphQLQueries/HomeQuery";
 import EmployeeLeaves from "./EmployeeLeavesComponent/EmployeeLeaves";
+import ChatBox from "./ChatBox/ChatBox";
+import ShowChatRoom from "./ChatBox/ShowAllChatsUsersComponent/ShowChatRoom";
 // Register the components
 ChartJS.register(
     CategoryScale,
@@ -51,6 +53,9 @@ ChartJS.register(
 function Home() {
 
 
+    const senderID = useAppSelector((state) => state.ShowChatRoomSlicer.senderID)
+    const receiverID = useAppSelector((state) => state.ShowChatRoomSlicer.receiverID)
+
     const { data: employeesData, refetch } = useQuery(show_all_employees_charts_data_query);
 
     const adminStatus = useAppSelector((state) => state.LocalStorageSlicer.adminStatus)
@@ -59,11 +64,15 @@ function Home() {
     const count = useAppSelector((state) => state.ChartsDetailsSlicer.count)
     const departmentCount = useAppSelector((state) => state.ChartsDetailsSlicer.departmentCount)
     const createEmployeeNewAccountStatus = useAppSelector((state) => state.createEmployeeNewAccountStatusSlicer.createEmployeeNewAccountStatus);
+    const showChatRoom = useAppSelector((state)=>state.ShowChatRoomSlicer.showChatRoom)
 
 
     const Dispatch = useAppDispatch()
 
-
+    useEffect(()=>{
+        console.log(senderID)
+        console.log(receiverID)
+    })
     useEffect(() => {
 
         if (createEmployeeNewAccountStatus === true) {
@@ -76,7 +85,6 @@ function Home() {
 
             if (count !== employeesData.showAllEmployee.length) {
                 employeesData.showAllEmployee.map((employeesDataList: string) => {
-                    console.log(employeesDataList)
                     return Dispatch(setGenderTypeCount(employeesDataList))
                 })
                 employeesData.showAllEmployee.map((employeesDataList: string) => {
@@ -121,8 +129,11 @@ function Home() {
                 }
 
             </div>
+            <ChatBox />
             <br></br>
-
+            {
+                showChatRoom && <ShowChatRoom/> 
+            }
         </div>
     )
 }

@@ -32,7 +32,6 @@ function EmployeeOfTheMonth() {
             {
                 fetchEmployeeOfTheMonth.showAllEmployee.length > 0 ?
                     fetchEmployeeOfTheMonth.showAllEmployee.map((fetchEmployeeOfTheMonthData: employeeOfTheMonthProps) => {
-                        console.log(fetchEmployeeOfTheMonth)
                         if (fetchEmployeeOfTheMonthData.employeeOfTheMonth === true) {
 
                             return <div className="employee-of-the-month-div">

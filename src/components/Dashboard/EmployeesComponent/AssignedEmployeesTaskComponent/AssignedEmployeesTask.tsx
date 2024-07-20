@@ -32,7 +32,6 @@ function AssignedEmployeesTask() {
             fetchLoggedInEmployeeAssignedTaskDetailsParameters: { uid: setSavedLoggedInEmployeeUid }
         },
         onCompleted: (data) => {
-            console.log(data)
         },
     })
 
@@ -42,8 +41,6 @@ function AssignedEmployeesTask() {
         if (setSavedLoggedInEmployeeUid) {
             fetchAssignedEmployeeTask()
         }
-        console.log(setSavedLoggedInEmployeeUid)
-        console.log(fetchAssignedEmployeeTaskData)
     }, [])
 
     if (fetchAssignedEmployeeTaskDataLoading) return <div>Loading...</div>

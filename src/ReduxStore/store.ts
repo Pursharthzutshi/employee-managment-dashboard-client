@@ -11,6 +11,7 @@ import ChartsDetailsSlicer from "../ReduxSlicers/ChartsDetailsSlicer";
 import CheckInStatusSlicer from "../ReduxSlicers/CheckInStatusSlicer";
 import SearchFilterSilcer from "../ReduxSlicers/SearchFilterSilcer";
 import createEmployeeNewAccountStatusSlicer from "../ReduxSlicers/createEmployeeNewAccountStatusSlicer";
+import ShowChatRoomSlicer from "../ReduxSlicers/ShowChatRoomSlicer";
 // import BoardSlicer from "../components/slicers/BoardSlicer";
 // import counterSlice from "./slices/counter";
 
@@ -27,7 +28,8 @@ export const store = configureStore({
     ChartsDetailsSlicer: ChartsDetailsSlicer,
     createEmployeeNewAccountStatusSlicer: createEmployeeNewAccountStatusSlicer,
     CheckInStatusSlicer: CheckInStatusSlicer,
-    SearchFilterSilcer: SearchFilterSilcer
+    SearchFilterSilcer: SearchFilterSilcer,
+    ShowChatRoomSlicer:ShowChatRoomSlicer
     // middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 
   },
