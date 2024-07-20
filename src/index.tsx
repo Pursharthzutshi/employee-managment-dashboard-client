@@ -25,12 +25,12 @@ import { BrowserRouter } from 'react-router-dom';
 
 const webLink = new GraphQLWsLink(
   createClient({
-    url: "ws://https://employee-managment-dashboard-client.vercel.app/graphql",
+    url: "ws://employee-managment-dashboard-server.vercel.app/graphql",
   }),
 );
 
 const httpLink = new HttpLink({
-  uri: 'https://employee-managment-dashboard-client.vercel.app/graphql',
+  uri: 'https://employee-managment-dashboard-server.vercel.app/graphql',
 });
 
 const link: any = split(
