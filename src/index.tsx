@@ -25,7 +25,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 const webLink = new GraphQLWsLink(
   createClient({
-    url: "ws://employee-managment-dashboard-server.vercel.app/graphql",
+    url: "wss://employee-managment-dashboard-server.vercel.app/graphql",
   }),
 );
 
