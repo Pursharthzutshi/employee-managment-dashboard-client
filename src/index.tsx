@@ -23,15 +23,26 @@ import { BrowserRouter } from 'react-router-dom';
 //   uri: 'http://localhost:4004/graphql',
 // });
 
+
 const webLink = new GraphQLWsLink(
   createClient({
-    url: "wss://employee-managment-dashboard-server.vercel.app/graphql",
+    url: "wss://employee-managment-dashboard-server.onrender.com/graphql",
   }),
 );
 
 const httpLink = new HttpLink({
-  uri: 'https://employee-managment-dashboard-server.vercel.app/graphql',
+  uri: 'https://employee-managment-dashboard-server.onrender.com/graphql',
 });
+
+// const webLink = new GraphQLWsLink(
+//   createClient({
+//     url: "wss://employee-managment-dashboard-server.vercel.app/graphql",
+//   }),
+// );
+
+// const httpLink = new HttpLink({
+//   uri: 'https://employee-managment-dashboard-server.vercel.app/graphql',
+// });
 
 const link: any = split(
   ({ query }) => {
