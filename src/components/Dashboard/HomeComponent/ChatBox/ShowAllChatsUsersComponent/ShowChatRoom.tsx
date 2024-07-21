@@ -4,11 +4,13 @@ import { FaCross, FaPaperPlane, FaSadCry, FaTimes } from "react-icons/fa";
 import { removeChatID, setChatID, setShowChatRoom } from "../../../../../ReduxSlicers/ShowChatRoomSlicer";
 import { useApolloClient, useLazyQuery, useMutation, useSubscription } from "@apollo/client";
 import { message_sent_subscribe, send_message_query, show_chat_room_query } from "../../../../../GraphQLQueries/HomeQuery";
-
 import { v4 as uuidv4 } from 'uuid';
+import image from "../../../../RegisterComponent/images/add-user.png"
+
 import "./ShowChatRoom.css"
 
 function ShowChatRoom() {
+    const showUserDetails = useAppSelector((state) => state.ShowChatRoomSlicer.showSelectedChatUserDetails)
 
     const senderID = useAppSelector((state) => state.ShowChatRoomSlicer.senderID)
     const receiverID = useAppSelector((state) => state.ShowChatRoomSlicer.receiverID)
@@ -17,6 +19,7 @@ function ShowChatRoom() {
 
     const [sendMessage] = useMutation(send_message_query, ({
         onCompleted: (data) => {
+            // setChatMessage("")
             console.log(data)
         },
         update: (cache, { data: { sendMessage } }) => {
@@ -60,16 +63,10 @@ function ShowChatRoom() {
     }
     ))
 
-    // useEffect(()=>{
-    //     console.log(senderID)
-    //     console.log(receiverID)
-    // })
     useSubscription(message_sent_subscribe, {
         onSubscriptionData: ({ client, subscriptionData }) => {
             const newMessage = subscriptionData.data.messageSent;
-            console.log(newMessage);
-            console.log(senderID)
-            console.log(receiverID)
+
             client.writeQuery({
                 query: show_chat_room_query,
                 variables: {
@@ -126,41 +123,63 @@ function ShowChatRoom() {
     const Dispatch = useAppDispatch()
 
     return (
-        <div className="show-chat-room-component">
+        <div className="test">
+            <div className="show-chat-room-component">
 
-            <div className="show-chat-room-input-div">
-                <div className="cancel-chat-room-icon-div">
-                    <FaTimes className="cancel-chat-room-icon" onClick={closeChatBox} />
+                <div className="chat-room-user-profile-details-container">
+
+                    <div className="chat-room-user-profile-details-div">
+                        <div>
+                            <img className="chat-profile-image" src={image} />
+                        </div>
+                        <div className="chat-room-name-email-id-div">
+                            <p>{showUserDetails.name}</p>
+                            <p className="chat-room-email-id">{showUserDetails.emailId}</p>
+                        </div>
+                    </div>
+                    <div className="cancel-chat-room-icon-div">
+                        <FaTimes className="cancel-chat-room-icon" onClick={closeChatBox} />
+                    </div>
+
                 </div>
-                <div>
+                <div className="show-chat-room-input-div">
+
+                    <div className="chat-input-message-send-icon-div">
+                        <textarea className="font-semibold send-message-textarea" onChange={(e) => { setChatMessage(e.target.value) }} placeholder="Send Message" rows={3} cols={43}  ></textarea>
+                        {
+                            chatMessage ? <FaPaperPlane className="send-message-icon-button" onClick={() =>
+                                sendMessage({
+                                    variables: {
+                                        sendMessageParameters: {
+                                            uid: uuidv4(),
+                                            senderId: senderID,
+                                            receiverId: receiverID,
+                                            message: chatMessage
+                                        }
+                                    }
+                                })
+                            } /> : null
+                        }
+
+                    </div>
+                </div>
+
+            </div>
+
+                <div className="messages-container">
                     {
                         fetchSenderReceiverChatRoomData && fetchSenderReceiverChatRoomData.showSenderReceiverChat.map((val: any) => {
                             return (
-                                <div>
+                                <div className="messages-div">
                                     {
-                                        <p>{val.message}</p>
+                                        <p className="messages">{val.message}</p>
                                     }
                                 </div>
                             )
                         })
                     }
                 </div>
-                <div className="chat-input-message-send-icon-div">
-                    <input onChange={(e) => { setChatMessage(e.target.value) }} placeholder="send Message" type="text" />
-                    <FaPaperPlane onClick={() =>
-                        sendMessage({
-                            variables: {
-                                sendMessageParameters: {
-                                    uid: uuidv4(),
-                                    senderId: senderID,
-                                    receiverId: receiverID,
-                                    message: chatMessage
-                                }
-                            }
-                        })
-                    } />
-                </div>
-            </div>
+
         </div>
     )
 }

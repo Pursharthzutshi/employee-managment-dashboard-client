@@ -4,13 +4,14 @@ type ShowChatRoomSlicerProps = {
     showChatRoom: boolean
     senderID: string
     receiverID: string
+    showSelectedChatUserDetails: any
 }
 
 const initialState: ShowChatRoomSlicerProps = {
     showChatRoom: false,
     senderID: "",
-    receiverID: ""
-
+    receiverID: "",
+    showSelectedChatUserDetails: []
 }
 
 export const ShowChatRoomSlicer = createSlice({
@@ -31,11 +32,16 @@ export const ShowChatRoomSlicer = createSlice({
         removeChatID: (state, action) => {
             state.senderID = ""
             state.receiverID = ""
+        },
+
+        setShowSelectedChatUserDetails: (state, action) => {
+            console.log(action.payload)
+            state.showSelectedChatUserDetails = action.payload;
         }
 
     }
 })
 
-export const { setShowChatRoom, setChatID, removeChatID } = ShowChatRoomSlicer.actions;
+export const { setShowChatRoom, setChatID, removeChatID, setShowSelectedChatUserDetails } = ShowChatRoomSlicer.actions;
 
 export default ShowChatRoomSlicer.reducer
