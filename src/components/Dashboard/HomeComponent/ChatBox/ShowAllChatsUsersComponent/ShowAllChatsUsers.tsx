@@ -4,7 +4,7 @@ import ShowChatRoom from "./ShowChatRoom";
 import { useAppDispatch, useAppSelector } from "../../../../../ReduxHooks";
 import { setChatID, setShowChatRoom, setShowSelectedChatUserDetails } from "../../../../../ReduxSlicers/ShowChatRoomSlicer";
 
-// import "../ShowAllChatsUsersComponent/ShowAllChatUser.css"
+import "../ShowAllChatsUsersComponent/ShowAllChatUsers.css"
 
 type ShowAllChatsUsersProps = {
     fetchShowChatsData: any
@@ -12,7 +12,7 @@ type ShowAllChatsUsersProps = {
 
 function ShowAllChatsUsers({ fetchShowChatsData }: ShowAllChatsUsersProps) {
 
-
+const showChatRoom = useAppSelector((state)=>state.ShowChatRoomSlicer.showChatRoom)
     const [savedEmployeeLoggedInUid] = useState(localStorage.getItem("loggedInSavedUid") || localStorage.getItem("adminLoggedInSavedUid"));
 
     const Dispatch = useAppDispatch();
@@ -22,6 +22,11 @@ function ShowAllChatsUsers({ fetchShowChatsData }: ShowAllChatsUsersProps) {
         const chatID = { val, savedEmployeeLoggedInUid }
         Dispatch(setChatID(chatID))
         Dispatch(setShowChatRoom(true))
+        if(showChatRoom === true){
+            Dispatch(setShowChatRoom(false))
+        }else{
+            Dispatch(setShowChatRoom(true))
+        }
         Dispatch(setShowSelectedChatUserDetails(val));
         // setShowChatRoom(true)
     }
@@ -53,8 +58,8 @@ function ShowAllChatsUsers({ fetchShowChatsData }: ShowAllChatsUsersProps) {
                                 <img className="image" src={image} />
                             </div>
                             <div>
-                                <p>{val.name}</p>
-                                <span className=" ">{val.emailId}</span>
+                                <p className="font-semibold">{val.name}</p>
+                                <span className="">{val.emailId}</span>
                             </div>
                         </div>
 

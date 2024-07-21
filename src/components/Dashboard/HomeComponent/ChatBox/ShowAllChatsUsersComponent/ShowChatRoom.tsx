@@ -14,7 +14,7 @@ function ShowChatRoom() {
 
     const messagesContainerRef = useRef<HTMLDivElement | null>(null);
 
-    const [showMessageName,setShowMessageName] = useState("")
+    const [showMessageName, setShowMessageName] = useState("")
 
     const showUserDetails = useAppSelector((state) => state.ShowChatRoomSlicer.showSelectedChatUserDetails)
 
@@ -76,15 +76,15 @@ function ShowChatRoom() {
         },
     }
     ))
-useEffect(()=>{
-   
-})
+    useEffect(() => {
+
+    })
     const [subscription, setSubscription] = useState(null)
     const newSubscription = useSubscription(message_sent_subscribe, {
         onSubscriptionData: ({ client, subscriptionData }) => {
             const newMessage = subscriptionData.data.messageSent;
 
-  
+
 
             client.writeQuery({
                 query: show_chat_room_query,
@@ -101,11 +101,7 @@ useEffect(()=>{
                     ],
                 },
             });
-            if (messagesContainerRef.current) {
-                const { scrollTop, scrollHeight, clientHeight } = messagesContainerRef.current;
-                setShouldScrollToBottom(scrollTop + clientHeight >= scrollHeight);
-            }
-     
+
         }
 
     },
@@ -134,6 +130,7 @@ useEffect(()=>{
         unsubscribe = newSubscription; // Assuming newSubscription returns an unsubscribe function
 
     }, [])
+
 
     const closeChatBox = () => {
         Dispatch(setShowChatRoom(false))
@@ -188,7 +185,7 @@ useEffect(()=>{
                 <div className="show-chat-room-input-div">
 
                     <div className="chat-input-message-send-icon-div">
-                        <textarea value={chatMessage} onKeyUp={sendMessageData} className="font-semibold send-message-textarea" onChange={(e) => { setChatMessage(e.target.value) }} placeholder="Send Message" rows={4} cols={44}  >
+                        <textarea value={chatMessage} onKeyUp={sendMessageData} className="font-semibold send-message-textarea" onChange={(e) => { setChatMessage(e.target.value) }} placeholder="Send Message" rows={4} cols={46}  >
                             {/* {
                                 chatMessage ? <FaPaperPlane className="send-message-icon-button" onClick={() =>
                                     sendMessage({
@@ -214,24 +211,33 @@ useEffect(()=>{
             <div className="messages-container">
                 {
                     fetchSenderReceiverChatRoomData && fetchSenderReceiverChatRoomData.showSenderReceiverChat.map((val: any) => {
-                    console.log(val)
                         return (
-                            <div className="messages-div">
-                            
-                                    <img src={image}/>
-                                    <p>
-                                        {
-                                            val.senderId === senderID ? <p className="font-semibold">You</p>:<p className="font-semibold">{showUserDetails.name}</p>
-                                        }
-                                    </p>
+                            val.senderId === senderID ?
+                                <div className="sender-message-div messages-div">
+                                    <img className="chat-profile-image" src={image} />
+
+                                    <p className="user-message font-semibold">You</p>
+
+
                                     <p className="font-semibold">{showMessageName}</p>
                                     <p className="messages">{val.message}</p>
-                          
-                                <div ref={messagesEndRef} />
 
-                            </div>
+                                    <div ref={messagesEndRef} />
+                                </div> :
+                                <div className="reciever-message-div messages-div">
+                                    <img className="chat-profile-image" src={image} />
 
+                                    <p className="other-message font-semibold">{showUserDetails.name}</p>
+
+
+                                    <p className="font-semibold">{showMessageName}</p>
+                                    <p className="messages">{val.message}</p>
+
+                                    <div ref={messagesEndRef} />
+                                </div>
                         )
+
+
                     })
                 }
             </div>
@@ -241,7 +247,3 @@ useEffect(()=>{
 }
 
 export default ShowChatRoom;
-
-function setShouldScrollToBottom(arg0: boolean) {
-    throw new Error("Function not implemented.");
-}

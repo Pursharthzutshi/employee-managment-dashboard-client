@@ -21,9 +21,9 @@
     margin-top: 10px;
     margin-left: 20px;
     align-items: center;
-    padding: 2px 2px 12px 12px;
-    width: 90%;
+    padding: 2px 2px 12px 22px;
+    width: 88%;
     border-radius: 8px;
-    box-shadow: .2px .2px 22px .2px rgb(239, 239, 239);
+    box-shadow: .2px .2px 32px .2px rgb(239, 239, 239);
     gap:30px;
 }
