@@ -13,26 +13,26 @@ import { Provider } from 'react-redux';
 import { store } from './ReduxStore/store';
 import { BrowserRouter } from 'react-router-dom';
 
-// const webLink = new GraphQLWsLink(
-//   createClient({
-//     url: "ws://localhost:4004/graphql",
-//   }),
-// );
-
-// const httpLink = new HttpLink({
-//   uri: 'http://localhost:4004/graphql',
-// });
-
-
 const webLink = new GraphQLWsLink(
   createClient({
-    url: "wss://employee-managment-dashboard-server.onrender.com/graphql",
+    url: "ws://localhost:4004/graphql",
   }),
 );
 
 const httpLink = new HttpLink({
-  uri: 'https://employee-managment-dashboard-server.onrender.com/graphql',
+  uri: 'http://localhost:4004/graphql',
 });
+
+
+// const webLink = new GraphQLWsLink(
+//   createClient({
+//     url: "wss://employee-managment-dashboard-server.onrender.com/graphql",
+//   }),
+// );
+
+// const httpLink = new HttpLink({
+//   uri: 'https://employee-managment-dashboard-server.onrender.com/graphql',
+// });
 
 // const webLink = new GraphQLWsLink(
 //   createClient({
@@ -44,7 +44,7 @@ const httpLink = new HttpLink({
 //   uri: 'https://employee-managment-dashboard-server.vercel.app/graphql',
 // });
 
-const link: any = split(
+const link = split(
   ({ query }) => {
     const definition = getMainDefinition(query);
     return (

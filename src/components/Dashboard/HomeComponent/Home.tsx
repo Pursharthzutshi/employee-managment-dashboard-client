@@ -64,12 +64,12 @@ function Home() {
     const count = useAppSelector((state) => state.ChartsDetailsSlicer.count)
     const departmentCount = useAppSelector((state) => state.ChartsDetailsSlicer.departmentCount)
     const createEmployeeNewAccountStatus = useAppSelector((state) => state.createEmployeeNewAccountStatusSlicer.createEmployeeNewAccountStatus);
-    const showChatRoom = useAppSelector((state)=>state.ShowChatRoomSlicer.showChatRoom)
+    const showChatRoom = useAppSelector((state) => state.ShowChatRoomSlicer.showChatRoom)
 
 
     const Dispatch = useAppDispatch()
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log(senderID)
         console.log(receiverID)
     })
@@ -129,11 +129,17 @@ function Home() {
                 }
 
             </div>
-            <ChatBox />
+            {
+                !adminStatus && <ChatBox />
+            }
+
             <br></br>
             {
-                showChatRoom && <ShowChatRoom/> 
+                showChatRoom && <ShowChatRoom />
             }
+            {/* <EmployeeOfTheMonth />
+                <DepartmentChart /> */}
+
         </div>
     )
 }

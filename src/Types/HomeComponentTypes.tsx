@@ -36,6 +36,21 @@ export type employeeLeavesProps = {
 
 }
 
+export type messageType = {
+  id: string
+  senderId: string
+  message: string
+}
+
+
+
+export type fetchShowChatsDataType = {
+  showAllChats:any
+   showSenderReceiverChat:any
+  uid: string
+  emailId: string
+  name: string
+}
 
 export type showLoggedInEmployeesLeaveDetailsDataType = {
   showLoggedInEmployeesLeaveDetailsData: employeeLeavesProps[]

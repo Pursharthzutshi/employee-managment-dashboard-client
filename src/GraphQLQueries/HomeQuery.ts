@@ -94,6 +94,16 @@ uid
 }
 }
 `
+export const show_admin_chat_query = gql`
+query showAllAdminChats($showAdminChatsParameters: showAdminChatsInput!){
+  showAdminChats(showAdminChatsParameters: $showAdminChatsParameters) {
+    uid
+    emailId
+    name
+  }
+}
+`
+
 
 export const show_chat_room_query = gql`
 query showChatsRoom($showSenderReceiverChatParameters: showSenderReceiverChatInput!){
@@ -136,4 +146,22 @@ export const message_sent_subscribe = gql`
           uid
         }
       }
+`
+
+
+export const sendMessageTypeQuery = gql`
+mutation sendMessageType($sendMessageTypeIndicatorParameters: sendMessageTypeIndicatorInput!){
+  sendMessageTypeIndicator(sendMessageTypeIndicatorParameters: $sendMessageTypeIndicatorParameters) {
+  success
+  }
+}`
+
+
+export const typingIndicatorSubscribe = gql`
+subscription typingIndicatorSubscribe{
+  typingIndicator {
+    success
+  }
+}
+
 `

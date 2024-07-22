@@ -3,16 +3,15 @@ import { useAppDispatch, useAppSelector } from "../../../../../ReduxHooks";
 import { FaCross, FaPaperPlane, FaSadCry, FaTimes } from "react-icons/fa";
 import { removeChatID, setChatID, setShowChatRoom } from "../../../../../ReduxSlicers/ShowChatRoomSlicer";
 import { useApolloClient, useLazyQuery, useMutation, useSubscription } from "@apollo/client";
-import { message_sent_subscribe, send_message_query, show_chat_room_query } from "../../../../../GraphQLQueries/HomeQuery";
+import { message_sent_subscribe, send_message_query, sendMessageTypeQuery, show_chat_room_query, typingIndicatorSubscribe } from "../../../../../GraphQLQueries/HomeQuery";
 import { v4 as uuidv4 } from 'uuid';
 import image from "../../../../RegisterComponent/images/add-user.png"
 
 import "./ShowChatRoom.css"
+import { fetchShowChatsDataType, messageType } from "../../../../../Types/HomeComponentTypes";
 
 function ShowChatRoom() {
     const messagesEndRef = useRef<HTMLDivElement | null>(null);
-
-    const messagesContainerRef = useRef<HTMLDivElement | null>(null);
 
     const [showMessageName, setShowMessageName] = useState("")
 
@@ -23,24 +22,50 @@ function ShowChatRoom() {
 
     const [chatMessage, setChatMessage] = useState("");
 
-    const [sendMessage] = useMutation(send_message_query, ({
+    const [typeMessageIndicator, { data: typeMessageIndicatorData }] = useMutation(sendMessageTypeQuery)
+
+    const [typeChatMessageIndicatorStatus, setTypeChatMessageIndicatorStatus] = useState(false)
+
+    useEffect(() => {
+
+        typeMessageIndicator({
+            variables: {
+                sendMessageTypeIndicatorParameters: {
+                    isTyping: false
+                }
+            }
+        })
+        console.log(typeMessageIndicatorData)
+    })
+    const typeMessage = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setChatMessage(e.target.value)
+
+        typeMessageIndicator({
+            variables: {
+                sendMessageTypeIndicatorParameters: {
+                    isTyping: true
+                }
+            }
+        })
+
+        // setTypeChatMessageIndicatorStatus(true)
+    }
+
+    const { data } = useSubscription(typingIndicatorSubscribe);
+
+    useEffect(() => {
+        console.log(data)
+    })
+
+    const [sendMessage, { loading: sendMessageLoading }] = useMutation(send_message_query, ({
         onCompleted: (data) => {
-            // setChatMessage("")
-            // console.log(data.sendMessage[0].senderId)
-            // if(data.sendMessage[0].senderId === senderID){
-            //     setShowMessageName("You")
-            // }
 
-            // if(data.sendMessage[0].senderId === receiverID){
-            //     setShowMessageName("Other")
-
-            // }
         },
         update: (cache, { data: { sendMessage } }) => {
             const newMessageData = sendMessage;
 
-            if (newMessageData && newMessageData.message) { // Check if the message is valid
-                const showFetchedChats: any = cache.readQuery({
+            if (newMessageData && newMessageData.message) {
+                const showFetchedChats: fetchShowChatsDataType | null = cache.readQuery({
                     query: show_chat_room_query,
                     variables: {
                         showSenderReceiverChatParameters: {
@@ -60,7 +85,7 @@ function ShowChatRoom() {
                             },
                         },
                         data: {
-                            showSenderReceiverChat: [...showFetchedChats.showSenderReceiverChat, newMessageData],
+                            showSenderReceiverChat: [...showFetchedChats?.showSenderReceiverChat, newMessageData],
                         },
                     });
                 }
@@ -70,7 +95,7 @@ function ShowChatRoom() {
 
     const client = useApolloClient();
 
-    const [showChatRoom, { data: fetchSenderReceiverChatRoomData }] = useLazyQuery(show_chat_room_query, ({
+    const [showChatRoom, { data: fetchSenderReceiverChatRoomData, loading: fetchSenderReceiverChatRoomLoading }] = useLazyQuery(show_chat_room_query, ({
         onCompleted: (showChatRoomData) => {
             console.log(showChatRoomData);
         },
@@ -80,11 +105,10 @@ function ShowChatRoom() {
 
     })
     const [subscription, setSubscription] = useState(null)
+
     const newSubscription = useSubscription(message_sent_subscribe, {
         onSubscriptionData: ({ client, subscriptionData }) => {
             const newMessage = subscriptionData.data.messageSent;
-
-
 
             client.writeQuery({
                 query: show_chat_room_query,
@@ -106,6 +130,9 @@ function ShowChatRoom() {
 
     },
     )
+    // useEffect(()=>{
+    //     setTypeChatMessageIndicatorStatus(false)
+    // })
 
 
     useEffect(() => {
@@ -113,6 +140,7 @@ function ShowChatRoom() {
             messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
         }
     }, [fetchSenderReceiverChatRoomData]);
+
     useEffect(() => {
         let unsubscribe;
 
@@ -127,7 +155,7 @@ function ShowChatRoom() {
                 }
             })
         }
-        unsubscribe = newSubscription; // Assuming newSubscription returns an unsubscribe function
+        unsubscribe = newSubscription;
 
     }, [])
 
@@ -137,7 +165,7 @@ function ShowChatRoom() {
         Dispatch(removeChatID(""))
     }
 
-    const sendMessageData = (e: any) => {
+    const sendMessageData = (e: React.KeyboardEvent) => {
         console.log(e)
         if (chatMessage.trim()) {
             if (e.key === "Enter") {
@@ -155,12 +183,14 @@ function ShowChatRoom() {
 
             }
         } else {
-            console.log("worng")
+            console.log("wrong")
         }
 
     }
 
     const Dispatch = useAppDispatch()
+
+    // if (sendMessageLoading) return <div>Loading...</div>
 
     return (
         <div className="test">
@@ -185,7 +215,7 @@ function ShowChatRoom() {
                 <div className="show-chat-room-input-div">
 
                     <div className="chat-input-message-send-icon-div">
-                        <textarea value={chatMessage} onKeyUp={sendMessageData} className="font-semibold send-message-textarea" onChange={(e) => { setChatMessage(e.target.value) }} placeholder="Send Message" rows={4} cols={46}  >
+                        <textarea value={chatMessage} onKeyUp={sendMessageData} className="font-semibold send-message-textarea" onChange={typeMessage} placeholder="Send Message" rows={4} cols={46}  >
                             {/* {
                                 chatMessage ? <FaPaperPlane className="send-message-icon-button" onClick={() =>
                                     sendMessage({
@@ -210,7 +240,9 @@ function ShowChatRoom() {
 
             <div className="messages-container">
                 {
-                    fetchSenderReceiverChatRoomData && fetchSenderReceiverChatRoomData.showSenderReceiverChat.map((val: any) => {
+                    fetchSenderReceiverChatRoomData && fetchSenderReceiverChatRoomData.showSenderReceiverChat.map((val: messageType) => {
+
+                        if (fetchSenderReceiverChatRoomLoading) return <div>Loading...</div>
                         return (
                             val.senderId === senderID ?
                                 <div className="sender-message-div messages-div">
@@ -239,7 +271,13 @@ function ShowChatRoom() {
 
 
                     })
+
+
                 }
+                {/* {
+                typeMessageIndicatorData && typeMessageIndicatorData.sendMessageTypeIndicator.success ? <p>User is typing</p> : null
+                }
+                 */}
             </div>
 
         </div>
