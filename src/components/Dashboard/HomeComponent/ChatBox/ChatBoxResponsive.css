@@ -1,0 +1,25 @@
+@media only screen and (min-width:200px) and (max-width: 1000px) {
+
+    .chats-heading{
+        font-size: 1.2rem;
+    }
+
+    
+    .chat-box-component{
+        padding:2px 22px 22px 2px;
+        overflow-y:hidden;
+        width: 83%;
+        height: 30%;
+        margin-left: 10px;
+        margin-top: 5px;
+        box-shadow: .2px .2px 22px .2px whitesmoke;
+    }
+    .show-chat-room-component {
+        width: 90%;
+        padding: 2px 2px 22px 2px;
+        
+    }
+    
+    
+    
+}

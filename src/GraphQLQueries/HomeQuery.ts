@@ -89,8 +89,8 @@ export const show_chat_query = gql`
 query fetchChats($showAllChatsParamters: showAllChatsInput!){
 showAllChats(showAllChatsParamters: $showAllChatsParamters) {
 uid
-  emailId
-  name
+emailId
+name
 }
 }
 `

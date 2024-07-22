@@ -6,9 +6,10 @@ import { useApolloClient, useLazyQuery, useMutation, useSubscription } from "@ap
 import { message_sent_subscribe, send_message_query, sendMessageTypeQuery, show_chat_room_query, typingIndicatorSubscribe } from "../../../../../GraphQLQueries/HomeQuery";
 import { v4 as uuidv4 } from 'uuid';
 import image from "../../../../RegisterComponent/images/add-user.png"
+import { fetchShowChatsDataType, messageType } from "../../../../../Types/HomeComponentTypes";
 
 import "./ShowChatRoom.css"
-import { fetchShowChatsDataType, messageType } from "../../../../../Types/HomeComponentTypes";
+import "./ShowChatRoomResponsive.css"
 
 function ShowChatRoom() {
     const messagesEndRef = useRef<HTMLDivElement | null>(null);

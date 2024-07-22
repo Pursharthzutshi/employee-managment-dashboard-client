@@ -4,15 +4,17 @@ import { show_chat_query } from "../../../../GraphQLQueries/HomeQuery";
 import ShowAllChatsUsers from "./ShowAllChatsUsersComponent/ShowAllChatsUsers";
 
 import "../ChatBox/ChatBox.css"
+import "../ChatBox/ChatBoxResponsive.css"
 
 function ChatBox() {
 
     const [savedEmployeeLoggedInUid] = useState(localStorage.getItem("loggedInSavedUid") || localStorage.getItem("adminLoggedInSavedUid"));
 
-    const [showChats, { data: fetchShowChatsData }] = useLazyQuery(show_chat_query, {
+    const [showChats, { data: fetchShowChatsData,refetch }] = useLazyQuery(show_chat_query, {
         onCompleted: (showChatsData) => {
             console.log(showChatsData)
         },
+        
 
     })
 
@@ -26,6 +28,7 @@ function ChatBox() {
                     }
                 }
             })
+            refetch();
         }
     }, [savedEmployeeLoggedInUid])
 
