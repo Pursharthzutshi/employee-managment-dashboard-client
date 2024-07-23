@@ -31,7 +31,6 @@ function AddEmployeesTaskManagerDialogBox() {
 
     const [addTasks] = useMutation(addEmployeesTask, {
         onCompleted: (addTaskdata) => {
-            console.log(addTaskdata)
             if (addTaskdata.createEmployeesTask.success === false) {
                 setShowErrorMessageStatus(true)
                 setShowErrorMessage(addTaskdata.createEmployeesTask.message)
@@ -51,7 +50,6 @@ function AddEmployeesTaskManagerDialogBox() {
             const newtaskData = createEmployeesTask.addNewTaskData
             if (newtaskData) {
                 const fetchTask: addTasksCacheType | null = cache.readQuery({ query: fetch_employees_task_details_query })
-                console.log(fetchTask)
                 if (fetchTask?.fetchEmployeesTaskDetails) {
                     cache.writeQuery({
                         query: fetch_employees_task_details_query,
@@ -64,11 +62,7 @@ function AddEmployeesTaskManagerDialogBox() {
         }
     });
 
-    useEffect(() => {
-        console.log(showErrorMessageStatus)
-    }
-    )
-    // if(loading) return <div>Loading...</div>
+
     const addNewTask = () => {
 
         addTasks({

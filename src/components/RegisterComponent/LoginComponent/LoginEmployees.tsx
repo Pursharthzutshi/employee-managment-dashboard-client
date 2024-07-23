@@ -29,7 +29,6 @@ function LoginUsers() {
         onCompleted: (userLoginData) => {
 
             if (userLoginData.createUserLogin.success === true) {
-                console.log(userLoginData)
                 localStorage.setItem('token', userLoginData.createUserLogin.token);
 
                 navigate("/home")
@@ -40,14 +39,11 @@ function LoginUsers() {
                 setLoginErrorMessageStatus(false);
             } else {
                 setLoginErrorMessageStatus(true)
-                console.log(userLoginData)
                 setLoginErrorMessage(userLoginData.createUserLogin.message)
                 // Dispatch(setShowLogOutButtonElements(false));
             }
         },
-        onError: (ErrorMessage) => {
-            console.log(ErrorMessage);
-        },
+      
         refetchQueries: [
             {
                 query: employees_leave_details_query,
@@ -62,9 +58,7 @@ function LoginUsers() {
 
     });
 
-    useEffect(() => {
-        console.log(checkUserLoggedInAuth)
-    })
+    
 
 
     const loginForm = (e: React.ChangeEvent<HTMLFormElement>) => {

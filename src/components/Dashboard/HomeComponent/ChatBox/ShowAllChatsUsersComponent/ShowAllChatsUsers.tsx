@@ -40,9 +40,6 @@ function ShowAllChatsUsers({ fetchShowChatsData }: ShowAllChatsUsersProps) {
         // setShowChatRoom(true)
     }
 
-    useEffect(() => {
-        console.log(setSavedLoggedInEmployeeUid)
-    })
 
     return (
         <div className="main-chatbox">
@@ -54,7 +51,6 @@ function ShowAllChatsUsers({ fetchShowChatsData }: ShowAllChatsUsersProps) {
                     return val
                 }
             }).map((val: fetchShowChatsDataType) => {
-                console.log(val)
                 return (
                     <div className="show-all-user-to-chat-box">
                         <div onClick={() => { showChatRoomDialogBox(val) }} className="user-chat-container">
@@ -78,31 +74,7 @@ function ShowAllChatsUsers({ fetchShowChatsData }: ShowAllChatsUsersProps) {
             })
 
             }
-            {/* {
-                fetchShowChatsData && fetchShowChatsData?.showAllChats.map((val: fetchShowChatsDataType) => {
-                    console.log(fetchShowChatsData)
-                    return (
-                        <div className="show-all-user-to-chat-box">
-                            <div className="user-chat-container">
-                                <div>
-                                    <div>
-                                        <img className="image" src={image} />
-                                    </div>
-                                    <div>
-                                        <p className="font-semibold">{val.name}</p>
-                                        <span className="">{val.emailId}</span>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <FaFacebookMessenger onClick={() => { showChatRoomDialogBox(val) }} className="user-chat-container-icon" />
-                                </div>
-                            </div>
-                        </div>
-
-                    )
-                })
-            } */}
+       
 
 
         </div>

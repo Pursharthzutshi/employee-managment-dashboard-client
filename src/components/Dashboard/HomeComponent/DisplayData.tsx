@@ -13,12 +13,9 @@ query fetchEmailUsersIds{
 function DisplayData(){
     const {data,loading,error,refetch} = useQuery(showUsersEmailIdsQuery,{
         onCompleted: (data) => {
-            // console.log('User data:', data);
-            // Optionally refetch data here
+     
           },
-              onError:(error)=>{
-            console.log(error);
-          } 
+       
     });
 
     return{

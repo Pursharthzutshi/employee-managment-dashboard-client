@@ -22,9 +22,6 @@ function EmployeeOfTheMonth() {
 
     if (fetchEmployeeOfTheMonthLoading) return <div>Loading...</div>
 
-    // useEffect(() => {
-    //     console.log(fetchEmployeeOfTheMonth.showAllEmployee);
-    // })
 
     return (
         <div className="employee-of-the-month-component">

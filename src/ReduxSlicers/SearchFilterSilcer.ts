@@ -13,7 +13,6 @@ export const SearchFilterSilcer = createSlice({
     initialState,
     reducers: {
         setSearchFilter: (state, action) => {
-            console.log(action.payload)
             state.SearchFilter = action.payload;
         },
 

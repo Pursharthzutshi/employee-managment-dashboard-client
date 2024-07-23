@@ -21,34 +21,18 @@ function EmployeeLeaves() {
     const [updateLeaveStatus, { data: updateLeaveStatusData }] = useMutation(update_employee_leave_status, {
         refetchQueries: [{ query: employees_leave_details_query }],
 
-        // update: (cache,{data:{updateEmployeeLeaveStatus}}) => {
-        //     const showLeaveData = cache.readQuery({ query: show_all_employees_data_query })
-
-        //     if(updateEmployeeLeaveStatus.success === true){
-        //         cache.writeQuery({
-        //             query:show_all_employees_data_query,
-        //             data:{
-        //                 showshowLoggedInEmployeesLeaveDetailsData:[...fetchLeaveDetailsData.showLoggedInEmployeesLeaveDetailsData]
-        //             }
-        //         })
-        //     }
-        //     console.log(updateEmployeeLeaveStatus);
-        // }
-
-
+      
     })
 
     const [showApprovedRejectedMessage, setShowApprovedRejectedMessage] = useState("");
 
     useEffect(() => {
         refetch()
-        console.log(updateLeaveStatusData)
     })
 
     const approveEmployeeLeave = (val: employeeLeavesProps) => {
 
 
-        console.log(val.employeeLeaveApplicationUid);
         updateLeaveStatus({
             variables: {
                 updateEmployeeLeaveStatusParameters: {

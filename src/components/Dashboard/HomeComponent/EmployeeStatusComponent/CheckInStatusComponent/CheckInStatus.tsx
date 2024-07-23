@@ -16,18 +16,13 @@ mutation updateStatus($updateSignUpStatusParameter: updateSignUpStatusInput!){
 
 function CheckInStatus() {
 
-    const [updateSignUpCheckInStatus,loading] = useMutation(check_in_status_query,{
-        onCompleted:(data)=>{
-            console.log(data)
-        }
-    });
+    const [updateSignUpCheckInStatus,loading] = useMutation(check_in_status_query);
 
     const checkInStatus = useAppSelector((state) => state.CheckInStatusSlicer.checkInStatus)
 
     const Dispatch = useAppDispatch()
 
     const changeCheckInStatus = () => {
-        // console.log(checkInStatus)
         updateSignUpCheckInStatus({
             variables: {
                 updateSignUpStatusParameter: {
@@ -42,9 +37,7 @@ function CheckInStatus() {
         
     }
 
-    // useEffect(() => {
-    //     console.log(checkInStatus)
-    // })
+
 
     return (
         <div className="check-in-status-container">

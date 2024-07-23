@@ -18,11 +18,7 @@ function SettingsProfileForm() {
 
     const [adminProfileSavedUid, setAdminProfileSavedUid] = useState(localStorage.getItem("adminLoggedInSavedUid"));
 
-    const [updateProfileName] = useMutation(updateProfileNameQuery, {
-        onCompleted: (data) => {
-            console.log(data)
-        }
-    })
+    const [updateProfileName] = useMutation(updateProfileNameQuery)
     const [updateProfilePassword, { loading: updateProfilePasswordLoading }] = useMutation(updateProfilePasswordQuery)
 
     const Disptach = useAppDispatch();
@@ -34,15 +30,12 @@ function SettingsProfileForm() {
             },
         },
         onCompleted: (fetchAdminProfileDetailsData) => {
-            console.log(fetchAdminProfileDetailsData.fetchAdminProfileDetails)
             Disptach(setSavedLoggedInName(fetchAdminProfileDetailsData.fetchAdminProfileDetails[0].name))
         },
 
     });
     
-    useEffect(() => {
-        console.log(updatePassword)
-    })
+ 
 
     useEffect(() => {
         if (adminProfileSavedUid) {

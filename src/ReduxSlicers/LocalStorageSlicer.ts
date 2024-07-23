@@ -24,16 +24,13 @@ export const LocalStorageSlicer = createSlice({
     reducers: {
 
         setAdminStatus: (state, action) => {
-            // console.log(action.payload)
             state.adminStatus = action.payload
             localStorage.setItem("adminStatus", action.payload);
         },
         setLoggedInSavedUid: (state, action) => {
-            // console.log(action.payload)
             state.loggedInSavedUid = action.payload;
 
             const savedAdminStatus = JSON.parse(localStorage.getItem("adminStatus") || "false")
-            console.log(savedAdminStatus)
 
             // if (savedAdminStatus) {
             localStorage.setItem(savedAdminStatus ? "adminLoggedInSavedUid" : "loggedInSavedUid", action.payload);
@@ -46,9 +43,7 @@ export const LocalStorageSlicer = createSlice({
         },
 
         setLogOutStatus: (state, action) => {
-            // console.log(action.payload)
-            // console.log(state.adminStatus)
-
+     
             if (localStorage.getItem("adminLoggedInSavedUid")) {
                 localStorage.removeItem("adminLoggedInSavedUid");
             } else {

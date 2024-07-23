@@ -54,7 +54,6 @@ function AssignedEmployeesTask() {
                 {
                     fetchAssignedEmployeeTaskData && fetchAssignedEmployeeTaskData.fetchLoggedInEmployeeAssignedTaskDetails.length > 0 ?
                         fetchAssignedEmployeeTaskData && fetchAssignedEmployeeTaskData.fetchLoggedInEmployeeAssignedTaskDetails.map((fetchLoggedInEmployeeAssignedTaskDetailsData: fetchEmployeesDetailsProps) => {
-                            console.log(fetchLoggedInEmployeeAssignedTaskDetailsData)
                             return (
                                 <div className="employees-task-data-div">
                                     <div>

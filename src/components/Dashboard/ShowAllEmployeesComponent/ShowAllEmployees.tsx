@@ -32,11 +32,7 @@ function ShowAllEmployees() {
 
     const Dispatch = useDispatch()
 
-    const [assignEmployeeOfTheMonth] = useMutation(update_Employee_Of_The_Month_query, ({
-        onError: (err) => {
-            console.log(err)
-        }
-    }));
+    const [assignEmployeeOfTheMonth] = useMutation(update_Employee_Of_The_Month_query);
 
     const client = useApolloClient();
 

@@ -29,7 +29,6 @@ function ShowChatRoom() {
 
     const [showChatRoom, { data: fetchSenderReceiverChatRoomData, loading: fetchSenderReceiverChatRoomLoading }] = useLazyQuery(show_chat_room_query, ({
         onCompleted: (showChatRoomData) => {
-            console.log(showChatRoomData);
         },
     }
     ))
@@ -136,7 +135,6 @@ function ShowChatRoom() {
 
     }, [])
     useEffect(() => {
-        console.log(subscriptionData)
         if (messagesEndRef.current) {
             messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
         }
@@ -186,9 +184,7 @@ function ShowChatRoom() {
                 setChatMessage("")
 
             }
-        } else {
-            console.log("wrong")
-        }
+        } 
 
     }
 

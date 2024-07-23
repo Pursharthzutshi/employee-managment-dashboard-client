@@ -39,15 +39,12 @@ export const SignUpSlicer = createSlice({
         },
 
         setGenderType: (state, action) => {
-            console.log(action.payload)
             state.genderType = action.payload;
         },
         setAdminSignUpSecret: (state, action) => {
             state.adminSignUpSecret = action.payload
-            console.log(action.payload);
         },
         setDepartment: (state, action) => {
-            console.log(action.payload)
             state.department = action.payload;
         }
 

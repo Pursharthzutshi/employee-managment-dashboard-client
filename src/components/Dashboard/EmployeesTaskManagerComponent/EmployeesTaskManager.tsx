@@ -24,7 +24,6 @@ function EmployeesTaskManager() {
 
     useEffect(() => {
         const val = localStorage.getItem('loggedInEmailID')
-        console.log(val);
     })
 
     return (

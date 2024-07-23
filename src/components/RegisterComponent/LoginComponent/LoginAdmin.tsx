@@ -26,12 +26,10 @@ function LoginAdmin() {
         onCompleted: (adminLoginData) => {
             localStorage.setItem('token', adminLoginData.createAdminLogin.token);
 
-            console.log(adminLoginData)
             if (adminLoginData.createAdminLogin.admin === true) {
                 Dispatch(setSavedLoggedInName(adminLoginData.createAdminLogin.name))
                 Dispatch(setAdminStatus(true))
                 navigate("/home")
-                console.log(adminLoginData.createAdminLogin)
                 Dispatch(setShowLogOutButtonElements(true));
                 Dispatch(setLoggedInSavedUid(adminLoginData.createAdminLogin.uid));
                 setLoginErrorMessageStatus(false);

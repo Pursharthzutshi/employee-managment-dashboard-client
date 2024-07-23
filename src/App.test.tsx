@@ -82,14 +82,11 @@ it("search", async () => {
     </BrowserRouter>
 
   )
-  console.log(container)
 
   const input = await screen.findByTestId("search-input")
   userEvent.type(input, "Something I will never type")
-  console.log(userEvent)
 
   await waitFor(() => {
-    console.log((container.querySelectorAll(".employee-name").length))
     expect(container.querySelectorAll(".employee-name").length).toBe(0)
   });
 })

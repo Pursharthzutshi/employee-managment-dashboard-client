@@ -43,7 +43,6 @@ function SignupAdmin() {
 
   const [adminSignUp, { loading }] = useMutation(signUpquery, ({
     onCompleted: (adminSignUpData) => {
-      console.log(adminSignUpData)
       if (adminSignUpData.createAdminSignUp.success === true) {
         navigate("/")
         setShowAdminSignUpErrorMessageStatus(false)
@@ -55,7 +54,6 @@ function SignupAdmin() {
     update: (cache, data) => {
 
       const adminArray: showAllAdminType | null = cache.readQuery({ query: fetchTotalAdmin })
-      console.log(adminArray)
       if (adminArray) {
         const totalArrayLength = adminArray.showAllAdmin.length + 1
         cache.writeQuery({
@@ -73,9 +71,6 @@ function SignupAdmin() {
   }),
   );
 
-  useEffect(() => {
-    console.log(showAdminSignUpErrorMessage)
-  })
   // if (loading) return <p>Loading</p>
 
   return (

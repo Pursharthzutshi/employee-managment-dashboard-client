@@ -29,16 +29,6 @@ function App() {
 
   const logOutButton = useAppSelector((state) => state.LocalStorageSlicer.showLogOutButtonElements)
 
-  // const [showMenuBar,setShowMenuBar] = useState(false)
-
-  useEffect(() => {
-    console.log(logOutButton)
-    // console.log('adminStatus from localStorage:', localStorage.getItem('adminStatus'));
-  }, [adminStatus])
-
-  // const showLeftSidebar = () =>{
-  //   setShowMenuBar(true);
-  // }
 
   return (
     <div data-testid="app-container" className="App">

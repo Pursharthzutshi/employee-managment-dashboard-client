@@ -10,9 +10,7 @@ function WelcomeBack() {
 
     const logOutButton = useAppSelector((state) => state.LocalStorageSlicer.showLogOutButtonElements)
 
-    useEffect(() => {
-        console.log(savedLoggedInName)
-    }, [savedLoggedInName])
+ 
 
     return (
         <div className="welcome-back-card-container">

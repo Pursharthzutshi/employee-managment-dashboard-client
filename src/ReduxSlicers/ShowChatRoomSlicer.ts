@@ -24,7 +24,6 @@ export const ShowChatRoomSlicer = createSlice({
         },
 
         setChatID: (state, action) => {
-            console.log(action.payload)
             state.senderID = action.payload.savedEmployeeLoggedInUid
             state.receiverID = action.payload.val.uid
         },
@@ -35,7 +34,6 @@ export const ShowChatRoomSlicer = createSlice({
         },
 
         setShowSelectedChatUserDetails: (state, action) => {
-            console.log(action.payload)
             state.showSelectedChatUserDetails = action.payload;
         }
 

@@ -45,7 +45,6 @@ function CreateNewEmployeeAccount() {
   const [CreateEmployeeNewAccount, { data: signUpResponseData, loading }] = useMutation(signUpquery, {
 
     onCompleted: (createNewEmployeeAccountData) => {
-      console.log(createNewEmployeeAccountData)
       if (createNewEmployeeAccountData.createUserSignUp.success === true) {
 
         Dispatch(setCreateEmployeeNewAccountStatus(true))
@@ -58,13 +57,11 @@ function CreateNewEmployeeAccount() {
 
 
     update: (cache, { data: { createUserSignUp } }) => {
-      console.log(createUserSignUp)
       if (createUserSignUp.success) {
 
         const newEmployee = createUserSignUp.AddedSignUpData;
         const existingEmployees: createNewEmployeeAccountCacheType | null = cache.readQuery({ query: show_all_employees_data_query });
 
-        console.log(existingEmployees)
         if (existingEmployees?.showAllEmployee) {
           cache.writeQuery({
             query: show_all_employees_data_query,
@@ -86,7 +83,6 @@ function CreateNewEmployeeAccount() {
 
   useEffect(() => {
     setNewEmployeeAccountCreatedStatus(false);
-    console.log(signUpResponseStatus)
   }, [])
 
   return (

@@ -11,15 +11,10 @@ function ChatBox() {
     const [savedEmployeeLoggedInUid] = useState(localStorage.getItem("loggedInSavedUid") || localStorage.getItem("adminLoggedInSavedUid"));
 
     const [showChats, { data: fetchShowChatsData,refetch }] = useLazyQuery(show_chat_query, {
-        onCompleted: (showChatsData) => {
-            console.log(showChatsData)
-        },
-        
 
     })
 
     useEffect(() => {
-        console.log(savedEmployeeLoggedInUid)
         if (savedEmployeeLoggedInUid) {
             showChats({
                 variables: {

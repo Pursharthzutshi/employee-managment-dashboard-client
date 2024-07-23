@@ -13,7 +13,6 @@ export const createEmployeeNewAccountStatusSlicer = createSlice({
     initialState,
     reducers: {
        setCreateEmployeeNewAccountStatus: (state, action) => {
-            // console.log(action.payload)
             state.createEmployeeNewAccountStatus = action.payload;
         },
     }

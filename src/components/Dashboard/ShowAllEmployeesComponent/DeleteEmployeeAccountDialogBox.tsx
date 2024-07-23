@@ -17,22 +17,13 @@ function DeleteEmployeeAccountDialogBox({ uid, setShowDeleteEmployeeAccountDialo
 
     const [deleteEmployeeAccount, { data: deleteEmployeeAccountDetails, loading: deleteEmployeeAccountDetailsLoading }] = useMutation(delete_employees_account_query, {
 
-        onCompleted: (deleteEmployeeAccountDetailsData) => {
-            // if(deleteEmployeeAccountDetailsData.deleteEmployeeAccount.success === "true"){
-            // }
-            console.log(deleteEmployeeAccountDetailsData)
-        },
-
         update: (cache, { data: { deleteEmployeeAccount } }) => {
-            console.log(deleteEmployeeAccount)
             if (deleteEmployeeAccount.status) {
                 const showAllEmployeesCacheData:showAllEmployeesCacheDataProps | null = cache.readQuery({ query: show_all_employees_data_query })
-                console.log(showAllEmployeesCacheData)
                 const uid = showAllEmployeesCacheData?.showAllEmployee.map((showAllEmployeesCacheDataUid:showAllEmployeesCacheDataUidType)=>{
                     console.log(showAllEmployeesCacheDataUid.uid)
                 })
 
-                console.log(showAllEmployeesCacheData)
 
                 cache.writeQuery({
                     query:show_all_employees_data_query,
@@ -44,16 +35,11 @@ function DeleteEmployeeAccountDialogBox({ uid, setShowDeleteEmployeeAccountDialo
             }
         }
     }
-        // {
-        //     refetchQueries: [{ query: show_all_employees_data_query }]
-        // }
+
 
 
     );
-    useEffect(() => {
-        console.log(uid)
-    })
-
+   
     const closeDeleteAccountDialogBox = () => {
         setShowDeleteEmployeeAccountDialogBoxStatus(false);
     }

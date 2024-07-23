@@ -15,7 +15,6 @@ function EmployeeStatus() {
 
     useEffect(() => {
         if (showAllUsersDetailsAndStatus) {
-            console.log(showAllUsersDetailsAndStatus.fetchEmailUsersIds);
             refetch();
         }
     }, [showAllUsersDetailsAndStatus, refetch]);

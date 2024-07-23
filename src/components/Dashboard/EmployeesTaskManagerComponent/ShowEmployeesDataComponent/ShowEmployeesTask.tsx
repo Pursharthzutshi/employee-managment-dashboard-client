@@ -38,19 +38,13 @@ function ShowEmployeesTask() {
   const [editDialogBox, setEditDialogBox] = useState<Boolean>(false);
 
   const [deleteEmployeeTaskData, { data: deleteEmployeesTask }] = useMutation(delete_employees_task_data, {
-    onCompleted: (deleteEmployeesTaskData) => {
-      console.log(deleteEmployeesTaskData)
-    },
-
 
     update: (cache) => {
 
       const fetchTaskDeleteData: fetchEmployeesTaskDetailsType | null  = cache.readQuery({ query: fetch_employees_task_details_query })
 
-      console.log(fetchTaskDeleteData)
 
       const uid = fetchTaskDeleteData?.fetchEmployeesTaskDetails.map((fetchEmployeesTaskDetails: fetchTaskDeleteDataType) => {
-        console.log(fetchEmployeesTaskDetails)
         return fetchEmployeesTaskDetails.uid
       })
 
@@ -76,23 +70,11 @@ function ShowEmployeesTask() {
 
   const showEditDialogBox = (val: string) => {
     Dispatch(setShowEmployeesEditDialogBox(true));
-    console.log(val)
     setSelectedUpdateTaskFieldUid(val)
   }
 
-  useEffect(() => {
-    console.log(employeesTaskData)
-  })
 
-  // client.query({query:fetch_employees_task_details_query}).then(response=>{
-  //   console.log(response);
-  //   client.cache.writeQuery({
-  //     query: delete_employees_task_data,
-  //     data: {
-  //       data: response.data.data
-  //     }
-  //   });
-  // })
+
 
   if (loading) return <p>Loading...</p>;
 
@@ -102,7 +84,6 @@ function ShowEmployeesTask() {
         employeesTaskData.fetchEmployeesTaskDetails.length > 0 ?
 
           employeesTaskData.fetchEmployeesTaskDetails.map((val: fetchEmployeesDetailsProps) => {
-            console.log(val.emailId)
             return (
               <div className="employees-task-data-div">
 
@@ -124,7 +105,6 @@ function ShowEmployeesTask() {
                 </div>
                 {
                   val.emailId.map((val: string) => {
-                    console.log(val)
                     return <div>
 
                       <p>{val}</p>

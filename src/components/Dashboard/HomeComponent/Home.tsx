@@ -70,10 +70,6 @@ function Home() {
     const Dispatch = useAppDispatch()
 
     useEffect(() => {
-        console.log(senderID)
-        console.log(receiverID)
-    })
-    useEffect(() => {
 
         if (createEmployeeNewAccountStatus === true) {
             Dispatch(resetCounts());

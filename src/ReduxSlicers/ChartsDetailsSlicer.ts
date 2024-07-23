@@ -87,7 +87,6 @@ export const ChangeSignUpFormSlicer = createSlice({
         },
 
         setChartData: (state, action) => {
-            console.log(action.payload)
             state.chartData = action.payload
         }
     }
