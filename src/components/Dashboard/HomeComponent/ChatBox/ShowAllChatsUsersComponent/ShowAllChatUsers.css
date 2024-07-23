@@ -11,10 +11,10 @@
     margin-top: 20px;
     margin-left: 20px;
     align-items: center;
-    padding: 2px 2px 12px 22px;
+    padding: 2px 22px 12px 22px;
     width: 95%;
     box-shadow: .2px .2px 20px .2px rgba(239, 239, 239, 0.608);
-    gap:30px;
+    /* gap:20px; */
     border-radius: 8px;
     border-left: 2px solid rgb(0, 53, 80);
 }
@@ -27,6 +27,7 @@
     display: flex;
     justify-content: space-between;
     width:100%;
+    cursor: pointer;
     /* background-color: red; */
 }
 
@@ -51,4 +52,9 @@
 .image{
     width: 1.7rem;
     height: auto;
+}
+
+.show-all-user-to-chat-email-id{
+    font-size: .9rem;
+    color: rgb(45, 45, 45);
 }

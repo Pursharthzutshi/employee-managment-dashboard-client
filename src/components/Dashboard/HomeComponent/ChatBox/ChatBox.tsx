@@ -34,7 +34,7 @@ function ChatBox() {
 
     return (
         <div className="chat-box-component">
-            <p className="chats-heading font-semibold ml-4">All Chats</p>
+            <p className="chats-heading font-semibold ml-4 pl-2 ">All Chats</p>
             <ShowAllChatsUsers fetchShowChatsData={fetchShowChatsData} />
         </div>
     )

@@ -12,28 +12,51 @@ import "./ShowChatRoom.css"
 import "./ShowChatRoomResponsive.css"
 
 function ShowChatRoom() {
-
     const messagesEndRef = useRef<HTMLDivElement | null>(null);
-    const senderID = useAppSelector((state) => state.ShowChatRoomSlicer.senderID)
-    const receiverID = useAppSelector((state) => state.ShowChatRoomSlicer.receiverID)
-    const showUserDetails = useAppSelector((state) => state.ShowChatRoomSlicer.showSelectedChatUserDetails)
-
-
 
     const [showMessageName, setShowMessageName] = useState("")
+
+    const showUserDetails = useAppSelector((state) => state.ShowChatRoomSlicer.showSelectedChatUserDetails)
+
+    const senderID = useAppSelector((state) => state.ShowChatRoomSlicer.senderID)
+    const receiverID = useAppSelector((state) => state.ShowChatRoomSlicer.receiverID)
+
     const [chatMessage, setChatMessage] = useState("");
+
     const [typeMessageIndicator, { data: typeMessageIndicatorData }] = useMutation(sendMessageTypeQuery)
+
     const [typeChatMessageIndicatorStatus, setTypeChatMessageIndicatorStatus] = useState(false)
+
+    useEffect(() => {
+
+        typeMessageIndicator({
+            variables: {
+                sendMessageTypeIndicatorParameters: {
+                    isTyping: false
+                }
+            }
+        })
+        console.log(typeMessageIndicatorData)
+    })
+    const typeMessage = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setChatMessage(e.target.value)
+
+        typeMessageIndicator({
+            variables: {
+                sendMessageTypeIndicatorParameters: {
+                    isTyping: true
+                }
+            }
+        })
+
+        // setTypeChatMessageIndicatorStatus(true)
+    }
+
     const { data } = useSubscription(typingIndicatorSubscribe);
 
-
-    const [showChatRoom, { data: fetchSenderReceiverChatRoomData, loading: fetchSenderReceiverChatRoomLoading }] = useLazyQuery(show_chat_room_query, ({
-        onCompleted: (showChatRoomData) => {
-            console.log(showChatRoomData);
-        },
-    }
-    ))
-
+    useEffect(() => {
+        console.log(data)
+    })
 
     const [sendMessage, { loading: sendMessageLoading }] = useMutation(send_message_query, ({
         onCompleted: (data) => {
@@ -63,7 +86,7 @@ function ShowChatRoom() {
                             },
                         },
                         data: {
-                            showSenderReceiverChat: [...(showFetchedChats?.showSenderReceiverChat || []), newMessageData],
+                            showSenderReceiverChat: [...showFetchedChats?.showSenderReceiverChat, newMessageData],
                         },
                     });
                 }
@@ -71,27 +94,35 @@ function ShowChatRoom() {
         }
     }))
 
+    const client = useApolloClient();
+
+    const [showChatRoom, { data: fetchSenderReceiverChatRoomData, loading: fetchSenderReceiverChatRoomLoading }] = useLazyQuery(show_chat_room_query, ({
+        onCompleted: (showChatRoomData) => {
+            console.log(showChatRoomData);
+        },
+    }
+    ))
+    // currentdate.getHours >= 10 ? null : 0 + currentdate.toLocaleTimeString() + " " + "Date : " +
+    var currentdate: any = new Date();
+    var currentTime =
+        currentdate.toLocaleTimeString() + " " + "Date : " +
+        + currentdate.getDate() + "/"
+        + currentdate.getMonth() + "/"
+        + currentdate.getFullYear() 
+    {
 
 
-    const { data: subscriptionData, loading, error } = useSubscription(message_sent_subscribe, {
-        variables: {
-            messageSendParameters: {
-                senderId: senderID,
-                receiverId: receiverID,
-            }
+    }
+    const [subscription, setSubscription] = useState(null)
+
+    let newSubscription:any = useSubscription(message_sent_subscribe, {
+        variables:{
+            senderId: senderID,
+            receiverId: receiverID,
         },
         onSubscriptionData: ({ client, subscriptionData }) => {
-
             const newMessage = subscriptionData.data.messageSent;
-            const fetchSenderReceiverChatRoomData = client.readQuery({
-                query: show_chat_room_query,
-                variables: {
-                    showSenderReceiverChatParameters: {
-                        senderId: senderID,
-                        receiverId: receiverID,
-                    },
-                },
-            });
+
             client.writeQuery({
                 query: show_chat_room_query,
                 variables: {
@@ -107,22 +138,25 @@ function ShowChatRoom() {
                     ],
                 },
             });
+
         }
-    }
+
+    },
     )
+    // useEffect(()=>{
+    //     setTypeChatMessageIndicatorStatus(false)
+    // })
+
+
+    useEffect(() => {
+        if (messagesEndRef.current) {
+            messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+    }, [fetchSenderReceiverChatRoomData]);
 
     useEffect(() => {
 
-        typeMessageIndicator({
-            variables: {
-                sendMessageTypeIndicatorParameters: {
-                    isTyping: false
-                }
-            }
-        })
-    })
-    useEffect(() => {
-
+        console.log(newSubscription)
         if (senderID && receiverID) {
             showChatRoom({
                 variables: {
@@ -135,41 +169,16 @@ function ShowChatRoom() {
         }
 
     }, [])
-    useEffect(() => {
-        console.log(subscriptionData)
-        if (messagesEndRef.current) {
-            messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-        }
-    }, [fetchSenderReceiverChatRoomData]);
 
-
-    const typeMessage = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        setChatMessage(e.target.value)
-
-        typeMessageIndicator({
-            variables: {
-                sendMessageTypeIndicatorParameters: {
-                    isTyping: true
-                }
-            }
-        })
-
-        // setTypeChatMessageIndicatorStatus(true)
-    }
 
     const closeChatBox = () => {
+        newSubscription = null
         Dispatch(setShowChatRoom(false))
         Dispatch(removeChatID(""))
     }
 
-    var currentdate: any = new Date();
-    var currentTime =
-        currentdate.toLocaleTimeString() + " " + "Date : " +
-        + currentdate.getDate() + "/"
-        + currentdate.getMonth() + "/"
-        + currentdate.getFullYear()
-
     const sendMessageData = (e: React.KeyboardEvent) => {
+        console.log(e)
         if (chatMessage.trim()) {
             if (e.key === "Enter") {
                 sendMessage({

@@ -87,6 +87,7 @@
 
 @keyframes showChatRoomComponentSideEffect {
     0% {
+        
         opacity: .2;
     }
 
@@ -111,7 +112,8 @@
     padding: 2px 16px 22px 2px;
     justify-content: space-evenly;
     gap: 10px;
-    margin-top: 30px;
+    margin-left: 1px;
+    margin-top: 34px;
 }
 
 .send-message-icon-button {
@@ -174,12 +176,26 @@
     position: fixed;
     top: 0%;
     left: 70%;
-    background: rgb(236, 236, 236);
-    box-shadow: .2px .2px 3px .2px rgba(156, 156, 156, 0.805);
+    background: rgb(225, 225, 225);
+    box-shadow: .2px .2px 3px .2px rgba(156, 156, 156, 0.725);
     width: 100%;
-    /* height: 0%; */
     padding: 6px 2px 27px 2px;
     margin-top: -2px;
+    z-index: +1;
+    animation: .5s ease chatRoomUserProfileShowSideEffect;
+}
+
+@keyframes chatRoomUserProfileShowSideEffect {
+    0%{
+        background: white;
+        opacity: .2;
+        scale: .98;
+    }
+    100%{
+        background: rgb(225, 225, 225);
+        scale: 1;
+        opacity: 1;
+    }
 }
 
 .chat-room-name-email-id-div {

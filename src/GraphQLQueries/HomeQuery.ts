@@ -112,6 +112,7 @@ query showChatsRoom($showSenderReceiverChatParameters: showSenderReceiverChatInp
   senderId
     receiverId
     message
+    date
   }
 }
 `
@@ -123,6 +124,7 @@ mutation sendMessage($sendMessageParameters: sendMessageInput!){
     senderId
     receiverId
     message
+    date
   }
 }
 `
@@ -136,17 +138,29 @@ mutation sendMessage($sendMessageParameters: sendMessageInput!){
 // }
 // }
 // `
-
 export const message_sent_subscribe = gql`
-  subscription MessageSentSubscription {
-        messageSent {
-          message
-          senderId
-          receiverId
-          uid
-        }
-      }
-`
+subscription onMessageSent($messageSendParameters: messageSendInput!){
+  messageSent(messageSendParameters: $messageSendParameters) {
+     uid
+      senderId
+      receiverId
+      message
+      date
+  }
+}
+`;
+
+// export const message_sent_subscribe = gql`
+//   subscription MessageSentSubscription {
+//         messageSent {
+//           message
+//           senderId
+//           receiverId
+//           uid
+//           date
+//         }
+//       }
+// `
 
 
 export const sendMessageTypeQuery = gql`

@@ -37,6 +37,7 @@ export type employeeLeavesProps = {
 }
 
 export type messageType = {
+  date: string
   id: string
   senderId: string
   message: string

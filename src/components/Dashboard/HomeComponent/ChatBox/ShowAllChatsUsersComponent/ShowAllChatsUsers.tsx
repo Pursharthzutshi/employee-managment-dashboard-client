@@ -50,21 +50,21 @@ function ShowAllChatsUsers({ fetchShowChatsData }: ShowAllChatsUsersProps) {
             {fetchShowChatsData && fetchShowChatsData?.showAllChats.filter((val: fetchShowChatsDataType) => {
                 if (val.uid === setSavedLoggedInEmployeeUid) {
                     return val.uid !== setSavedLoggedInEmployeeUid
-                }else{
+                } else {
                     return val
                 }
             }).map((val: fetchShowChatsDataType) => {
                 console.log(val)
                 return (
                     <div className="show-all-user-to-chat-box">
-                        <div className="user-chat-container">
+                        <div onClick={() => { showChatRoomDialogBox(val) }} className="user-chat-container">
                             <div>
                                 <div>
                                     <img className="image" src={image} />
                                 </div>
                                 <div>
                                     <p className="font-semibold">{val.name}</p>
-                                    <span className="">{val.emailId}</span>
+                                    <span className="show-all-user-to-chat-email-id">{val.emailId}</span>
                                 </div>
                             </div>
 
