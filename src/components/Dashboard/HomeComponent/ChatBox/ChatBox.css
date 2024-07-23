@@ -1,21 +1,9 @@
-.chats-heading{
+.chats-heading {
     font-size: 1.2rem;
 }
-/* .chat-box-component::-webkit-scrollbar {
-    background: linear-gradient(to left, rgb(255, 255, 255), rgb(255, 255, 255));
-}
 
-.chat-box-component::-webkit-scrollbar-thumb {
-    background: linear-gradient(to left, rgb(245, 245, 245), rgb(235, 235, 235));
-    border-radius: 2px;
-}
-
-.chat-box-component::-webkit-scrollbar-button {
-    display: hidden;
-} */
-
-.chat-box-component{
-    padding:2px 2px 22px 2px;
+.chat-box-component {
+    padding: 2px 2px 22px 2px;
     overflow-y: scroll;
     width: 94%;
     height: 30%;
@@ -23,5 +11,3 @@
     margin-top: 5px;
     box-shadow: .2px .2px 22px .2px whitesmoke;
 }
-
-

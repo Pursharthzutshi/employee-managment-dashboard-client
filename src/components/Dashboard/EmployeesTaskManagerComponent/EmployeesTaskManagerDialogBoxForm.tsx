@@ -3,16 +3,14 @@ import { useAppDispatch, useAppSelector } from "../../../ReduxHooks";
 import { SetEmployeeEmailId, setAlreadyAddedEmployeeStatus, setEmployeeDeadLine, setEmployeeName, setEmployeeTaskDesc } from "../../../ReduxSlicers/AddEmployeesTaskSlicer";
 import { gql, useQuery } from "@apollo/client";
 import { setShowEmployeesDialogBox, setShowEmployeesEditDialogBox } from "../../../ReduxSlicers/ShowEmployeesDialogBoxSlicer";
-import Calendar from 'react-calendar';
 import { FaTimes } from "react-icons/fa";
 import 'react-calendar/dist/Calendar.css';
 import { setTaskAssign } from "../../../ReduxSlicers/ShowTaskAssignEmployeeInDialogBoxSlicer";
 import { employeesTaskManagerDialogBoxFormTypes, fetchEmailUsersIdsProps } from "../../../Types/EmployeesTaskTypes";
-
-import "./EmployeesTaskManagerDialogBoxForm.css"
-
 import { showUsersEmailIdsQuery } from "../../../GraphQLQueries/EmployeesTaskManagerQuery";
 import DateLimit from "../../utils/DateLimit";
+
+import "./EmployeesTaskManagerDialogBoxForm.css"
 
 function EmployeesTaskManagerDialogBoxForm() {
 
@@ -29,8 +27,6 @@ function EmployeesTaskManagerDialogBoxForm() {
     useEffect(() => {
         Dispatch(SetEmployeeEmailId(selectedUsers));
     })
-
-    // ADD SELECTED USERS 
 
     const addSelectedUser = (currentUsers: String) => {
 
@@ -49,9 +45,6 @@ function EmployeesTaskManagerDialogBoxForm() {
         }
     }
 
-
-    // REMOVE SELECTED USERS    
-
     const removeSelectedUsers = (selectedEmailId: String) => {
         const updatedSelectedUsers = selectedUsers.filter((existingUsersEmailId: String) => {
             return existingUsersEmailId !== selectedEmailId;
@@ -59,15 +52,11 @@ function EmployeesTaskManagerDialogBoxForm() {
         setSelectedUsers(updatedSelectedUsers)
     }
 
-    // CLOSE DIALOG BOX    
 
     const closeDialogBox = () => {
         Dispatch(setShowEmployeesDialogBox(false));
         Dispatch(setShowEmployeesEditDialogBox(false));
     }
-
-
-    // LOADING    
 
     if (loading) return <h3>Loading</h3>
 

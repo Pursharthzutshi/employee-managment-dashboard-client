@@ -1,4 +1,3 @@
-import React from "react";
 
 function DateLimit() {
     const year = new Date().getFullYear();

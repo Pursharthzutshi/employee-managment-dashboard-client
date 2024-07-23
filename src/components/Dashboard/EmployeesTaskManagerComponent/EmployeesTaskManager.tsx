@@ -7,13 +7,10 @@ import NavBar from "../../NavBarComponent/NavBar";
 
 import "../EmployeesTaskManagerComponent/EmployeesTaskManager.css"
 import "../EmployeesTaskManagerComponent/TaskDialogBox.css"
-
-
 import "../../../App.css"
 
 function EmployeesTaskManager() {
 
-    // const loggedInSavedEmailId = useAppSelector((state) => state.LocalStorageSlicer.loggedInSavedEmailId)
 
     const dialogBox = useAppSelector((state) => state.ShowEmployeesDialogBoxSlicer.showEmployeesDialogBox)
     const Dispatch = useAppDispatch();

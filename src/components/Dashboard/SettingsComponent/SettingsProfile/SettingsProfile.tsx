@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import SettingsProfileForm from "./SettingsProfileForm";
 
 import "../SettingsProfile/SettingsProfile.css"

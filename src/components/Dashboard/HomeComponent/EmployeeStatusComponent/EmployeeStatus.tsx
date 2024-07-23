@@ -2,14 +2,13 @@ import React, { useEffect } from "react";
 import { FaPen } from "react-icons/fa";
 import { gql, useQuery } from "@apollo/client";
 import { useAppSelector } from "../../../../ReduxHooks";
-import "./EmployeeStatus.css";
 import { fetch_employees_details_query } from "../../../../GraphQLQueries/HomeQuery";
 import { employeeStatusProps } from "../../../../Types/HomeComponentTypes";
 
+import "./EmployeeStatus.css";
 
 
 function EmployeeStatus() {
-    const checkInStatus = useAppSelector((state) => state.CheckInStatusSlicer.checkInStatus);
 
     const { data: showAllUsersDetailsAndStatus, loading, refetch } = useQuery(fetch_employees_details_query);
 
@@ -52,18 +51,7 @@ function EmployeeStatus() {
                     <p className="font-bold">No Employee of the Month</p>
                   </div>
                     }
-                    {/* 
-                    {showAllUsersDetailsAndStatus?.fetchEmailUsersIds.filter((val: string[]) => {
-        
-                    }).map((val: employeeStatusProps) => (
-                        <tr key={val.uid} className="employee-table-content-div">
-                            <td>{val.name}</td>
-                            <td>{val.status ? "true" : "false"}</td>
-                            <td>
-                                <FaPen />
-                            </td>
-                        </tr>
-                    ))} */}
+             
                 </tbody>
             </table>
         </div>

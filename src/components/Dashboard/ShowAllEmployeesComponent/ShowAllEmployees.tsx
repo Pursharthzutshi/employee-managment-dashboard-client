@@ -8,12 +8,12 @@ import NavBar from "../../NavBarComponent/NavBar";
 
 import { show_all_employees_data_query, update_Employee_Of_The_Month_query } from "../../../GraphQLQueries/ShowAllEmployeesQuery";
 
+import DeleteEmployeeAccountDialogBox from "./DeleteEmployeeAccountDialogBox";
+import { FaCheck } from "react-icons/fa";
+
 import "../ShowAllEmployeesComponent/ShowAllEmployees.css"
 import "../ShowAllEmployeesComponent/ShowAllEmployeesResponsive.css"
-import DeleteEmployeeAccountDialogBox from "./DeleteEmployeeAccountDialogBox";
-
 import "../ShowAllEmployeesComponent/DeleteEmployeeAccountDialogBox.css"
-import { FaCheck, FaCheckCircle, FaTicketAlt } from "react-icons/fa";
 // import { client } from "../../..";
 
 function ShowAllEmployees() {
@@ -24,9 +24,7 @@ function ShowAllEmployees() {
 
     const [showDeleteEmployeeAccountDialogBoxStatus, setShowDeleteEmployeeAccountDialogBoxStatus] = useState(false);
 
-    const [totalEmployeeDetailsCount, setTotalEmployeeDetailsCount] = useState(0);
 
-    const createEmployeeNewAccountStatus = useAppSelector((state) => state.createEmployeeNewAccountStatusSlicer.createEmployeeNewAccountStatus)
 
     const [showAssignEmployeeOfTheMonthStatus, setShowAssignEmployeeOfTheMonthStatus] = useState(false);
 
@@ -34,15 +32,8 @@ function ShowAllEmployees() {
 
     const [assignEmployeeOfTheMonth] = useMutation(update_Employee_Of_The_Month_query);
 
-    const client = useApolloClient();
 
-    const { data: ShowAllEmployeesData, loading, refetch } = useQuery(show_all_employees_data_query, {
-        // onCompleted: (data) => 
-
-        onCompleted: (data) => {
-        }
-    }
-    );
+    const { data: ShowAllEmployeesData, loading, refetch } = useQuery(show_all_employees_data_query);
 
     const showDeleteEmployeeAccountDialogBox = (uid: String) => {
         setShowDeleteEmployeeAccountDialogBoxStatus(true)

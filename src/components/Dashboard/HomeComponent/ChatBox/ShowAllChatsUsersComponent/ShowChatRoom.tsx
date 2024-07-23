@@ -23,8 +23,6 @@ function ShowChatRoom() {
     const [showMessageName, setShowMessageName] = useState("")
     const [chatMessage, setChatMessage] = useState("");
     const [typeMessageIndicator, { data: typeMessageIndicatorData }] = useMutation(sendMessageTypeQuery)
-    const [typeChatMessageIndicatorStatus, setTypeChatMessageIndicatorStatus] = useState(false)
-    const { data } = useSubscription(typingIndicatorSubscribe);
 
 
     const [showChatRoom, { data: fetchSenderReceiverChatRoomData, loading: fetchSenderReceiverChatRoomLoading }] = useLazyQuery(show_chat_room_query, ({
@@ -35,9 +33,7 @@ function ShowChatRoom() {
 
 
     const [sendMessage, { loading: sendMessageLoading }] = useMutation(send_message_query, ({
-        onCompleted: (data) => {
-
-        },
+     
         update: (cache, { data: { sendMessage } }) => {
             const newMessageData = sendMessage;
 
@@ -184,16 +180,15 @@ function ShowChatRoom() {
                 setChatMessage("")
 
             }
-        } 
+        }
 
     }
 
     const Dispatch = useAppDispatch()
 
-    // if (sendMessageLoading) return <div>Loading...</div>
 
     return (
-        <div className="test">
+        <div className="show-chat-room-component-container">
             <div className="show-chat-room-component">
 
                 <div className="chat-room-user-profile-details-container">
@@ -216,20 +211,6 @@ function ShowChatRoom() {
 
                     <div className="chat-input-message-send-icon-div">
                         <textarea value={chatMessage} onKeyUp={sendMessageData} className="font-semibold send-message-textarea" onChange={typeMessage} placeholder="Send Message" rows={4} cols={46}  >
-                            {/* {
-                                chatMessage ? <FaPaperPlane className="send-message-icon-button" onClick={() =>
-                                    sendMessage({
-                                        variables: {
-                                            sendMessageParameters: {
-                                                uid: uuidv4(),
-                                                senderId: senderID,
-                                                receiverId: receiverID,
-                                                message: chatMessage
-                                            }
-                                        }
-                                    })
-                                } /> : null
-                            } */}
                         </textarea>
 
 
@@ -255,13 +236,6 @@ function ShowChatRoom() {
                                     <p className="messages">{val.message}</p>
                                     <p>{val.date}</p>
 
-                                    {/* <p>
-                                        {
-                                            + currentdate.getHours() + ":"
-                                            + currentdate.getMinutes() 
-                                        }
-                                    </p> */}
-
                                     <div ref={messagesEndRef} />
                                 </div> :
                                 <div className="reciever-message-div messages-div">
@@ -282,10 +256,7 @@ function ShowChatRoom() {
 
 
                 }
-                {/* {
-                typeMessageIndicatorData && typeMessageIndicatorData.sendMessageTypeIndicator.success ? <p>User is typing</p> : null
-                }
-                 */}
+         
             </div>
 
         </div>

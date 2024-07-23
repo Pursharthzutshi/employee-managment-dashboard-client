@@ -17,26 +17,25 @@ import {
 } from 'chart.js';
 
 import NavBar from "../../NavBarComponent/NavBar";
-import { gql, useQuery, useSubscription } from "@apollo/client";
+import { gql, useQuery, } from "@apollo/client";
 import { useAppDispatch, useAppSelector } from "../../../ReduxHooks";
 import { resetCounts, resetDepartmentCounts, setCount, setDepartmentCount, setGenderTypeCount } from "../../../ReduxSlicers/ChartsDetailsSlicer";
 import { setCreateEmployeeNewAccountStatus } from "../../../ReduxSlicers/createEmployeeNewAccountStatusSlicer";
-import EmployeeStatus from "./EmployeeStatusComponent/EmployeeStatus";
-import CheckInStatus from "./EmployeeStatusComponent/CheckInStatusComponent/CheckInStatus";
 import GenderTypeChart from "./HomeCharts/GenderTypeChart/GenderTypeChart";
 import DepartmentChart from "./HomeCharts/DepartmentChart/DepartmentChart";
-import { setDepartment } from "../../../ReduxSlicers/SignUpSlicer";
 import CardsDetails from "./CardsDetailsComponent/CardsDetails";
 import EmployeeOfTheMonth from "./EmployeeOfTheMonthComponent/EmployeeOfTheMonth";
 import WelcomeBack from "./WelcomeBackComponent/WelcomeBack";
 
-import "../HomeComponent/Home.css"
-import "../HomeComponent/HomeResponsive.css"
 import { show_all_employees_charts_data_query } from "../../../GraphQLQueries/HomeQuery";
 import EmployeeLeaves from "./EmployeeLeavesComponent/EmployeeLeaves";
 import ChatBox from "./ChatBox/ChatBox";
 import ShowChatRoom from "./ChatBox/ShowAllChatsUsersComponent/ShowChatRoom";
-// Register the components
+
+
+import "../HomeComponent/Home.css"
+import "../HomeComponent/HomeResponsive.css"
+
 ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -52,17 +51,12 @@ ChartJS.register(
 
 function Home() {
 
-
-    const senderID = useAppSelector((state) => state.ShowChatRoomSlicer.senderID)
-    const receiverID = useAppSelector((state) => state.ShowChatRoomSlicer.receiverID)
-
     const { data: employeesData, refetch } = useQuery(show_all_employees_charts_data_query);
 
     const adminStatus = useAppSelector((state) => state.LocalStorageSlicer.adminStatus)
 
 
     const count = useAppSelector((state) => state.ChartsDetailsSlicer.count)
-    const departmentCount = useAppSelector((state) => state.ChartsDetailsSlicer.departmentCount)
     const createEmployeeNewAccountStatus = useAppSelector((state) => state.createEmployeeNewAccountStatusSlicer.createEmployeeNewAccountStatus);
     const showChatRoom = useAppSelector((state) => state.ShowChatRoomSlicer.showChatRoom)
 
@@ -105,7 +99,6 @@ function Home() {
 
             <br></br>
 
-            <CheckInStatus />
             <WelcomeBack />
 
             <CardsDetails />
@@ -133,8 +126,7 @@ function Home() {
             {
                 showChatRoom && <ShowChatRoom />
             }
-            {/* <EmployeeOfTheMonth />
-                <DepartmentChart /> */}
+
 
         </div>
     )

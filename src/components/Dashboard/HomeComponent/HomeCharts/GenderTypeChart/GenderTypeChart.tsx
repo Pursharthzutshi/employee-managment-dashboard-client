@@ -1,7 +1,5 @@
-import React from "react";
-import { useEffect, useState } from "react"
-import { useAppDispatch, useAppSelector } from "../../../../../ReduxHooks";
-import { Bar, Line } from "react-chartjs-2";
+import { useAppSelector } from "../../../../../ReduxHooks";
+import { Bar } from "react-chartjs-2";
 
 
 function GenderTypeChart() {
@@ -22,7 +20,6 @@ function GenderTypeChart() {
         label: 'NUMBER OF EMPLOYEES',
         data: [ maleCount, femaleCount, othersCount],
         backgroundColor: ['rgb(0, 113, 212)', 'rgb(0, 85, 170)', "rgb(0 142 184)"],
-        // borderWidth:"2px"
       },
 
 

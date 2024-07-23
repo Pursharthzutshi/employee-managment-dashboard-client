@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useMutation } from "@apollo/client";
 import { useAppDispatch, useAppSelector } from "../../../ReduxHooks";
 import { setUserName, setUserEmailId, setEmailPassword, setEmailPasswordRecheck, setGenderType, setDepartment } from "../../../ReduxSlicers/SignUpSlicer";
-import {  useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
 import { setCreateEmployeeNewAccountStatus } from "../../../ReduxSlicers/createEmployeeNewAccountStatusSlicer";
 import { signUpquery } from "../../../GraphQLQueries/CreateNewEmployeeAccountQuery";
@@ -17,30 +16,20 @@ function CreateNewEmployeeAccount() {
   const userName = useAppSelector((state) => state.SignUpSlicer.userName)
   const userEmailId = useAppSelector((state) => state.SignUpSlicer.userEmailId)
   const userEmailPassword = useAppSelector((state) => state.SignUpSlicer.userEmailPassword)
-  const userEmailPasswordRecheck = useAppSelector((state) => state.SignUpSlicer.userEmailPasswordRecheck)
   const genderType = useAppSelector((state) => state.SignUpSlicer.genderType)
   const department = useAppSelector((state) => state.SignUpSlicer.department)
 
   const Dispatch = useAppDispatch();
 
-  const navigate = useNavigate()
-
-
   const signUpForm = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault()
-    // navigate("/")
   }
-
-
-  const signUpResponseStatus = useAppSelector((state) => state.createEmployeeNewAccountStatusSlicer.createEmployeeNewAccountStatus);
 
   const createEmployeeNewAccountStatus = useAppSelector((state) => state.createEmployeeNewAccountStatusSlicer.createEmployeeNewAccountStatus)
 
   const [newEmployeeAccountCreatedStatus, setNewEmployeeAccountCreatedStatus] = useState(false);
 
   const [createNewEmployeeAccountErrorMessage, setCreateNewEmployeeAccountErrorMessage] = useState("");
-
-  // const [createNewEmployeeAccountErrorMessageStatus,setCreateNewEmployeeAccountErrorMessageStatus] = useState(false);
 
   const [CreateEmployeeNewAccount, { data: signUpResponseData, loading }] = useMutation(signUpquery, {
 
@@ -103,9 +92,7 @@ function CreateNewEmployeeAccount() {
 
 
           <div className="inputs-labels-container">
-            {/* <div className="labels-div">
 
-              </div> */}
 
             <div className="inputs-div">
 
@@ -119,9 +106,6 @@ function CreateNewEmployeeAccount() {
 
               <strong>Password:</strong>
               <input className="form-inputs" type="password" placeholder="Password" onChange={(e) => Dispatch(setEmailPassword(e.target.value))} />
-
-              {/* <strong>Re Type Password:</strong>
-              <input className="form-inputs" type="password" placeholder="Retype Password" onChange={(e) => Dispatch(setEmailPasswordRecheck(e.target.value))} /> */}
 
 
               <strong>Gender:</strong>

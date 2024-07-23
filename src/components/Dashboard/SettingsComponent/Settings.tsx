@@ -1,8 +1,8 @@
-import React from "react";
 import NavBar from "../../NavBarComponent/NavBar";
+import SettingsProfile from "./SettingsProfile/SettingsProfile";
+
 import "../../NavBarComponent/NavBar.css"
 import "../SettingsComponent/Settings.css"
-import SettingsProfile from "./SettingsProfile/SettingsProfile";
 
 function Settings() {
 

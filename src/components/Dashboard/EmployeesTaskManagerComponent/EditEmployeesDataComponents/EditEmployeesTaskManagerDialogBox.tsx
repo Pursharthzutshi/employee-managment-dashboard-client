@@ -27,7 +27,6 @@ function EditEmployeesTaskManagerDialogBox({ selectedUpdateTaskFieldUid }: EditE
 
     const Dispatch = useAppDispatch()
 
-    const { data: employeesTaskData, loading } = useQuery(fetch_employees_task_details_query)
 
     const [editEmployeesTaskFields] = useMutation(edit_employees_task_details_query)
 

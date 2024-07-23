@@ -3,13 +3,11 @@ import { useAppSelector } from "../../../ReduxHooks";
 import { useLazyQuery } from "@apollo/client";
 import { show_logged_in_employees_leave_details_data_query } from "../../../GraphQLQueries/HomeQuery";
 import NavBar from "../../NavBarComponent/NavBar";
-
-
-import "../EmployeesTakenLeavesComponent/EmployeeTakenLeave.css"
 import EmployeeApplyLeaveDialogBox from "./EmployeeApplyLeaveDialogBox";
 import { FaCheck } from "react-icons/fa";
 import { employeeLeavesProps } from "../../../Types/HomeComponentTypes";
-// import EmployeeApplyLeaveDialogBox from "../HomeComponent/EmployeeLeavesComponent/EmployeeApplyLeaveDialogBox";
+
+import "../EmployeesTakenLeavesComponent/EmployeeTakenLeave.css"
 
 function EmployeesTakenLeaves() {
 
@@ -30,9 +28,6 @@ function EmployeesTakenLeaves() {
                     uid: savedEmployeeLoggedInUid
                 },
 
-            },
-            onCompleted: (data) => {
-                console.log(data);
             },
 
         },

@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
-import "./SignUpAdmin.css"
 import { gql, useLazyQuery, useMutation } from "@apollo/client";
 import { useAppDispatch, useAppSelector } from "../../../ReduxHooks";
 import { setUserName, setUserEmailId, setEmailPassword, setEmailPasswordRecheck, setAdminSignUpSecret } from "../../../ReduxSlicers/SignUpSlicer";
 import { Link, redirect, useNavigate } from "react-router-dom";
-import ChangeSignUpFormButtons from "./ChangeSignUpFormButtons";
 import { v4 as uuidv4 } from 'uuid';
-import NavBar from "../../NavBarComponent/NavBar";
 import { fetchTotalAdmin } from "../../../GraphQLQueries/CardsDetailsQuery";
 import { showAllAdminType } from "../../../Types/InMemoryCacheTypes";
+
+import "./SignUpAdmin.css"
 
 const signUpquery = gql`
 mutation adminSignUp($adminSignUpParameters: adminSignUpTableInput!){

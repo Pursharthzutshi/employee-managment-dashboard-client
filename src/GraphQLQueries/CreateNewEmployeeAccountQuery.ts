@@ -16,14 +16,14 @@ export const signUpquery = gql`
 mutation create($userSignUpParameters: createUserSignUpInput!){
 createUserSignUp(userSignUpParameters: $userSignUpParameters) {
 AddedSignUpData{
-  uid
-        name
-        emailId
-        genderType
-        status
-        department
-        employeeOfTheMonth
-        }
+uid
+name
+emailId
+genderType
+status
+department
+employeeOfTheMonth
+}
 success
 message
 }

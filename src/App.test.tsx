@@ -71,7 +71,7 @@ it("snapshot", async () => {
 
 it("search", async () => {
 
-  const { container } =  render(
+  const { container } = render(
 
     <BrowserRouter>
       <Provider store={store}>

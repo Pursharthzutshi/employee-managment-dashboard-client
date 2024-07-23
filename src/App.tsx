@@ -23,7 +23,6 @@ import EmployeesTakenLeaves from './components/Dashboard/EmployeesTakenLeavesCom
 function App() {
 
 
-  const changeLoginForm = useAppSelector((state) => state.ChangeSignUpFormSlicer.changeLoginForm)
 
   const adminStatus = useAppSelector((state) => state.LocalStorageSlicer.adminStatus)
 
@@ -35,7 +34,6 @@ function App() {
 
       <button className="show-menu-bar-button">show Menu Bar</button>
 
-      {/* <button onClick={() => Dispatch(setChangeComponent(true))}>change</button> */}
       <div className='left-sidebar-dashboard-div'>
 
         {

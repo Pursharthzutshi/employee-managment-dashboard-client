@@ -1,23 +1,19 @@
-import React, { FormEvent, useEffect, useState } from "react";
-import { gql, useLazyQuery, useMutation, useQuery } from "@apollo/client";
-import DisplayData from "../../HomeComponent/DisplayData";
+import { FormEvent, useState } from "react";
+import { useMutation } from "@apollo/client";
 import { useAppDispatch, useAppSelector } from "../../../../ReduxHooks/index";
-import { SetEmployeeEmailId, setEmployeeDeadLine, setEmployeeName, setEmployeeTaskDesc } from "../../../../ReduxSlicers/AddEmployeesTaskSlicer";
+import { setEmployeeDeadLine, setEmployeeName, setEmployeeTaskDesc } from "../../../../ReduxSlicers/AddEmployeesTaskSlicer";
 import { v4 as uuidv4 } from 'uuid';
-import AddTaskDialogBoxForm from "../EmployeesTaskManagerDialogBoxForm";
 import EmployeesTaskManagerDialogBoxForm from "../EmployeesTaskManagerDialogBoxForm";
-
-import "../AddEmployeesComponent/AddEmployeesTaskManagerDialogBox.css"
-import "../TaskDialogBox.css"
-import "../TaskDialogBoxResponsive.css"
 import { addEmployeesTask, fetch_employees_task_details_query } from "../../../../GraphQLQueries/EmployeesTaskManagerQuery";
 import { setShowEmployeesDialogBox } from "../../../../ReduxSlicers/ShowEmployeesDialogBoxSlicer";
 import { addTasksCacheType } from "../../../../Types/InMemoryCacheTypes";
 
+import "../AddEmployeesComponent/AddEmployeesTaskManagerDialogBox.css"
+import "../TaskDialogBox.css"
+import "../TaskDialogBoxResponsive.css"
 
 function AddEmployeesTaskManagerDialogBox() {
 
-    // const { data:FetchUserData, loading, error, refetch, showUsersEmailIdsQuery } = DisplayData();
 
     const employeeName = useAppSelector((state) => state.AddEmployeesTaskSlicer.employeeName)
     const employeeEmailId = useAppSelector((state) => state.AddEmployeesTaskSlicer.employeeEmailId)
@@ -42,7 +38,6 @@ function AddEmployeesTaskManagerDialogBox() {
                 Dispatch(setEmployeeTaskDesc(""))
                 Dispatch(setEmployeeDeadLine(""))
                 Dispatch(setEmployeeTaskDesc(""))
-                // setShowErrorMessage("addTaskdata.createEmployeesTask.message")
                 setShowErrorMessageStatus(false)
             }
         },
@@ -93,6 +88,7 @@ function AddEmployeesTaskManagerDialogBox() {
                 {
                     showErrorMessageStatus && <p>{showErrorMessage}</p>
                 }
+                
                 <div className="add-new-task-button-div">
 
                     <button type="submit" className="add-new-task-button">Add Task</button>

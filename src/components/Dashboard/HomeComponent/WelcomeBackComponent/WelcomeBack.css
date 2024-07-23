@@ -1,13 +1,13 @@
-
-.welcome-back-card-container,.welcome-back-card-image-message-div{
+.welcome-back-card-container,
+.welcome-back-card-image-message-div {
     display: flex;
 }
 
-.welcome-back-card-container{
-    flex-direction:column;
+.welcome-back-card-container {
+    flex-direction: column;
 }
 
-.welcome-back-card-container{
+.welcome-back-card-container {
     padding: 2px 2px 22px 12px;
     border-radius: 8px;
     margin-left: 10px;
@@ -15,30 +15,29 @@
     width: 92.2%;
 }
 
-.welcome-back-card-container p{
+.welcome-back-card-container p {
     line-height: 25px;
-    /* font-size: .9rem; */
     padding: 2px 12px 2px 1px;
 }
 
-.welcome-back-card-image-message-div img{
+.welcome-back-card-image-message-div img {
     margin-top: 6px;
     width: 5rem;
     height: auto;
 }
 
-.welcome-back-button{
+.welcome-back-button {
     margin-top: 10px;
     font-size: .9rem;
     border: none;
-    color:white;
+    color: white;
     text-decoration: none;
     font-family: "Montserrat";
     padding: 2px 12px 2px 12px;
-    background: linear-gradient(to left,rgb(0, 132, 214),rgb(0, 113, 183));
-    
+    background: linear-gradient(to left, rgb(0, 132, 214), rgb(0, 113, 183));
+
 }
 
-.welcome-back-card-text-button-div p{
+.welcome-back-card-text-button-div p {
     line-height: 32px;
 }

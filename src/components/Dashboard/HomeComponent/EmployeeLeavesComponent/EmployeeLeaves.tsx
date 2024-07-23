@@ -9,22 +9,15 @@ import "../EmployeeLeavesComponent/EmployeeLeaves.css"
 function EmployeeLeaves() {
 
 
-    const { data: EmployeeLeavesDetailsData, loading, refetch } = useQuery(employees_leave_details_query, {
-    },
-    );
-
-    const [employeeStatus, setEmployeeLeaveStatus] = useState(true);
+    const { data: EmployeeLeavesDetailsData, loading, refetch } = useQuery(employees_leave_details_query);
 
     const [searchLeaveEmployeeName, setSearchLeaveEmployeeName] = useState("");
 
 
     const [updateLeaveStatus, { data: updateLeaveStatusData }] = useMutation(update_employee_leave_status, {
         refetchQueries: [{ query: employees_leave_details_query }],
-
-      
     })
 
-    const [showApprovedRejectedMessage, setShowApprovedRejectedMessage] = useState("");
 
     useEffect(() => {
         refetch()
@@ -45,7 +38,6 @@ function EmployeeLeaves() {
         }).then((val) => {
             console.log(val);
         })
-        setShowApprovedRejectedMessage("Leave Approved")
 
     }
 
@@ -62,7 +54,6 @@ function EmployeeLeaves() {
                 }
             }
         })
-        setShowApprovedRejectedMessage("Leave Rejected")
 
     }
     let pendingLeaves = [];

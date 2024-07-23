@@ -1,11 +1,10 @@
-import { useEffect } from "react";
-import "../ShowAllEmployeesComponent/DeleteEmployeeAccountDialogBox.css"
-import { FaTimes } from "react-icons/fa";
 import { useMutation } from "@apollo/client";
 import { delete_employees_account_query, show_all_employees_data_query } from "../../../GraphQLQueries/ShowAllEmployeesQuery";
 import { useAppDispatch } from "../../../ReduxHooks";
 import { setCreateEmployeeNewAccountStatus } from "../../../ReduxSlicers/createEmployeeNewAccountStatusSlicer";
-import { employeeLeavesProps, showAllEmployeesCacheDataProps, showAllEmployeesCacheDataUidType } from "../../../Types/HomeComponentTypes";
+import {showAllEmployeesCacheDataProps, showAllEmployeesCacheDataUidType } from "../../../Types/HomeComponentTypes";
+
+import "../ShowAllEmployeesComponent/DeleteEmployeeAccountDialogBox.css"
 
 type DeleteEmployeeAccountDialogBoxProps = {
     uid: String

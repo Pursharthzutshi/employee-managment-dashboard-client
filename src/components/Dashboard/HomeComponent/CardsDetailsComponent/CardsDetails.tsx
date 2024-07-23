@@ -1,30 +1,23 @@
 import React, { useEffect, useState } from "react";
-import "../CardsDetailsComponent/CardsDetails.css"
-import { FaAccusoft, FaBuilding, FaIdCard, FaTasks, FaUser } from "react-icons/fa";
-import { gql, useLazyQuery, useQuery } from "@apollo/client";
-import { useAppSelector } from "../../../../ReduxHooks";
-import { assertValidExecutionArguments } from "graphql/execution/execute";
+import { FaAccusoft, FaIdCard, FaTasks, FaUser } from "react-icons/fa";
+import {  useQuery } from "@apollo/client";
 import { fetchTotalAdmin, fetchTotalEmployeesAndDepartmentsQuery, fetchTotalEmployeesTasks } from "../../../../GraphQLQueries/CardsDetailsQuery";
-// import { useSelect } from "react-select-search";
 
-
+import "../CardsDetailsComponent/CardsDetails.css"
 
 function CardsDetails() {
 
-    const { data: das, loading } = useQuery(fetchTotalEmployeesAndDepartmentsQuery, ({
-        onCompleted: (data) => {
-        }
-    }));
-
-    // const [data]  = useLazyQuery(fetchTotalEmployeesAndDepartmentsQuery)
+    // const { data: das, loading } = useQuery(fetchTotalEmployeesAndDepartmentsQuery, ({
+    //     onCompleted: (data) => {
+    //     }
+    // }));
 
 
-    const [totalDepartmentCount, setTotalDepartmentCount] = useState(0);
+
 
     const [totalEmployeesCount, setTotalEmployeesCount] = useState(0);
     const [totalEmployeesTask, setTotalEmployeesTask] = useState(0);
 
-    // const [totalDepartmentList, setTotalDepartmentList] = useState<any>([]);
 
     const [totalAdminCount, setTotalAdminCount] = useState(0);
 
@@ -61,9 +54,10 @@ function CardsDetails() {
 
 
 
-    if (EmployeesAccountDetailsLoading) return <div >Loadng ...</div>
-    // if (EmployeesTotalTasksLoading) return <p>Loading ...</p>
-    // if (adminAccountDetailsLoading) return <p>Loading ...</p>
+    if (EmployeesAccountDetailsLoading) return <div >Loading ...</div>
+    if (EmployeesTotalTasksLoading) return <p>Loading ...</p>
+    if (adminAccountDetailsLoading) return <p>Loading ...</p>
+
     return (
         <div>
 

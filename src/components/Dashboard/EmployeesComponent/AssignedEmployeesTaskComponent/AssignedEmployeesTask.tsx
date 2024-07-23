@@ -1,15 +1,10 @@
-import React, { useEffect, useState } from "react";
-
-import { useAppDispatch, useAppSelector } from "../../../../ReduxHooks";
+import { useEffect, useState } from "react";
+import { useAppDispatch } from "../../../../ReduxHooks";
 import { gql, useMutation } from "@apollo/client";
-
-// import "../AssignedTaskManagerComponent/EmployeesTaskManager.css"
-// import "../EmployeesTaskManagerComponent/TaskDialogBox.css"
-
-import "../../EmployeesTaskManagerComponent/ShowEmployeesDataComponent/ShowEmployeesTask.css"
 import NavBar from "../../../NavBarComponent/NavBar";
 import { fetchEmployeesDetailsProps } from "../../../../Types/EmployeesTaskTypes";
 
+import "../../EmployeesTaskManagerComponent/ShowEmployeesDataComponent/ShowEmployeesTask.css"
 import "../../../../App.css"
 
 
@@ -68,9 +63,6 @@ function AssignedEmployeesTask() {
                                     <strong>TASK DEADLINE - : </strong>
 
                                     <p>{fetchLoggedInEmployeeAssignedTaskDetailsData.deadLine}</p>
-
-
-
 
                                 </div>
                             )

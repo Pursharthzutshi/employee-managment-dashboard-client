@@ -2,14 +2,12 @@ import React, { useEffect, useState } from "react";
 import { FaTimes } from "react-icons/fa";
 import { useMutation } from "@apollo/client";
 import { v4 as uuidv4 } from 'uuid';
-import { employees_leave_details_query, insert_employees_leave_data_query, show_logged_in_employees_leave_details_data_query } from "../../../GraphQLQueries/HomeQuery";
+import { insert_employees_leave_data_query, show_logged_in_employees_leave_details_data_query } from "../../../GraphQLQueries/HomeQuery";
 import { useAppDispatch, useAppSelector } from "../../../ReduxHooks";
+import { showLoggedInEmployeesLeaveDetailsDataType } from "../../../Types/HomeComponentTypes";
+import DateLimit from "../../utils/DateLimit";
 
 import "../EmployeesTakenLeavesComponent/EmployeeApplyLeaveDialogBox.css"
-import { employeeLeavesProps, showLoggedInEmployeesLeaveDetailsDataType } from "../../../Types/HomeComponentTypes";
-import { setEmployeeDeadLine } from "../../../ReduxSlicers/AddEmployeesTaskSlicer";
-import DateLimit from "../../utils/DateLimit";
-import { fetchLeaveDetailsDataTypes } from "../../../Types/InMemoryCacheTypes";
 
 type showEmployeeApplyLeaveDialogBoxProps = {
     showEmployeeApplyLeaveDialogBoxStatus: boolean
@@ -54,7 +52,7 @@ function EmployeeApplyLeaveDialogBox({ showEmployeeApplyLeaveDialogBoxStatus, se
                     }
                 });
 
-                const existingData = (fetchLeaveDetailsData?.showLoggedInEmployeesLeaveDetailsData || []) 
+                const existingData = (fetchLeaveDetailsData?.showLoggedInEmployeesLeaveDetailsData || [])
                 cache.writeQuery({
                     query: show_logged_in_employees_leave_details_data_query,
                     variables: {

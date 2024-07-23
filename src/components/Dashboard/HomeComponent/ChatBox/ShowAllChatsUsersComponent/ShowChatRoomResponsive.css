@@ -1,5 +1,5 @@
 @media only screen and (min-width:200px) and (max-width: 1000px) {
-    .test {
+    .show-chat-room-component-container {
         left: 40%;
         width: 75%;
     }

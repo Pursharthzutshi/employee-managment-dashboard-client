@@ -8,11 +8,9 @@ import "../ChatBox/ChatBoxResponsive.css"
 
 function ChatBox() {
 
-    const [savedEmployeeLoggedInUid] = useState(localStorage.getItem("loggedInSavedUid") || localStorage.getItem("adminLoggedInSavedUid"));
+    const [savedEmployeeLoggedInUid] = useState(localStorage.getItem("loggedInSavedUid"))
 
-    const [showChats, { data: fetchShowChatsData,refetch }] = useLazyQuery(show_chat_query, {
-
-    })
+    const [showChats, { data: fetchShowChatsData, refetch }] = useLazyQuery(show_chat_query)
 
     useEffect(() => {
         if (savedEmployeeLoggedInUid) {

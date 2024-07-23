@@ -1,6 +1,6 @@
 @media only screen and (min-width:200px) and (max-width: 1000px) {
 
-    .create-new-employee-account-container{
+    .create-new-employee-account-container {
         display: flex;
     }
 
@@ -8,7 +8,7 @@
         display: none;
     }
 
-    .signup-form{
+    .signup-form {
         width: 100%;
     }
 

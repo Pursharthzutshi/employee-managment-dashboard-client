@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
-import "../SettingsProfile/SettingsProfileForm.css"
-import { gql, useLazyQuery, useMutation, useQuery } from "@apollo/client";
+import { useEffect, useState } from "react";
+import { useLazyQuery, useMutation, useQuery } from "@apollo/client";
 import { useAppDispatch, useAppSelector } from "../../../../ReduxHooks";
 import { fetchAdminProfileDetails, updateProfileNameQuery, updateProfilePasswordQuery } from "../../../../GraphQLQueries/SettingsQuery";
 import { setSavedLoggedInName } from "../../../../ReduxSlicers/LocalStorageSlicer";
 import { fetchAdminProfileDetailsProps } from "../../../../Types/SettingsProfileFormTypes";
 
-
+import "../SettingsProfile/SettingsProfileForm.css"
 
 function SettingsProfileForm() {
 
@@ -34,8 +33,8 @@ function SettingsProfileForm() {
         },
 
     });
-    
- 
+
+
 
     useEffect(() => {
         if (adminProfileSavedUid) {
@@ -44,10 +43,6 @@ function SettingsProfileForm() {
 
     }, [adminProfileSavedUid, fetchAdminDetails]);
 
-
-
-    // if (loading) return <p>Loading...</p>;
-    // if (updateProfilePasswordLoading) return <p>Loading...</p>;
 
     return (
         <div className="settings-profile-form">
