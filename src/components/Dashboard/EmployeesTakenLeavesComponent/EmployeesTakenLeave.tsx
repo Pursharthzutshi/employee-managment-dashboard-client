@@ -79,34 +79,61 @@ function EmployeesTakenLeaves() {
             {
                 showLoggedInEmployeesLeaveDetailsData && showLoggedInEmployeesLeaveDetailsData.showLoggedInEmployeesLeaveDetailsData.length > 0 ?
                     showLoggedInEmployeesLeaveDetailsData.showLoggedInEmployeesLeaveDetailsData && showLoggedInEmployeesLeaveDetailsData.showLoggedInEmployeesLeaveDetailsData.map((val: employeeLeavesProps) => (
+
                         <div className="show-logged-in-employees-leave-details" key={val.id}>
                             <br></br>
                             {/* <p className="font-semibold">Name: {val.employeeName}</p> */}
                             <p className="font-semibold">Reason For Leave: {val.leaveReason}</p>
                             <p className="font-semibold">Leave Date Given: {val.date}</p>
                             <div>
+                                {/* {
+                                    val.leaveStatus === null &&
+                                    <div>
+                                        <br></br>
+                                        <label className="font-semibold leave-pending-status">Pending</label>
+                                    </div>
+
+                                } */}
+                                {/* {
+
+
+                                    <div >
+
+                                        {
+                                            val.leaveStatus ?
+                                                <div>
+                                                    <br></br>
+                                                    <label className="font-semibold leave-approved-status">Approved</label>
+                                                </div>
+                                                :
+                                                <div>
+                                                    <br></br>
+                                                    <label className="font-semibold leave-rejected-status">Rejected</label>
+                                                </div>
+                                        }
+                                    </div>
+
+                                } */}
+
                                 {
-                                    val.leaveStatus ?
-                                        <div>
-                                            {
-                                                val.leaveStatus === true ?
-                                                    <div>
-                                                        <br></br>
-                                                        <label className="font-semibold leave-approved-status">Approved</label>
-                                                    </div>
-                                                    :
-                                                    <div>
-                                                        <br></br>
-                                                        <label className="font-semibold leave-rejected-status">Rejected</label>
-                                                    </div>
-                                            }
-                                        </div>
-                                        :
+                                    val.leaveStatus === null ?
                                         <div>
                                             <br></br>
                                             <label className="font-semibold leave-pending-status">Pending</label>
                                         </div>
+                                        :
+                                        val.leaveStatus === true ?
+                                            <div>
+                                                <br></br>
+                                                <label className="font-semibold leave-approved-status">Approved</label>
+                                            </div>
+                                            :
+                                            <div>
+                                                <br></br>
+                                                <label className="font-semibold leave-rejected-status">Rejected</label>
+                                            </div>
                                 }
+
                             </div>
 
                         </div>
