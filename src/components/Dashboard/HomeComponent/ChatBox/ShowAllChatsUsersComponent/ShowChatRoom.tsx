@@ -162,7 +162,7 @@ function ShowChatRoom() {
         Dispatch(removeChatID(""))
     }
 
-    var currentdate: any = new Date();
+    var currentdate: Date = new Date();
     var currentTime =
         currentdate.toLocaleTimeString() + " " + "Date : " +
         + currentdate.getDate() + "/"

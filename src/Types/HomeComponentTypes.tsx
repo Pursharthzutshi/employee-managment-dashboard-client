@@ -44,9 +44,14 @@ export type messageType = {
 }
 
 
+type chatDetailsType = {
+  senderId: string;
+  receiverId: string;
+  message: string;
+}
 
 export type fetchShowChatsDataType = {
-  showAllChats:any
+  showAllChats: any
   showSenderReceiverChat:any
   uid: string
   emailId: string

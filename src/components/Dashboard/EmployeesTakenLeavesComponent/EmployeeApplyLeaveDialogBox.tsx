@@ -9,6 +9,7 @@ import "../EmployeesTakenLeavesComponent/EmployeeApplyLeaveDialogBox.css"
 import { employeeLeavesProps, showLoggedInEmployeesLeaveDetailsDataType } from "../../../Types/HomeComponentTypes";
 import { setEmployeeDeadLine } from "../../../ReduxSlicers/AddEmployeesTaskSlicer";
 import DateLimit from "../../utils/DateLimit";
+import { fetchLeaveDetailsDataTypes } from "../../../Types/InMemoryCacheTypes";
 
 type showEmployeeApplyLeaveDialogBoxProps = {
     showEmployeeApplyLeaveDialogBoxStatus: boolean
@@ -53,9 +54,7 @@ function EmployeeApplyLeaveDialogBox({ showEmployeeApplyLeaveDialogBoxStatus, se
                     }
                 });
 
-                console.log(newData)
-                const existingData: any = fetchLeaveDetailsData?.showLoggedInEmployeesLeaveDetailsData;
-                console.log(existingData)
+                const existingData = (fetchLeaveDetailsData?.showLoggedInEmployeesLeaveDetailsData || []) 
                 cache.writeQuery({
                     query: show_logged_in_employees_leave_details_data_query,
                     variables: {
