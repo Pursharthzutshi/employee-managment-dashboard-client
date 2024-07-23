@@ -32,6 +32,9 @@ function DeleteEmployeeAccountDialogBox({ uid, setShowDeleteEmployeeAccountDialo
                 })
     
             }
+        },
+        onError:(err)=>{
+            console.log(err)
         }
     }
 

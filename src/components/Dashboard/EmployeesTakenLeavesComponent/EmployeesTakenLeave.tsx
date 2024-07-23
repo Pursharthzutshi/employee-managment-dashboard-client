@@ -51,7 +51,7 @@ function EmployeesTakenLeaves() {
         }, 3000)
     })
 
-
+    if (loading) return <div>Loading...</div>
 
     return (
         <div id="main-page" className="show-all-employees-component">
@@ -81,34 +81,6 @@ function EmployeesTakenLeaves() {
                             <p className="font-semibold">Reason For Leave: {val.leaveReason}</p>
                             <p className="font-semibold">Leave Date Given: {val.date}</p>
                             <div>
-                                {/* {
-                                    val.leaveStatus === null &&
-                                    <div>
-                                        <br></br>
-                                        <label className="font-semibold leave-pending-status">Pending</label>
-                                    </div>
-
-                                } */}
-                                {/* {
-
-
-                                    <div >
-
-                                        {
-                                            val.leaveStatus ?
-                                                <div>
-                                                    <br></br>
-                                                    <label className="font-semibold leave-approved-status">Approved</label>
-                                                </div>
-                                                :
-                                                <div>
-                                                    <br></br>
-                                                    <label className="font-semibold leave-rejected-status">Rejected</label>
-                                                </div>
-                                        }
-                                    </div>
-
-                                } */}
 
                                 {
                                     val.leaveStatus === null ?

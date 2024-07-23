@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaTimes } from "react-icons/fa";
 import { useMutation } from "@apollo/client";
 import { v4 as uuidv4 } from 'uuid';
-import { insert_employees_leave_data_query, show_logged_in_employees_leave_details_data_query } from "../../../GraphQLQueries/HomeQuery";
+import { employees_leave_details_query, insert_employees_leave_data_query, show_logged_in_employees_leave_details_data_query } from "../../../GraphQLQueries/HomeQuery";
 import { useAppDispatch, useAppSelector } from "../../../ReduxHooks";
 import { showLoggedInEmployeesLeaveDetailsDataType } from "../../../Types/HomeComponentTypes";
 import DateLimit from "../../utils/DateLimit";
@@ -65,9 +65,9 @@ function EmployeeApplyLeaveDialogBox({ showEmployeeApplyLeaveDialogBoxStatus, se
                     }
                 });
             }
-        }
+        },
 
-        // refetchQueries: [{ query: employees_leave_details_query }]
+        refetchQueries: [{ query: employees_leave_details_query }]
     });
     const year = new Date().getFullYear();
     const month = String(new Date().getMonth() + 1).padStart(2, '0');
