@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { FaUser, FaUserAlt } from "react-icons/fa";
 import DropDown from "../utils/DropDown";
 
-
 import "../NavBarComponent/NavBar.css"
 import "../NavBarComponent/NavBarResponsive.css"
 

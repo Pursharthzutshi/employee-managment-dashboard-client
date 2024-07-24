@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { FaTimes } from "react-icons/fa";
 import { useMutation } from "@apollo/client";
 import { v4 as uuidv4 } from 'uuid';
-import { employees_leave_details_query, insert_employees_leave_data_query, show_logged_in_employees_leave_details_data_query } from "../../../GraphQLQueries/HomeQuery";
+import {  insert_employees_leave_data_query, show_logged_in_employees_leave_details_data_query } from "../../../GraphQLQueries/HomeQuery";
 import { useAppDispatch, useAppSelector } from "../../../ReduxHooks";
-import { showLoggedInEmployeesLeaveDetailsDataType } from "../../../Types/HomeComponentTypes";
+import { employeeLeavesProps, showLoggedInEmployeesLeaveDetailsDataType } from "../../../Types/HomeComponentTypes";
 import DateLimit from "../../utils/DateLimit";
 
 import "../EmployeesTakenLeavesComponent/EmployeeApplyLeaveDialogBox.css"
@@ -18,14 +18,17 @@ type showEmployeeApplyLeaveDialogBoxProps = {
 
 
 function EmployeeApplyLeaveDialogBox({ showEmployeeApplyLeaveDialogBoxStatus, setShowEmployeeApplyLeaveDialogBoxStatus, setShowLeaveApplicationSentStatus }: showEmployeeApplyLeaveDialogBoxProps) {
+    const savedEmployeeLoggedInUid = useAppSelector((state) => state.LocalStorageSlicer.loggedInSavedUid)
 
     const Dispatch = useAppDispatch()
 
     const [showErrorMessage, setShowErrorMessage] = useState("");
 
     const [showErrorMessageStatus, setShowErrorMessageStatus] = useState(false);
+
     const [applyForLeave] = useMutation(insert_employees_leave_data_query, {
         onCompleted: (data) => {
+            console.log(data)
             const { insertEmployeesLeaveDetails } = data;
             if (insertEmployeesLeaveDetails.success) {
                 setShowEmployeeApplyLeaveDialogBoxStatus(false);
@@ -38,36 +41,36 @@ function EmployeeApplyLeaveDialogBox({ showEmployeeApplyLeaveDialogBoxStatus, se
                 setShowErrorMessage(insertEmployeesLeaveDetails.message);
             }
         },
-        update: (cache, { data }) => {
-            const { insertEmployeesLeaveDetails } = data;
-            const newData = insertEmployeesLeaveDetails.employeeLeaveData;
-
-            if (newData) {
-                const fetchLeaveDetailsData: showLoggedInEmployeesLeaveDetailsDataType | null = cache.readQuery({
-                    query: show_logged_in_employees_leave_details_data_query,
-                    variables: {
-                        showLoggedInEmployeesLeaveDetailsDataParameters: {
-                            uid: savedEmployeeLoggedInUid
-                        }
-                    }
-                });
-
-                const existingData = (fetchLeaveDetailsData?.showLoggedInEmployeesLeaveDetailsData || [])
+        
+        update(cache, { data: { insertEmployeesLeaveDetails } }) {
+            const existingData:employeeLeavesProps | null = cache.readQuery({
+                query: show_logged_in_employees_leave_details_data_query,
+                variables: {
+                    showLoggedInEmployeesLeaveDetailsDataParameters: {
+                        uid: savedEmployeeLoggedInUid,
+                    },
+                },
+            });
+    
+            if (existingData) {
+                const newLeaveData:showLoggedInEmployeesLeaveDetailsDataType[] = insertEmployeesLeaveDetails.employeeLeaveData;
                 cache.writeQuery({
                     query: show_logged_in_employees_leave_details_data_query,
+                    data: {
+                        showLoggedInEmployeesLeaveDetailsData: [
+                            ...existingData?.showLoggedInEmployeesLeaveDetailsData,
+                            ...newLeaveData,
+                        ],
+                    },
                     variables: {
                         showLoggedInEmployeesLeaveDetailsDataParameters: {
-                            uid: savedEmployeeLoggedInUid
-                        }
+                            uid: savedEmployeeLoggedInUid,
+                        },
                     },
-                    data: {
-                        showLoggedInEmployeesLeaveDetailsData: [...existingData, newData]
-                    }
                 });
             }
         },
 
-        refetchQueries: [{ query: employees_leave_details_query }]
     });
     const year = new Date().getFullYear();
     const month = String(new Date().getMonth() + 1).padStart(2, '0');
@@ -81,7 +84,6 @@ function EmployeeApplyLeaveDialogBox({ showEmployeeApplyLeaveDialogBoxStatus, se
         setShowEmployeeApplyLeaveDialogBoxStatus(false)
     }
 
-    const savedEmployeeLoggedInUid = useAppSelector((state) => state.LocalStorageSlicer.loggedInSavedUid)
 
     const sendApplyForLeaveData = () => {
 

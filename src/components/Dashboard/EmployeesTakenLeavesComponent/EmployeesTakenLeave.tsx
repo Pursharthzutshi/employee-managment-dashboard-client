@@ -36,6 +36,7 @@ function EmployeesTakenLeaves() {
 
     useEffect(() => {
         if (savedEmployeeLoggedInUid) {
+            console.log(showLoggedInEmployeesLeaveDetailsData)
             showLoggedInEmployeesLeaveDetails();
             refetch()
         }

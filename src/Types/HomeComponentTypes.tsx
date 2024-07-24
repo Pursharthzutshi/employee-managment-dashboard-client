@@ -25,6 +25,7 @@ export type employeeOfTheMonthProps = {
 
 
 export type employeeLeavesProps = {
+  showLoggedInEmployeesLeaveDetailsData: employeeLeavesProps[]
   id: string
   uid: string
   date: string
@@ -39,8 +40,12 @@ export type employeeLeavesProps = {
 export type messageType = {
   date: string
   id: string
+  uid:string
+  name:string
+  emailId:string
   senderId: string
   message: string
+
 }
 
 
@@ -51,12 +56,12 @@ type chatDetailsType = {
 }
 
 export type fetchShowChatsDataType = {
-  showAllChats: any
-  showSenderReceiverChat:any
-  uid: string
-  emailId: string
-  name: string
-}
+  showAllChats: messageType[];
+  showSenderReceiverChat: messageType[];
+  uid: string;
+  emailId: string;
+  name: string;
+};
 
 export type showLoggedInEmployeesLeaveDetailsDataType = {
   showLoggedInEmployeesLeaveDetailsData: employeeLeavesProps[]

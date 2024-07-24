@@ -31,6 +31,8 @@ employeeLeaveData {
   date
   leaveReason
   leaveStatus
+  employeeName
+  employeeLeaveApplicationUid
 }
 success
 message

@@ -3,7 +3,7 @@ import image from "../../../../RegisterComponent/images/add-user.png"
 import { useAppDispatch, useAppSelector } from "../../../../../ReduxHooks";
 import { setChatID, setShowChatRoom, setShowSelectedChatUserDetails } from "../../../../../ReduxSlicers/ShowChatRoomSlicer";
 import { FaFacebookMessenger, FaTelegram } from "react-icons/fa";
-import { fetchShowChatsDataType } from "../../../../../Types/HomeComponentTypes";
+import { fetchShowChatsDataType, messageType } from "../../../../../Types/HomeComponentTypes";
 
 import "../ShowAllChatsUsersComponent/ShowAllChatUsers.css"
 import "../ChatBoxResponsive.css"
@@ -23,7 +23,7 @@ function ShowAllChatsUsers({ fetchShowChatsData }: ShowAllChatsUsersProps) {
     const Dispatch = useAppDispatch();
 
 
-    const showChatRoomDialogBox = (val: fetchShowChatsDataType) => {
+    const showChatRoomDialogBox = (val: messageType) => {
         const chatID = { val, savedEmployeeLoggedInUid }
         Dispatch(setChatID(chatID))
         Dispatch(setShowChatRoom(true))
@@ -44,13 +44,13 @@ function ShowAllChatsUsers({ fetchShowChatsData }: ShowAllChatsUsersProps) {
     return (
         <div className="main-chatbox">
 
-            {fetchShowChatsData && fetchShowChatsData?.showAllChats.filter((val: fetchShowChatsDataType) => {
+            {fetchShowChatsData && fetchShowChatsData?.showAllChats.filter((val: messageType) => {
                 if (val.uid === setSavedLoggedInEmployeeUid) {
                     return val.uid !== setSavedLoggedInEmployeeUid
                 } else {
                     return val
                 }
-            }).map((val: fetchShowChatsDataType) => {
+            }).map((val: messageType) => {
                 return (
                     <div className="show-all-user-to-chat-box">
                         <div onClick={() => { showChatRoomDialogBox(val) }} className="user-chat-container">
