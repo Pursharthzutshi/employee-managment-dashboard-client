@@ -4,14 +4,14 @@
 
 To see dashboard  please type admin login and admin password in admin login form -:
 
-admin email-id : admin@gmail.com
+admin email-id : adminjake@gmail.com
 admin password: admin123
 
 # Employee Login
 
 To see dashboard  please type employee login and employee password in employee login form -:
 
-employee email-id : jim@gmail.com
+employee email-id : william@gmail.com
 employee password: 123
 
 ![Untitled-2024-06-07-1111](https://github.com/Pursharthzutshi/employee-managment-dashboard-client/assets/24863656/99b531df-74df-44c8-8082-e3f642bdbaad)
