@@ -1,5 +1,7 @@
 # NOTE INSTRUCTIONS
 
+Note: Initial startup—especially during login/signup may take a few moments, as the app is hosted on Render.
+
 # Admin Login
 
 To see dashboard  please type admin login and admin password in admin login form -:
