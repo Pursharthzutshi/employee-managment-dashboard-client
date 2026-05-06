@@ -1,3 +1,7 @@
+# Server Link 
+
+https://github.com/Pursharthzutshi/employee-managment-dashboard-server
+
 # NOTE INSTRUCTIONS
 
 Note: Initial startup especially during login/signup may take a few moments, as the app is hosted on Render.
