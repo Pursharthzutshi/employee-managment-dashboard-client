@@ -1,6 +1,5 @@
-import React from "react";
 import { Link } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../ReduxHooks";
+import { useAppSelector } from "../../ReduxHooks";
 import HomePageImage from "../RegisterComponent/images/homepage.png"
 import detailsImage from "../RegisterComponent/images/file.png"
 import employeeInfo from "../RegisterComponent/images/employee.png"
@@ -12,7 +11,6 @@ import "./LeftSidebar.css"
 
 function LeftSidebar() {
 
-    const Dispatch = useAppDispatch();
     const adminStatus = useAppSelector((state) => state.LocalStorageSlicer.adminStatus)
 
     return (
@@ -24,18 +22,18 @@ function LeftSidebar() {
 
                     <div className="left-sidebar-icons-div">
                         <Link className="left-sidebar-links" to="/home">
-                            <img className="left-sidebar-icon-image" src={HomePageImage} />
+                            <img className="left-sidebar-icon-image" src={HomePageImage} alt="Home" />
                             <p >Home</p>
                         </Link>
 
                         <Link className="left-sidebar-links" to="/employeesTaskManagmentPage">
-                            <img className="left-sidebar-icon-image" src={detailsImage} />
+                            <img className="left-sidebar-icon-image" src={detailsImage} alt="Tasks" />
                             <p >Tasks</p>
 
                         </Link>
 
                         <Link className="left-sidebar-links" to="/showAllEmployeesData">
-                            <img className="left-sidebar-icon-image" src={employeeInfo} />
+                            <img className="left-sidebar-icon-image" src={employeeInfo} alt="Employee Details" />
                             <p >Employee Details</p>
 
                         </Link>
@@ -43,7 +41,7 @@ function LeftSidebar() {
                         {
                             adminStatus ?
                                 <Link className="left-sidebar-links" to="/createEmployeeNewAccount">
-                                    <img className="left-sidebar-icon-image" src={addEmployee} />
+                                    <img className="left-sidebar-icon-image" src={addEmployee} alt="Add Employee" />
 
                                     {
                                         adminStatus ? <p>Add Employee</p> : <p>Show Employee</p>
@@ -55,13 +53,13 @@ function LeftSidebar() {
                         }
                         {
                             adminStatus && <Link className="left-sidebar-links" to="/settings">
-                                <img className="left-sidebar-icon-image" src={settingsImage} />
+                                <img className="left-sidebar-icon-image" src={settingsImage} alt="Settings" />
                                 <p>Settings</p>
                             </Link>
                         }
                         {
                             !adminStatus && <Link className="left-sidebar-links" to="/employeesTakenLeaves">
-                                <img className="left-sidebar-icon-image" src={leaveImage} />
+                                <img className="left-sidebar-icon-image" src={leaveImage} alt="Employee Leave" />
                                 <p>Employees Taken Leave</p>
                             </Link>
                         }

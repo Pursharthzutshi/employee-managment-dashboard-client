@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../ReduxHooks";
 import { setUserLoggedInEmailId, setUserLoggedInEmailPassword } from "../../../ReduxSlicers/LoginSlicer";
-import { gql, useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { Link, useNavigate } from "react-router-dom";
-import { setAdminStatus, setLoggedInSavedUid, setLogOutStatus, setSavedLoggedInName, setShowLogOutButtonElements } from "../../../ReduxSlicers/LocalStorageSlicer";
+import { setAdminStatus, setLoggedInSavedUid, setSavedLoggedInName, setShowLogOutButtonElements } from "../../../ReduxSlicers/LocalStorageSlicer";
 import { checkAdminLoggedInAuthQuery } from "../../../GraphQLQueries/LoginQuery";
-import { fetchTotalAdmin } from "../../../GraphQLQueries/CardsDetailsQuery";
+
 
 
 import "./Login.css"
@@ -67,16 +67,14 @@ function LoginAdmin() {
                     <input className="font-semibold" type="text" placeholder="Email Id" onChange={(e) => Dispatch(setUserLoggedInEmailId(e.target.value))} />
                     <input className="font-semibold" type="password" placeholder="Password" onChange={(e) => Dispatch(setUserLoggedInEmailPassword(e.target.value))} />
                     <button className="login-button" onClick={() => {
-                        {
-                            checkAdminLoggedInAuth({
-                                variables: {
-                                    adminLoginParameters: {
-                                        emailId: userLoggedinEmailId,
-                                        password: userLoggedInEmailPassword
-                                    }
+                        checkAdminLoggedInAuth({
+                            variables: {
+                                adminLoginParameters: {
+                                    emailId: userLoggedinEmailId,
+                                    password: userLoggedInEmailPassword
                                 }
-                            })
-                        }
+                            }
+                        })
                     }}>Login</button>
                     <div>
                         <p>

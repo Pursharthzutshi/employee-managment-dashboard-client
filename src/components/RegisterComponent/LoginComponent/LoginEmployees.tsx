@@ -3,7 +3,7 @@ import { setUserLoggedInEmailId, setUserLoggedInEmailPassword } from "../../../R
 import { useMutation } from "@apollo/client";
 import { Link, useNavigate } from "react-router-dom";
 import { setAdminStatus, setLoggedInSavedUid, setSavedLoggedInName, setShowLogOutButtonElements } from "../../../ReduxSlicers/LocalStorageSlicer";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { checkEmployeeLoggedInAuthQuery } from "../../../GraphQLQueries/LoginQuery";
 import { employees_leave_details_query } from "../../../GraphQLQueries/HomeQuery";
@@ -13,7 +13,7 @@ import "./Login.css"
 
 function LoginUsers() {
 
-    const [setSavedLoggedInEmployeeUid] = useState(localStorage.getItem("loggedInSavedUid"));
+    const [savedLoggedInEmployeeUid] = useState(localStorage.getItem("loggedInSavedUid"));
 
 
     const userLoggedinEmailId = useAppSelector((state) => state.LoginSlicer.userLoggedinEmailId)
@@ -48,7 +48,7 @@ function LoginUsers() {
             {
                 query: employees_leave_details_query,
                 variables: {
-                    fetchLoggedInEmployeeAssignedTaskDetailsParameters: { uid: setSavedLoggedInEmployeeUid }
+                    fetchLoggedInEmployeeAssignedTaskDetailsParameters: { uid: savedLoggedInEmployeeUid }
                 },
 
             }
@@ -81,16 +81,14 @@ function LoginUsers() {
                     <input className="font-semibold" type="text" placeholder="Email Id" onChange={(e) => Dispatch(setUserLoggedInEmailId(e.target.value))} />
                     <input className="font-semibold" type="Password" placeholder="Password" onChange={(e) => Dispatch(setUserLoggedInEmailPassword(e.target.value))} />
                     <button className="sign-up-admin-button" onClick={() => {
-                        {
-                            checkUserLoggedInAuth({
-                                variables: {
-                                    userLoginParameters: {
-                                        emailId: userLoggedinEmailId,
-                                        password: userLoggedInEmailPassword
-                                    }
+                        checkUserLoggedInAuth({
+                            variables: {
+                                userLoginParameters: {
+                                    emailId: userLoggedinEmailId,
+                                    password: userLoggedInEmailPassword
                                 }
-                            })
-                        }
+                            }
+                        })
                     }}>Login</button>
                     <Link className="font-semibold home-page-navbar-login-button-link" to="/loginAdmin">Login as Admin</Link>
 

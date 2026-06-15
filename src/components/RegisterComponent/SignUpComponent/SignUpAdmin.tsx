@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { gql, useLazyQuery, useMutation } from "@apollo/client";
+import React, { useState } from "react";
+import { gql, useMutation } from "@apollo/client";
 import { useAppDispatch, useAppSelector } from "../../../ReduxHooks";
 import { setUserName, setUserEmailId, setEmailPassword, setEmailPasswordRecheck, setAdminSignUpSecret } from "../../../ReduxSlicers/SignUpSlicer";
-import { Link, redirect, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
 import { fetchTotalAdmin } from "../../../GraphQLQueries/CardsDetailsQuery";
 import { showAllAdminType } from "../../../Types/InMemoryCacheTypes";
@@ -24,7 +24,6 @@ function SignupAdmin() {
   const adminName = useAppSelector((state) => state.SignUpSlicer.userName)
   const adminEmailId = useAppSelector((state) => state.SignUpSlicer.userEmailId)
   const adminEmailPassword = useAppSelector((state) => state.SignUpSlicer.userEmailPassword)
-  const adminEmailPasswordRecheck = useAppSelector((state) => state.SignUpSlicer.userEmailPasswordRecheck)
   const adminSecretKey = useAppSelector((state) => state.SignUpSlicer.adminSignUpSecret)
 
 
@@ -40,7 +39,7 @@ function SignupAdmin() {
     e.preventDefault()
   }
 
-  const [adminSignUp, { loading }] = useMutation(signUpquery, ({
+  const [adminSignUp] = useMutation(signUpquery, ({
     onCompleted: (adminSignUpData) => {
       if (adminSignUpData.createAdminSignUp.success === true) {
         navigate("/")
