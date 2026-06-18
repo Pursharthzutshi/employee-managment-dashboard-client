@@ -71,53 +71,136 @@ function SignupAdmin() {
 
   // if (loading) return <p>Loading</p>
 
-  return (
-    <div className="signup-component">
-      {/* <ChangeSignUpFormButtons/> */}
-      <div className="signup-container">
-
-
-        <div className="signup-box">
-          <p className="font-bold text-lg">Sign Up Admin</p>
-
-          <form onSubmit={signUpForm} className="signup-form">
-
-            <input type="text" placeholder="Admin Name" onChange={(e) => dispatch(setUserName(e.target.value))} />
-            <input type="text" placeholder="Admin EmailId" onChange={(e) => dispatch(setUserEmailId(e.target.value))} />
-            <input type="password" placeholder="Admin Password" onChange={(e) => dispatch(setEmailPassword(e.target.value))} />
-            <input type="password" placeholder="Retype Password" onChange={(e) => dispatch(setEmailPasswordRecheck(e.target.value))} />
-            <input type="secret key" placeholder="admin secret provided by company" onChange={(e) => dispatch(setAdminSignUpSecret(e.target.value))} />
-
-            <div className="admin-sign-up-button-div">
-
-              <button className="admin-sign-up-button" type="submit" onClick={() => {
-                adminSignUp({
-                  variables: {
-                    adminSignUpParameters: {
-                      uid: uuidv4(),
-                      name: adminName,
-                      emailId: adminEmailId,
-                      password: adminEmailPassword,
-                      status: false,
-                      adminSecretKey: adminSecretKey
-
-                    },
-                  },
-                })
-              }}>Admin Sign Up</button>
-              <p>OR</p>
-              <Link className="navigate-login-page-button-link" to="/loginAdmin">Go To Login Page</Link>
+    return (
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 via-white to-slate-50 py-12 px-4 sm:px-6 lg:px-8 font-sans relative">
+            <div className="absolute top-6 left-6">
+                <Link to="/" className="text-sm font-semibold text-slate-500 hover:text-indigo-600 transition-colors flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-100">
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+                    Back to Home
+                </Link>
             </div>
-            {
-              showAdminSignUpErrorMessageStatus && <p className="admin-sign-up-error-message">{showAdminSignUpErrorMessage}</p>
-            }
-          </form>
+
+            <div className="max-w-md w-full space-y-8 bg-white p-10 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 z-10">
+                <div>
+                    <div className="mx-auto w-14 h-14 rounded-xl bg-gradient-to-br from-indigo-600 to-indigo-500 flex items-center justify-center shadow-lg shadow-indigo-500/30">
+                        <span className="text-white font-bold text-2xl">E</span>
+                    </div>
+                    <h2 className="mt-6 text-center text-3xl font-extrabold text-slate-900 tracking-tight">Create Account</h2>
+                    <p className="mt-2 text-center text-sm text-slate-500">
+                        Sign up for an admin workspace account.
+                    </p>
+                </div>
+
+                <form onSubmit={signUpForm} className="mt-8 space-y-6">
+                    {showAdminSignUpErrorMessageStatus && (
+                        <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-md flex items-start">
+                            <div className="flex-shrink-0">
+                                <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                                </svg>
+                            </div>
+                            <div className="ml-3">
+                                <p className="text-sm text-red-700 font-medium">{showAdminSignUpErrorMessage}</p>
+                            </div>
+                        </div>
+                    )}
+
+                    <div className="space-y-4">
+                        <div>
+                            <label className="block text-sm font-semibold text-slate-700 mb-1.5">Full Name</label>
+                            <input 
+                                type="text" 
+                                required 
+                                className="appearance-none block w-full px-4 py-2.5 border border-gray-200 rounded-xl bg-slate-50 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 sm:text-sm transition-all" 
+                                placeholder="Admin Name" 
+                                onChange={(e) => dispatch(setUserName(e.target.value))} 
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-semibold text-slate-700 mb-1.5">Email Address</label>
+                            <input 
+                                type="email" 
+                                required 
+                                className="appearance-none block w-full px-4 py-2.5 border border-gray-200 rounded-xl bg-slate-50 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 sm:text-sm transition-all" 
+                                placeholder="admin@company.com" 
+                                onChange={(e) => dispatch(setUserEmailId(e.target.value))} 
+                            />
+                        </div>
+                        <div className="grid grid-cols-2 gap-4">
+                            <div>
+                                <label className="block text-sm font-semibold text-slate-700 mb-1.5">Password</label>
+                                <input 
+                                    type="password" 
+                                    required 
+                                    className="appearance-none block w-full px-4 py-2.5 border border-gray-200 rounded-xl bg-slate-50 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 sm:text-sm transition-all" 
+                                    placeholder="••••••••" 
+                                    onChange={(e) => dispatch(setEmailPassword(e.target.value))} 
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-semibold text-slate-700 mb-1.5">Confirm</label>
+                                <input 
+                                    type="password" 
+                                    required 
+                                    className="appearance-none block w-full px-4 py-2.5 border border-gray-200 rounded-xl bg-slate-50 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 sm:text-sm transition-all" 
+                                    placeholder="••••••••" 
+                                    onChange={(e) => dispatch(setEmailPasswordRecheck(e.target.value))} 
+                                />
+                            </div>
+                        </div>
+                        <div>
+                            <label className="block text-sm font-semibold text-slate-700 mb-1.5">Admin Secret Key</label>
+                            <input 
+                                type="password" 
+                                required 
+                                className="appearance-none block w-full px-4 py-2.5 border border-gray-200 rounded-xl bg-slate-50 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 sm:text-sm transition-all" 
+                                placeholder="Provided by company" 
+                                onChange={(e) => dispatch(setAdminSignUpSecret(e.target.value))} 
+                            />
+                        </div>
+                    </div>
+
+                    <div className="pt-2">
+                        <button 
+                            type="button"
+                            onClick={() => {
+                                adminSignUp({
+                                    variables: {
+                                        adminSignUpParameters: {
+                                            uid: uuidv4(),
+                                            name: adminName,
+                                            emailId: adminEmailId,
+                                            password: adminEmailPassword,
+                                            status: false,
+                                            adminSecretKey: adminSecretKey
+                                        },
+                                    },
+                                })
+                            }}
+                            className="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-sm text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all"
+                        >
+                            Sign Up
+                        </button>
+                    </div>
+
+                    <div className="pt-4 flex justify-center border-t border-gray-100">
+                        <div className="text-sm">
+                            <span className="text-slate-500 mr-2">Already have an account?</span>
+                            <Link to="/loginAdmin" className="font-semibold text-indigo-600 hover:text-indigo-500 transition-colors">
+                                Log in
+                            </Link>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            {/* Decorative background elements */}
+            <div className="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+                <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-indigo-200/20 blur-3xl"></div>
+                <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-blue-200/20 blur-3xl"></div>
+            </div>
         </div>
-
-      </div>
-
-    </div>
-  )
+    )
 }
 
 export default SignupAdmin;

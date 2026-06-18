@@ -93,40 +93,35 @@ function Home() {
 
 
     return (
-        <div id="main-page" className="main-page">
+        <div id="main-page" className="p-6 md:p-8 max-w-[1600px] mx-auto w-full">
 
             <NavBar />
 
-            <br></br>
+            <div className="mt-8 space-y-8 animate-[showDashboardEffectAnimation_0.5s_ease-out]">
+                <WelcomeBack />
 
-            <WelcomeBack />
+                <CardsDetails />
 
-            <CardsDetails />
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                    <GenderTypeChart />
+                    <EmployeeOfTheMonth />
+                    <DepartmentChart />
+                </div>
 
-            <div className="chart-div-container">
+                <div className="mt-6 w-full">
+                    {
+                        adminStatus && <EmployeeLeaves />
+                    }
+                </div>
 
-
-                <GenderTypeChart />
-                <EmployeeOfTheMonth />
-                <DepartmentChart />
-
-            </div>
-            <br></br>
-            <div className="chart-div-container">
                 {
-                    adminStatus && <EmployeeLeaves />
+                    !adminStatus && <ChatBox />
                 }
 
+                {
+                    showChatRoom && <ShowChatRoom />
+                }
             </div>
-            {
-                !adminStatus && <ChatBox />
-            }
-
-            <br></br>
-            {
-                showChatRoom && <ShowChatRoom />
-            }
-
 
         </div>
     )

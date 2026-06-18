@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAppDispatch } from "../../../../ReduxHooks";
 import { gql, useMutation } from "@apollo/client";
-import NavBar from "../../../NavBarComponent/NavBar";
+
 import { fetchEmployeesDetailsProps } from "../../../../Types/EmployeesTaskTypes";
 
 import "../../EmployeesTaskManagerComponent/ShowEmployeesDataComponent/ShowEmployeesTask.css"
@@ -41,9 +41,9 @@ function AssignedEmployeesTask() {
     if (fetchAssignedEmployeeTaskDataLoading) return <div>Loading...</div>
 
     return (
-        <div id="main-page" className="employee-task-manager-component">
+        <div id="main-page" className="employee-task-manager-component pt-12">
             <div className="tasks-component">
-                <NavBar />
+
                 <p className="font-semibold text-lg">My Assigned Task</p>
 
                 {

@@ -1,71 +1,60 @@
-# Server Link 
+# Admin Employee Management Dashboard
 
+A modern, responsive employee management CRM dashboard.
+
+## Server Link 
 https://github.com/Pursharthzutshi/employee-managment-dashboard-server
 
-# NOTE INSTRUCTIONS
+## Note / Instructions
+Note: Initial startup especially during login/signup may take a few moments, as the backend server is hosted on Render.
 
-Note: Initial startup especially during login/signup may take a few moments, as the app is hosted on Render.
+## Demo Login Credentials
 
-# Admin Login
+**Admin Login**
+To see the admin dashboard, please type the admin login and admin password in the admin login form:
+- Admin Email-id: `adminjake@gmail.com`
+- Admin Password: `admin123`
 
-To see dashboard  please type admin login and admin password in admin login form -:
+**Employee Login**
+To see the employee dashboard, please type the employee login and employee password in the employee login form:
+- Employee Email-id: `william@gmail.com`
+- Employee Password: `123`
 
-admin email-id : adminjake@gmail.com
-admin password: admin123
+---
 
-# Employee Login
+## Tech Stack Used
+In this project I have used React Typescript, Redux Toolkit, Tailwind CSS (for modern, premium CRM styling), and Apollo Client & GraphQL queries like useQuery, useMutation etc. In this project I have also used GraphQL mutations like add, update, delete, fetch etc & Apollo Server.
 
-To see dashboard  please type employee login and employee password in employee login form -:
+I have defined the typeDefs and resolvers in GraphQL. I have also set up the MongoDB database where all my dynamic data such as employee account details, employee task info details, and admin sign up info details are stored.
 
-employee email-id : william@gmail.com
-employee password: 123
+## From Admin Point of View
 
-![Untitled-2024-06-07-1111](https://github.com/Pursharthzutshi/employee-managment-dashboard-client/assets/24863656/99b531df-74df-44c8-8082-e3f642bdbaad)
+### Left Sidebar
+It displays component links so the admin can navigate to the desired component. I have also added a logout button at the bottom so the admin can easily log out from the dashboard.
 
-https://github.com/Pursharthzutshi/employee-managment-dashboard-client/assets/24863656/10eb4039-a02b-40ce-b7ab-8eab31d05160
+### Add Employees Component
+In this component the admin can create a new employee account. It is a form where the admin can fill up employee details. Here the 2 most important fields are the gender type and department. So whenever a new account is created, the charts data of the bar chart & pie chart in the Home Component is updated automatically.
 
+### Show All Employees Component
+In this component, details of all employees are shown in boxes/cards. In this I have also added a search filter to filter out employees. Here a button is also added where the admin can set any employee as the employee of the month.
+Here the admin can also delete an employee account.
 
-# ADMIN EMPLOYEE MANAGMENT DASHBOARD 
-
-# TECH STACK USED -:
-
-In this project I have used react typescript, redux toolkit and apollo client & graphql queries like useQuery, useMutation etc. In this Project I have also used  graphql mutations like add, update, delete, fetch etc & apollo server.
-
-I have define the typeDefs and resolvers in graphql. I have also setup the mongodb database where all my dynamic data such as employee account details, employees task info details, admin Sign up info detials are stored 
-
-# FROM ADMIN POINT OF VIEW
-
-# Left Sidebar -:
-
-It displays four component links so the admin can navigate to the desired component. I have also added a logout button so the admin can easily log out from the dashboard.
-
-# Add Employees Component -:
-
-In this component the admin can create a new employee account. It is a form where the admin can fill up employee details. Here 2 most important fields are the gender type and department. So whenever a new account is created the charts data of bar chart & pie chart in Home Component is updated automatically.
-
-# Show All Employees Component-:
-
-In this component details of all employees are shown in the boxes . In this I have also added search filter to filter out employees. Here a button is also added where the admin can set any employee as employee of the month .
-
-Here the admin can also delete employee account 
-
-# Home Component -:
-
-In this component data of organization is shown with the help of chart js. I have used charts like bar and pie chart and data is coming from database whenever a new employee account is added. 
+### Home Component (Overview)
+In this component, data of the organization is shown with the help of chart.js. I have used charts like bar and pie chart and data is coming from the database whenever a new employee account is added. 
 
 The data shown is dynamic and updates automatically whenever there is any change, such as when a new employee is added. This component also includes information cards that display organization data like the total number of employees, total departments, etc.
+Here there is another box which shows the employee of the month which can be assigned by the admin in the Show All Employees Component.
 
-Here there is another box which show employee of the month which can be assigned by admin in show All Employees Component.
+### Task Component
+In this component the admin can create a new task, assign a task to the employee and can also edit and delete tasks. Here while adding I have added a select dropdown where the admin can select the employee and can assign a task to more than one employee.
 
-# Task Component -:
+### Create Admin Account Component
+This component is visible at the start of the login page. Here the admin account can be created but the admin secret key (provided by company stored in database) is required to fill in order to create an account.
 
-In this component the admin can create a new task, assign task to the employee and can also edit and delete tasks. Here while adding I have added a select dropdown where the admin can write name of the employee and can assign task to more than one employee. and new employee will be shown in the page.
+## From Employee Point of View
 
-# Create Admin Account Component
-
-This component is visible at the start of the login page . Here the admin account can be created but the admin secret key (provided by company stored in database) is required to fill in order to create an account
-
-# FROM EMPLOYEE POINT OF VIEW
-
-The employees can see the assigned task in tasks component . Whenever a employees tries to login he / she can see 3 components 
-that are Home, Task , Show all employee component
+Whenever an employee tries to login he / she can see their own specific dashboard components:
+- **Home / Overview:** Similar data overview.
+- **Task Manager:** The employees can see their assigned tasks.
+- **Employee Directory:** To view other employees.
+- **Leave Status:** Employees can apply for leaves and track their request status (Pending, Approved, or Rejected).

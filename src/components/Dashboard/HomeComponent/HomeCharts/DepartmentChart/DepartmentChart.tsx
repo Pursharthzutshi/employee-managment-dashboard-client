@@ -40,10 +40,13 @@ function DepartmentChart() {
   }
 
   return (
-    <div className="pie-chart-div">
+    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 flex flex-col justify-center h-full transition-all hover:shadow-md min-h-[300px]">
+      <h3 className="text-lg font-bold text-slate-800 mb-6 tracking-tight text-center">Department Breakdown</h3>
+      <div className="flex-1 w-full flex items-center justify-center">
       {
-        <Pie className="pie-chart" options={options} data={data} />
+        <Pie className="w-full max-h-[250px]" options={options} data={data} />
       }
+      </div>
     </div>
   )
 

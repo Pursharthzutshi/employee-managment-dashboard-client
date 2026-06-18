@@ -11,106 +11,31 @@ body {
 
 @keyframes showDashboardEffectAnimation {
     0% {
-        opacity: .2;
-        transform: scale(.94);
+        opacity: 0;
+        transform: translateY(10px);
     }
 
     100% {
         opacity: 1;
-        transform: scale(1);
+        transform: translateY(0);
     }
 }
 
-
-
-.dashboard-container {
-    display: flex;
+/* Modern Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
 }
 
-.left-sidebar-dashboard-div {
-    display: flex;
-    gap: 150px;
-    flex-direction: row;
+::-webkit-scrollbar-track {
+    background: transparent;
 }
 
-.dashboard-container {
-    background: linear-gradient(to left, rgb(52, 195, 252), rgb(78, 184, 255));
-    box-shadow: .2px .2px 22px .2px rgb(232, 232, 232);
-    height: 100%;
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
 }
 
-#main-page {
-    width: 92%;
-}
-
-.App {
-    margin-top: 10px;
-}
-
-body::-webkit-scrollbar {
-    background: linear-gradient(to left, rgb(255, 255, 255), rgb(255, 255, 255));
-}
-
-body::-webkit-scrollbar-thumb {
-    background: linear-gradient(to left, rgb(245, 245, 245), rgb(235, 235, 235));
-    border-radius: 2px;
-}
-
-body::-webkit-scrollbar-button {
-    display: hidden;
-}
-
-
-
-.card-details-div,
-.bar-chart-div,
-.pie-chart-div,
-.employee-of-the-month-div,
-.show-employee-apply-leave-dialog-box,
-.welcome-back-card-container,
-.employees-leaves-component,
-.employees-task-data-div {
-    /* box-shadow: 12px 2px 25px 12px rgb(247, 247, 247); */
-    box-shadow: .2px .2px 22px .2px rgba(233, 233, 233, 0.418);
-}
-
-.login-button,
-.sign-up-admin-button,
-.add-posts-dialog-box-button,
-.add-new-task-button,
-.employees-task-edit-dialog-box-button,
-.edit-new-task-button,
-.employees-details-button,
-.create-new-employee-account-box button {
-    font-family: "Montserrat";
-    background: rgb(0, 67, 135);
-    color: white;
-    box-shadow: .2px .2px 23px .2px rgb(240, 240, 240);
-}
-
-.login-button:hover,
-.sign-up-admin-button:hover,
-.add-posts-dialog-box-button:hover,
-.add-new-task-button:hover,
-.employees-task-edit-dialog-box-button:hover,
-.edit-new-task-button:hover,
-.employees-details-button:hover,
-.create-new-employee-account-box button:hover {
-    transition: .2s;
-    background: white;
-    color: rgb(0, 85, 170);
-}
-
-.left-sidebar {
-    box-shadow: .2px .2px 18px .2px rgba(240, 240, 240, 0.692);
-}
-
-.employees-details-div {
-    border-radius: 10px;
-    box-shadow: .2px .2px 30px .2px rgba(231, 243, 255, 0.462);
-}
-
-
-.employees-task-delete-button {
-    background: rgb(203, 0, 0);
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
 }

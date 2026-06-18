@@ -8,6 +8,7 @@ import { signUpquery } from "../../../GraphQLQueries/CreateNewEmployeeAccountQue
 import { show_all_employees_data_query } from "../../../GraphQLQueries/ShowAllEmployeesQuery";
 import { createNewEmployeeAccountCacheType } from "../../../Types/InMemoryCacheTypes";
 
+
 import "./CreateNewEmployeeAccount.css"
 import "./CreateNewEmployeeAccountResponsive.css"
 
@@ -75,89 +76,102 @@ function CreateNewEmployeeAccount() {
   }, [])
 
   return (
-    <div className="create-new-employee-account-container">
-      <div className="create-new-employee-account-box">
+    <div id="main-page" className="p-6 md:p-8 pt-12 md:pt-16 max-w-[1600px] mx-auto w-full">
 
-        <form onSubmit={signUpForm} className="signup-form">
-          <h3 className="employee-account-heading font-semibold text-lg">Create Employee Account</h3>
-          {
-            newEmployeeAccountCreatedStatus ?
-              <div className="new-employee-added-div">
+        <div className="mt-8 max-w-3xl mx-auto animate-[showDashboardEffectAnimation_0.5s_ease-out]">
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+                <div className="mb-8 pb-6 border-b border-gray-100">
+                    <h3 className="text-2xl font-bold text-slate-800 tracking-tight">Create Employee Account</h3>
+                    <p className="text-sm font-medium text-slate-500 mt-1">Add a new member to your organization</p>
+                </div>
 
-                <h3>A New Account has been created</h3>
+                {newEmployeeAccountCreatedStatus && (
+                    <div className="mb-6 bg-emerald-50 text-emerald-700 px-4 py-3 rounded-xl border border-emerald-100 flex items-center space-x-3">
+                        <svg className="w-5 h-5 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path></svg>
+                        <p className="font-semibold text-sm">A New Account has been created successfully!</p>
+                    </div>
+                )}
 
-              </div>
-              : null
-          }
+                <form onSubmit={signUpForm} className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2.5 block">Name</label>
+                            <input className="w-full px-5 py-3.5 bg-slate-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none text-sm font-medium transition-all shadow-sm" type="text" placeholder="John Doe" onChange={(e) => Dispatch(setUserName(e.target.value))} />
+                        </div>
 
+                        <div>
+                            <label className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2.5 block">Email Address</label>
+                            <input className="w-full px-5 py-3.5 bg-slate-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none text-sm font-medium transition-all shadow-sm" type="email" placeholder="john@example.com" onChange={(e) => Dispatch(setUserEmailId(e.target.value))} />
+                        </div>
+                        
+                        <div className="md:col-span-2">
+                            <label className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2.5 block">Password</label>
+                            <input className="w-full px-5 py-3.5 bg-slate-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none text-sm font-medium transition-all shadow-sm" type="password" placeholder="Secure password" onChange={(e) => Dispatch(setEmailPassword(e.target.value))} />
+                        </div>
 
-          <div className="inputs-labels-container">
+                        <div>
+                            <label className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2.5 block">Gender</label>
+                            <div className="flex flex-wrap gap-4 pt-2">
+                                <label className="flex items-center space-x-2 cursor-pointer">
+                                    <input onChange={(e) => Dispatch(setGenderType(e.target.value))} className="w-4 h-4 text-indigo-600 focus:ring-indigo-500 border-gray-300" name="gender" value="male" type="radio" />
+                                    <span className="text-sm font-medium text-slate-700">Male</span>
+                                </label>
+                                <label className="flex items-center space-x-2 cursor-pointer">
+                                    <input onChange={(e) => Dispatch(setGenderType(e.target.value))} className="w-4 h-4 text-indigo-600 focus:ring-indigo-500 border-gray-300" name="gender" value="female" type="radio" />
+                                    <span className="text-sm font-medium text-slate-700">Female</span>
+                                </label>
+                                <label className="flex items-center space-x-2 cursor-pointer">
+                                    <input onChange={(e) => Dispatch(setGenderType(e.target.value))} className="w-4 h-4 text-indigo-600 focus:ring-indigo-500 border-gray-300" name="gender" value="others" type="radio" />
+                                    <span className="text-sm font-medium text-slate-700">Others</span>
+                                </label>
+                            </div>
+                        </div>
 
+                        <div>
+                            <label className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2.5 block">Department</label>
+                            <select className="w-full px-5 py-3.5 bg-slate-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none text-sm font-medium transition-all shadow-sm appearance-none cursor-pointer" onChange={(e) => Dispatch(setDepartment(e.target.value))} defaultValue="DEFAULT">
+                                <option value="DEFAULT" disabled>Select Department</option>
+                                <option value="HR Department">HR Department</option>
+                                <option value="Software Department">Software Department</option>
+                                <option value="Testing Department">Testing Department</option>
+                                <option value="UI/UX Design Department">UI/UX Design Department</option>
+                                <option value="Sales Department">Sales Department</option>
+                            </select>
+                        </div>
+                    </div>
 
-            <div className="inputs-div">
-
-
-              <strong>Name:</strong>
-              <input className="form-inputs" type="text" placeholder="Name" onChange={(e) => Dispatch(setUserName(e.target.value))} />
-
-              <strong>Email Id:</strong>
-              <input className="form-inputs" type="email" placeholder="Email Id" onChange={(e) => Dispatch(setUserEmailId(e.target.value))} />
-
-
-              <strong>Password:</strong>
-              <input className="form-inputs" type="password" placeholder="Password" onChange={(e) => Dispatch(setEmailPassword(e.target.value))} />
-
-
-              <strong>Gender:</strong>
-              <div className="gender-cateogry-div">
-                <label>Male</label>
-                <input onChange={(e) => Dispatch(setGenderType(e.target.value))} className="gender-type" name="gender" value="male" type="radio" />
-                <label>Female</label>
-                <input onChange={(e) => Dispatch(setGenderType(e.target.value))} className="gender-type" name="gender" value="female" type="radio" />
-                <label>Others</label>
-                <input onChange={(e) => Dispatch(setGenderType(e.target.value))} className="gender-type" name="gender" value="others" type="radio" />
-              </div>
-
-              <strong>Department:</strong>
-              <select className="select-department" onChange={(e) => Dispatch(setDepartment(e.target.value))}>
-                <option disabled selected>Select Department:</option>
-                <option>HR Department</option>
-                <option>Software Department</option>
-                <option>Testing Department</option>
-                <option>UI/UX Design Department</option>
-                <option>Sales Department</option>
-              </select>
-
+                    <div className="pt-8 mt-8 border-t border-gray-100 flex items-center justify-between">
+                        {!createEmployeeNewAccountStatus && createNewEmployeeAccountErrorMessage && (
+                            <p className="text-red-500 font-medium text-sm flex-1">{createNewEmployeeAccountErrorMessage}</p>
+                        )}
+                        <div className="flex-1"></div>
+                        
+                        <button 
+                            type="submit" 
+                            className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 px-8 rounded-xl shadow-sm shadow-indigo-200 transition-all hover:-translate-y-0.5"
+                            onClick={() => {
+                                CreateEmployeeNewAccount({
+                                variables: {
+                                    userSignUpParameters: {
+                                    uid: uuidv4(),
+                                    name: userName,
+                                    emailId: userEmailId,
+                                    password: userEmailPassword,
+                                    genderType: genderType,
+                                    status: false,
+                                    department: department,
+                                    employeeOfTheMonth: false
+                                    },
+                                },
+                                })
+                            }}
+                        >
+                            Create Account
+                        </button>
+                    </div>
+                </form>
             </div>
-          </div>
-
-          <button type="submit" onClick={() => {
-            CreateEmployeeNewAccount({
-              variables: {
-                userSignUpParameters: {
-                  uid: uuidv4(),
-                  name: userName,
-                  emailId: userEmailId,
-                  password: userEmailPassword,
-                  genderType: genderType,
-                  status: false,
-                  department: department,
-                  employeeOfTheMonth: false
-                },
-              },
-            })
-
-          }}>Create Employee Account</button>
-
-          {createEmployeeNewAccountStatus ? null :
-            <p className="signup-error-message">{createNewEmployeeAccountErrorMessage}</p>
-          }
-
-        </form>
-
-      </div>
-      <div className="sign-up-right-side-image"></div>
-
+        </div>
     </div>
   )
 }

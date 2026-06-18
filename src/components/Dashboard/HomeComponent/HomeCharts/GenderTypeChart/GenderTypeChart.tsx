@@ -41,11 +41,13 @@ function GenderTypeChart() {
   }
 
   return (
-    <div className="bar-chart-div">
-   
+    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 flex flex-col justify-center h-full transition-all hover:shadow-md min-h-[300px]">
+      <h3 className="text-lg font-bold text-slate-800 mb-6 tracking-tight text-center">Gender Diversity</h3>
+      <div className="flex-1 w-full flex items-center justify-center">
       {
-        chartData && <Bar className="doughnut-chart" options={options} data={data} />
+        chartData && <Bar className="w-full max-h-[250px]" options={options} data={data} />
       }
+      </div>
     </div>
   )
 

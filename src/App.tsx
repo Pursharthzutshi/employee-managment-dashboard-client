@@ -30,16 +30,15 @@ function App() {
 
 
   return (
-    <div data-testid="app-container" className="App">
+    <div data-testid="app-container" className="flex h-screen w-full overflow-hidden bg-slate-50 font-sans">
 
-      <button className="show-menu-bar-button">show Menu Bar</button>
+      {/* <button className="show-menu-bar-button hidden">show Menu Bar</button> */}
 
-      <div className='left-sidebar-dashboard-div'>
+      {
+        logOutButton && <LeftSidebar />
+      }
 
-        {
-          logOutButton && <LeftSidebar />
-        }
-
+      <main className="flex-1 overflow-y-auto h-full w-full relative">
         <Routes >
           <Route path="/home" element=
             {<Home />}
@@ -88,8 +87,7 @@ function App() {
           <Route path="/signUpAdmin" element={<SignupAdmin />} />
 
         </Routes>
-      </div>
-
+      </main>
 
     </div>
   );

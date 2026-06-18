@@ -61,56 +61,90 @@ function EmployeesTaskManagerDialogBoxForm() {
     if (loading) return <h3>Loading</h3>
 
     return (
-        <div className="employee-dialog-box-div">
-
-            <div className="close-dialog-box-icon-div" onClick={closeDialogBox}>
-                <FaTimes className="close-dialog-box-icon" >Close</FaTimes>
+        <>
+            <div>
+                <label className="block text-sm font-semibold text-slate-700 mb-1.5">Task Name</label>
+                <input 
+                    type="text" 
+                    placeholder="E.g. Database Migration" 
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => { Dispatch(setEmployeeName(e.target.value)) }}
+                    className="w-full px-4 py-2.5 border border-gray-200 rounded-xl bg-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all"
+                />
             </div>
 
-            <p className="font-semibold text-xl ml-2 ">Task</p>
+            <div>
+                <label className="block text-sm font-semibold text-slate-700 mb-1.5">Assign To (Email)</label>
+                <input 
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => addSelectedUser(e.target.value)} 
+                    type="text" 
+                    name="city" 
+                    list="cityname"
+                    placeholder="Select employee..."
+                    className="w-full px-4 py-2.5 border border-gray-200 rounded-xl bg-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all"
+                />
 
-            <input type="text" placeholder="Task Name" onChange={(e: React.ChangeEvent<HTMLInputElement>) => { Dispatch(setEmployeeName(e.target.value)) }} />
-
-            <input onChange={(e: React.ChangeEvent<HTMLInputElement>) => addSelectedUser(e.target.value)} type="text" name="city" list="cityname" />
-
-            <datalist id="cityname">
-                <select>
+                <datalist id="cityname">
                     {
                         FetchUserData.fetchEmailUsersIds.map((val: fetchEmailUsersIdsProps) => {
-                            return <option value={val.emailId}>
+                            return <option key={val.emailId} value={val.emailId}>
                                 {val.name}
                             </option>
                         })
                     }
-
-                </select>
-            </datalist>
+                </datalist>
+            </div>
 
             {
-                taskAssignedToEmployee && selectedUsers.length > 0 && <div className="selected-employees-container">
-
-                    <strong>Task Assigned to the Employee</strong>
-                    {
-                        selectedUsers.map((SelectedUsersData: String) => {
-                            return (
-                                <div className="selected-employees-div">
-                                    <p>{SelectedUsersData}</p>
-                                    <FaTimes className="selected-employees-cancel-icon" onClick={() => removeSelectedUsers(SelectedUsersData)}></FaTimes>
-                                </div>
-                            )
-                        })
-                    }
-                </div>
+                taskAssignedToEmployee && selectedUsers.length > 0 && (
+                    <div className="bg-indigo-50 border border-indigo-100 rounded-xl p-4">
+                        <label className="block text-xs font-bold text-indigo-800 uppercase tracking-wider mb-2">Assigned Employees</label>
+                        <div className="flex flex-wrap gap-2">
+                            {
+                                selectedUsers.map((SelectedUsersData: String) => {
+                                    return (
+                                        <div key={String(SelectedUsersData)} className="inline-flex items-center px-2.5 py-1.5 rounded-lg text-sm font-medium bg-white border border-indigo-200 text-indigo-700 shadow-sm">
+                                            <span>{SelectedUsersData}</span>
+                                            <button 
+                                                type="button"
+                                                onClick={() => removeSelectedUsers(SelectedUsersData)}
+                                                className="ml-1.5 text-indigo-400 hover:text-indigo-600 focus:outline-none"
+                                            >
+                                                <FaTimes />
+                                            </button>
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
+                    </div>
+                )
             }
 
             {
-                alreadyAddedEmployeeStatus ? <h4 className="">Added Already</h4> : null
+                alreadyAddedEmployeeStatus ? <div className="text-red-500 text-sm font-medium">This employee is already added to the task.</div> : null
             }
 
-            <textarea className="task-desc-textarea" placeholder="Task Description" onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => { Dispatch(setEmployeeTaskDesc(e.target.value)) }} ></textarea>
-            <input min={DateLimit()} data-date-format="DD MMMM YYYY" type="date" placeholder="deadLine" className="calendar" onChange={(e: React.ChangeEvent<HTMLInputElement>) => { Dispatch(setEmployeeDeadLine(e.target.value)) }} />
-
-        </div>
+            <div>
+                <label className="block text-sm font-semibold text-slate-700 mb-1.5">Description</label>
+                <textarea 
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl bg-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all resize-none" 
+                    placeholder="Provide details about the task..." 
+                    rows={3}
+                    onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => { Dispatch(setEmployeeTaskDesc(e.target.value)) }} 
+                ></textarea>
+            </div>
+            
+            <div>
+                <label className="block text-sm font-semibold text-slate-700 mb-1.5">Deadline</label>
+                <input 
+                    min={DateLimit()} 
+                    data-date-format="DD MMMM YYYY" 
+                    type="date" 
+                    className="w-full px-4 py-2.5 border border-gray-200 rounded-xl bg-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all" 
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => { Dispatch(setEmployeeDeadLine(e.target.value)) }} 
+                />
+            </div>
+        </>
     )
 }
 

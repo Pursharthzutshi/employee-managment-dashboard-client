@@ -56,18 +56,43 @@ function EditEmployeesTaskManagerDialogBox({ selectedUpdateTaskFieldUid }: EditE
     }
 
     return (
-        <div className="task-dialog-box">
-            <form className="task-dialog-box-form">
-
-                <EmployeesTaskManagerDialogBoxForm />
-                <div className="edit-button-div">
-                    <button onClick={editDialogBox}
-                        className="edit-new-task-button">Edit A New Task</button>
-                    <button className="close-edit-dialog-box-button" onClick={closeDialogBox}>Cancel</button>
-
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm">
+            <div className="bg-white rounded-2xl shadow-xl w-full max-w-lg overflow-hidden relative">
+                {/* Header */}
+                <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+                    <h3 className="font-bold text-lg text-slate-900">Edit Task</h3>
+                    <button 
+                        type="button"
+                        onClick={closeDialogBox}
+                        className="text-slate-400 hover:text-slate-600 transition-colors p-1.5 rounded-full hover:bg-slate-100"
+                    >
+                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                    </button>
                 </div>
 
-            </form>
+                <form className="flex flex-col" onSubmit={(e) => { e.preventDefault(); editDialogBox(); closeDialogBox(); }}>
+                    <div className="p-6 space-y-5 max-h-[60vh] overflow-y-auto">
+                        <EmployeesTaskManagerDialogBoxForm />
+                    </div>
+                    
+                    {/* Footer */}
+                    <div className="px-6 py-4 bg-slate-50 border-t border-gray-100 flex justify-end gap-3">
+                        <button 
+                            type="button"
+                            onClick={closeDialogBox}
+                            className="px-5 py-2.5 bg-white border border-gray-200 text-slate-700 text-sm font-semibold rounded-xl hover:bg-slate-50 transition-colors shadow-sm"
+                        >
+                            Cancel
+                        </button>
+                        <button 
+                            type="submit"
+                            className="px-5 py-2.5 bg-indigo-600 text-white text-sm font-bold rounded-xl hover:bg-indigo-700 transition-colors shadow-sm shadow-indigo-200"
+                        >
+                            Save Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     )
 }
