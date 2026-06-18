@@ -2,6 +2,8 @@
 
 A modern, responsive employee management CRM dashboard.
 
+NOTE: The ui of this project has been updated
+
 ## Server Link 
 https://github.com/Pursharthzutshi/employee-managment-dashboard-server
 
